@@ -7,10 +7,10 @@
  * (p.ej. `style={{ color: "var(--primary)" }}` o `text-foreground`), así que
  * NO necesita un asset por tema. El wordmark usa la tipografía del DS.
  *
- * Para usos no-React (slides/email/social) usar las URLs de
- * `singular-skill-assets` (ver components/README o assets/README del DS).
+ * Para usos no-React (slides/email/social) usar los assets de marca en
+ * `assets/` de este repo (ver assets/README.md).
  *
- * Símbolo placeholder — espeja singular-skill-assets/symbols/singular-symbol.svg.
+ * El símbolo inline espeja assets/symbols/singular-symbol.svg.
  */
 import type { CSSProperties, ReactNode } from "react"
 

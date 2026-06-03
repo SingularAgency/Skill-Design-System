@@ -1,0 +1,8 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Singular">
+  <!-- PLACEHOLDER a color con aberración cromática (rojo #E63400 / cyan #00D2F4). Reemplazar por el oficial. -->
+  <g style="mix-blend-mode:screen">
+    <circle cx="22.6" cy="22" r="10" fill="#E63400"/>
+    <circle cx="25.4" cy="22" r="10" fill="#00D2F4" opacity="0.7"/>
+  </g>
+  <ellipse cx="24" cy="22" rx="21" ry="6.5" transform="rotate(-22 24 22)" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+</svg>

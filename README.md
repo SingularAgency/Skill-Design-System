@@ -23,7 +23,7 @@ surfaces/
   social-email/           ← email (s-mail-v1) + social (Meta)      [Fase 6]
 components/               ← inventario core + por-perfil
 references/               ← audit-checklist, decision-tree, patterns
-assets/                   ← → repo singular-skill-assets           [Fase 9]
+assets/                   ← logos + símbolos de marca (en este repo)
 legacy/                   ← FUENTES recuperados (input, no se publican)
 ```
 

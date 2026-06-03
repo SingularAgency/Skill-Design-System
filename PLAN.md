@@ -15,7 +15,7 @@
 | D2 | **Arquitectura: núcleo + perfiles** | Una skill madre con un **core de marca** (tokens, voz, a11y, motion) + **sub-perfiles por superficie**. `singular-design-app-v2` se **incrusta** como perfil `web-app` (sigue leyendo el `globals.css` de Stories como su verdad). `.sds-*` se **deprecan como sistema de clases**, pero se rescata su andamiaje (`references/`: audit-checklist, decision-tree, patterns). |
 | D3 | **Superficies v1** | Las 4: `website-landing`, `web-app`, `slides-presentations`, `social-email`. |
 | D4 | **Arranque** | Este documento maestro primero; luego ejecución paso a paso. |
-| D5 | **Assets al final** | Repo público `singular-skill-assets` (logos, símbolos) en la última fase. |
+| D5 | **Assets en el mismo repo** | Logos y símbolos de marca viven en `assets/` de este repo (se descartó el repo aparte `singular-skill-assets`). |
 
 ### Decisiones derivadas / pendientes de confirmar
 - **Valores exactos de neutrales por perfil** (web negro `#050505`/`#010203` vs app navy tintado): a afinar con diseño. La arquitectura no depende del valor final.
@@ -107,7 +107,7 @@ singular-design-system/                ← skill madre (la consolidada)
   components/                          ← inventario core + por-perfil (con API y portabilidad)
   backgrounds/                         ← <BrandBackground> (sistema unificado §3.3)
   references/                          ← audit-checklist, decision-tree, patterns (de .sds-*)
-  assets/                              ← (Fase 9) → repo singular-skill-assets
+  assets/                              ← logos + símbolos de marca (en este repo)
 ```
 
 ### 3.2 Modelo de tokens multi-marca (dual)
@@ -187,10 +187,10 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Entregable:** skill publicada + skills viejas marcadas deprecated.
 - **Done:** el equipo usa una sola skill.
 
-### Fase 9 — Repo de assets `singular-skill-assets`
-- **Tareas:** crear repo público; subir logos/símbolos (idealmente SVG monocromo + tokens); cablear la skill para consumirlos por URL.
-- **Entregable:** repo de assets + skill consumiéndolo.
-- **Done:** la skill no depende de assets locales duplicados por tema.
+### Fase 9 — Assets de marca (en este repo, `assets/`)
+- **Tareas:** mantener logos/símbolos oficiales en `assets/` (logos full/icon/wordmark dark/light + símbolo recoloreable); referenciarlos por ruta relativa (no-web) o vía `<Logo>` (React).
+- **Entregable:** `assets/` con los assets oficiales versionados junto al resto del DS.
+- **Done:** todo el DS convive en un solo repo; sin assets duplicados por tema. *(Se descartó el repo aparte `singular-skill-assets`: todo vive acá.)*
 
 ---
 
