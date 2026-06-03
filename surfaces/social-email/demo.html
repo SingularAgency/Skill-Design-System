@@ -1,0 +1,61 @@
+<!doctype html><html class="dark"><head><meta charset="utf-8">
+<title>Singular DS — Email + Social</title>
+<link rel="stylesheet" href="../../tokens/core.css">
+<link rel="stylesheet" href="../../tokens/brand-web.css">
+<link rel="stylesheet" href="../../tokens/core-utilities.css">
+<link rel="stylesheet" href="../../backgrounds/brand-background.css">
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: #18181b; padding: 32px; display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+  .label { color: #9aa0aa; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .75rem; }
+  .logo { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; color: #fff; }
+  .logo .mk { width: 20px; height: 20px; border-radius: 6px; background-image: var(--gradient-primary); }
+  .accent { background-image: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* EMAIL (600px, estilo table-based pero simplificado) */
+  .email { width: 600px; max-width: 100%; background: #0f0f10; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgb(0 0 0/.5); }
+  .email .head { padding: 1.5rem 2rem; border-bottom: 1px solid rgb(255 255 255/.08); }
+  .email .body { padding: 2rem; }
+  .email h1 { color: #f5f5f5; font-size: 1.8rem; font-weight: 700; letter-spacing: -.02em; margin: 0 0 1rem; line-height: 1.15; }
+  .email p { color: #c4c8cf; font-size: 1rem; line-height: 1.6; margin: 0 0 1.25rem; }
+  .email .btn { display: inline-block; background-image: var(--gradient-primary); color: #fff; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 9999px; }
+  .email .foot { padding: 1.5rem 2rem; border-top: 1px solid rgb(255 255 255/.08); color: #8a8f99; font-size: .78rem; line-height: 1.5; }
+  .email .foot a { color: #e8806c; }
+
+  /* SOCIAL (4:5 = 1080x1350, escalado) */
+  .social { width: 400px; aspect-ratio: 4/5; border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 20px 60px rgb(0 0 0/.5); }
+  .social .pad { position: relative; z-index: 1; height: 100%; box-sizing: border-box; padding: 2.5rem; display: flex; flex-direction: column; }
+  .social h2 { color: #fff; font-size: 2.4rem; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; margin: 0; }
+  .social p { color: rgb(255 255 255/.72); margin: 1rem 0 0; font-size: 1rem; }
+  .spacer { flex: 1; }
+</style></head><body>
+
+<!-- EMAIL -->
+<div>
+  <div class="label">Email · 600px</div>
+  <div class="email">
+    <div class="head"><span class="logo"><span class="mk"></span> Singular</span></div>
+    <div class="body">
+      <span class="eyebrow eyebrow--brand">Novedades</span>
+      <h1 style="margin-top:.6rem">Tu Company Brain, <span class="accent">más inteligente</span></h1>
+      <p>Lanzamos nuevos agentes que se conectan con tu CRM y tus reuniones. Menos trabajo manual, más foco en lo que importa.</p>
+      <a class="btn" href="#">Agendar una llamada →</a>
+    </div>
+    <div class="foot">Singular Inc · Buenos Aires · <a href="#">Cancelar suscripción</a><br>Recibís este email porque te suscribiste en singular.ai</div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<div>
+  <div class="label">Social · 4:5 (1080×1350)</div>
+  <div class="social brand-bg"><div class="brand-bg__stars"></div><div class="pad">
+    <span class="logo"><span class="mk"></span> Singular</span>
+    <div class="spacer"></div>
+    <span class="eyebrow eyebrow--brand">Agentic AI</span>
+    <h2 style="margin-top:.5rem">Dejá de copiar datos entre <span class="accent">sistemas</span></h2>
+    <p>Un Company Brain que trabaja por vos.</p>
+    <div class="spacer"></div>
+    <div style="color:rgb(255 255 255/.6);font-size:.85rem">@singular.ai</div>
+  </div></div>
+</div>
+
+</body></html>

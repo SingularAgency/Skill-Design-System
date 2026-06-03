@@ -1,0 +1,66 @@
+---
+name: singular-design-system
+description: >-
+  El design system de marca de Singular — uno solo, para todas las superficies.
+  Usalo para diseñar o construir CUALQUIER cosa con identidad Singular: web apps
+  y dashboards (producto), websites y landings (marketing), presentaciones y slides
+  (Gamma/PPTX), piezas de social (Meta/IG/LinkedIn) y emails. Provee el motor de
+  tokens multi-marca (rojo marketing / azul producto), el fondo de marca
+  (BrandBackground), los componentes core y las guías por superficie. Reemplaza y
+  consolida las skills previas: s-skill-v1, singular-design-app-v2, singular-design-system
+  (.sds-*) y s-mail-v1. Triggers: "diseñá/armá/construí una [página/landing/dashboard/
+  componente/slide/deck/email/pieza] de Singular", "estilo Singular", "marca Singular",
+  "design system de Singular", o cualquier UI/pieza para un producto de Singular.
+---
+
+# Singular Design System
+
+Un solo sistema de marca para todas las superficies de Singular. **Dark-first.**
+
+## 1. Elegí tu superficie
+Cada superficie tiene su guía con setup, anatomía y reglas:
+
+| Vas a construir… | Perfil | Guía |
+|---|---|---|
+| Dashboard / app interna / producto | **web-app** (azul) | `surfaces/web-app/guide.md` |
+| Website / landing / marketing | **website-landing** (rojo) | `surfaces/website-landing/guide.md` |
+| Presentación / deck / slides | **slides** | `surfaces/slides-presentations/guide.md` |
+| Email | **email** | `surfaces/social-email/email.md` |
+| Pieza de social | **social** | `surfaces/social-email/social.md` |
+
+> Preview vivo de todo: abrí `tokens/demo.html` (core), y `surfaces/<superficie>/demo.html`.
+
+## 2. Marca: dual por superficie
+- 🔴 **Rojo `#d4513b`** = marca pública: website, landing, slides, social, email.
+- 🔵 **Azul `#4567ed`** = producto: web-app, dashboards.
+
+No es contradicción: es un **brand profile**. El chrome se deriva de `--primary` con `color-mix()`, así que el perfil re-tinta toda la UI. Status (`success/warning/info/destructive`) es semántico y **no** cambia con la marca.
+
+## 3. Setup (web, Tailwind v4)
+```css
+/* producto */         @import "@singular/ds/tokens/theme-app.css";
+/* marketing */        @import "@singular/ds/tokens/theme-web.css";
+@import "@singular/ds/backgrounds/brand-background.css";
+```
+- Tokens y modelo: `tokens/README.md` (core + brand-app/brand-web + utilities).
+- Fondo de marca: `backgrounds/README.md` (`<BrandBackground>` · variantes animated/static/flat).
+- Componentes: `components/README.md` (core vs producto vs marketing).
+- Logo: `<Logo>` (`components/Logo.tsx`) — recoloreable `currentColor`; assets en `singular-skill-assets` (ver `assets/README.md`).
+
+## 4. Reglas transversales
+- **Tokens, no hex.** `bg-primary`, `text-foreground`, `--gradient-primary` — nunca `#xxxxxx` inline.
+- **Spacing nombrado** (`gap-s/m/l/xl`), **radius por perfil** (`--radius-card`: xl app / 2xl web).
+- **Tipografía**: Poppins (UI/display) · Inter (cuerpo web) · JetBrains Mono (números/datos, `tabular-nums`).
+- **Tipografía semántica** (`.kpi-value`, `.eyebrow`, `.text-*`, `.label-*`) en vez de `text-lg font-semibold` sueltos.
+- **Accesibilidad**: contraste AA; `focus-visible:ring`; `aria-hidden` en decorativos; `prefers-reduced-motion` respetado en fondo/animaciones; touch targets ≥44px.
+- **Voz**: liderar con el resultado del usuario; cuantificar; una idea por bloque.
+
+## 5. Anti-patterns
+- ❌ Hex de marca inline → usar tokens / `--singular-*`.
+- ❌ Pills/badges/filtros hechos a mano → componentes del DS.
+- ❌ `<img src="logo">` por tema → `<Logo />` (`currentColor`).
+- ❌ Fondos animados sin `prefers-reduced-motion`.
+- ❌ Mezclar el sistema `.sds-*` (deprecado) con este.
+
+## 6. Mantenimiento
+El perfil **web-app** espeja `v0-singular-stories-app`; el **website-landing**, `FramerSingular`. Cuando esos productos evolucionen el sistema, re-auditar y actualizar acá (ver `PLAN.md` §Fase 8). Fuente única — no forkear tokens por producto.

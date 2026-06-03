@@ -1,0 +1,7 @@
+/* Entry de build — superficie APP (web-app, primary azul).
+ * Importar este archivo en la app (reemplaza el globals.css de tokens). */
+@import 'tailwindcss';
+@import './core.css';
+@import './brand-app.css';
+@import './theme-mapping.css';
+@import './core-utilities.css';

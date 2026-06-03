@@ -1,0 +1,74 @@
+/* ============================================================
+ * Perfil WEBSITE / LANDING — utilities de marketing
+ * ============================================================
+ * Va sobre el core + brand-web (rojo) + brand-background.css.
+ * Aporta lo que el core no necesita pero cualquier landing de
+ * Singular sí: ritmo de secciones largas, marquees, título-gradiente.
+ * (Portado de FramerSingular/client/src/index.css, tokenizado.)
+ * ============================================================ */
+
+/* ── Section rhythm (responsive) — reemplaza py-s/m/l del sitio ── */
+.section-pad-s { padding-block: 3rem; }
+.section-pad-m { padding-block: 4rem; }
+.section-pad-l { padding-block: 6rem 5rem; }
+.section-pad-prefooter { padding-block: 6rem 10rem; }
+@media (min-width: 768px) {
+  .section-pad-s { padding-block: 4rem; }
+  .section-pad-m { padding-block: 6rem; }
+  .section-pad-l { padding-block: 8rem 6rem; }
+  .section-pad-prefooter { padding-block: 8rem 12rem; }
+}
+@media (min-width: 1024px) {
+  .section-pad-s { padding-block: 5rem; }
+  .section-pad-m { padding-block: 8rem; }
+  .section-pad-l { padding-block: 10rem 8rem; }
+  .section-pad-prefooter { padding-block: 10rem 16rem; }
+}
+
+/* ── Contenedor de sección de landing ── */
+.landing-section { border-bottom: 1px solid var(--border); padding-inline: 1rem; }
+@media (min-width: 768px) { .landing-section { padding-inline: 1.5rem; } }
+.landing-container { max-width: 80rem; margin-inline: auto; }
+
+/* ── Eyebrow de marca (color primary + dot) — sobre el .eyebrow del core ── */
+.eyebrow--brand { color: var(--primary); }
+.eyebrow--brand::before { content: ""; width: 6px; height: 6px; border-radius: var(--radius-full); background: var(--primary); display: inline-block; }
+
+/* ── Título con palabra en gradiente de marca ── */
+.text-gradient-brand { background-image: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ── Marquee (logos de clientes / tech stack) ── */
+.marquee-mask { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.marquee { display: flex; width: max-content; animation: marquee-scroll var(--marquee-speed, 40s) linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+@keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── Card de marketing (glass oscura con hover) ── */
+.marketing-card {
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--foreground) 4%, transparent);
+  border: 1px solid var(--border);
+  transition: transform .2s, border-color .2s;
+}
+.marketing-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--primary) 35%, transparent); }
+
+/* ── Encabezado de sección ── */
+.landing-heading { max-width: 48rem; }
+.landing-heading--center { margin-inline: auto; text-align: center; }
+
+/* ── CTA (primary=blanco · accent=gradiente de marca · secondary=outline) ── */
+.cta { display: inline-flex; align-items: center; gap: .4rem; height: 3rem; padding-inline: 2rem; border-radius: var(--radius-full); font-weight: 500; font-size: 1rem; cursor: pointer; text-decoration: none; transition: background .2s, border-color .2s, transform .2s; }
+@media (min-width: 768px) { .cta { height: 3.5rem; font-size: 1.05rem; } }
+.cta--primary { background: #fff; color: #000; border: 1px solid #fff; }
+.cta--primary:hover { background: rgb(255 255 255 / .9); }
+.cta--accent { background-image: var(--gradient-primary); color: var(--primary-foreground); border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent); box-shadow: 0 8px 30px -8px color-mix(in srgb, var(--primary) 60%, transparent); }
+.cta--secondary { background: color-mix(in srgb, var(--foreground) 5%, transparent); color: var(--foreground); border: 1px solid var(--border); }
+.cta--secondary:hover { background: color-mix(in srgb, var(--foreground) 10%, transparent); }
+
+/* ── Chip de sistema/herramienta ── */
+.system-chip { display: inline-flex; align-items: center; gap: .5rem; border-radius: var(--radius-lg); border: 1px solid var(--border); background: color-mix(in srgb, var(--foreground) 5%, transparent); padding: .5rem .75rem; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: .9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+  .marketing-card, .cta { transition: none; }
+}

@@ -1,0 +1,102 @@
+<!doctype html><html class="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Singular DS — Web-app / Producto</title>
+<link rel="stylesheet" href="../../tokens/core.css">
+<link rel="stylesheet" href="../../tokens/brand-app.css">
+<link rel="stylesheet" href="../../tokens/core-utilities.css">
+<link rel="stylesheet" href="../../backgrounds/brand-background.css">
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
+  .app { display: flex; min-height: 100vh; }
+  /* sidebar */
+  .sidebar { width: 232px; flex: none; padding: 1rem .75rem; background: var(--sidebar); border-right: 1px solid var(--sidebar-border); }
+  .brand { display: flex; align-items: center; gap: .55rem; font-weight: 700; padding: .5rem .6rem; margin-bottom: 1.25rem; color: var(--foreground-strong); }
+  .brand .dot { width: 24px; height: 24px; border-radius: 7px; background-image: var(--gradient-primary); }
+  .nav-item { padding: .55rem .6rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: .6rem; color: var(--sidebar-foreground); font-size: .9rem; cursor: pointer; margin-bottom: .15rem; }
+  .nav-item.active { background: var(--sidebar-accent); color: var(--primary); font-weight: 500; }
+  .nav-item:hover:not(.active) { background: var(--sidebar-nav-hover); }
+  .ico { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  /* main */
+  .main { flex: 1; min-width: 0; padding: 2.25rem 2.5rem 3rem; position: relative; }
+  .head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: var(--gap-l); }
+  .head .page-subtitle { margin-top: .35rem; }
+  .btn-primary { background-image: var(--gradient-primary); color: var(--primary-foreground); border: 0; border-radius: var(--radius-full); padding: .55rem 1rem; font: inherit; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: .4rem; box-shadow: 0 2px 6px rgb(0 0 0/.25), inset 0 1px 0 rgb(255 255 255/.2); white-space: nowrap; }
+  /* kpi row */
+  .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-m); margin-bottom: var(--gap-l); }
+  .tile { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 1.25rem 1.4rem; }
+  .kpi-top { display: flex; align-items: center; gap: .55rem; }
+  .kpi-value { font-size: 1.875rem; font-weight: 600; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .kpi-trend { font-size: .72rem; font-weight: 600; padding: .12rem .45rem; border-radius: var(--radius-full); }
+  .kpi-trend.up { background: color-mix(in srgb, var(--success) 16%, transparent); color: var(--success); }
+  .kpi-sub { font-size: .8rem; color: var(--muted-foreground); margin-top: .4rem; }
+  /* filters */
+  .pills { display: flex; gap: .5rem; align-items: center; margin-bottom: var(--gap-l); flex-wrap: wrap; }
+  .pill { padding: .3rem .8rem; border-radius: var(--radius-full); font-size: .85rem; border: 1px solid var(--border); background: transparent; color: var(--muted-foreground); cursor: pointer; }
+  .pill.selected { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+  .search { position: relative; margin-left: auto; }
+  .search .ico { position: absolute; left: .6rem; top: 50%; transform: translateY(-50%); color: var(--muted-foreground); }
+  .search input { background: var(--muted); border: 1px solid var(--input); color: var(--foreground); border-radius: var(--radius-md); padding: .45rem .75rem .45rem 2rem; font: inherit; min-width: 220px; }
+  /* table */
+  table.tbl { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  .tbl th { text-align: left; padding: .65rem .9rem; color: var(--muted-foreground); font-weight: 500; text-transform: uppercase; font-size: .68rem; letter-spacing: .04em; border-bottom: 1px solid var(--border); }
+  .tbl td { padding: .7rem .9rem; border-bottom: 1px solid var(--border); }
+  .tbl tbody tr:hover td { background: var(--accent); }
+  .tbl .num { font-family: var(--font-mono); text-align: right; }
+  .badge { display: inline-flex; align-items: center; gap: .3rem; padding: .12rem .55rem; border-radius: var(--radius-full); font-size: .72rem; font-weight: 500; }
+  .b-info { background: color-mix(in srgb, var(--info) 16%, transparent); color: var(--info); }
+  .b-success { background: color-mix(in srgb, var(--success) 16%, transparent); color: var(--success); }
+  .b-error { background: color-mix(in srgb, var(--destructive) 18%, transparent); color: color-mix(in srgb, var(--destructive) 70%, #fff); }
+  .avatar { width: 1.6rem; height: 1.6rem; border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 600; color: #fff; }
+</style></head><body>
+<div class="app brand-bg">
+  <div class="brand-bg__stars" aria-hidden="true"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand"><span class="dot"></span> Singular Stories</div>
+    <div class="nav-item active"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Dashboard</div>
+    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Sprints</div>
+    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Payments</div>
+    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Team</div>
+    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><path d="m9 11 3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg> QA</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="head">
+      <div>
+        <h1 class="page-title">Active Stories</h1>
+        <p class="page-subtitle">Stories en curso. Tomá trabajo, empujá progreso, pasá a QA.</p>
+      </div>
+      <button class="btn-primary"><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> New Story</button>
+    </div>
+
+    <div class="kpi-row">
+      <div class="tile"><div class="kpi-top"><span class="kpi-value">16</span><span class="kpi-trend up">▲ 12%</span></div><div class="kpi-sub">Stories en desarrollo activo</div></div>
+      <div class="tile"><div class="kpi-top"><span class="kpi-value">111</span></div><div class="kpi-sub">Story points en esta vista</div></div>
+      <div class="tile"><div class="kpi-top"><span class="kpi-value">8</span></div><div class="kpi-sub">Contributors asignados</div></div>
+    </div>
+
+    <div class="pills">
+      <span class="pill selected">All</span>
+      <span class="pill">Active</span>
+      <span class="pill">In review</span>
+      <span class="pill">Blocked</span>
+      <span class="pill">Done</span>
+      <span class="search"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input placeholder="Buscar stories…" /></span>
+    </div>
+
+    <div class="tile" style="padding:0;overflow:hidden">
+      <table class="tbl">
+        <thead><tr><th>Story</th><th>Owner</th><th>Status</th><th>KR</th><th class="num">SP</th></tr></thead>
+        <tbody>
+          <tr><td>Auth refactor</td><td><span class="avatar" style="background:#2E82D6">CA</span> Camila</td><td><span class="badge b-info">in-progress</span></td><td>Reduce login friction</td><td class="num">8</td></tr>
+          <tr><td>Billing webhook</td><td><span class="avatar" style="background:#9333B1">AL</span> Alonso</td><td><span class="badge b-success">completed</span></td><td>Automate invoicing</td><td class="num">5</td></tr>
+          <tr><td>QA queue triage</td><td><span class="avatar" style="background:#F78104">CE</span> César</td><td><span class="badge b-error">blocked</span></td><td>Cut QA backlog</td><td class="num">3</td></tr>
+          <tr><td>Onboarding wizard</td><td><span class="avatar" style="background:#57B886">LU</span> Luis</td><td><span class="badge b-info">testing</span></td><td>Activate new clients</td><td class="num">13</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body></html>

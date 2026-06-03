@@ -1,0 +1,49 @@
+# Fondo de marca
+
+El fondo de Singular —niebla + grilla + estrellas— unificado, **tokenizado y ligado a `--primary`**: se re-tinta solo con el brand profile (azul en app, rojo en web). Reemplaza las dos implementaciones divergentes (el `app-canvas-bg` CSS de Stories y el hero Framer del website).
+
+## Archivos
+| Archivo | Qué es |
+|---|---|
+| `brand-background.css` | Capas CSS (mist, grid, stars, aurora, cursor) + variantes + reduced-motion. Agnóstico de framework. |
+| `BrandBackground.tsx` | Componente React (portable Next/Vite, sin framer-motion) que monta las capas y agrega el mouse-follow en `animated`. |
+
+## Variantes
+| Variante | Capas | Uso |
+|---|---|---|
+| `animated` | mist + grid + stars + **aurora** + **cursor-glow (mouse-follow)** | Heros del website, landings de alto impacto |
+| `static` | mist + grid + stars | Canvas de app (dashboards), fondos de plataforma, slides |
+| `flat` | solo color base | Detrás de tablas/contenido denso (legibilidad) |
+
+## Uso
+
+**React** (recomendado):
+```tsx
+import { BrandBackground } from "@singular/ds/backgrounds/BrandBackground"
+// + importar una vez: brand-background.css y un brand profile
+
+<BrandBackground variant="animated">
+  <YourHero />
+</BrandBackground>
+```
+
+**CSS-only** (sin React — slides, email previews, prototipos):
+```html
+<div class="brand-bg">           <!-- o brand-bg--flat -->
+  <div class="brand-bg__stars" aria-hidden="true"></div>
+  <div class="brand-bg__content">…</div>
+</div>
+```
+
+## Tokens (ajustables por superficie)
+| Token | Default | Qué controla |
+|---|---|---|
+| `--brand-bg-mist-1/-2/-3` | `--primary` / `--singular-secondary` / `--singular-cyan` | Hues del glow |
+| `--brand-bg-mist-strength` | `0.20` | Intensidad del glow principal |
+| `--brand-grid-size` | `60px` | Densidad de la grilla |
+| `--brand-grid-color` | `rgb(255 255 255 / .028)` | Intensidad de las líneas |
+| `--brand-stars-opacity` | `0.55` | Presencia de las estrellas |
+| `--brand-stars-speed-a/-b` | `240s / 320s` | Velocidad de deriva |
+
+## Accesibilidad
+`prefers-reduced-motion: reduce` apaga estrellas, aurora y cursor-glow (y el componente no engancha el listener de mouse). Las capas son `aria-hidden`.

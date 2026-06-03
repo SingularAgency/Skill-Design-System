@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Singular DS — preview de componentes</title>
+<link rel="stylesheet" href="./core.css" />
+<link id="brand" rel="stylesheet" href="./brand-app.css" />
+<link rel="stylesheet" href="./core-utilities.css" />
+<style>
+  /* Preview standalone (sin build): recrea los componentes core del DS con los tokens.
+     No es el código de producción — es para VER cómo se ven con cada brand profile. */
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
+  .bar { position: sticky; top: 0; z-index: 10; display: flex; gap: var(--gap-s); align-items: center;
+    padding: var(--gap-m); background: var(--card); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .bar b { margin-right: auto; font-weight: 600; }
+  .toggle { font: inherit; cursor: pointer; padding: .45rem .85rem; border-radius: var(--radius-full);
+    border: 1px solid var(--border); background: var(--secondary); color: var(--foreground); }
+  .toggle.on { background-image: var(--gradient-primary); color: var(--primary-foreground); border-color: transparent; }
+  main { padding: var(--gap-xl); display: grid; gap: var(--gap-xl); max-width: 1100px; margin: 0 auto; }
+  section { display: grid; gap: var(--gap-m); }
+  h2 { font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted-foreground);
+    margin: 0; padding-bottom: var(--gap-s); border-bottom: 1px solid var(--border); }
+  .row { display: flex; gap: var(--gap-s); flex-wrap: wrap; align-items: center; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--gap-m); }
+  .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+  /* swatches */
+  .sw { width: 56px; height: 48px; border-radius: var(--radius-md); display: flex; align-items: flex-end; padding: 4px;
+    font-size: 9px; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .7); border: 1px solid rgb(128 128 128 / .25); }
+
+  /* buttons */
+  .btn { font: inherit; font-weight: 500; cursor: pointer; border: 0; border-radius: var(--radius-full);
+    padding: .55rem 1rem; display: inline-flex; align-items: center; gap: .4rem; line-height: 1; }
+  .btn-primary { background-image: var(--gradient-primary); color: var(--primary-foreground);
+    box-shadow: 0 2px 6px rgb(0 0 0 / .22), inset 0 1px 0 rgb(255 255 255 / .22); }
+  .btn-strong { background-image: var(--gradient-primary-hover); color: #fff;
+    box-shadow: 0 2px 6px rgb(0 0 0 / .22), inset 0 1px 0 rgb(255 255 255 / .16); }
+  .btn-outline { background: transparent; color: var(--primary); border: 1px solid var(--border); }
+  .btn-secondary { background: var(--secondary); color: var(--secondary-foreground); border: 1px solid var(--border); }
+  .btn-ghost { background: transparent; color: var(--foreground); }
+  .btn-destructive { background: var(--destructive); color: var(--destructive-foreground); }
+  .btn-link { background: transparent; color: var(--interactive); padding: .55rem .25rem; }
+  .btn-sm { padding: .4rem .75rem; font-size: .8rem; }
+  .btn-lg { padding: .7rem 1.25rem; font-size: 1rem; }
+  .btn-icon { padding: 0; width: 2.25rem; height: 2.25rem; justify-content: center; }
+
+  /* inputs */
+  .field { display: flex; flex-direction: column; gap: .35rem; }
+  .field > span { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: .05em; }
+  .input { background: var(--muted); border: 1px solid var(--input); color: var(--foreground);
+    border-radius: var(--radius-md); padding: .5rem .75rem; font: inherit; width: 100%; }
+  .input::placeholder { color: var(--muted-foreground); }
+  .input:focus-visible { outline: 2px solid var(--ring); outline-offset: 1px; }
+  .search { position: relative; display: inline-block; }
+  .search .ico { position: absolute; left: .6rem; top: 50%; transform: translateY(-50%); color: var(--muted-foreground); }
+  .search .input { padding-left: 2rem; min-width: 240px; }
+  .select { position: relative; display: inline-block; }
+  .select .ico { position: absolute; right: .6rem; top: 50%; transform: translateY(-50%); color: var(--muted-foreground); pointer-events: none; }
+  .select .input { padding-right: 2rem; min-width: 200px; appearance: none; }
+
+  /* dropdown menu */
+  .menu { background: var(--popover); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: .35rem; box-shadow: 0 14px 40px rgb(0 0 0 / .3); width: 230px; }
+  .menu-item { padding: .45rem .6rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: .5rem;
+    font-size: .9rem; color: var(--foreground); cursor: pointer; }
+  .menu-item:hover, .menu-item.active { background: var(--accent); color: var(--accent-foreground); }
+  .menu-item small { margin-left: auto; color: var(--muted-foreground); font-size: .7rem; }
+  .menu-sep { height: 1px; background: var(--border); margin: .35rem -.35rem; }
+
+  /* cards */
+  .card-solid { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--gap-l); }
+  .card-liquid { background-image: var(--surface-gradient-fill); border: 1px solid var(--border);
+    border-radius: var(--radius-card); padding: var(--gap-l); backdrop-filter: blur(16px) saturate(1.1); }
+  .card-accent { position: relative; overflow: hidden; }
+  .card-accent::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--singular-primary-500); }
+  .card h3 { margin: 0 0 .4rem; font-size: 1rem; }
+  .card p { margin: 0; color: var(--muted-foreground); font-size: .85rem; }
+
+  /* kpi */
+  .kpi { display: flex; flex-direction: column; gap: .4rem; }
+  .kpi-top { display: flex; align-items: center; gap: .55rem; }
+  .kpi-value { font-size: 1.9rem; font-weight: 600; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .kpi-trend { font-size: .72rem; font-weight: 600; padding: .12rem .45rem; border-radius: var(--radius-full); white-space: nowrap; }
+  .kpi-trend.up { background: color-mix(in srgb, var(--success) 15%, transparent); color: var(--success); }
+  .kpi-trend.warn { background: color-mix(in srgb, var(--warning) 18%, transparent); color: var(--warning); }
+  .kpi-trend.down { background: color-mix(in srgb, var(--destructive) 15%, transparent); color: var(--destructive); }
+  .kpi-sub { font-size: .8rem; color: var(--muted-foreground); line-height: 1.3; }
+  .up { color: var(--success); } .warn { color: var(--warning); } .down { color: var(--destructive); }
+
+  /* badges */
+  .badge { display: inline-flex; align-items: center; gap: .3rem; padding: .12rem .55rem; border-radius: var(--radius-full);
+    font-size: .72rem; font-weight: 500; border: 1px solid; }
+  .b-success { color: var(--success); border-color: var(--success); }
+  .b-warning { color: var(--warning); border-color: var(--warning); }
+  .b-error { color: var(--destructive); border-color: var(--destructive); }
+  .b-info { color: var(--info); border-color: var(--info); }
+  .b-neutral { color: var(--muted-foreground); border-color: var(--border); }
+  .badge.filled.b-success { background: color-mix(in srgb, var(--success) 16%, transparent); }
+  .badge.filled.b-error { background: color-mix(in srgb, var(--destructive) 16%, transparent); }
+  .badge.filled.b-info { background: color-mix(in srgb, var(--info) 16%, transparent); }
+
+  /* pills / filters */
+  .pill { padding: .3rem .8rem; border-radius: var(--radius-full); font-size: .85rem; border: 1px solid var(--border);
+    background: transparent; color: var(--muted-foreground); cursor: pointer; }
+  .pill.selected { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+
+  /* tabs */
+  .tabs { display: inline-flex; background: var(--muted); border-radius: var(--radius-full); padding: .25rem; gap: .25rem; }
+  .tab { padding: .4rem .9rem; border-radius: var(--radius-full); font-size: .85rem; color: var(--muted-foreground); cursor: pointer; border: 0; background: transparent; }
+  .tab.active { background: var(--card); color: var(--foreground); box-shadow: 0 1px 3px rgb(0 0 0 / .2); }
+
+  /* table */
+  table.tbl { width: 100%; border-collapse: collapse; font-size: .85rem; }
+  .tbl th { text-align: left; padding: .5rem .75rem; color: var(--muted-foreground); font-weight: 500;
+    text-transform: uppercase; font-size: .68rem; letter-spacing: .04em; border-bottom: 1px solid var(--border); }
+  .tbl td { padding: .6rem .75rem; border-bottom: 1px solid var(--border); }
+  .tbl tbody tr:hover td { background: var(--accent); }
+  .tbl .num { font-family: var(--font-mono); text-align: right; }
+
+  /* misc */
+  .avatar { width: 2.25rem; height: 2.25rem; border-radius: var(--radius-full); display: inline-flex;
+    align-items: center; justify-content: center; font-size: .8rem; font-weight: 600; color: #fff; }
+  .progress { height: .5rem; background: var(--secondary); border-radius: var(--radius-full); overflow: hidden; width: 220px; }
+  .progress > i { display: block; height: 100%; width: 62%; background-image: var(--gradient-primary); }
+  .switch { width: 2.5rem; height: 1.45rem; background: var(--secondary); border-radius: var(--radius-full); position: relative; cursor: pointer; border: 1px solid var(--border); }
+  .switch.on { background-image: var(--gradient-primary); border-color: transparent; }
+  .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 1.05rem; height: 1.05rem; border-radius: var(--radius-full); background: #fff; transition: transform .15s; }
+  .switch.on::after { transform: translateX(1.05rem); }
+  .tooltip { background: var(--foreground); color: var(--background); padding: .3rem .6rem; border-radius: var(--radius-md); font-size: .75rem; display: inline-block; }
+  .empty { text-align: center; padding: var(--gap-xl); border: 1px dashed var(--border); border-radius: var(--radius-card); color: var(--muted-foreground); }
+  .empty .ring { width: 3rem; height: 3rem; border-radius: var(--radius-full); background: var(--accent); display: inline-flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: var(--gap-s); }
+  .empty h3 { margin: 0 0 .25rem; color: var(--foreground); font-size: 1rem; }
+  .sidebar-demo { width: 210px; background: var(--sidebar, var(--card)); border: 1px solid var(--sidebar-border, var(--border)); border-radius: var(--radius-lg); padding: .5rem; }
+  .nav-item { padding: .5rem .6rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: .6rem; color: var(--sidebar-foreground, var(--muted-foreground)); font-size: .9rem; cursor: pointer; }
+  .nav-item.active { background: var(--sidebar-accent, var(--accent)); color: var(--primary); font-weight: 500; }
+  .nav-item:hover:not(.active) { background: var(--accent); }
+  .label { font-size: .7rem; color: var(--muted-foreground); }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <b>Singular DS · preview — <span id="label">App (azul) · light</span></b>
+    <button id="b-app" class="toggle on" onclick="setBrand('app')">App (azul)</button>
+    <button id="b-web" class="toggle" onclick="setBrand('web')">Web (rojo)</button>
+    <button class="toggle" onclick="toggleTheme()">◐ light / dark</button>
+  </div>
+
+  <main>
+    <!-- TOKENS -->
+    <section>
+      <h2>Escala de marca · Surface · Status</h2>
+      <div class="row" id="scale"></div>
+      <div class="row">
+        <div class="sw" style="background:var(--background)">bg</div>
+        <div class="sw" style="background:var(--card)">card</div>
+        <div class="sw" style="background:var(--muted)">muted</div>
+        <div class="sw" style="background:var(--accent)">accent</div>
+        <div class="sw" style="background:var(--secondary)">2ary</div>
+        <div class="sw" style="background:var(--border)">border</div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section>
+      <h2>Buttons</h2>
+      <div class="row">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-strong">CTA strong</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-destructive">Destructive</button>
+        <button class="btn btn-link">Link</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+        <button class="btn btn-secondary btn-icon" aria-label="add">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- INPUTS / SEARCH / SELECT -->
+    <section>
+      <h2>Inputs · Search · Select</h2>
+      <div class="row" style="align-items:flex-end">
+        <label class="field" style="min-width:220px"><span>Texto</span>
+          <input class="input" placeholder="Nombre del proyecto" /></label>
+        <div class="field"><span>Buscar</span>
+          <div class="search"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input class="input" placeholder="Buscar stories…" /></div></div>
+        <div class="field"><span>Select</span>
+          <div class="select"><input class="input" value="Sprint 14" readonly />
+            <svg class="ico" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div></div>
+      </div>
+      <label class="field"><span>Textarea</span>
+        <textarea class="input" rows="2" placeholder="Descripción…"></textarea></label>
+    </section>
+
+    <!-- DROPDOWN -->
+    <section>
+      <h2>Dropdown menu</h2>
+      <div class="menu">
+        <div class="menu-item active">Asignarme <small>⌘A</small></div>
+        <div class="menu-item">Mover a sprint <small>⌘M</small></div>
+        <div class="menu-item">Duplicar</div>
+        <div class="menu-sep"></div>
+        <div class="menu-item" style="color:var(--destructive)">Eliminar <small>⌫</small></div>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section>
+      <h2>Cards (solid · liquid glass · accent-top · KPI)</h2>
+      <div class="grid">
+        <div class="card card-solid"><h3>Card solid</h3><p>Superficie opaca <code>bg-card</code> para grillas y listas densas.</p></div>
+        <div class="card card-liquid"><h3>Card liquid</h3><p>Glass: <code>surface-gradient</code> + blur. Para heros, modales, floats.</p></div>
+        <div class="card card-solid card-accent"><h3>Accent-top</h3><p>Barra de acento superior en <code>singular-primary-500</code>.</p></div>
+        <div class="card card-solid kpi">
+          <div class="kpi-top"><span class="kpi-value up">$45.00</span><span class="kpi-trend up">▲ 12%</span></div>
+          <div class="kpi-sub">Estimated payout</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section>
+      <h2>Status / Severity / Priority badges</h2>
+      <div class="row">
+        <span class="badge b-success">healthy</span>
+        <span class="badge b-warning">pending</span>
+        <span class="badge b-error">at-risk</span>
+        <span class="badge b-info">in-progress</span>
+        <span class="badge b-neutral">draft</span>
+      </div>
+      <div class="row">
+        <span class="badge filled b-success">completed</span>
+        <span class="badge filled b-info">testing</span>
+        <span class="badge filled b-error">critical</span>
+        <span class="badge b-error">● urgent</span>
+        <span class="badge b-warning">● high</span>
+        <span class="badge b-neutral">● low</span>
+      </div>
+    </section>
+
+    <!-- PILLS / TABS -->
+    <section>
+      <h2>Pill filters · Tabs</h2>
+      <div class="row">
+        <span class="pill selected">All</span>
+        <span class="pill">Active</span>
+        <span class="pill">In review</span>
+        <span class="pill">Blocked</span>
+        <span class="pill">Done</span>
+      </div>
+      <div class="tabs">
+        <button class="tab active">Technical</button>
+        <button class="tab">Balanced</button>
+        <button class="tab">Business</button>
+      </div>
+    </section>
+
+    <!-- TABLE -->
+    <section>
+      <h2>Data table</h2>
+      <div class="card-solid" style="padding:0;overflow:hidden">
+        <table class="tbl">
+          <thead><tr><th>Story</th><th>Owner</th><th>Status</th><th class="num">SP</th></tr></thead>
+          <tbody>
+            <tr><td>Auth refactor</td><td>Camila</td><td><span class="badge filled b-info">in-progress</span></td><td class="num">8</td></tr>
+            <tr><td>Billing webhook</td><td>Alonso</td><td><span class="badge filled b-success">completed</span></td><td class="num">5</td></tr>
+            <tr><td>QA queue triage</td><td>César</td><td><span class="badge filled b-error">blocked</span></td><td class="num">3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MISC -->
+    <section>
+      <h2>Avatars · Progress · Switch · Tooltip · Sidebar · Empty state</h2>
+      <div class="grid">
+        <div class="card-solid">
+          <div class="label">Avatars (department-tinted)</div>
+          <div class="row" style="margin-top:.5rem">
+            <span class="avatar" style="background:#2E82D6">CE</span>
+            <span class="avatar" style="background:#9333B1">CA</span>
+            <span class="avatar" style="background:#F78104">AL</span>
+            <span class="avatar" style="background:#57B886">LU</span>
+          </div>
+          <div class="label" style="margin-top:1rem">Progress</div>
+          <div class="progress" style="margin-top:.5rem"><i></i></div>
+          <div class="row" style="margin-top:1rem;align-items:center">
+            <span class="switch on"></span><span class="label">on</span>
+            <span class="switch"></span><span class="label">off</span>
+            <span class="tooltip" style="margin-left:auto">Tooltip de ayuda</span>
+          </div>
+        </div>
+        <div class="sidebar-demo">
+          <div class="nav-item active"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Dashboard</div>
+          <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Sprints</div>
+          <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Payments</div>
+        </div>
+        <div class="empty">
+          <div class="ring"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></div>
+          <h3>No hay stories todavía</h3>
+          <p>Creá la primera para arrancar el sprint.</p>
+          <button class="btn btn-primary btn-sm" style="margin-top:.75rem">Nueva story</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+  function setBrand(which){
+    document.getElementById('brand').href = which === 'web' ? './brand-web.css' : './brand-app.css';
+    document.getElementById('b-app').classList.toggle('on', which==='app');
+    document.getElementById('b-web').classList.toggle('on', which==='web');
+    if (which==='web') document.documentElement.classList.add('dark');
+    updateLabel();
+  }
+  function toggleTheme(){ document.documentElement.classList.toggle('dark'); updateLabel(); }
+  function updateLabel(){
+    const brand = document.getElementById('b-web').classList.contains('on') ? 'Web (rojo)' : 'App (azul)';
+    const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    document.getElementById('label').textContent = brand + ' · ' + theme;
+  }
+  const scale = document.getElementById('scale');
+  [100,200,300,400,500,600,700,800,900].forEach(n=>{
+    const d=document.createElement('div'); d.className='sw';
+    d.style.background='var(--singular-primary-'+n+')'; d.textContent=n; scale.appendChild(d);
+  });
+  const _p = new URLSearchParams(location.search);
+  if (_p.get('brand')) setBrand(_p.get('brand'));
+  if (_p.get('theme') === 'light') document.documentElement.classList.remove('dark');
+  if (_p.get('theme') === 'dark')  document.documentElement.classList.add('dark');
+  updateLabel();
+</script>
+</body>
+</html>

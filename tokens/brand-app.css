@@ -1,0 +1,95 @@
+/* ============================================================
+ * Brand profile: APP (producto / web-app) — primary AZUL
+ * ============================================================
+ * Fuente de verdad: v0-singular-stories-app/app/globals.css.
+ * Carga junto a core.css. Light por defecto + .dark.
+ * Todo el chrome se deriva de --primary vía color-mix → cambiar
+ * --primary re-tinta la UI (el "motor multi-marca").
+ * ============================================================ */
+
+:root {
+  /* ── Marca ── */
+  --primary: #4567ed;            /* singular-primary-400 — fills, bg-primary */
+  --primary-foreground: #ffffff;
+  --primary-strong: #1741e8;     /* azul de acción — CTAs, links */
+  --primary-strong-hover: #1234ba;
+  --radius-card: var(--radius-xl); /* rounded-xl en la app */
+
+  --singular-primary: #4567ED;
+  --singular-primary-100: #D1D9FA; --singular-primary-200: #A2B3F6;
+  --singular-primary-300: #748DF1; --singular-primary-400: #4567ED;
+  --singular-primary-500: #1741E8; --singular-primary-600: #1234BA;
+  --singular-primary-700: #0E278B; --singular-primary-800: #091A5D;
+  --singular-primary-900: #050D2E;
+
+  --singular-secondary: #867BEA;
+  --singular-secondary-100: #D7D3F8; --singular-secondary-200: #AEA7F1;
+  --singular-secondary-300: #867BEA; --singular-secondary-400: #5646E8;
+  --singular-secondary-500: #4231DF; --singular-secondary-600: #2A1CB0;
+  --singular-secondary-700: #201584; --singular-secondary-800: #150E58;
+  --singular-secondary-900: #0B072C;
+
+  --singular-coral: #1741E8; --singular-cyan: #0D9488; --singular-purple: #7C3AED;
+  --singular-blue: #1741E8;  --singular-yellow: #D97706; --singular-red: #DC2626;
+  --singular-green: #16A34A;
+
+  /* ── Interactive ── */
+  --interactive: #1741e8;        --interactive-hover: #1234ba;
+  --interactive-fill: #4567ed;   --interactive-fill-hover: #1741e8;
+  --ring: #1741e8;
+
+  /* Gradientes de marca (botones/CTA) — azul con profundidad hacia índigo */
+  --gradient-primary: linear-gradient(135deg, #4f6ff2 0%, #2f43e3 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #3f5fe8 0%, #2235c5 100%);
+
+  /* ── Surface (neutrales tintados al primary) ── */
+  --background: color-mix(in srgb, var(--primary) 4%, #f6f8fd);
+  --foreground: #1A202C;            --foreground-strong: #1A202C;
+  --card: color-mix(in srgb, var(--primary) 7%, #f2f4fc);        --card-foreground: #1A202C;
+  --popover: color-mix(in srgb, var(--primary) 7%, #f2f4fc);     --popover-foreground: #1A202C;
+  --muted: color-mix(in srgb, var(--primary) 7%, #eaedf6);
+  --muted-foreground: color-mix(in srgb, var(--primary) 22%, #4A5568);
+  --accent: color-mix(in srgb, var(--primary) 9%, #e6eaf5);      --accent-foreground: var(--interactive);
+  --secondary: color-mix(in srgb, var(--primary) 12%, #d6dbe8);  --secondary-foreground: #1A202C;
+  --border: color-mix(in srgb, var(--primary) 16%, #c2c7d6);
+  --input: color-mix(in srgb, var(--primary) 18%, #c2c7d6);
+  --sheet-content: color-mix(in srgb, var(--primary) 5%, #fafbfc);
+
+  /* ── Sidebar / header (chrome de app) ── */
+  --sidebar: color-mix(in srgb, var(--primary) 4%, color-mix(in srgb, var(--singular-secondary-100) 14%, #e8ebf4));
+  --sidebar-foreground: #1A202C;
+  --sidebar-accent: color-mix(in srgb, var(--primary) 6.5%, #eef1fb);
+  --sidebar-border: color-mix(in srgb, var(--primary) 14%, #c5cad8);
+
+  /* ── Charts (light: escala azul mono) ── */
+  --chart-1: #1741E8; --chart-2: #4567ED; --chart-3: #748DF1; --chart-4: #A2B3F6; --chart-5: #D1D9FA;
+
+  /* ── Surface gradient (liquid glass) ── */
+  --surface-gradient-from: #e3e8fa; --surface-gradient-to: #eaeefb;
+}
+
+.dark {
+  --background: #05060d;
+  --foreground: #C4CED9;            --foreground-strong: #F1F5F9;
+  --card: color-mix(in srgb, var(--primary) 8%, #181d33);        --card-foreground: #C4CED9;
+  --popover: color-mix(in srgb, var(--primary) 8%, #181d33);     --popover-foreground: #C4CED9;
+  --muted: color-mix(in srgb, var(--primary) 10%, #1a1f36);
+  --muted-foreground: color-mix(in srgb, var(--primary) 18%, #a8b5c8);
+  --accent: color-mix(in srgb, var(--primary) 20%, #1a1f36);     --accent-foreground: var(--interactive);
+  --secondary: color-mix(in srgb, var(--primary) 16%, #1a1f36);  --secondary-foreground: #e2e8f0;
+  --border: color-mix(in srgb, var(--primary) 14%, #2a3150);
+  --input: color-mix(in srgb, var(--primary) 14%, #2a3150);
+  --sheet-content: color-mix(in srgb, var(--primary) 7%, #12172a);
+
+  --interactive: #8babff;          --interactive-hover: #c4d4ff;
+  --interactive-fill: #4567ed;     --interactive-fill-hover: #1741e8;
+  --ring: #6f8fff;
+
+  --sidebar: #121528; --sidebar-foreground: #C4CED9;
+  --sidebar-accent: #1c2138; --sidebar-border: #2a3150;
+
+  /* Charts (dark: multicolor saturado para leer sobre navy) */
+  --chart-1: #6f8fff; --chart-2: #3ECFEF; --chart-3: #94B8FF; --chart-4: #F0B429; --chart-5: #5EEAD4;
+
+  --surface-gradient-from: #171e35; --surface-gradient-to: #162144;
+}

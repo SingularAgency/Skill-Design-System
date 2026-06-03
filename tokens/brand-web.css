@@ -1,0 +1,76 @@
+/* ============================================================
+ * Brand profile: WEB (marketing / website) — primary ROJO
+ * ============================================================
+ * Fuente de verdad: FramerSingular/client/src/index.css.
+ * Carga junto a core.css. DARK-FIRST (el website es dark hoy;
+ * el bloque light queda como TODO).
+ *
+ * Identidad de marketing: negro dramático casi plano (no el navy
+ * tintado de la app). El --primary rojo entra como tint MUY sutil
+ * en card/border + como acento/CTA, no como wash de fondo.
+ *
+ * ⚠️ La escala roja --singular-primary-* fue GENERADA desde
+ * #d4513b (hsl ~9°). Diseño debe validar los hex finales.
+ * ============================================================ */
+
+:root {
+  /* ── Marca ── */
+  --primary: #d4513b;            /* Singular Red — hsl(9, 62%, 53%) */
+  --primary-foreground: #ffffff;
+  --primary-strong: #be3d29;     /* rojo de acción — CTAs/links (más intenso) */
+  --primary-strong-hover: #a33121;
+  --radius-card: var(--radius-2xl); /* rounded-2xl en marketing */
+
+  /* Escala roja generada (terracota/coral, hue ~9°) — validar con diseño */
+  --singular-primary: #d4513b;
+  --singular-primary-100: #F7E2DD; --singular-primary-200: #EFC2B8;
+  --singular-primary-300: #E29A8A; --singular-primary-400: #D4513B;
+  --singular-primary-500: #BE3D29; --singular-primary-600: #A33121;
+  --singular-primary-700: #82261A; --singular-primary-800: #5F1B12;
+  --singular-primary-900: #3D100A;
+
+  /* Secundario = azul de acento (el website lo usa como segundo color) */
+  --singular-secondary: #3B82F6;
+  --singular-secondary-100: #DBEAFE; --singular-secondary-200: #BFDBFE;
+  --singular-secondary-300: #93C5FD; --singular-secondary-400: #60A5FA;
+  --singular-secondary-500: #3B82F6; --singular-secondary-600: #2563EB;
+  --singular-secondary-700: #1D4ED8; --singular-secondary-800: #1E40AF;
+  --singular-secondary-900: #1E3A8A;
+
+  /* Acentos por-superficie que ya usa el sitio */
+  --singular-coral: #d97757; --singular-cyan: #06b6d4; --singular-purple: #a855f7;
+  --singular-blue: #3B82F6;  --singular-yellow: #f59e0b; --singular-red: #d4513b;
+  --singular-green: #10a37f;
+
+  /* ── Interactive ── (rojo claro legible sobre negro) */
+  --interactive: #e8806c;        --interactive-hover: #f0a18f;
+  --interactive-fill: #d4513b;   --interactive-fill-hover: #be3d29;
+  --ring: #d4513b;
+
+  /* Gradientes de marca (botones/CTA) — coral cálido hacia rojo */
+  --gradient-primary: linear-gradient(135deg, #e0664a 0%, #c5402a 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #d4513b 0%, #a8331f 100%);
+
+  /* ── Surface (negro dramático, tint rojo mínimo) ── */
+  --background: #050505;
+  --foreground: hsl(0 0% 98%);     --foreground-strong: #ffffff;
+  --card: color-mix(in srgb, var(--primary) 2%, #0a0a0a);     --card-foreground: hsl(0 0% 98%);
+  --popover: color-mix(in srgb, var(--primary) 2%, #0a0a0a);  --popover-foreground: hsl(0 0% 98%);
+  --muted: color-mix(in srgb, var(--primary) 3%, #141414);
+  --muted-foreground: rgb(255 255 255 / 0.55);
+  --accent: color-mix(in srgb, var(--primary) 4%, #1a1a1a);   --accent-foreground: hsl(0 0% 98%);
+  --secondary: #1a1a1a;            --secondary-foreground: hsl(0 0% 98%);
+  --border: rgb(255 255 255 / 0.10);
+  --input: rgb(255 255 255 / 0.10);
+  --sheet-content: #0a0a0a;
+
+  /* ── Charts (escala roja + acentos) ── */
+  --chart-1: #d4513b; --chart-2: #e8806c; --chart-3: #f59e0b; --chart-4: #3B82F6; --chart-5: #06b6d4;
+
+  /* ── Surface gradient ── */
+  --surface-gradient-from: #121212; --surface-gradient-to: #1a1a1a;
+}
+
+/* TODO(light): el website aún no tiene modo claro formal.
+ * Cuando se defina, agregar aquí el bloque :root[data-theme="light"]
+ * o .light con la versión clara del perfil web. */

@@ -1,0 +1,75 @@
+/* ============================================================
+ * Singular Design System — CORE tokens (universal)
+ * ============================================================
+ * NO define color de marca. Es la estructura compartida por
+ * todas las superficies: spacing, radius, tipografía y la
+ * semántica de status.
+ *
+ * Cada superficie carga:  core.css  +  un brand profile
+ *   - brand-app.css   (producto / web-app, primary azul)
+ *   - brand-web.css   (marketing / website, primary rojo)
+ *
+ * CONTRATO — un brand profile DEBE definir:
+ *   --primary, --primary-foreground, --primary-strong, --primary-strong-hover
+ *   --interactive, --interactive-hover, --interactive-fill, --interactive-fill-hover
+ *   --ring, --radius-card
+ *   --gradient-primary, --gradient-primary-hover (gradiente de marca para botones/CTA)
+ *   escalas --singular-primary-100..900 y --singular-secondary-100..900
+ *   acentos --singular-{cyan,purple,yellow,red,green,blue,coral}
+ *   superficie --background/-foreground/-foreground-strong, --card(-foreground),
+ *              --popover(-foreground), --muted(-foreground), --accent(-foreground),
+ *              --secondary(-foreground), --border, --input
+ * (opcionales según superficie: --sidebar*, --chart*, --surface-gradient-*)
+ * ============================================================ */
+
+:root {
+  /* ── Spacing scale ── usar .gap-* en vez de gap-4/gap-6 arbitrarios */
+  --gap-xs: 0.25rem;  /* 4px  */
+  --gap-s:  0.5rem;   /* 8px  */
+  --gap-m:  1rem;     /* 16px */
+  --gap-l:  1.5rem;   /* 24px */
+  --gap-xl: 2rem;     /* 32px */
+  --gap-filters-to-grid: 3rem; /* 48px */
+
+  /* ── Radius scale ── el DEFAULT de card lo fija el profile (--radius-card) */
+  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);  /* 12px — default card del perfil app */
+  --radius-2xl: calc(var(--radius) + 8px); /* 16px — default card del perfil web */
+  --radius-full: 9999px;
+
+  /* ── Typography ── */
+  --font-sans: 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --text-2xs: 0.625rem;   --text-2xs-line: 0.875rem; /* 10/14 — tablas compactas */
+  --text-3xs: 0.5625rem;  --text-3xs-line: 0.75rem;  /* 9/12  — ticks densos */
+
+  /* ── Status ── semánticos compartidos. NO siguen al --primary de la marca.
+   * --info es azul semántico (no se vuelve rojo en el perfil web). */
+  --success: #16A34A;     --success-foreground: #ffffff;
+  --warning: #D97706;     --warning-foreground: #ffffff;
+  --destructive: #DC2626; --destructive-foreground: #ffffff;
+  --info: #1741e8;        --info-foreground: #ffffff;
+
+  /* Surface gradient (liquid glass) — fill/border derivados de los stops
+   * --surface-gradient-from/-to que define el profile. */
+  --surface-gradient-fill: linear-gradient(to top right,
+    color-mix(in srgb, var(--surface-gradient-from) 92%, transparent),
+    color-mix(in srgb, var(--surface-gradient-to) 92%, transparent));
+  --surface-gradient-border: linear-gradient(to bottom left,
+    var(--surface-gradient-from), var(--surface-gradient-to));
+}
+
+/* ── Status remap en dark (contraste AA sobre superficies oscuras) ── */
+.dark {
+  --success: #166534;     --success-foreground: #86efac;
+  --warning: #92400e;     --warning-foreground: #fcd34d;
+  --destructive: #991b1b; --destructive-foreground: #fca5a5;
+  --info: #6f8fff;        --info-foreground: #f1f5f9;
+}
+
+/* Texto destructive en dark: el fill #991b1b falla AA como texto (~2:1).
+ * Para texto se usa red-400 (≥4.5:1). Fills/bordes quedan intactos. */
+.dark .text-destructive { color: rgb(248 113 113); }

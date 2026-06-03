@@ -1,0 +1,30 @@
+# Perfil: Email
+
+Emails de Singular (marketing, transaccional, newsletter). Hereda de la marca corporativa (rojo). Sustituye a `s-mail-v1` (ver `legacy/s-mail-v1`).
+
+> Email = HTML **table-based** + estilos inline (no clases ni var() — los clientes de correo no los soportan). Los tokens del DS son la **referencia de valores** a inlinear.
+
+## Estructura
+- Ancho máximo **600px**, centrado, sobre fondo `#050505` (o `#f4f4f7` para variante clara).
+- **Header**: logo Singular (PNG/SVG hospedado — Fase 9), 24–32px de alto.
+- **Body**: 1 columna, jerarquía clara (título Poppins, cuerpo Inter ~16px, line-height 1.6).
+- **CTA**: botón pill (`border-radius: 9999px`), fondo `#d4513b` (o gradiente coral→rojo via VML/imagen para Outlook), texto blanco, padding 14×28.
+- **Footer**: links legales + dirección + unsubscribe, texto `rgba(255,255,255,.5)` ~12px.
+
+## Valores de marca (inline)
+| Rol | Valor |
+|---|---|
+| Fondo | `#050505` (dark) / `#f4f4f7` (light) |
+| Card | `#0f0f10` / `#ffffff` |
+| Texto | `#f5f5f5` / `#1a202c` · secundario `#9aa0aa` |
+| Acento / CTA | `#d4513b` · link `#e8806c` (dark) / `#be3d29` (light) |
+| Tipografía | Poppins (títulos) → fallback Arial; Inter (cuerpo) → fallback Helvetica |
+
+## Reglas
+- Todo **inline-styled**; nada de `var()`/clases/`backdrop-filter`.
+- Dark-mode vía `@media (prefers-color-scheme: dark)` + `meta name="color-scheme"`.
+- Imágenes con `alt`; CTA también como texto-link de respaldo.
+- Un CTA primario por email.
+
+## Preview
+`demo.html` — email de 600px on-brand. `open surfaces/social-email/demo.html`.

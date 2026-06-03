@@ -1,0 +1,7 @@
+/* Entry de build — superficie WEB (website/landing, primary rojo).
+ * Importar este archivo en el website (reemplaza los tokens de index.css). */
+@import 'tailwindcss';
+@import './core.css';
+@import './brand-web.css';
+@import './theme-mapping.css';
+@import './core-utilities.css';

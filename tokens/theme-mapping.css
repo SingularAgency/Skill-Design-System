@@ -1,0 +1,79 @@
+/* ============================================================
+ * Tailwind v4 — exposición de tokens como utilidades
+ * ============================================================
+ * Compartido por todas las superficies. Mapea las CSS vars
+ * (que setea core.css + el brand profile) a utilidades Tailwind
+ * (bg-primary, text-foreground, border-border, gap-m, etc.).
+ * No contiene valores de marca — solo referencias var().
+ * ============================================================ */
+
+@theme inline {
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --text-2xs: var(--text-2xs);          --text-2xs--line-height: var(--text-2xs-line);
+  --text-3xs: var(--text-3xs);          --text-3xs--line-height: var(--text-3xs-line);
+
+  /* Core surface + text */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-strong: var(--foreground-strong);
+  --color-card: var(--card);                 --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);           --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);               --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);             --color-accent-foreground: var(--accent-foreground);
+  --color-secondary: var(--secondary);       --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sheet-content: var(--sheet-content);
+
+  /* Primary / interactive */
+  --color-primary: var(--primary);                       --color-primary-foreground: var(--primary-foreground);
+  --color-primary-strong: var(--primary-strong);         --color-primary-strong-hover: var(--primary-strong-hover);
+  --color-interactive: var(--interactive);               --color-interactive-hover: var(--interactive-hover);
+  --color-interactive-fill: var(--interactive-fill);     --color-interactive-fill-hover: var(--interactive-fill-hover);
+
+  /* Status */
+  --color-success: var(--success);          --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);          --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);                --color-info-foreground: var(--info-foreground);
+  --color-destructive: var(--destructive);  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Brand scales */
+  --color-singular-primary: var(--singular-primary);
+  --color-singular-primary-100: var(--singular-primary-100); --color-singular-primary-200: var(--singular-primary-200);
+  --color-singular-primary-300: var(--singular-primary-300); --color-singular-primary-400: var(--singular-primary-400);
+  --color-singular-primary-500: var(--singular-primary-500); --color-singular-primary-600: var(--singular-primary-600);
+  --color-singular-primary-700: var(--singular-primary-700); --color-singular-primary-800: var(--singular-primary-800);
+  --color-singular-primary-900: var(--singular-primary-900);
+  --color-singular-secondary: var(--singular-secondary);
+  --color-singular-secondary-100: var(--singular-secondary-100); --color-singular-secondary-200: var(--singular-secondary-200);
+  --color-singular-secondary-300: var(--singular-secondary-300); --color-singular-secondary-400: var(--singular-secondary-400);
+  --color-singular-secondary-500: var(--singular-secondary-500); --color-singular-secondary-600: var(--singular-secondary-600);
+  --color-singular-secondary-700: var(--singular-secondary-700); --color-singular-secondary-800: var(--singular-secondary-800);
+  --color-singular-secondary-900: var(--singular-secondary-900);
+
+  /* Accents */
+  --color-singular-coral: var(--singular-coral);   --color-singular-cyan: var(--singular-cyan);
+  --color-singular-purple: var(--singular-purple); --color-singular-blue: var(--singular-blue);
+  --color-singular-yellow: var(--singular-yellow); --color-singular-red: var(--singular-red);
+  --color-singular-green: var(--singular-green);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5);
+
+  /* Sidebar (perfil app) */
+  --color-sidebar: var(--sidebar);                   --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);     --color-sidebar-border: var(--sidebar-border);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-full: 9999px;
+  --radius-card: var(--radius-card);
+}

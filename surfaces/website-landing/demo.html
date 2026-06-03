@@ -1,0 +1,92 @@
+<!doctype html><html class="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Singular DS — Website / Landing</title>
+<link rel="stylesheet" href="../../tokens/core.css">
+<link rel="stylesheet" href="../../tokens/brand-web.css">
+<link rel="stylesheet" href="../../tokens/core-utilities.css">
+<link rel="stylesheet" href="../../backgrounds/brand-background.css">
+<link rel="stylesheet" href="./website.css">
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
+  h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; margin: 1.2rem 0; color: var(--foreground-strong); }
+  h2.page-title { font-size: clamp(1.875rem, 4vw, 3rem); }
+  .hero-pad { padding: 7rem 1.5rem 5rem; }
+  .center { text-align: center; }
+  .lead { font-size: 1.15rem; color: var(--muted-foreground); max-width: 42rem; margin: 0 auto 2rem; line-height: 1.6; }
+  .row { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .price { max-width: 62rem; margin-inline: auto; }
+  .marketing-card h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+  .marketing-card p { color: var(--muted-foreground); margin: 0; font-size: .92rem; line-height: 1.5; }
+</style></head><body>
+
+<!-- HERO -->
+<section class="brand-bg brand-bg--animated" id="hero" style="--mx:50%;--my:28%">
+  <div class="brand-bg__aurora" aria-hidden="true"></div>
+  <div class="brand-bg__stars" aria-hidden="true"></div>
+  <div class="brand-bg__cursor" aria-hidden="true"></div>
+  <div class="brand-bg__content landing-container hero-pad center">
+    <span class="eyebrow eyebrow--brand" style="justify-content:center">Singular · Agentic AI</span>
+    <h1>Tu empresa, <span class="text-gradient-brand">potenciada por agentes</span></h1>
+    <p class="lead">Implementamos IA agéntica que trabaja con tus sistemas —Slack, CRM, email— para que tu equipo se enfoque en lo que importa.</p>
+    <div class="row">
+      <a class="cta cta--accent" href="#planes">Agendar una llamada →</a>
+      <a class="cta cta--secondary" href="#planes">Ver planes</a>
+    </div>
+    <div style="margin-top:3.5rem">
+      <p class="eyebrow center" style="justify-content:center;margin-bottom:1rem">Trusted by industry leaders</p>
+      <div class="marquee-mask">
+        <div class="marquee" style="--marquee-speed:28s;gap:3rem;color:var(--muted-foreground);font-weight:700;font-size:1.1rem">
+          <span>ACME</span><span>Globex</span><span>Initech</span><span>Umbrella</span><span>Stark</span><span>Wayne</span>
+          <span>ACME</span><span>Globex</span><span>Initech</span><span>Umbrella</span><span>Stark</span><span>Wayne</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="landing-section section-pad-m">
+  <div class="landing-container">
+    <div class="landing-heading landing-heading--center">
+      <span class="eyebrow eyebrow--brand" style="justify-content:center">Cómo funciona</span>
+      <h2 class="page-title" style="margin-top:1rem">Tres pasos, cero fricción</h2>
+    </div>
+    <div class="cards">
+      <div class="marketing-card" style="padding:1.75rem"><h3>1 · Conectamos</h3><p>Integramos tus sistemas y fuentes de datos sin reemplazar tu stack.</p></div>
+      <div class="marketing-card" style="padding:1.75rem"><h3>2 · Entrenamos</h3><p>Los agentes aprenden tus procesos y políticas, con permisos por rol.</p></div>
+      <div class="marketing-card" style="padding:1.75rem"><h3>3 · Escalás</h3><p>Resultados medibles desde la primera semana, con control total.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="planes" class="landing-section section-pad-m" style="background:color-mix(in srgb, var(--foreground) 2%, var(--background))">
+  <div class="landing-container">
+    <div class="landing-heading landing-heading--center">
+      <span class="eyebrow eyebrow--brand" style="justify-content:center">Planes</span>
+      <h2 class="page-title" style="margin-top:1rem">Elegí tu ritmo</h2>
+    </div>
+    <div class="cards price">
+      <div class="marketing-card" style="padding:2rem"><div class="eyebrow">Starter</div><div class="kpi-value" style="margin:.5rem 0">$2,500<span style="font-size:1rem;color:var(--muted-foreground);font-weight:400">/mes</span></div><a class="cta cta--secondary" href="#" style="width:100%;justify-content:center;height:2.75rem;margin-top:1rem">Empezar</a></div>
+      <div class="marketing-card" style="padding:2rem;border-color:color-mix(in srgb, var(--primary) 50%, transparent)"><div class="eyebrow eyebrow--brand">Growth · Recomendado</div><div class="kpi-value" style="margin:.5rem 0">$6,000<span style="font-size:1rem;color:var(--muted-foreground);font-weight:400">/mes</span></div><a class="cta cta--accent" href="#" style="width:100%;justify-content:center;height:2.75rem;margin-top:1rem">Empezar</a></div>
+      <div class="marketing-card" style="padding:2rem"><div class="eyebrow">Scale</div><div class="kpi-value" style="margin:.5rem 0">Custom</div><a class="cta cta--secondary" href="#" style="width:100%;justify-content:center;height:2.75rem;margin-top:1rem">Hablemos</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREFOOTER CTA -->
+<section class="landing-section section-pad-m center">
+  <div class="landing-container">
+    <h2 class="page-title" style="font-size:clamp(2rem,5vw,3.5rem)">¿Listo para <span class="text-gradient-brand">empezar</span>?</h2>
+    <p class="lead" style="margin-top:1rem">Una llamada de 30 minutos para ver qué se puede automatizar hoy.</p>
+    <div class="row" style="margin-top:1.5rem"><a class="cta cta--accent" href="#hero">Agendar una llamada →</a></div>
+  </div>
+</section>
+
+<script>
+  const el=document.getElementById('hero'); let tx=50,ty=28,cx=50,cy=28;
+  addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();tx=(e.clientX-r.left)/r.width*100;ty=(e.clientY-r.top)/r.height*100});
+  (function tick(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;el.style.setProperty('--mx',cx+'%');el.style.setProperty('--my',cy+'%');requestAnimationFrame(tick)})();
+</script>
+</body></html>

@@ -1,0 +1,121 @@
+/* ============================================================
+ * Singular Design System — CORE utilities (capa 2)
+ * ============================================================
+ * Clases de utilidad universales del DS, en CSS plano (usan los
+ * tokens de core.css + el brand profile activo). Funcionan con o
+ * sin build de Tailwind. NO incluye utilities de dominio
+ * (payments-grid, okr, pert) — esas viven en el perfil web-app.
+ *
+ * Portado de v0-singular-stories-app/app/globals.css.
+ * ============================================================ */
+
+/* ── Spacing: gaps nombrados ── */
+.gap-xs { gap: var(--gap-xs); }
+.gap-s  { gap: var(--gap-s); }
+.gap-m  { gap: var(--gap-m); }
+.gap-l  { gap: var(--gap-l); }
+.gap-xl { gap: var(--gap-xl); }
+.gap-filters-to-grid { gap: var(--gap-filters-to-grid); }
+
+/* ── Stacks: columna vertical con gap nombrado ── */
+.stack-xs, .stack-s, .stack-m, .stack-l, .stack-xl { display: flex; flex-direction: column; }
+.stack-xs { gap: var(--gap-xs); }
+.stack-s  { gap: var(--gap-s); }
+.stack-m  { gap: var(--gap-m); }
+.stack-l  { gap: var(--gap-l); }
+.stack-xl { gap: var(--gap-xl); }
+
+/* ── Superficies (liquid glass + variantes) ──
+ * surface-liquid: glass translúcido con relleno + borde de gradiente. Heros, modales, floats.
+ * surface-gradient: solo el relleno diagonal (sin blur).
+ * surface-gradient-bordered: relleno + borde inverso (truco padding-box/border-box).
+ * glass: overlay simple (modales/popovers). */
+.surface-liquid {
+  border: 1px solid transparent;
+  background: var(--surface-gradient-fill) padding-box,
+              var(--surface-gradient-border) border-box;
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  backdrop-filter: blur(16px) saturate(1.1);
+}
+.dark .surface-liquid { -webkit-backdrop-filter: blur(18px) saturate(1.1); backdrop-filter: blur(18px) saturate(1.1); }
+.surface-liquid-overlay {
+  border: 1px solid transparent;
+  background: var(--surface-gradient-fill) padding-box,
+              var(--surface-gradient-border) border-box;
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+.surface-gradient { background-image: var(--surface-gradient-fill); }
+.surface-gradient-bordered {
+  border: 1px solid transparent;
+  background: var(--surface-gradient-fill) padding-box,
+              var(--surface-gradient-border) border-box;
+}
+.glass {
+  background: color-mix(in srgb, var(--background) 80%, transparent);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+/* ── Cards helpers ── */
+.card-interactive { transition: border-color .2s, box-shadow .2s, transform .2s; cursor: pointer; }
+.card-interactive:hover { border-color: color-mix(in srgb, var(--primary) 30%, transparent); }
+.card-accent-top { position: relative; overflow: hidden; }
+.card-accent-top::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--singular-primary-500); }
+
+/* ── Eyebrows / labels ── */
+.label-uppercase { font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+.label-muted { font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--muted-foreground); }
+.eyebrow { font-size: var(--text-2xs); line-height: var(--text-2xs-line); font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--muted-foreground); }
+
+/* ── Tipografía semántica ──
+ * Usar estas en vez de "text-lg font-semibold" sueltos. */
+.page-title { font-size: 1.875rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.page-subtitle { font-size: 1rem; color: var(--muted-foreground); margin-top: var(--gap-s); }
+.section-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
+.section-subtitle { font-size: .875rem; color: var(--muted-foreground); }
+.grid-section-title { font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; }
+.grid-section-description { font-size: .875rem; color: var(--muted-foreground); }
+.text-modal-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
+.text-item-title { font-size: .875rem; font-weight: 600; }
+.text-body { font-size: .875rem; line-height: 1.5; }
+.text-body-lg { font-size: 1rem; line-height: 1.6; }
+.text-secondary { font-size: .875rem; color: var(--muted-foreground); }
+.text-caption { font-size: .75rem; color: var(--muted-foreground); }
+.text-strong { font-weight: 600; color: var(--foreground-strong); }
+.text-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.text-tabular { font-variant-numeric: tabular-nums; }
+.text-link { color: var(--interactive); text-decoration: none; }
+.text-link:hover { text-decoration: underline; }
+
+/* KPI value (número hero de KpiCard) */
+.kpi-value { font-size: 1.875rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+/* ── Status text ── */
+.text-status-success { color: var(--success); }
+.text-status-warning { color: var(--warning); }
+.text-status-error   { color: var(--destructive); }
+.text-status-info    { color: var(--info); }
+.text-status-neutral { color: var(--muted-foreground); }
+
+/* ── Truncado / clamp ── */
+.text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.text-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.text-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ── Layout de página ── */
+.page-container { width: 100%; max-width: 75rem; margin-inline: auto; padding: 1.5rem 1rem 4rem; }
+@media (min-width: 640px) { .page-container { padding: 2rem 2.5rem 4rem; } }
+@media (min-width: 768px) { .page-container { padding-top: 3rem; } }
+
+/* ── Scrollbar fantasma (visible en hover) ── */
+.scrollbar-subtle { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.scrollbar-subtle:hover { scrollbar-color: rgb(128 128 128 / .35) transparent; }
+.scrollbar-subtle::-webkit-scrollbar { width: 8px; height: 8px; }
+.scrollbar-subtle::-webkit-scrollbar-thumb { background: transparent; border-radius: var(--radius-full); }
+.scrollbar-subtle:hover::-webkit-scrollbar-thumb { background: rgb(128 128 128 / .35); }
+
+/* ── Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .card-interactive { transition: none; }
+}
