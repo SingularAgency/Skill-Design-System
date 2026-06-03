@@ -7,7 +7,7 @@ La superficie de **marketing público** de Singular. Marca **roja** (`brand-web`
 ## Setup
 ```css
 /* index.css del sitio */
-@import "@singular/ds/tokens/theme-web.css";          /* core + brand rojo + utilities */
+@import "@singular/ds/tokens/theme-web.css";          /* core + brand cyan + utilities */
 @import "@singular/ds/backgrounds/brand-background.css";
 @import "@singular/ds/surfaces/website-landing/website.css";
 ```
@@ -32,7 +32,7 @@ import { BrandBackground } from "@singular/ds/backgrounds/BrandBackground"
 ## Anti-patterns (limpiar al migrar el sitio — Fase 7)
 - ❌ `py-m-sm` / `section-padding` (clases fantasma del sitio, no existen).
 - ❌ `FadeIn` redefinido por página → usar `<Reveal>`.
-- ❌ hex de acento inline (`#d4513b`, `#d97757`, `#10a37f`) → tokens / `--singular-*`.
+- ❌ hex de acento inline (`#4567ed`, `#d97757`, `#10a37f`) → tokens / `--singular-*`.
 - ❌ `bg-white/5 border-white/10` repetido → `.marketing-card`.
 
 ## Preview

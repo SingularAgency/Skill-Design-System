@@ -1,6 +1,6 @@
 # Perfil: Social
 
-Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (rojo) sobre fondo dark de marca. Complementa al plugin `singular-meta-ads` (que genera con gpt-image-2) dándole **specs de marca** que hoy no existían.
+Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (cyan) sobre fondo dark de marca. Complementa al plugin `singular-meta-ads` (que genera con gpt-image-2) dándole **specs de marca** que hoy no existían.
 
 > Formato imagen (no HTML). El `demo.html` muestra plantillas a escala; la producción se exporta a PNG/JPG en los tamaños de abajo.
 
@@ -12,7 +12,7 @@ Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (rojo) sobre f
 | Story / Reel | 1080×1920 | 250px arriba/abajo (UI de la app) |
 
 ## Anatomía
-1. **Fondo de marca** — dark `#050505` + mist rojo (grid opcional, sin stars en estático pequeño).
+1. **Fondo de marca** — dark `#050505` + mist cyan (grid opcional, sin stars en estático pequeño).
 2. **Logo** — esquina superior (o centrado en story). Versión clara.
 3. **Claim** — 4–9 palabras, Poppins bold, una palabra en `--gradient-primary`.
 4. **Apoyo** — 1 línea Inter, `rgba(255,255,255,.7)`.
@@ -22,7 +22,7 @@ Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (rojo) sobre f
 | Rol | Valor |
 |---|---|
 | Fondo | `#050505` + glow `--primary` |
-| Título | `#ffffff`, acento `--gradient-primary` (coral→rojo) |
+| Título | `#ffffff`, acento `--gradient-primary` (cyan→cyan) |
 | Apoyo | `rgba(255,255,255,.7)` |
 | Tipografía | Poppins (claim) · Inter (apoyo) · JetBrains Mono (datos) |
 
