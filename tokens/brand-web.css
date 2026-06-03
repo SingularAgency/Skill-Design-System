@@ -1,70 +1,68 @@
 /* ============================================================
- * Brand profile: WEB (marketing / website) — primary CYAN
+ * Brand profile: WEB (marketing / website) — primary AZUL/CYAN
  * ============================================================
- * Fuente de verdad: FramerSingular/client/src/index.css (custom-ai).
- * Carga junto a core.css. DARK-FIRST.
- *
- * Identidad de marketing: negro dramático casi plano + acento
- * AZUL→CYAN eléctrico (la familia de custom-ai). El rojo quedó
- * descartado. El gradiente de marca va de azul a cyan.
+ * Mismo primary que el perfil app (azul #4567ed) + gradiente
+ * azul→cyan + acentos cyan. Difiere solo en la SURFACE: negro
+ * dramático de marketing (no el navy de la app). DARK-FIRST.
+ * El rojo quedó descartado por completo.
  * ============================================================ */
 
 :root {
-  /* ── Marca ── */
-  --primary: #06b6d4;            /* cyan-500 */
-  --primary-foreground: #03121a;
-  --primary-strong: #0891b2;     /* cyan de acción (CTAs/links) */
-  --primary-strong-hover: #0e7490;
+  /* ── Marca (azul/cyan, un solo primary para todo Singular) ── */
+  --primary: #4567ed;            /* azul Singular */
+  --primary-foreground: #ffffff;
+  --primary-strong: #2f6bf6;     /* azul de acción (CTAs/links) */
+  --primary-strong-hover: #1741e8;
   --radius-card: var(--radius-2xl); /* rounded-2xl en marketing */
 
-  /* Escala cyan */
-  --singular-primary: #06b6d4;
-  --singular-primary-100: #CFF6FE; --singular-primary-200: #A5EEFD;
-  --singular-primary-300: #67E8F9; --singular-primary-400: #22D3EE;
-  --singular-primary-500: #06B6D4; --singular-primary-600: #0891B2;
-  --singular-primary-700: #0E7490; --singular-primary-800: #155E75;
-  --singular-primary-900: #164E63;
+  /* Escala azul */
+  --singular-primary: #4567ED;
+  --singular-primary-100: #D1D9FA; --singular-primary-200: #A2B3F6;
+  --singular-primary-300: #748DF1; --singular-primary-400: #4567ED;
+  --singular-primary-500: #1741E8; --singular-primary-600: #1234BA;
+  --singular-primary-700: #0E278B; --singular-primary-800: #091A5D;
+  --singular-primary-900: #050D2E;
 
-  /* Secundario = azul eléctrico (el otro extremo del gradiente) */
-  --singular-secondary: #3B82F6;
-  --singular-secondary-100: #DBEAFE; --singular-secondary-200: #BFDBFE;
-  --singular-secondary-300: #93C5FD; --singular-secondary-400: #60A5FA;
-  --singular-secondary-500: #3B82F6; --singular-secondary-600: #2563EB;
-  --singular-secondary-700: #1D4ED8; --singular-secondary-800: #1E40AF;
-  --singular-secondary-900: #1E3A8A;
+  /* Secundario = cyan (el otro extremo del gradiente) */
+  --singular-secondary: #06b6d4;
+  --singular-secondary-100: #CFF6FE; --singular-secondary-200: #A5EEFD;
+  --singular-secondary-300: #67E8F9; --singular-secondary-400: #22D3EE;
+  --singular-secondary-500: #06B6D4; --singular-secondary-600: #0891B2;
+  --singular-secondary-700: #0E7490; --singular-secondary-800: #155E75;
+  --singular-secondary-900: #164E63;
 
   /* Acentos */
   --singular-coral: #22d3ee; --singular-cyan: #06b6d4; --singular-purple: #6366f1;
   --singular-blue: #3B82F6;  --singular-yellow: #f59e0b; --singular-red: #f87171;
   --singular-green: #10b981;
 
-  /* ── Interactive ── (cyan claro legible sobre negro) */
-  --interactive: #22d3ee;        --interactive-hover: #67e8f9;
-  --interactive-fill: #06b6d4;   --interactive-fill-hover: #0891b2;
-  --ring: #22d3ee;
+  /* ── Interactive (azul claro legible sobre negro) ── */
+  --interactive: #8babff;        --interactive-hover: #c4d4ff;
+  --interactive-fill: #4567ed;   --interactive-fill-hover: #1741e8;
+  --ring: #6f8fff;
 
-  /* ── Surface (negro dramático, tint cyan mínimo) ── */
+  /* ── Surface (negro dramático, tint azul mínimo) ── */
   --background: #050505;
   --foreground: hsl(0 0% 98%);     --foreground-strong: #ffffff;
   --card: color-mix(in srgb, var(--primary) 2%, #0a0a0a);     --card-foreground: hsl(0 0% 98%);
   --popover: color-mix(in srgb, var(--primary) 2%, #0a0a0a);  --popover-foreground: hsl(0 0% 98%);
   --muted: color-mix(in srgb, var(--primary) 3%, #141414);
   --muted-foreground: rgb(255 255 255 / 0.55);
-  --accent: color-mix(in srgb, var(--primary) 4%, #1a1a1a);   --accent-foreground: hsl(0 0% 98%);
+  --accent: color-mix(in srgb, var(--primary) 5%, #1a1a1a);   --accent-foreground: hsl(0 0% 98%);
   --secondary: #1a1a1a;            --secondary-foreground: hsl(0 0% 98%);
   --border: rgb(255 255 255 / 0.10);
   --input: rgb(255 255 255 / 0.10);
   --sheet-content: #0a0a0a;
 
-  /* ── Charts (escala cyan→azul) ── */
-  --chart-1: #06b6d4; --chart-2: #22d3ee; --chart-3: #3b82f6; --chart-4: #6366f1; --chart-5: #67e8f9;
+  /* ── Charts (azul → cyan) ── */
+  --chart-1: #4567ed; --chart-2: #3b82f6; --chart-3: #22d3ee; --chart-4: #06b6d4; --chart-5: #67e8f9;
 
   /* ── Surface gradient ── */
-  --surface-gradient-from: #0e1116; --surface-gradient-to: #0c1418;
+  --surface-gradient-from: #0d1018; --surface-gradient-to: #0b1420;
 
   /* ── Gradiente de marca (botones/CTA) — azul → cyan ── */
-  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);
-  --gradient-primary-hover: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+  --gradient-primary: linear-gradient(135deg, #4567ed 0%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #1741e8 0%, #06b6d4 100%);
 }
 
 /* TODO(light): el website es dark-first; bloque light pendiente. */

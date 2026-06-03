@@ -38,9 +38,9 @@
   --interactive-fill: #4567ed;   --interactive-fill-hover: #1741e8;
   --ring: #1741e8;
 
-  /* Gradientes de marca (botones/CTA) — azul con profundidad hacia índigo */
-  --gradient-primary: linear-gradient(135deg, #4f6ff2 0%, #2f43e3 100%);
-  --gradient-primary-hover: linear-gradient(135deg, #3f5fe8 0%, #2235c5 100%);
+  /* Gradientes de marca (botones/CTA) — azul → cyan (unificado con el perfil web) */
+  --gradient-primary: linear-gradient(135deg, #4567ed 0%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #1741e8 0%, #06b6d4 100%);
 
   /* ── Surface (neutrales tintados al primary) ── */
   --background: color-mix(in srgb, var(--primary) 4%, #f6f8fd);

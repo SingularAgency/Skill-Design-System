@@ -6,7 +6,7 @@ El **design system universal de marca Singular**: un solo sistema, usable por cu
 
 ## Principios
 
-- **Primary dual por superficie** — 🩵 cyan `#06b6d4` / azul→cyan (marca pública / marketing) · 🔵 azul `#4567ed` (producto / app). Es un *brand profile*, no una contradicción.
+- **Un solo primary** — 🔵 azul `#4567ed` + gradiente **azul→cyan** + acentos cyan, para todas las superficies. Los perfiles solo difieren en la *surface* (app navy · web negro).
 - **Núcleo + perfiles** — un core de marca (tokens, voz, a11y, motion) + sub-perfiles por superficie.
 - **Motor multi-marca** — el chrome se deriva de `--primary` vía `color-mix()`; cambiar el profile re-tinta todo.
 
