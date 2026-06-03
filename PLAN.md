@@ -11,7 +11,7 @@
 
 | # | Decisión | Detalle |
 |---|---|---|
-| D1 | **Primary dual por superficie** | 🔴 Rojo `#d4513b` = marca pública / marketing (website, landing). 🔵 Azul `#4567ed` = producto / app (web-app). Ambos son "de marca", con roles definidos. No es contradicción: es un *brand profile* por superficie. |
+| D1 | **Un solo primary azul/cyan** | 🔵 Azul `#4567ed` + gradiente **azul→cyan** + acentos cyan, para **todas** las superficies. App y web difieren solo en la *surface* (navy / negro), no en el color. (El rojo y el dual quedaron descartados — evolución: rojo → cyan → un solo azul/cyan.) |
 | D2 | **Arquitectura: núcleo + perfiles** | Una skill madre con un **core de marca** (tokens, voz, a11y, motion) + **sub-perfiles por superficie**. `singular-design-app-v2` se **incrusta** como perfil `web-app` (sigue leyendo el `globals.css` de Stories como su verdad). `.sds-*` se **deprecan como sistema de clases**, pero se rescata su andamiaje (`references/`: audit-checklist, decision-tree, patterns). |
 | D3 | **Superficies v1** | Las 4: `website-landing`, `web-app`, `slides-presentations`, `social-email`. |
 | D4 | **Arranque** | Este documento maestro primero; luego ejecución paso a paso. |
