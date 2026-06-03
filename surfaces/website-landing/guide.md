@@ -1,6 +1,6 @@
 # Perfil: Website / Landing
 
-La superficie de **marketing público** de Singular. Marca **roja** (`brand-web`), dark dramático, fondo de marca animado, secciones largas narrativas.
+La superficie de **marketing público** de Singular. Marca **azul/cyan** (`brand-web`), dark dramático, fondo de marca animado, secciones largas narrativas.
 
 > Stack objetivo: el website real (`FramerSingular`) es Vite + React + Tailwind v4. Los primitivos son router-agnósticos (no usan `next/*` ni `wouter`).
 
@@ -32,7 +32,7 @@ import { BrandBackground } from "@singular/ds/backgrounds/BrandBackground"
 ## Anti-patterns (limpiar al migrar el sitio — Fase 7)
 - ❌ `py-m-sm` / `section-padding` (clases fantasma del sitio, no existen).
 - ❌ `FadeIn` redefinido por página → usar `<Reveal>`.
-- ❌ hex de acento inline (`#4567ed`, `#d97757`, `#10a37f`) → tokens / `--singular-*`.
+- ❌ hex de acento inline a mano → tokens / `--singular-*`.
 - ❌ `bg-white/5 border-white/10` repetido → `.marketing-card`.
 
 ## Preview

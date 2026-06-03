@@ -22,7 +22,7 @@ Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (cyan) sobre f
 | Rol | Valor |
 |---|---|
 | Fondo | `#050505` + glow `--primary` |
-| Título | `#ffffff`, acento `--gradient-primary` (cyan→cyan) |
+| Título | `#ffffff`, acento `--gradient-primary` (azul→cyan) |
 | Apoyo | `rgba(255,255,255,.7)` |
 | Tipografía | Poppins (claim) · Inter (apoyo) · JetBrains Mono (datos) |
 

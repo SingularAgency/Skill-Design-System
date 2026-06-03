@@ -12,7 +12,7 @@ Decks de Singular (kickoffs, propuestas, QBRs, pitch). Marca **corporativa** (cy
 | Rol | Valor (corporativo / cyan) |
 |---|---|
 | Fondo | `#050505` → `#010203` (dark dramático) + fondo de marca opcional (mist + grid) |
-| Acento / títulos destacados | `--primary` `#4567ed` + `--gradient-primary` (cyan→cyan) |
+| Acento / títulos destacados | `--primary` `#4567ed` + `--gradient-primary` (azul→cyan) |
 | Texto | títulos `#ffffff` · cuerpo `rgba(255,255,255,.72)` · meta `rgba(255,255,255,.5)` |
 | Datos / números | JetBrains Mono, `tabular-nums` |
 | Secundario | azul `#3B82F6` (acento de datos/charts) |
@@ -39,4 +39,4 @@ Tipografía: **Poppins** (display/títulos), **Inter** (cuerpo), **JetBrains Mon
 - ❌ Bullets de 5+ líneas; gradiente en bloques enteros de texto.
 
 ## Preview
-`demo.html` — slides title + content + data en 16:9, marca roja. `open surfaces/slides-presentations/demo.html`.
+`demo.html` — slides title + content + data en 16:9, marca azul/cyan. `open surfaces/slides-presentations/demo.html`.

@@ -8,7 +8,7 @@ Emails de Singular (marketing, transaccional, newsletter). Hereda de la marca co
 - Ancho máximo **600px**, centrado, sobre fondo `#050505` (o `#f4f4f7` para variante clara).
 - **Header**: logo Singular (PNG/SVG hospedado — Fase 9), 24–32px de alto.
 - **Body**: 1 columna, jerarquía clara (título Poppins, cuerpo Inter ~16px, line-height 1.6).
-- **CTA**: botón pill (`border-radius: 9999px`), fondo `#4567ed` (o gradiente cyan→cyan via VML/imagen para Outlook), texto blanco, padding 14×28.
+- **CTA**: botón pill (`border-radius: 9999px`), fondo `#4567ed` (o gradiente azul→cyan via VML/imagen para Outlook), texto blanco, padding 14×28.
 - **Footer**: links legales + dirección + unsubscribe, texto `rgba(255,255,255,.5)` ~12px.
 
 ## Valores de marca (inline)
