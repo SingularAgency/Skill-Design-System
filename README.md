@@ -27,17 +27,20 @@ assets/                   ← → repo singular-skill-assets           [Fase 9]
 legacy/                   ← FUENTES recuperados (input, no se publican)
 ```
 
-## Preview del DS
+## Preview del DS — en vivo
 
-`tokens/demo.html` es el **preview vivo** del sistema: abrilo en el browser y alterná **App/Web × light/dark** para ver tokens y todos los componentes core (buttons, inputs, search, dropdown, cards, badges, pills, tabs, tabla, KPI, sidebar, empty state…). Carga el DS completo (`core` + brand profile + utilities), sin build.
+Publicado en **GitHub Pages** (no hace falta clonar):
 
-```bash
-open tokens/demo.html
-```
+| Preview | URL |
+|---|---|
+| **Core** (tokens + todos los componentes) | https://singularagency.github.io/Skill-Design-System/tokens/demo.html |
+| Fondo de marca (`BrandBackground`) | https://singularagency.github.io/Skill-Design-System/backgrounds/demo.html |
+| Web-app / producto (azul) | https://singularagency.github.io/Skill-Design-System/surfaces/web-app/demo.html |
+| Website / landing (rojo) | https://singularagency.github.io/Skill-Design-System/surfaces/website-landing/demo.html |
+| Slides / presentaciones | https://singularagency.github.io/Skill-Design-System/surfaces/slides-presentations/demo.html |
+| Social + email | https://singularagency.github.io/Skill-Design-System/surfaces/social-email/demo.html |
 
-Además, **cada superficie** tendrá su propio preview (`surfaces/<superficie>/demo.html` — web-app, website-landing, slides-presentations, social-email), construido al desarrollar cada perfil (Fases 4–6).
-
-Al armar el repo final (Fase 8) se publican por **GitHub Pages** el preview core + los 4 demos de superficie, para que cualquiera del equipo previsualice el DS completo sin clonar.
+En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo. (Local: `open tokens/demo.html`.)
 
 ## Fuentes de verdad
 
