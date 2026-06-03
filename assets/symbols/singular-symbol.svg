@@ -1,0 +1,5 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Singular">
+  <!-- PLACEHOLDER monocromo (currentColor → recoloreable). Reemplazar por el símbolo oficial. -->
+  <circle cx="24" cy="22" r="10" fill="currentColor"/>
+  <ellipse cx="24" cy="22" rx="21" ry="6.5" transform="rotate(-22 24 22)" stroke="currentColor" stroke-width="2.4"/>
+</svg>

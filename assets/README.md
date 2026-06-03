@@ -1,14 +1,24 @@
 # Assets
 
-El DS **no aloja** los assets de marca: los consume del repo público **[`singular-skill-assets`](https://github.com/SingularAgency/singular-skill-assets)** (logos, símbolos, marcas). Así un solo set de assets sirve a todas las superficies y skills, sin duplicar.
+Los assets de marca de Singular (logos, símbolos) **viven en este mismo repo**, dentro de `assets/`. Todo el Design System convive en un único repositorio: tokens, componentes, superficies y assets.
+
+```
+assets/
+├── logos/      ← logos oficiales (full, icon, wordmark) en dark/light · svg + png · favicon
+└── symbols/    ← símbolo recoloreable (mono + color)
+```
 
 ## Consumo
 - **Web (React):** `import { Logo } from "@singular/ds/components/Logo"` — SVG inline, `currentColor`, theme-aware (no necesita asset por tema). Recolorear con `style={{ color: "var(--primary)" }}`.
-- **No-web (slides / email / social):** referenciar por URL desde `singular-skill-assets` (raw o GitHub Pages).
+- **No-web (slides / email / social):** referenciar por ruta relativa dentro del repo (p. ej. `assets/logos/singular-full-dark-bg.svg`) o por URL raw / GitHub Pages de este repo.
 
-## Por qué repo aparte
-- Versionado independiente de los binarios/SVG de marca.
-- Referenciable por URL desde superficies que no pueden inline (email, slides en Gamma, social).
-- Evita la deuda actual (un PNG de logo por tema embebido en cada app).
+## Variantes de logo (`assets/logos/`)
+| Archivo | Uso |
+|---|---|
+| `singular-full-*` | Ícono + wordmark. Para headers, portadas, footers. |
+| `singular-icon-*` | Solo el símbolo orbital. Para marcas chicas, favicons, badges. |
+| `singular-wordmark-*` | Solo el texto. Cuando el símbolo ya está presente. |
+| `*-dark-bg` / `*-light-bg` | Elegí según el fondo. |
+| `singular-favicon-256.png` | Favicon. |
 
-> Estado: `singular-skill-assets` tiene **placeholders**. Al publicar (Fase 8) se reemplazan por los oficiales y se sirve por Pages/CDN.
+> El símbolo de `assets/symbols/` es la versión recoloreable (`currentColor`) que espeja `components/Logo.tsx`. Los `logos/` son los assets oficiales con la aberración cromática rojo/cyan de marca.

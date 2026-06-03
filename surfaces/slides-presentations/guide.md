@@ -2,7 +2,7 @@
 
 Decks de Singular (kickoffs, propuestas, QBRs, pitch). Marca **corporativa** (cyan por defecto; azul para decks de *producto*). Generación vía **Gamma** (MCP) o **PPTX** (skill `pptx`).
 
-> No es CSS: es una **especificación de marca** para que slides generadas (Gamma/PPTX) salgan on-brand. El preview (`demo.html`) muestra los layouts en 16:9.
+> No es CSS: es una **especificación de marca** para que slides generadas (Gamma/PPTX) salgan on-brand. El preview (`demo.html`) es un **deck navegable**: una slide a la vez en 16:9, con botones prev/next, dots, flechas del teclado (← →) y logo de Singular que linkea al sitio. Todas las slides usan el fondo de marca (mist + grid + estrellas).
 
 ## Cómo se produce
 - **Gamma (recomendado):** plugin `kickoff-presentation-gen` → tema oscuro + gradient accents + logo Singular. Pasarle los tokens de marca (abajo) como guía de estilo.

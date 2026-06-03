@@ -42,7 +42,7 @@ Cada superficie tiene su guía con setup, anatomía y reglas:
 - Tokens y modelo: `tokens/README.md` (core + brand-app/brand-web + utilities).
 - Fondo de marca: `backgrounds/README.md` (`<BrandBackground>` · variantes animated/static/flat).
 - Componentes: `components/README.md` (core vs producto vs marketing).
-- Logo: `<Logo>` (`components/Logo.tsx`) — recoloreable `currentColor`; assets en `singular-skill-assets` (ver `assets/README.md`).
+- Logo: `<Logo>` (`components/Logo.tsx`) — recoloreable `currentColor`; assets de marca en `assets/` (ver `assets/README.md`).
 
 ## 4. Reglas transversales
 - **Tokens, no hex.** `bg-primary`, `text-foreground`, `--gradient-primary` — nunca `#xxxxxx` inline.

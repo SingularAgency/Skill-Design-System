@@ -2,3 +2,4 @@
 node_modules/
 *.log
 legacy/
+.claude/settings.local.json
