@@ -22,16 +22,17 @@
   --singular-primary-700: #0E278B; --singular-primary-800: #091A5D;
   --singular-primary-900: #050D2E;
 
-  --singular-secondary: #867BEA;
-  --singular-secondary-100: #D7D3F8; --singular-secondary-200: #AEA7F1;
-  --singular-secondary-300: #867BEA; --singular-secondary-400: #5646E8;
-  --singular-secondary-500: #4231DF; --singular-secondary-600: #2A1CB0;
-  --singular-secondary-700: #201584; --singular-secondary-800: #150E58;
-  --singular-secondary-900: #0B072C;
+  /* Secundario = cyan (un solo lenguaje de color para todo Singular) */
+  --singular-secondary: #06b6d4;
+  --singular-secondary-100: #CFF6FE; --singular-secondary-200: #A5EEFD;
+  --singular-secondary-300: #67E8F9; --singular-secondary-400: #22D3EE;
+  --singular-secondary-500: #06B6D4; --singular-secondary-600: #0891B2;
+  --singular-secondary-700: #0E7490; --singular-secondary-800: #155E75;
+  --singular-secondary-900: #164E63;
 
-  --singular-coral: #1741E8; --singular-cyan: #0D9488; --singular-purple: #7C3AED;
-  --singular-blue: #1741E8;  --singular-yellow: #D97706; --singular-red: #DC2626;
-  --singular-green: #16A34A;
+  --singular-coral: #22d3ee; --singular-cyan: #06b6d4; --singular-purple: #6366f1;
+  --singular-blue: #3B82F6;  --singular-yellow: #f59e0b; --singular-red: #f87171;
+  --singular-green: #10b981;
 
   /* ── Interactive ── */
   --interactive: #1741e8;        --interactive-hover: #1234ba;

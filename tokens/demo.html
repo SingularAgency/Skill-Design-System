@@ -141,9 +141,9 @@
 </head>
 <body>
   <div class="bar">
-    <b>Singular DS · preview — <span id="label">App (azul) · light</span></b>
-    <button id="b-app" class="toggle on" onclick="setBrand('app')">App (azul)</button>
-    <button id="b-web" class="toggle" onclick="setBrand('web')">Web (cyan)</button>
+    <b>Singular DS · preview — <span id="label">App · navy · light</span></b>
+    <button id="b-app" class="toggle on" onclick="setBrand('app')">App · navy</button>
+    <button id="b-web" class="toggle" onclick="setBrand('web')">Web · negro</button>
     <button class="toggle" onclick="toggleTheme()">◐ light / dark</button>
   </div>
 
@@ -324,7 +324,7 @@
   }
   function toggleTheme(){ document.documentElement.classList.toggle('dark'); updateLabel(); }
   function updateLabel(){
-    const brand = document.getElementById('b-web').classList.contains('on') ? 'Web (cyan)' : 'App (azul)';
+    const brand = document.getElementById('b-web').classList.contains('on') ? 'Web · negro' : 'App · navy';
     const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     document.getElementById('label').textContent = brand + ' · ' + theme;
   }
