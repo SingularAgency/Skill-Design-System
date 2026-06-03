@@ -23,7 +23,7 @@ Cada superficie tiene su guía con setup, anatomía y reglas:
 | Vas a construir… | Perfil | Guía |
 |---|---|---|
 | Dashboard / app interna / producto | **web-app** (azul) | `surfaces/web-app/guide.md` |
-| Website / landing / marketing | **website-landing** (rojo) | `surfaces/website-landing/guide.md` |
+| Website / landing / marketing | **website-landing** (cyan) | `surfaces/website-landing/guide.md` |
 | Presentación / deck / slides | **slides** | `surfaces/slides-presentations/guide.md` |
 | Email | **email** | `surfaces/social-email/email.md` |
 | Pieza de social | **social** | `surfaces/social-email/social.md` |

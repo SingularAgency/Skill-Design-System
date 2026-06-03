@@ -7,7 +7,7 @@
  *
  * Cada superficie carga:  core.css  +  un brand profile
  *   - brand-app.css   (producto / web-app, primary azul)
- *   - brand-web.css   (marketing / website, primary rojo)
+ *   - brand-web.css   (marketing / website, primary azul/cyan)
  *
  * CONTRATO — un brand profile DEBE definir:
  *   --primary, --primary-foreground, --primary-strong, --primary-strong-hover
@@ -47,7 +47,7 @@
   --text-3xs: 0.5625rem;  --text-3xs-line: 0.75rem;  /* 9/12  — ticks densos */
 
   /* ── Status ── semánticos compartidos. NO siguen al --primary de la marca.
-   * --info es azul semántico (no se vuelve rojo en el perfil web). */
+   * --info es azul semántico (no toma el color de marca). */
   --success: #16A34A;     --success-foreground: #ffffff;
   --warning: #D97706;     --warning-foreground: #ffffff;
   --destructive: #DC2626; --destructive-foreground: #ffffff;

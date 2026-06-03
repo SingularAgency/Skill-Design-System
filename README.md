@@ -36,7 +36,7 @@ Publicado en **GitHub Pages** (no hace falta clonar):
 | **Core** (tokens + todos los componentes) | https://singularagency.github.io/Skill-Design-System/tokens/demo.html |
 | Fondo de marca (`BrandBackground`) | https://singularagency.github.io/Skill-Design-System/backgrounds/demo.html |
 | Web-app / producto (azul) | https://singularagency.github.io/Skill-Design-System/surfaces/web-app/demo.html |
-| Website / landing (rojo) | https://singularagency.github.io/Skill-Design-System/surfaces/website-landing/demo.html |
+| Website / landing (cyan) | https://singularagency.github.io/Skill-Design-System/surfaces/website-landing/demo.html |
 | Slides / presentaciones | https://singularagency.github.io/Skill-Design-System/surfaces/slides-presentations/demo.html |
 | Social + email | https://singularagency.github.io/Skill-Design-System/surfaces/social-email/demo.html |
 
@@ -47,9 +47,9 @@ En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo.
 | Perfil | Repo / fuente |
 |---|---|
 | **web-app** (azul) | [`v0-singular-stories-app`](https://github.com/SingularAgency/v0-singular-stories-app) — `app/globals.css` es la verdad de tokens del perfil app |
-| **website-landing** (rojo) | `FramerSingular` — `client/src/index.css` + primitivos de `client/src/pages/custom-ai.tsx` |
+| **website-landing** (cyan) | `FramerSingular` — `client/src/index.css` + primitivos de `client/src/pages/custom-ai.tsx` |
 | skills legacy | `legacy/` (recuperadas de bundles `.skill` + copias runtime de Cowork) |
 
 ## Decisiones
 
-Registradas en [`PLAN.md`](./PLAN.md) §1. Resumen: dual rojo/azul, núcleo+perfiles, 4 superficies en v1, `.sds-*` deprecado (se rescata su andamiaje en `references/`), assets al final.
+Registradas en [`PLAN.md`](./PLAN.md) §1. Resumen: azul/cyan unificado, núcleo+perfiles, 4 superficies en v1, `.sds-*` deprecado (se rescata su andamiaje en `references/`), assets al final.
