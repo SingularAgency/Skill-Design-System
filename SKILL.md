@@ -30,6 +30,13 @@ Cada superficie tiene su guía con setup, anatomía y reglas:
 
 > Preview vivo de todo: abrí `tokens/demo.html` (core), y `surfaces/<superficie>/demo.html`.
 
+## Repo y demos en vivo
+- **Repo (código fuente):** https://github.com/SingularAgency/Skill-Design-System
+- **Portada / docs:** https://singularagency.github.io/Skill-Design-System/
+- **Demos (GitHub Pages):** core `…/tokens/demo.html` · fondo `…/backgrounds/demo.html` · web-app `…/surfaces/web-app/demo.html` · website `…/surfaces/website-landing/demo.html` · slides `…/surfaces/slides-presentations/demo.html` · social+email `…/surfaces/social-email/demo.html`
+- **Assets de marca:** https://github.com/SingularAgency/singular-skill-assets
+- Para el detalle de cualquier superficie, leé su `guide.md` (incluida en esta skill y en el repo).
+
 ## 2. Marca: un solo primary azul/cyan
 **Primary `#4567ed` (azul) + gradiente de marca azul→cyan + acentos cyan** — el mismo para todas las superficies. Los perfiles (`brand-app` / `brand-web`) solo difieren en la **surface**: app sobre navy (light/dark), web sobre negro dramático (dark). El chrome se deriva de `--primary` con `color-mix()`. Status (`success/warning/info/destructive`) es semántico y **no** es de marca.
 
