@@ -5,7 +5,7 @@ description: >-
   Usalo para diseñar o construir CUALQUIER cosa con identidad Singular: web apps
   y dashboards (producto), websites y landings (marketing), presentaciones y slides
   (Gamma/PPTX), piezas de social (Meta/IG/LinkedIn) y emails. Provee el motor de
-  tokens multi-marca (rojo marketing / azul producto), el fondo de marca
+  tokens multi-marca (cyan marketing / azul producto), el fondo de marca
   (BrandBackground), los componentes core y las guías por superficie. Reemplaza y
   consolida las skills previas: s-skill-v1, singular-design-app-v2, singular-design-system
   (.sds-*) y s-mail-v1. Triggers: "diseñá/armá/construí una [página/landing/dashboard/
@@ -31,7 +31,7 @@ Cada superficie tiene su guía con setup, anatomía y reglas:
 > Preview vivo de todo: abrí `tokens/demo.html` (core), y `surfaces/<superficie>/demo.html`.
 
 ## 2. Marca: dual por superficie
-- 🔴 **Rojo `#d4513b`** = marca pública: website, landing, slides, social, email.
+- 🩵 **Cyan `#06b6d4`** (gradiente azul→cyan) = marca pública: website, landing, slides, social, email.
 - 🔵 **Azul `#4567ed`** = producto: web-app, dashboards.
 
 No es contradicción: es un **brand profile**. El chrome se deriva de `--primary` con `color-mix()`, así que el perfil re-tinta toda la UI. Status (`success/warning/info/destructive`) es semántico y **no** cambia con la marca.

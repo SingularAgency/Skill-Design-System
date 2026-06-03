@@ -1,35 +1,31 @@
 /* ============================================================
- * Brand profile: WEB (marketing / website) — primary ROJO
+ * Brand profile: WEB (marketing / website) — primary CYAN
  * ============================================================
- * Fuente de verdad: FramerSingular/client/src/index.css.
- * Carga junto a core.css. DARK-FIRST (el website es dark hoy;
- * el bloque light queda como TODO).
+ * Fuente de verdad: FramerSingular/client/src/index.css (custom-ai).
+ * Carga junto a core.css. DARK-FIRST.
  *
- * Identidad de marketing: negro dramático casi plano (no el navy
- * tintado de la app). El --primary rojo entra como tint MUY sutil
- * en card/border + como acento/CTA, no como wash de fondo.
- *
- * ⚠️ La escala roja --singular-primary-* fue GENERADA desde
- * #d4513b (hsl ~9°). Diseño debe validar los hex finales.
+ * Identidad de marketing: negro dramático casi plano + acento
+ * AZUL→CYAN eléctrico (la familia de custom-ai). El rojo quedó
+ * descartado. El gradiente de marca va de azul a cyan.
  * ============================================================ */
 
 :root {
   /* ── Marca ── */
-  --primary: #d4513b;            /* Singular Red — hsl(9, 62%, 53%) */
-  --primary-foreground: #ffffff;
-  --primary-strong: #be3d29;     /* rojo de acción — CTAs/links (más intenso) */
-  --primary-strong-hover: #a33121;
+  --primary: #06b6d4;            /* cyan-500 */
+  --primary-foreground: #03121a;
+  --primary-strong: #0891b2;     /* cyan de acción (CTAs/links) */
+  --primary-strong-hover: #0e7490;
   --radius-card: var(--radius-2xl); /* rounded-2xl en marketing */
 
-  /* Escala roja generada (terracota/coral, hue ~9°) — validar con diseño */
-  --singular-primary: #d4513b;
-  --singular-primary-100: #F7E2DD; --singular-primary-200: #EFC2B8;
-  --singular-primary-300: #E29A8A; --singular-primary-400: #D4513B;
-  --singular-primary-500: #BE3D29; --singular-primary-600: #A33121;
-  --singular-primary-700: #82261A; --singular-primary-800: #5F1B12;
-  --singular-primary-900: #3D100A;
+  /* Escala cyan */
+  --singular-primary: #06b6d4;
+  --singular-primary-100: #CFF6FE; --singular-primary-200: #A5EEFD;
+  --singular-primary-300: #67E8F9; --singular-primary-400: #22D3EE;
+  --singular-primary-500: #06B6D4; --singular-primary-600: #0891B2;
+  --singular-primary-700: #0E7490; --singular-primary-800: #155E75;
+  --singular-primary-900: #164E63;
 
-  /* Secundario = azul de acento (el website lo usa como segundo color) */
+  /* Secundario = azul eléctrico (el otro extremo del gradiente) */
   --singular-secondary: #3B82F6;
   --singular-secondary-100: #DBEAFE; --singular-secondary-200: #BFDBFE;
   --singular-secondary-300: #93C5FD; --singular-secondary-400: #60A5FA;
@@ -37,21 +33,17 @@
   --singular-secondary-700: #1D4ED8; --singular-secondary-800: #1E40AF;
   --singular-secondary-900: #1E3A8A;
 
-  /* Acentos por-superficie que ya usa el sitio */
-  --singular-coral: #d97757; --singular-cyan: #06b6d4; --singular-purple: #a855f7;
-  --singular-blue: #3B82F6;  --singular-yellow: #f59e0b; --singular-red: #d4513b;
-  --singular-green: #10a37f;
+  /* Acentos */
+  --singular-coral: #22d3ee; --singular-cyan: #06b6d4; --singular-purple: #6366f1;
+  --singular-blue: #3B82F6;  --singular-yellow: #f59e0b; --singular-red: #f87171;
+  --singular-green: #10b981;
 
-  /* ── Interactive ── (rojo claro legible sobre negro) */
-  --interactive: #e8806c;        --interactive-hover: #f0a18f;
-  --interactive-fill: #d4513b;   --interactive-fill-hover: #be3d29;
-  --ring: #d4513b;
+  /* ── Interactive ── (cyan claro legible sobre negro) */
+  --interactive: #22d3ee;        --interactive-hover: #67e8f9;
+  --interactive-fill: #06b6d4;   --interactive-fill-hover: #0891b2;
+  --ring: #22d3ee;
 
-  /* Gradientes de marca (botones/CTA) — coral cálido hacia rojo */
-  --gradient-primary: linear-gradient(135deg, #e0664a 0%, #c5402a 100%);
-  --gradient-primary-hover: linear-gradient(135deg, #d4513b 0%, #a8331f 100%);
-
-  /* ── Surface (negro dramático, tint rojo mínimo) ── */
+  /* ── Surface (negro dramático, tint cyan mínimo) ── */
   --background: #050505;
   --foreground: hsl(0 0% 98%);     --foreground-strong: #ffffff;
   --card: color-mix(in srgb, var(--primary) 2%, #0a0a0a);     --card-foreground: hsl(0 0% 98%);
@@ -64,13 +56,15 @@
   --input: rgb(255 255 255 / 0.10);
   --sheet-content: #0a0a0a;
 
-  /* ── Charts (escala roja + acentos) ── */
-  --chart-1: #d4513b; --chart-2: #e8806c; --chart-3: #f59e0b; --chart-4: #3B82F6; --chart-5: #06b6d4;
+  /* ── Charts (escala cyan→azul) ── */
+  --chart-1: #06b6d4; --chart-2: #22d3ee; --chart-3: #3b82f6; --chart-4: #6366f1; --chart-5: #67e8f9;
 
   /* ── Surface gradient ── */
-  --surface-gradient-from: #121212; --surface-gradient-to: #1a1a1a;
+  --surface-gradient-from: #0e1116; --surface-gradient-to: #0c1418;
+
+  /* ── Gradiente de marca (botones/CTA) — azul → cyan ── */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
 }
 
-/* TODO(light): el website aún no tiene modo claro formal.
- * Cuando se defina, agregar aquí el bloque :root[data-theme="light"]
- * o .light con la versión clara del perfil web. */
+/* TODO(light): el website es dark-first; bloque light pendiente. */
