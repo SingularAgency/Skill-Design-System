@@ -22,6 +22,10 @@ surfaces/
   slides-presentations/   ← specs de marca para Gamma              [Fase 6]
   social-email/           ← email (s-mail-v1) + social (Meta)      [Fase 6]
 components/               ← inventario core + por-perfil
+colors_and_type.css       ← foundation autocontenida (fuentes + paleta + type) para artefactos sueltos
+preview/                  ← galería de cards de specs del DS (colores, type, spacing, componentes)
+ui_kits/
+  web-app/                ← UI kit interactivo "Singular Stories" (React UMD, click-thru)
 references/               ← audit-checklist, decision-tree, patterns
 assets/                   ← logos + símbolos de marca (en este repo)
 legacy/                   ← FUENTES recuperados (input, no se publican)
@@ -39,6 +43,7 @@ Publicado en **GitHub Pages** (no hace falta clonar):
 | Website / landing (cyan) | https://singularagency.github.io/Skill-Design-System/surfaces/website-landing/demo.html |
 | Slides / presentaciones | https://singularagency.github.io/Skill-Design-System/surfaces/slides-presentations/demo.html |
 | Social + email | https://singularagency.github.io/Skill-Design-System/surfaces/social-email/demo.html |
+| **UI kit interactivo** (Singular Stories) | https://singularagency.github.io/Skill-Design-System/ui_kits/web-app/index.html |
 
 En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo. (Local: `open tokens/demo.html`.)
 
