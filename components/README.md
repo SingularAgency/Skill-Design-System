@@ -4,6 +4,14 @@ Inventario de los componentes del DS, clasificados. La **API real** vive en cada
 
 > Base común: **Tailwind v4 + shadcn/ui + lucide**. Núcleo shadcn (`ui/`) compartido por todas las superficies web.
 
+## Código entregado (por perfil)
+Los perfiles web entregan **código portable** (no solo docs), router-agnóstico y tokenizado:
+
+| Perfil | Archivos |
+|---|---|
+| **web-app** | `surfaces/web-app/navigation.tsx` (sistema de navegación: SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabs, PageHeader, PoweredByFooter), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal), `patterns.ts` (big-pill-tabs, data-table-patterns), `web-app.css`. |
+| **website-landing** | `surfaces/website-landing/primitives.tsx` + `website.css`. |
+
 ## CORE universal (cualquier superficie web)
 | Familia | Componentes | Notas |
 |---|---|---|
@@ -23,7 +31,7 @@ KPI de dominio (`KpiCard`/`KpiRow` acoplados a `settings-context`), modales de e
 ## Marketing / website (perfil website-landing)
 `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `Reveal`, `SystemChip`, `LogoMarquee` → ver `surfaces/website-landing/primitives.tsx`.
 
-## ⚠️ Higiene pendiente (de la auditoría)
-- API key Figma (`figd_…`) embebida en `sidebar-shell.tsx` de Stories — **no debe viajar** al DS; revisar/rotar.
-- `styles/globals.css` legacy muerto en Stories (ignorar).
-- Doble definición PERT con colisión de tokens (`--pert-normal-*`, `--status-done-*`).
+## ⚠️ Higiene
+- ✅ API key Figma (`figd_…`) que estaba embebida en `sidebar-shell.tsx` de Stories: **NO viajó** al DS (el `navigation.tsx` portado no incluye el snippet MCP). Pendiente fuera de este repo: **rotar la key** en Stories.
+- `styles/globals.css` legacy muerto en Stories (ignorar al re-auditar).
+- Doble definición PERT con colisión de tokens (`--pert-normal-*`, `--status-done-*`) — específico de Stories, no se promovió al core.

@@ -59,14 +59,35 @@
   /* ── Sidebar / header (chrome de app) ── */
   --sidebar: color-mix(in srgb, var(--primary) 4%, color-mix(in srgb, var(--singular-secondary-100) 14%, #e8ebf4));
   --sidebar-foreground: #1A202C;
+  --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #ffffff; /* ícono/label del item activo */
   --sidebar-accent: color-mix(in srgb, var(--primary) 6.5%, #eef1fb);
   --sidebar-border: color-mix(in srgb, var(--primary) 14%, #c5cad8);
+  --sidebar-nav-hover: color-mix(in srgb, var(--primary) 5%, #f3f5fc);   /* hover de item del rail */
+  --sidebar-nav-active: color-mix(in srgb, var(--primary) 12%, #e8ecfc); /* fill del item activo */
+
+  /* Header well flotante + trigger de search (chrome superior frosteado) */
+  --header-well-bg: color-mix(in srgb, var(--primary) 8%, var(--sidebar));
+  --header-border: color-mix(in srgb, var(--primary) 12%, var(--sidebar-border));
+  --header-search-bg: color-mix(in srgb, var(--singular-secondary-100) 10%, color-mix(in srgb, var(--primary) 5%, #f6f7fc));
+  --header-search-border: color-mix(in srgb, var(--primary) 22%, #c9cedd);
+
+  /* Section route tabs (big-pill): clearance bajo el header + gap al título */
+  --section-tabs-top-inset: 1.5rem; /* 24px */
+  --section-tabs-to-title-gap: 60px;
 
   /* ── Charts (light: escala azul mono) ── */
   --chart-1: #1741E8; --chart-2: #4567ED; --chart-3: #748DF1; --chart-4: #A2B3F6; --chart-5: #D1D9FA;
 
   /* ── Surface gradient (liquid glass) ── */
   --surface-gradient-from: #e3e8fa; --surface-gradient-to: #eaeefb;
+
+  /* ── Componentes (outline button · card glass · anchos de popover) ── */
+  --button-outline-border: #2b4182;
+  --button-outline-foreground: var(--primary);
+  --button-outline-hover-bg: color-mix(in srgb, var(--primary) 14%, transparent);
+  --card-translucent-surface: color-mix(in srgb, var(--singular-secondary-100) 20%, color-mix(in srgb, var(--singular-primary-100) 22%, color-mix(in srgb, var(--primary) 4.5%, #f3f5fc)));
+  /* anchos de popover/command (theme-independent) */
+  --container-popover-sm: 16rem; --container-popover-md: 26.25rem; --container-popover-lg: 31.25rem; --container-popover-xl: 45rem;
 }
 
 .dark {
@@ -87,7 +108,20 @@
   --ring: #6f8fff;
 
   --sidebar: #121528; --sidebar-foreground: #C4CED9;
+  --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1c2138; --sidebar-border: #2a3150;
+  --sidebar-nav-hover: rgb(255 255 255 / 0.06);
+  --sidebar-nav-active: color-mix(in srgb, var(--primary) 22%, #1c2138);
+
+  /* Header well + search (dark) */
+  --header-well-bg: color-mix(in srgb, #000 22%, var(--sidebar));
+  --header-border: var(--sidebar-border);
+  --header-search-bg: color-mix(in srgb, var(--primary) 10%, #161b2e);
+  --header-search-border: rgb(255 255 255 / 0.12);
+
+  /* Componentes (dark): outline hover + card glass */
+  --button-outline-hover-bg: color-mix(in srgb, var(--primary) 18%, transparent);
+  --card-translucent-surface: rgb(38 46 82 / 0.4);
 
   /* Charts (dark: multicolor saturado para leer sobre navy) */
   --chart-1: #6f8fff; --chart-2: #3ECFEF; --chart-3: #94B8FF; --chart-4: #F0B429; --chart-5: #5EEAD4;

@@ -13,6 +13,46 @@ La superficie de **producto interno** de Singular (dashboards, OKR, sprints, QA,
 <ThemeProvider attribute="class" defaultTheme="dark">
 ```
 
+## Código del perfil (en este repo)
+A diferencia de las skills viejas, este perfil **entrega código portable** (no solo docs). Espeja el patrón de `surfaces/website-landing/primitives.tsx`: router-agnóstico, tokenizado, sin secretos.
+
+| Archivo | Qué trae |
+|---|---|
+| `surfaces/web-app/navigation.tsx` | **Sistema de navegación**: `FloatingSidebarProvider`/`useFloatingSidebar`, `SidebarShell`, `AppHeaderShell` + `SearchPill`, `SectionTopTabs`/`BigPillTabsNav`, `PageHeader`, `PoweredByFooter`, `SidebarContentWrapper`. |
+| `surfaces/web-app/components.tsx` | Componentes propios: `StatusBadge`/`SeverityBadge`/`PriorityBadge` + `mapToStatusVariant`, `PillFilter`/`Multi`/`Switcher`, `EmptyState`/`TableEmptyState`, `SideModalScrollBody`/`StaticSection`. |
+| `surfaces/web-app/patterns.ts` | Kits de clases: `big-pill-tabs` (+ `getBigPillTabClass`), `data-table-patterns` (subset core), `navigation-patterns`. |
+| `surfaces/web-app/web-app.css` | Utilidades del perfil que no están en core: chrome de `.page-top-chrome`/section-tabs + helpers de nav en CSS plano (para entornos sin Tailwind y el demo). |
+
+> **Portabilidad (Next → cualquier React):** los componentes de navegación reciben un `linkComponent` inyectable (default `<a>`) y el `pathname` por props — **sin `next/link` ni `next/navigation`**. El secreto (MCP/Figma key) de Stories **no viaja**. `components.tsx` asume primitivos shadcn (`@/components/ui/*`) estilados con los tokens del DS.
+
+## Sistema de navegación
+El chrome que reemplaza al sidebar "de caja": **rail flotante glass** + **header well frosteado** + **big-pill tabs** de ruta + footer **Powered by Singular**. Dark-first, white-label (logo por `brandLogoUrl`/`brandInitials`).
+
+**Anatomía del shell:**
+```tsx
+<FloatingSidebarProvider>
+  <SidebarShell                 // rail flotante izq: cuadrado de logo (toggle) + íconos
+    pathname={pathname} sections={sections} isItemActive={...}
+    homeHref="/" linkComponent={Link} />
+  <AppHeaderShell               // well frosteado fijo arriba
+    left={<SearchPill shortcut="⌘K" onClick={openCmdK} />}
+    center={<BigPillTabsNav tabs={tabs} activeHref={...} linkComponent={Link} />}
+    right={<>{themeToggle}{notifications}{avatar}</>} />
+  <SidebarContentWrapper>       // offset que despeja rail + header
+    <PageHeader title="…" subtitle="…" actions={…} />
+    {/* …contenido… */}
+  </SidebarContentWrapper>
+  <PoweredByFooter logo={<Logo />} />
+</FloatingSidebarProvider>
+```
+
+**Offsets de layout (clave):** rail en `left-10 top-10`; header well y contenido offset `md:left-[132px]`; contenido `pt-[92px]` (despeja el header de 60px en `top-10`). Colapsado, el contenido recupera el ancho del rail (`md:pl-10`).
+
+**Reglas:**
+- **Navegación vs filtrado:** `SectionTopTabs`/big-pill = rutas (`href`); `PillFilter` = filtros in-page (misma URL). No uses pills para navegar entre rutas salvo que sean `Link`s reales (ver `navigation-patterns`).
+- **Activo:** un solo lenguaje — `bg-[var(--sidebar-nav-active)]` + `text-sidebar-primary`, igual en rail, big-pill y profile.
+- **A11y:** drawer mobile con foco; `motion-safe` en los pulsos; targets ≥44px; `aria-current` en el item activo.
+
 ## Anatomía de una página de producto
 1. **Page header** — h1 (`.page-title`) + descripción (`.page-subtitle`) + acciones a la derecha + `KpiToggle`.
 2. **`KpiRow`** — 3–4 `KpiCard` (value + trend chip + label), colapsable.
@@ -45,4 +85,4 @@ Ritmo: `gap-l` (24px) entre bloques; `gap-filters-to-grid` (48px) entre filtros 
 `--okr-*`, `--pert-*`, `--payments-grid-*` y `.payments-sprint-grid` son **específicos de Stories** — viven en su `globals.css`, no en el core del DS. Si otro producto los necesita, se promueven conscientemente.
 
 ## Preview
-`demo.html` — dashboard de ejemplo (sidebar + header + KPI row + filtros + tabla) armado con el DS. `open surfaces/web-app/demo.html`.
+`demo.html` — dashboard de ejemplo con el **sistema de navegación nuevo** (rail flotante + header well + big-pill tabs + Powered by Singular) + page header + KPI row + filtros + tabla. Theme toggle funcional (light/dark). `open surfaces/web-app/demo.html`.

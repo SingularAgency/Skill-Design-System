@@ -67,4 +67,4 @@ Cada superficie tiene su guía con setup, anatomía y reglas:
 - ❌ Mezclar el sistema `.sds-*` (deprecado) con este.
 
 ## 6. Mantenimiento
-El perfil **web-app** espeja `v0-singular-stories-app`; el **website-landing**, `FramerSingular`. Cuando esos productos evolucionen el sistema, re-auditar y actualizar acá (ver `PLAN.md` §Fase 8). Fuente única — no forkear tokens por producto.
+El perfil **web-app** espeja `v0-singular-stories-app` y ahora **entrega su sistema de navegación + componentes como código portable** (`surfaces/web-app/navigation.tsx`, `components.tsx`, `patterns.ts`, `web-app.css`) — router-agnóstico (`linkComponent` inyectable), sin secretos. El **website-landing** espeja `FramerSingular` (`primitives.tsx`). Cuando esos productos evolucionen el sistema, re-auditar y actualizar acá (ver `PLAN.md` §Fase 8). Fuente única — no forkear tokens por producto.
