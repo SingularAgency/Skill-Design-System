@@ -66,19 +66,20 @@
   @keyframes stars-b { from { background-position: 0 0; } to { background-position: -200px -200px; } }
   @media (prefers-reduced-motion: reduce) { .brand-bg__stars::before, .brand-bg__stars::after { animation: none; } }
 
-  html, body { height: 100%; }
-  body { margin: 0; font-family: var(--font-sans); background: #09090b; color: var(--foreground);
-         display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  html { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--font-sans); background: #09090b; color: var(--foreground); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-  /* ── Escenario: una slide a la vez, 16:9 centrado ── */
-  .stage { width: min(94vw, calc((100vh - 120px) * 16 / 9)); aspect-ratio: 16/9; position: relative; }
-  .deck { position: absolute; inset: 0; border-radius: 14px; overflow: hidden;
-          box-shadow: 0 30px 80px rgb(0 0 0/.55); }
-  .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden;
-           transition: opacity .4s ease; color: var(--foreground); }
-  .slide.is-active { opacity: 1; visibility: visible; }
-  .pad { position: relative; z-index: 1; height: 100%; box-sizing: border-box;
-         padding: 4rem 4.5rem; display: flex; flex-direction: column; }
+  /* ── Fondo de marca a nivel PÁGINA (fijo; no se repite por slide) ──
+   * z-index 0 (no negativo) para no quedar detrás del fondo del body al scrollear. */
+  .page-bg { position: fixed; inset: 0; z-index: 0; }
+
+  /* ── Deck scrolleable: una slide por viewport, con scroll-snap ── */
+  .deck { position: relative; z-index: 1; width: 100%; }
+  .slide { min-height: 100vh; box-sizing: border-box; scroll-snap-align: start;
+           display: flex; align-items: center; justify-content: center;
+           padding: 6rem clamp(1.5rem, 7vw, 7rem); color: var(--foreground); }
+  .pad { width: min(1080px, 100%); display: flex; flex-direction: column; }
 
   /* ── Logo (marca) arriba a la izquierda dentro de la slide ── */
   .logo { display: inline-flex; align-items: center; gap: .55rem; font-weight: 700;
@@ -86,8 +87,8 @@
   .logo .mk { width: 26px; aspect-ratio: 627.59 / 374.52; display: block;
               background: var(--logo-icon) center / contain no-repeat; }
 
-  /* ── Logo-link al sitio, arriba a la derecha (fijo sobre el deck) ── */
-  .site-link { position: absolute; top: 16px; right: 16px; z-index: 5;
+  /* ── Logo de marca, arriba a la IZQUIERDA (fijo sobre el deck) ── */
+  .site-link { position: fixed; top: 20px; left: 24px; z-index: 6;
                display: inline-flex; align-items: center; gap: .4rem; text-decoration: none;
                padding: .45rem .8rem; border-radius: 999px;
                background: color-mix(in srgb, var(--background) 55%, transparent);
@@ -99,6 +100,18 @@
                    background: var(--logo-icon) center / contain no-repeat; }
   .site-link .wm { font-weight: 700; font-size: .82rem; letter-spacing: -.01em; color: var(--foreground-strong); }
   .site-link .arr { color: var(--muted-foreground); font-size: .8rem; }
+
+  /* ── Botón "Descargar PDF", arriba a la DERECHA ── */
+  .pdf-btn { position: fixed; top: 20px; right: 24px; z-index: 6;
+             display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; font: inherit;
+             font-size: .82rem; font-weight: 600; letter-spacing: -.01em; color: var(--foreground-strong);
+             padding: .5rem .9rem; border-radius: 999px;
+             background: color-mix(in srgb, var(--background) 55%, transparent);
+             border: 1px solid var(--border); backdrop-filter: blur(8px);
+             transition: border-color .2s, background .2s; }
+  .pdf-btn:hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 14%, transparent); }
+  .pdf-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  @media (max-width: 640px) { .pdf-btn .lbl { display: none; } .pdf-btn { padding: .5rem; } }
 
   h1 { font-size: 3.4rem; font-weight: 700; letter-spacing: -.03em; line-height: 1.05;
        margin: 1rem 0 0; color: var(--foreground-strong); }
@@ -122,112 +135,124 @@
          background-image: linear-gradient(to top, var(--primary), color-mix(in srgb, var(--primary) 40%, transparent)); }
   .eyebrow { justify-content: flex-start; }
 
-  /* ── Controles de navegación ── */
-  .nav { position: absolute; left: 50%; bottom: -64px; transform: translateX(-50%);
-         display: flex; align-items: center; gap: 1rem; }
-  .nav button { width: 44px; height: 44px; border-radius: 999px; cursor: pointer;
+  /* ── Controles de navegación: VERTICAL, fijos a la derecha ── */
+  .nav { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 6;
+         display: flex; flex-direction: column; align-items: center; gap: .9rem; }
+  .nav > button { width: 42px; height: 42px; border-radius: 999px; cursor: pointer;
                 display: grid; place-items: center; color: var(--foreground-strong);
                 background: color-mix(in srgb, var(--background) 60%, transparent);
-                border: 1px solid var(--border); transition: border-color .2s, background .2s, opacity .2s; }
-  .nav button:hover:not(:disabled) { border-color: var(--primary);
+                border: 1px solid var(--border); backdrop-filter: blur(8px);
+                transition: border-color .2s, background .2s, opacity .2s; }
+  .nav > button:hover:not(:disabled) { border-color: var(--primary);
                 background: color-mix(in srgb, var(--primary) 16%, transparent); }
-  .nav button:disabled { opacity: .35; cursor: default; }
+  .nav > button:disabled { opacity: .35; cursor: default; }
   .nav .ico { width: 20px; height: 20px; }
-  .dots { display: flex; gap: .5rem; }
-  .dot { width: 9px; height: 9px; border-radius: 999px; border: 0; padding: 0; cursor: pointer;
-         background: color-mix(in srgb, var(--foreground) 28%, transparent); transition: background .2s, transform .2s; }
-  .dot.is-active { background-image: var(--gradient-primary); transform: scale(1.25); }
-  .counter { position: absolute; left: 4px; bottom: -56px; font-family: var(--font-mono);
-             font-size: .8rem; color: var(--muted-foreground); }
+  .dots { display: flex; flex-direction: column; gap: .55rem; align-items: center; }
+  .dot { width: 20px; height: 3px; border-radius: 999px; border: 0; padding: 0; cursor: pointer;
+         background: color-mix(in srgb, var(--foreground) 28%, transparent); transition: background .2s, width .2s; }
+  .dot:hover { background: color-mix(in srgb, var(--foreground) 45%, transparent); }
+  .dot.is-active { width: 30px; background-image: var(--gradient-primary); }
+  .counter { font-family: var(--font-mono); font-size: .72rem; color: var(--muted-foreground); text-align: center; margin-top: .2rem; }
+  @media (max-width: 640px) { .nav { right: 10px; gap: .6rem; } .nav > button { width: 36px; height: 36px; } }
+
+  /* ── Impresión / "Guardar como PDF": una slide por página, landscape, tema oscuro ── */
+  @media print {
+    @page { size: landscape; margin: 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html { scroll-snap-type: none; scroll-behavior: auto; }
+    body { background: var(--background); }
+    .site-link, .nav, .pdf-btn { display: none !important; }
+    .page-bg { position: fixed; }            /* se repite en cada página impresa */
+    .slide { min-height: 0; height: 100vh; break-after: page; page-break-after: always; scroll-snap-align: none; }
+    .slide:last-child { break-after: auto; page-break-after: auto; }
+  }
 </style></head><body>
 
+<!-- Fondo de marca a nivel PÁGINA (fijo; lo posee la página, no las slides) -->
+<div class="page-bg brand-bg" aria-hidden="true"><div class="brand-bg__stars"></div></div>
+
+<!-- Logo de marca, arriba a la izquierda -->
 <a class="site-link" href="https://singular.ai" target="_blank" rel="noopener" title="Ir a singular.ai">
   <span class="mk"></span><span class="wm">Singular</span>
   <span class="arr">↗</span>
 </a>
 
-<div class="stage">
-  <div class="deck" id="deck">
+<!-- Descargar PDF, arriba a la derecha (window.print → "Guardar como PDF") -->
+<button class="pdf-btn" id="pdf" type="button" aria-label="Descargar PDF" title="Descargar PDF">
+  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+  <span class="lbl">Descargar PDF</span>
+</button>
 
-    <!-- TITLE -->
-    <section class="slide is-active brand-bg"><div class="brand-bg__stars"></div><div class="pad">
-      <div class="logo"><span class="mk"></span> Singular</div>
-      <div class="spacer"></div>
-      <span class="eyebrow eyebrow--brand">Propuesta · Q3 2026</span>
-      <h1>Tu empresa, <span class="accent">potenciada por agentes</span></h1>
-      <p class="lead">Un Company Brain que conecta tus sistemas y trabaja por vos.</p>
-      <div class="spacer"></div>
-      <div style="color:var(--muted-foreground);font-size:.85rem">singular.ai · Confidencial</div>
-    </div></section>
+<main class="deck" id="deck">
 
-    <!-- PROBLEM -->
-    <section class="slide brand-bg"><div class="brand-bg__stars"></div><div class="pad">
-      <span class="eyebrow eyebrow--brand">El problema</span>
-      <h1 style="font-size:2.6rem">El conocimiento vive <span class="accent">disperso</span></h1>
-      <p class="lead">Procesos en cabezas, datos en silos, herramientas que no se hablan. El equipo repite trabajo manual y la información se pierde entre apps.</p>
-      <div class="cols">
-        <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><h3>Trabajo repetitivo</h3><p>Horas en tareas que se podrían automatizar.</p></div>
-        <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h3>Datos en silos</h3><p>Cada sistema con su propia verdad parcial.</p></div>
-        <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></div><h3>Contexto perdido</h3><p>El know-how se va con cada persona.</p></div>
+  <!-- TITLE -->
+  <section class="slide" id="slide-1"><div class="pad">
+    <span class="eyebrow eyebrow--brand">Propuesta · Q3 2026</span>
+    <h1>Tu empresa, <span class="accent">potenciada por agentes</span></h1>
+    <p class="lead">Un Company Brain que conecta tus sistemas y trabaja por vos.</p>
+    <div style="margin-top:2.5rem;color:var(--muted-foreground);font-size:.85rem">singular.ai · Confidencial</div>
+  </div></section>
+
+  <!-- PROBLEM -->
+  <section class="slide" id="slide-2"><div class="pad">
+    <span class="eyebrow eyebrow--brand">El problema</span>
+    <h1 style="font-size:2.6rem">El conocimiento vive <span class="accent">disperso</span></h1>
+    <p class="lead">Procesos en cabezas, datos en silos, herramientas que no se hablan. El equipo repite trabajo manual y la información se pierde entre apps.</p>
+    <div class="cols">
+      <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><h3>Trabajo repetitivo</h3><p>Horas en tareas que se podrían automatizar.</p></div>
+      <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h3>Datos en silos</h3><p>Cada sistema con su propia verdad parcial.</p></div>
+      <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></div><h3>Contexto perdido</h3><p>El know-how se va con cada persona.</p></div>
+    </div>
+  </div></section>
+
+  <!-- CONTENT -->
+  <section class="slide" id="slide-3"><div class="pad">
+    <span class="eyebrow eyebrow--brand">Cómo funciona</span>
+    <h1 style="font-size:2.6rem">Tres pasos, cero fricción</h1>
+    <div class="cols">
+      <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6M9 8h6"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg></div><h3>Conectamos</h3><p>Integramos tus sistemas y datos sin reemplazar tu stack.</p></div>
+      <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Entrenamos</h3><p>Los agentes aprenden tus procesos, con permisos por rol.</p></div>
+      <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/></svg></div><h3>Escalás</h3><p>Resultados medibles desde la primera semana.</p></div>
+    </div>
+  </div></section>
+
+  <!-- DATA -->
+  <section class="slide" id="slide-4"><div class="pad">
+    <span class="eyebrow eyebrow--brand">Impacto</span>
+    <h1 style="font-size:2.6rem">Menos manual, más foco</h1>
+    <div class="data">
+      <div>
+        <div class="bignum">−62<span style="font-size:2.5rem">%</span></div>
+        <p class="lead" style="margin-top:.6rem">de tiempo en tareas repetitivas en el primer trimestre.</p>
+        <div style="margin-top:1.5rem"><span class="bignum" style="font-size:2.4rem;color:var(--primary)">3.4×</span> <span style="color:var(--muted-foreground)">ROI promedio</span></div>
       </div>
-      <div class="spacer"></div>
-      <div class="logo" style="font-size:.9rem"><span class="mk" style="width:18px"></span> Singular</div>
-    </div></section>
-
-    <!-- CONTENT -->
-    <section class="slide brand-bg"><div class="brand-bg__stars"></div><div class="pad">
-      <span class="eyebrow eyebrow--brand">Cómo funciona</span>
-      <h1 style="font-size:2.6rem">Tres pasos, cero fricción</h1>
-      <div class="cols">
-        <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6M9 8h6"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg></div><h3>Conectamos</h3><p>Integramos tus sistemas y datos sin reemplazar tu stack.</p></div>
-        <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Entrenamos</h3><p>Los agentes aprenden tus procesos, con permisos por rol.</p></div>
-        <div class="col"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/></svg></div><h3>Escalás</h3><p>Resultados medibles desde la primera semana.</p></div>
+      <div class="bars">
+        <div class="bar" style="height:45%"></div><div class="bar" style="height:62%"></div>
+        <div class="bar" style="height:78%"></div><div class="bar" style="height:90%"></div>
+        <div class="bar" style="height:100%"></div>
       </div>
-      <div class="spacer"></div>
-      <div class="logo" style="font-size:.9rem"><span class="mk" style="width:18px"></span> Singular</div>
-    </div></section>
+    </div>
+  </div></section>
 
-    <!-- DATA -->
-    <section class="slide brand-bg"><div class="brand-bg__stars"></div><div class="pad">
-      <span class="eyebrow eyebrow--brand">Impacto</span>
-      <h1 style="font-size:2.6rem">Menos manual, más foco</h1>
-      <div class="data">
-        <div>
-          <div class="bignum">−62<span style="font-size:2.5rem">%</span></div>
-          <p class="lead" style="margin-top:.6rem">de tiempo en tareas repetitivas en el primer trimestre.</p>
-          <div style="margin-top:1.5rem"><span class="bignum" style="font-size:2.4rem;color:var(--primary)">3.4×</span> <span style="color:var(--muted-foreground)">ROI promedio</span></div>
-        </div>
-        <div class="bars">
-          <div class="bar" style="height:45%"></div><div class="bar" style="height:62%"></div>
-          <div class="bar" style="height:78%"></div><div class="bar" style="height:90%"></div>
-          <div class="bar" style="height:100%"></div>
-        </div>
-      </div>
-      <div class="spacer"></div>
-      <div class="logo" style="font-size:.9rem"><span class="mk" style="width:18px"></span> Singular</div>
-    </div></section>
+  <!-- CLOSING / CTA -->
+  <section class="slide" id="slide-5"><div class="pad">
+    <h1>Hagamos que tu empresa <span class="accent">piense sola</span></h1>
+    <p class="lead">Arrancamos con un piloto de 30 días sobre un proceso real. Sin reemplazar tu stack.</p>
+    <div style="display:flex;gap:1.2rem;margin-top:2rem;align-items:center;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:.4rem;padding:.7rem 1.3rem;border-radius:999px;background-image:var(--gradient-primary);color:#fff;font-weight:600;letter-spacing:-.01em">Agendar una demo →</span>
+      <span style="color:var(--muted-foreground)">hola@singular.ai</span>
+    </div>
+  </div></section>
 
-    <!-- CLOSING / CTA -->
-    <section class="slide brand-bg"><div class="brand-bg__stars"></div><div class="pad" style="align-items:flex-start;justify-content:center">
-      <div class="logo"><span class="mk"></span> Singular</div>
-      <h1 style="margin-top:1.6rem">Hagamos que tu empresa <span class="accent">piense sola</span></h1>
-      <p class="lead">Arrancamos con un piloto de 30 días sobre un proceso real. Sin reemplazar tu stack.</p>
-      <div style="display:flex;gap:1.2rem;margin-top:2rem;align-items:center">
-        <span style="display:inline-flex;align-items:center;gap:.4rem;padding:.7rem 1.3rem;border-radius:999px;background-image:var(--gradient-primary);color:#fff;font-weight:600;letter-spacing:-.01em">Agendar una demo →</span>
-        <span style="color:var(--muted-foreground)">hola@singular.ai</span>
-      </div>
-    </div></section>
+</main>
 
-  </div>
-
-  <div class="counter"><span id="cur">1</span> / <span id="total">3</span></div>
-
-  <div class="nav">
-    <button id="prev" aria-label="Anterior"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-    <div class="dots" id="dots"></div>
-    <button id="next" aria-label="Siguiente"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-  </div>
-</div>
+<!-- Navegación VERTICAL a la derecha: flechas (arriba/abajo) + dots + contador -->
+<nav class="nav" aria-label="Navegación de slides">
+  <button id="prev" aria-label="Slide anterior"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="Slide siguiente"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="counter"><span id="cur">1</span>/<span id="total">5</span></div>
+</nav>
 
 <script>
   const slides = [...document.querySelectorAll('.slide')];
@@ -238,31 +263,42 @@
   document.getElementById('total').textContent = slides.length;
   let i = 0;
 
+  const scrollTo = (n) => slides[Math.max(0, Math.min(slides.length - 1, n))]
+    .scrollIntoView({ behavior: 'smooth', block: 'start' });
+
   slides.forEach((_, idx) => {
     const d = document.createElement('button');
     d.className = 'dot' + (idx === 0 ? ' is-active' : '');
     d.setAttribute('aria-label', 'Ir a la slide ' + (idx + 1));
-    d.addEventListener('click', () => go(idx));
+    d.addEventListener('click', () => scrollTo(idx));
     dotsWrap.appendChild(d);
   });
   const dots = [...dotsWrap.children];
 
-  function go(n) {
+  function setActive(n) {
     i = Math.max(0, Math.min(slides.length - 1, n));
-    slides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
     dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
     cur.textContent = i + 1;
     prevBtn.disabled = i === 0;
     nextBtn.disabled = i === slides.length - 1;
   }
 
-  prevBtn.addEventListener('click', () => go(i - 1));
-  nextBtn.addEventListener('click', () => go(i + 1));
+  // El estado activo sigue al SCROLL (no al revés): la slide más visible manda.
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) setActive(slides.indexOf(e.target)); });
+  }, { threshold: 0.6 });
+  slides.forEach((s) => io.observe(s));
+
+  prevBtn.addEventListener('click', () => scrollTo(i - 1));
+  nextBtn.addEventListener('click', () => scrollTo(i + 1));
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === 'PageDown') go(i + 1);
-    if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(i - 1);
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === 'ArrowRight') { e.preventDefault(); scrollTo(i + 1); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') { e.preventDefault(); scrollTo(i - 1); }
   });
-  go(0);
+  setActive(0);
+
+  // Descargar PDF → diálogo de impresión del navegador ("Guardar como PDF").
+  document.getElementById('pdf').addEventListener('click', () => window.print());
 </script>
 
 </body></html>
