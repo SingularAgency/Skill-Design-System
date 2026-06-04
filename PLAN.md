@@ -167,6 +167,11 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Entregable:** `surfaces/web-app/guide.md` + `components/` (core vs producto).
 - **Done:** perfil web-app reproduce Stories sin reinventar tokens.
 
+> **Avance (2026-06-04) — sistema de navegación + componentes entregados como CÓDIGO.** Se reemplazó el sidebar "de caja" del demo por el **sistema de navegación de Stories** (rail flotante glass + header well frosteado + big-pill tabs + Powered by Singular) y se portó como código portable:
+> - **Tokens** (`tokens/brand-app.css` + `theme-mapping.css`): `--sidebar-primary(-foreground)`, `--sidebar-nav-hover/-active`, `--header-well-bg/-border/-search-bg/-search-border`, `--button-outline-*`, `--card-translucent-surface`, `--section-tabs-*`, `--container-popover-*` (valores reales de Stories, light+dark).
+> - **Código** (`surfaces/web-app/`): `navigation.tsx` (FloatingSidebarProvider, SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabsNav, PageHeader, PoweredByFooter, SidebarContentWrapper — router-agnóstico vía `linkComponent`, **sin la Figma key**), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal), `patterns.ts` (big-pill-tabs, data-table-patterns), `web-app.css`.
+> - **Demo + docs:** `demo.html` reescrito (verificado light+dark en browser), `guide.md` + `components/README.md` + `SKILL.md` actualizados.
+
 ### Fase 5 — Perfil website/landing (promover custom-ai)
 - **Tareas:** promover `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `Reveal`, `LogoMarquee`, `PricingCard`, `GlassTabs`; tokenizar acentos hardcodeados; section rhythm (`py-s/m/l`) → tokens; limpiar clases fantasma / código muerto.
 - **Entregable:** `surfaces/website-landing/guide.md` + primitivos.
@@ -200,6 +205,12 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Repos no clonados** (`claude-marketplace`, `singular-design-system-2026`): clonar en Fase 1 para no perder material de `.sds-*`.
 - **Contradicción de radius**: resuelta por perfil; verificar que no rompa expectativas de ningún producto en uso.
 - **app-v2 lee `globals.css` de Stories**: el perfil web-app queda acoplado a ese repo; mantener el contrato de "Stories es la verdad del perfil app".
+
+### Follow-ups (abiertos tras el pase del 2026-06-04)
+- **Rotar la Figma key** `figd_…` en `v0-singular-stories-app/components/sidebar-shell.tsx` (estaba embebida en el snippet MCP; **no viajó** al DS pero sigue viva en Stories).
+- **Extras DS-worthy** que la auditoría marcó reutilizables y aún NO se portaron: `DataGrid`, `DataCard`, `ListPagination`, `GridSectionHeader`, `EdgeFadeScroller`, `LabelWithHint`, `StatusDropdown`, `ThemeProvider`. Próximo pase del perfil web-app.
+- **Drift de colores de marca**: `--singular-*` del DS (cyan unificado) difiere de los valores actuales de Stories (`--singular-cyan` light #0D9488/dark #2dd4bf, coral aliased a #1741E8). El DS eligió conscientemente el cyan unificado — `StatusBadge` mapea a esa paleta. Reconciliar si diseño decide converger Stories al DS.
+- **`KpiCard`/`KpiRow`** quedaron fuera (acoplados a `settings-context` en Stories). Portar con `isExpanded` por prop si se necesitan como componente del DS.
 
 ---
 

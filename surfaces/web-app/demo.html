@@ -154,8 +154,15 @@
   /* ── Sidebar / header (chrome de app) ── */
   --sidebar: color-mix(in srgb, var(--primary) 4%, color-mix(in srgb, var(--singular-secondary-100) 14%, #e8ebf4));
   --sidebar-foreground: #1A202C;
+  --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: color-mix(in srgb, var(--primary) 6.5%, #eef1fb);
   --sidebar-border: color-mix(in srgb, var(--primary) 14%, #c5cad8);
+  --sidebar-nav-hover: color-mix(in srgb, var(--primary) 5%, #f3f5fc);
+  --sidebar-nav-active: color-mix(in srgb, var(--primary) 12%, #e8ecfc);
+  --header-well-bg: color-mix(in srgb, var(--primary) 8%, var(--sidebar));
+  --header-border: color-mix(in srgb, var(--primary) 12%, var(--sidebar-border));
+  --header-search-bg: color-mix(in srgb, var(--singular-secondary-100) 10%, color-mix(in srgb, var(--primary) 5%, #f6f7fc));
+  --header-search-border: color-mix(in srgb, var(--primary) 22%, #c9cedd);
 
   /* ── Charts (light: escala azul mono) ── */
   --chart-1: #1741E8; --chart-2: #4567ED; --chart-3: #748DF1; --chart-4: #A2B3F6; --chart-5: #D1D9FA;
@@ -182,7 +189,14 @@
   --ring: #6f8fff;
 
   --sidebar: #121528; --sidebar-foreground: #C4CED9;
+  --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1c2138; --sidebar-border: #2a3150;
+  --sidebar-nav-hover: rgb(255 255 255 / 0.06);
+  --sidebar-nav-active: color-mix(in srgb, var(--primary) 22%, #1c2138);
+  --header-well-bg: color-mix(in srgb, #000 22%, var(--sidebar));
+  --header-border: var(--sidebar-border);
+  --header-search-bg: color-mix(in srgb, var(--primary) 10%, #161b2e);
+  --header-search-border: rgb(255 255 255 / 0.12);
 
   /* Charts (dark: multicolor saturado para leer sobre navy) */
   --chart-1: #6f8fff; --chart-2: #3ECFEF; --chart-3: #94B8FF; --chart-4: #F0B429; --chart-5: #5EEAD4;
@@ -449,17 +463,56 @@
 </style>
 <style>
   body { margin: 0; font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
-  .app { display: flex; min-height: 100vh; }
-  /* sidebar */
-  .sidebar { width: 232px; flex: none; padding: 1rem .75rem; background: var(--sidebar); border-right: 1px solid var(--sidebar-border); }
-  .brand { display: flex; align-items: center; gap: .55rem; font-weight: 700; padding: .5rem .6rem; margin-bottom: 1.25rem; color: var(--foreground-strong); }
-  .brand .dot { width: 24px; height: 24px; border-radius: 7px; background-image: var(--gradient-primary); }
-  .nav-item { padding: .55rem .6rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: .6rem; color: var(--sidebar-foreground); font-size: .9rem; cursor: pointer; margin-bottom: .15rem; }
-  .nav-item.active { background: var(--sidebar-accent); color: var(--primary); font-weight: 500; }
-  .nav-item:hover:not(.active) { background: var(--sidebar-nav-hover); }
+  .app { min-height: 100vh; position: relative; }
+  .rail svg, .well svg { stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── Sistema de navegación: rail flotante (logo + íconos) ── */
+  .rail-dock { position: fixed; left: 2.5rem; top: 2.5rem; z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+  .rail-logo { display: flex; align-items: center; justify-content: center; width: 62px; height: 62px; border-radius: 20px; overflow: hidden; border: 0; background: color-mix(in srgb, var(--header-well-bg) 60%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 24px rgb(0 0 0/.22); cursor: pointer; transition: opacity .2s; }
+  .rail-logo:hover { opacity: .9; }
+  .rail-logo .mark { width: 30px; height: 30px; border-radius: 10px; background-image: var(--gradient-primary); }
+  .rail { display: flex; flex-direction: column; width: 72px; padding: 1rem .5rem; gap: .25rem; border-radius: 20px; background: color-mix(in srgb, var(--header-well-bg) 60%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 24px rgb(0 0 0/.22); }
+  .rail a { display: flex; flex-direction: column; align-items: center; gap: .15rem; padding: .625rem .25rem; border-radius: var(--radius-md); text-decoration: none; cursor: pointer; color: color-mix(in srgb, var(--sidebar-foreground) 60%, transparent); transition: background-color .2s, color .2s; }
+  .rail a:hover { background: var(--sidebar-nav-hover); color: var(--sidebar-foreground); }
+  .rail a.active { background: var(--sidebar-nav-active); color: var(--sidebar-primary); }
+  .rail a svg { width: 20px; height: 20px; }
+  .rail a .label { font-size: .625rem; font-weight: 500; line-height: 1.1; }
+
+  /* ── Header well frosteado (offset para despejar el rail) ── */
+  .well { position: fixed; left: 8.25rem; right: 2.5rem; top: 2.5rem; z-index: 30; display: flex; align-items: center; gap: .75rem; height: 60px; padding: 0 1.25rem 0 1.5rem; border-radius: 20px; background: color-mix(in srgb, var(--header-well-bg) 60%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 24px rgb(0 0 0/.18); }
+  .h-search { display: inline-flex; align-items: center; height: 40px; width: 40px; padding: 0 .65rem; overflow: hidden; border-radius: var(--radius-full); border: 1px solid var(--header-search-border); background: var(--header-search-bg); color: var(--muted-foreground); cursor: pointer; transition: width .2s ease-out; white-space: nowrap; }
+  .h-search svg { width: 16px; height: 16px; flex: none; }
+  .h-search:hover { width: 15rem; }
+  .h-search .label { font-size: .875rem; opacity: 0; margin-left: 0; transition: opacity .15s, margin .15s; }
+  .h-search:hover .label { opacity: 1; margin-left: .5rem; }
+  .h-center { flex: 1 1 auto; min-width: 0; display: flex; justify-content: center; }
+  .h-actions { margin-left: auto; display: flex; align-items: center; gap: .5rem; }
+  .icon-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--sidebar-foreground); cursor: pointer; transition: background-color .2s; }
+  .icon-btn:hover { background: var(--sidebar-nav-hover); }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .h-badge { position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: var(--radius-full); background: #ef4444; color: #fff; font-size: .625rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+  .h-avatar { width: 36px; height: 36px; border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 700; color: var(--primary); background: color-mix(in srgb, var(--primary) 16%, transparent); }
+
+  /* ── Big-pill tabs (navegación de ruta, centradas en el header) ── */
+  .pill-tabs { display: inline-flex; align-items: stretch; gap: .25rem; padding: .25rem; border-radius: var(--radius-full); background: color-mix(in srgb, var(--muted) 85%, transparent); border: 1px solid color-mix(in srgb, var(--border) 40%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 6px 16px rgb(0 0 0/.14); }
+  .pill-tab { display: inline-flex; align-items: center; gap: .375rem; min-height: 36px; padding: 0 1rem; border-radius: var(--radius-full); font-size: .875rem; font-weight: 500; line-height: 1; white-space: nowrap; color: var(--muted-foreground); text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s; }
+  .pill-tab:hover { color: var(--primary); }
+  .pill-tab.active { background: var(--sidebar-nav-active); color: var(--sidebar-primary); font-weight: 600; }
+
+  /* ── Powered by Singular (pie abajo-izquierda) ── */
+  .powered { position: fixed; bottom: 3rem; left: 2.5rem; z-index: 30; display: flex; flex-direction: column; gap: .3rem; pointer-events: none; }
+  .powered .lbl { font-size: .625rem; font-weight: 500; text-transform: uppercase; letter-spacing: .04em; color: color-mix(in srgb, var(--muted-foreground) 55%, transparent); }
+  .powered .wordmark { display: flex; align-items: center; gap: .4rem; font-weight: 700; color: var(--foreground-strong); }
+  .powered .wordmark .mk { width: 18px; height: 18px; border-radius: 5px; background-image: var(--gradient-primary); }
+
+  /* Mobile: el chrome flotante se oculta (en producción → drawer + header fijo) */
+  @media (max-width: 860px) {
+    .rail-dock, .well, .powered { display: none; }
+    .main { padding: 1.5rem 1.25rem 3rem !important; }
+  }
   .ico { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-  /* main */
-  .main { flex: 1; min-width: 0; padding: 2.25rem 2.5rem 3rem; position: relative; }
+  /* main — offset para despejar el rail (izq) y el header (arriba) flotantes */
+  .main { padding: 116px 2.5rem 4rem 8.25rem; position: relative; min-width: 0; }
   .head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: var(--gap-l); }
   .head .page-subtitle { margin-top: .35rem; }
   .btn-primary { background-image: var(--gradient-primary); color: var(--primary-foreground); border: 0; border-radius: var(--radius-full); padding: .55rem 1rem; font: inherit; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: .4rem; box-shadow: 0 2px 6px rgb(0 0 0/.25), inset 0 1px 0 rgb(255 255 255/.2); white-space: nowrap; }
@@ -493,15 +546,39 @@
 <div class="app brand-bg">
   <div class="brand-bg__stars" aria-hidden="true"></div>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="brand"><span class="dot"></span> Singular Stories</div>
-    <div class="nav-item active"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Dashboard</div>
-    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Sprints</div>
-    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Payments</div>
-    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Team</div>
-    <div class="nav-item"><svg class="ico" viewBox="0 0 24 24"><path d="m9 11 3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg> QA</div>
-  </aside>
+  <!-- RAIL FLOTANTE: cuadrado de logo (toggle) + íconos glass -->
+  <div class="rail-dock">
+    <button class="rail-logo" title="Toggle sidebar" aria-label="Toggle sidebar"><span class="mark"></span></button>
+    <nav class="rail" aria-label="Producto">
+      <a class="active" href="#" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span class="label">Overview</span></a>
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="label">Work</span></a>
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="8" y="6" width="8" height="13" rx="4"/><path d="M12 6V3M19 8l-3 1.5M5 8l3 1.5M19.5 13H16M8 13H4.5M19 18l-3-1.5M5 18l3-1.5"/></svg><span class="label">QA</span></a>
+      <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><span class="label">OKRs</span></a>
+    </nav>
+  </div>
+
+  <!-- HEADER WELL: search pill + big-pill tabs + cluster (theme/bell/avatar) -->
+  <header class="well">
+    <button class="h-search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span class="label">Jump to…</span></button>
+    <div class="h-center">
+      <nav class="pill-tabs" aria-label="Work">
+        <a class="pill-tab active" href="#" aria-current="page">Stories</a>
+        <a class="pill-tab" href="#">Sprints</a>
+        <a class="pill-tab" href="#">Backlog</a>
+      </nav>
+    </div>
+    <div class="h-actions">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      <button class="icon-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="h-badge">6</span></button>
+      <span class="h-avatar" title="Singular Stories">SS</span>
+    </div>
+  </header>
+
+  <!-- POWERED BY SINGULAR -->
+  <div class="powered">
+    <span class="lbl">Powered by</span>
+    <span class="wordmark"><span class="mk"></span> Singular</span>
+  </div>
 
   <!-- MAIN -->
   <main class="main">
@@ -541,4 +618,10 @@
     </div>
   </main>
 </div>
+<script>
+  // Demo: theme toggle (en producción usás next-themes — ver navigation.tsx).
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark")
+  })
+</script>
 </body></html>

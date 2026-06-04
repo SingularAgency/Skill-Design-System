@@ -1,0 +1,128 @@
+/* ============================================================
+ * Singular Design System — perfil WEB-APP / PRODUCTO (CSS)
+ * ============================================================
+ * Clases utilitarias del perfil que NO viven en core-utilities:
+ * chrome de section-tabs + helpers de navegación (rail flotante,
+ * header well, search pill, big-pill tabs) en CSS plano, para el
+ * demo y para consumidores sin build de Tailwind.
+ *
+ * Cargá DESPUÉS de theme-app.css (usa sus tokens: --header-well-bg,
+ * --sidebar-nav-active/-hover, --sidebar-primary, --header-search-*,
+ * --section-tabs-*). Portado de v0-singular-stories-app/app/globals.css.
+ * ============================================================ */
+
+/* ── Section-tabs chrome (navegación de ruta + título alineado) ── */
+.page-top-chrome {
+  display: flex; min-width: 0; flex-direction: column;
+  padding-top: var(--section-tabs-top-inset);
+  gap: var(--section-tabs-to-title-gap);
+}
+/* Mobile (<md): el selector se pega al header. */
+@media (max-width: 767px) {
+  .page-top-chrome { --section-tabs-top-inset: 0.5rem; }
+}
+/* xl+: los tabs viven en el header (big pill); el título mantiene el gap de 60px. */
+@media (min-width: 1280px) {
+  .page-top-chrome { --section-tabs-top-inset: var(--section-tabs-to-title-gap); }
+}
+/* El primer .page-header bajo los tabs no duplica el inset. */
+.page-header--after-top-chrome { padding-top: 0 !important; }
+
+/* ============================================================
+ * Helpers de navegación en CSS plano (sin Tailwind)
+ * Reproducen el chrome del sistema de navegación con clases.
+ * En React preferí los componentes de navigation.tsx.
+ * ============================================================ */
+
+/* Rail flotante: cuadrado de logo (toggle) + columna de íconos glass */
+.brand-rail-dock { position: fixed; left: 2.5rem; top: 2.5rem; z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+.brand-rail__logo {
+  display: flex; align-items: center; justify-content: center;
+  width: 62px; height: 62px; border-radius: 20px; overflow: hidden; border: 0;
+  background: color-mix(in srgb, var(--header-well-bg) 60%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / .22); cursor: pointer; transition: opacity .2s;
+}
+.brand-rail__logo:hover { opacity: .9; }
+.brand-rail {
+  display: flex; flex-direction: column; width: 72px; padding: 1rem .5rem; gap: .25rem; border-radius: 20px;
+  background: color-mix(in srgb, var(--header-well-bg) 60%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / .22);
+}
+.brand-rail__item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .15rem;
+  padding: .625rem .25rem; border-radius: var(--radius-md); cursor: pointer;
+  color: color-mix(in srgb, var(--sidebar-foreground) 60%, transparent);
+  text-decoration: none; transition: background-color .2s, color .2s;
+}
+.brand-rail__item:hover { background: var(--sidebar-nav-hover); color: var(--sidebar-foreground); }
+.brand-rail__item.is-active { background: var(--sidebar-nav-active); color: var(--sidebar-primary); }
+.brand-rail__item .label { font-size: .625rem; font-weight: 500; line-height: 1.1; text-align: center; }
+.brand-rail__item svg { width: 20px; height: 20px; }
+
+/* Header well frosteado (offset para despejar el rail) */
+.header-well {
+  position: fixed; left: 8.25rem; right: 2.5rem; top: 2.5rem; z-index: 30;
+  display: flex; align-items: center; gap: .75rem; height: 60px; padding: 0 1.25rem 0 1.5rem; border-radius: 20px;
+  background: color-mix(in srgb, var(--header-well-bg) 60%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / .18);
+}
+.header-well__spacer { flex: 1 1 auto; min-width: 0; }
+
+/* Search pill (ícono-only; expande en hover) */
+.header-search {
+  display: inline-flex; align-items: center; gap: 0; height: 40px; width: 40px; padding: 0 .65rem; overflow: hidden;
+  border-radius: var(--radius-full); border: 1px solid var(--header-search-border); background: var(--header-search-bg);
+  color: var(--muted-foreground); cursor: pointer; transition: width .2s ease-out, background-color .2s; white-space: nowrap;
+}
+.header-search:hover { width: 14rem; background: var(--sidebar-nav-hover); color: var(--sidebar-foreground); }
+.header-search svg { width: 16px; height: 16px; flex: none; }
+.header-search .placeholder { font-size: .875rem; opacity: 0; margin-left: 0; transition: opacity .15s; }
+.header-search:hover .placeholder { opacity: 1; margin-left: .5rem; }
+
+/* Cluster derecho (theme · bell · avatar) */
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: .65rem; }
+.header-icon-btn {
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 0;
+  border-radius: var(--radius-full); background: transparent; color: var(--sidebar-foreground); cursor: pointer; position: relative;
+  transition: background-color .2s;
+}
+.header-icon-btn:hover { background: var(--sidebar-nav-hover); }
+.header-icon-btn svg { width: 20px; height: 20px; }
+.header-badge {
+  position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: var(--radius-full);
+  background: #ef4444; color: #fff; font-size: .625rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* Big-pill tabs (navegación de ruta centrada) */
+.big-pill-tabs {
+  display: inline-flex; align-items: stretch; gap: .25rem; padding: .25rem; border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--muted) 85%, transparent); border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); box-shadow: 0 6px 16px rgb(0 0 0 / .14);
+}
+.big-pill-tab {
+  display: inline-flex; align-items: center; gap: .375rem; min-height: 36px; padding: 0 1rem; border-radius: var(--radius-full);
+  font-size: .875rem; font-weight: 500; line-height: 1; white-space: nowrap; color: var(--muted-foreground);
+  text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s;
+}
+.big-pill-tab:hover { color: var(--primary); }
+.big-pill-tab.is-active { background: var(--sidebar-nav-active); color: var(--sidebar-primary); font-weight: 600; }
+
+/* Powered by Singular (pie abajo-izquierda) */
+.powered-by { position: fixed; bottom: 3rem; left: 2.5rem; z-index: 30; display: flex; flex-direction: column; gap: .25rem; pointer-events: none; }
+.powered-by .label { font-size: .625rem; font-weight: 500; text-transform: uppercase; letter-spacing: .04em; color: color-mix(in srgb, var(--muted-foreground) 50%, transparent); }
+
+/* Offset del contenido (despeja rail + header) */
+.app-content { padding-top: 92px; padding-left: 8.25rem; }
+
+@media (max-width: 767px) {
+  .brand-rail-dock, .header-well { display: none; }
+  .powered-by { display: none; }
+  .app-content { padding-top: 4.5rem; padding-left: 1rem; padding-right: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-search, .brand-rail__item, .big-pill-tab, .header-icon-btn, .brand-rail__logo { transition: none; }
+}
