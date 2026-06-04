@@ -1,0 +1,254 @@
+/* ============================================================
+ * Singular Design System — colors_and_type.css
+ * ============================================================
+ * Single self-contained foundation file: brand color palette,
+ * type scale, fonts (Google Fonts CDN), and semantic typographic
+ * classes. Link this from any standalone HTML artifact (slide,
+ * mock, social piece) to get the Singular look without the full
+ * token build.
+ *
+ * Dark-first. Defaults to the WEBSITE/marketing face (dramatic
+ * black surface). For the PRODUCT/web-app face (navy surface),
+ * load tokens/brand-app.css instead — both share the SAME blue
+ * primary (#4567ed) and blue→cyan gradient.
+ *
+ * The canonical engine lives in tokens/ (core.css + brand-*.css +
+ * theme-mapping.css + core-utilities.css). This file is a
+ * convenience snapshot for throwaway artifacts.
+ * ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ─────────────────────────────────────────────
+   * FONTS
+   * Poppins  → display / UI / headings
+   * Inter    → long-form body copy
+   * JetBrains Mono → numbers, data, code (tabular-nums)
+   * ───────────────────────────────────────────── */
+  --font-display: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'Fira Code', monospace;
+  /* DS alias (matches tokens/core.css) */
+  --font-sans: var(--font-display);
+
+  /* ─────────────────────────────────────────────
+   * BRAND COLOR — one primary for all of Singular
+   * Blue #4567ed + blue→cyan gradient + cyan accents.
+   * ───────────────────────────────────────────── */
+  --primary:              #4567ed;   /* brand blue — fills, bg-primary */
+  --primary-foreground:   #ffffff;
+  --primary-strong:       #1741e8;   /* action blue — CTAs, links, rings */
+  --primary-strong-hover: #1234ba;
+
+  /* Primary scale (blue) */
+  --singular-primary-100: #D1D9FA;
+  --singular-primary-200: #A2B3F6;
+  --singular-primary-300: #748DF1;
+  --singular-primary-400: #4567ED;   /* = --primary */
+  --singular-primary-500: #1741E8;
+  --singular-primary-600: #1234BA;
+  --singular-primary-700: #0E278B;
+  --singular-primary-800: #091A5D;
+  --singular-primary-900: #050D2E;
+
+  /* Secondary scale (cyan) — the cool end of the brand gradient */
+  --singular-secondary-100: #CFF6FE;
+  --singular-secondary-200: #A5EEFD;
+  --singular-secondary-300: #67E8F9;
+  --singular-secondary-400: #22D3EE;
+  --singular-secondary-500: #06B6D4;   /* = --singular-cyan */
+  --singular-secondary-600: #0891B2;
+  --singular-secondary-700: #0E7490;
+  --singular-secondary-800: #155E75;
+  --singular-secondary-900: #164E63;
+
+  /* Accents */
+  --singular-cyan:   #06b6d4;
+  --singular-purple: #6366f1;
+  --singular-blue:   #3B82F6;
+  --singular-yellow: #f59e0b;
+  --singular-red:    #f87171;
+  --singular-green:  #10b981;
+
+  /* Brand gradient (buttons / CTAs / accent text) — blue → cyan */
+  --gradient-primary:       linear-gradient(135deg, #4567ed 0%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #1741e8 0%, #06b6d4 100%);
+
+  /* ─────────────────────────────────────────────
+   * SURFACE — dark-first (website / marketing face)
+   * Dramatic near-black with a whisper of blue tint.
+   * ───────────────────────────────────────────── */
+  --background:        #050505;
+  --foreground:        hsl(0 0% 98%);   /* default body text */
+  --foreground-strong: #ffffff;         /* headings / emphasis */
+  --card:    #0a0a0a;
+  --popover: #0a0a0a;
+  --muted:   #141414;
+  --muted-foreground: rgb(255 255 255 / 0.55);
+  --accent:  #1a1a1a;
+  --secondary: #1a1a1a;
+  --border:  rgb(255 255 255 / 0.10);
+  --input:   rgb(255 255 255 / 0.10);
+  --ring:    #6f8fff;
+  --interactive: #8babff;               /* link color on dark */
+  --interactive-hover: #c4d4ff;
+
+  /* ─────────────────────────────────────────────
+   * STATUS — semantic, shared, NOT brand-tinted.
+   * (--info is a semantic blue, distinct from brand.)
+   * ───────────────────────────────────────────── */
+  --success:     #16A34A;  --success-foreground:     #ffffff;
+  --warning:     #D97706;  --warning-foreground:     #ffffff;
+  --destructive: #DC2626;  --destructive-foreground: #ffffff;
+  --info:        #1741e8;  --info-foreground:        #ffffff;
+
+  /* ─────────────────────────────────────────────
+   * RADIUS
+   * ───────────────────────────────────────────── */
+  --radius: 0.5rem;
+  --radius-sm:  calc(var(--radius) - 4px);  /* 4px  */
+  --radius-md:  calc(var(--radius) - 2px);  /* 6px  */
+  --radius-lg:  var(--radius);              /* 8px  */
+  --radius-xl:  calc(var(--radius) + 4px);  /* 12px — card radius, app  */
+  --radius-2xl: calc(var(--radius) + 8px);  /* 16px — card radius, web  */
+  --radius-full: 9999px;
+  --radius-card: var(--radius-2xl);
+
+  /* ─────────────────────────────────────────────
+   * SPACING — named scale (use over arbitrary gaps)
+   * ───────────────────────────────────────────── */
+  --gap-xs: 0.25rem;  /* 4px  */
+  --gap-s:  0.5rem;   /* 8px  */
+  --gap-m:  1rem;     /* 16px */
+  --gap-l:  1.5rem;   /* 24px */
+  --gap-xl: 2rem;     /* 32px */
+
+  /* ─────────────────────────────────────────────
+   * TYPE SCALE
+   * ───────────────────────────────────────────── */
+  --text-3xs: 0.5625rem;  /* 9px  — dense ticks */
+  --text-2xs: 0.625rem;   /* 10px — compact tables, eyebrows */
+  --text-xs:  0.75rem;    /* 12px */
+  --text-sm:  0.875rem;   /* 14px — default body */
+  --text-base:1rem;       /* 16px */
+  --text-lg:  1.125rem;   /* 18px */
+  --text-xl:  1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px — page title / kpi value */
+  --text-4xl: 2.5rem;     /* 40px */
+  --text-5xl: clamp(2.5rem, 6vw, 4.5rem); /* hero */
+}
+
+/* ============================================================
+ * SEMANTIC TYPOGRAPHY
+ * Use these instead of loose "text-lg font-semibold".
+ * ============================================================ */
+
+body {
+  font-family: var(--font-display);
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--foreground-strong);
+  text-wrap: balance;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--foreground-strong);
+  text-wrap: balance;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--foreground-strong);
+}
+
+.page-title    { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+.page-subtitle { font-size: var(--text-base); color: var(--muted-foreground); margin-top: var(--gap-s); }
+.section-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+
+/* Body copy uses Inter */
+p, .text-body {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--foreground);
+  text-wrap: pretty;
+}
+.lead {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+.text-secondary { font-family: var(--font-body); font-size: var(--text-sm); color: var(--muted-foreground); }
+.text-caption   { font-family: var(--font-body); font-size: var(--text-xs); color: var(--muted-foreground); }
+
+/* Eyebrow — the brand's signpost label */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.eyebrow--brand { color: var(--primary); }
+.eyebrow--brand::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  display: inline-block;
+}
+
+/* KPI / hero number — always mono + tabular */
+.kpi-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground-strong);
+}
+
+/* Data / code */
+code, .text-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9em;
+}
+
+/* Accent word inside a heading: blue→cyan gradient text */
+.text-gradient-brand {
+  background-image: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Links */
+.text-link { color: var(--interactive); text-decoration: none; }
+.text-link:hover { text-decoration: underline; }
