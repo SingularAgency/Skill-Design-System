@@ -123,6 +123,7 @@ function App() {
   const [filter, setFilter] = React.useState('All');
   const [picked, setPicked] = React.useState(null);
   const [cmd, setCmd] = React.useState(false);
+  const [showKpis, setShowKpis] = React.useState(true);
 
   React.useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -149,7 +150,7 @@ function App() {
         onSearch={() => setCmd(true)} theme={theme} onTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
       <PoweredBy />
 
-      <main style={{ padding: '116px 2.5rem 4rem 7.25rem', position: 'relative', minWidth: 0 }}>
+      <main style={{ padding: '116px 2.5rem 4rem 9rem', position: 'relative', minWidth: 0 }}>
         {page === 'overview' && (
           <>
             <PageHead title="Overview" subtitle="El pulso del producto en una vista. Velocidad, calidad y foco del equipo."
@@ -182,14 +183,17 @@ function App() {
             <PageHead title={tab === 'Stories' ? 'Active Stories' : tab}
               subtitle={tab === 'Stories' ? 'Stories en curso. Tomá trabajo, empujá progreso, pasá a QA.'
                 : tab === 'Sprints' ? 'Sprint actual — arrastrá entre columnas (cosmético).' : 'El backlog priorizado del equipo.'}
-              action={<Button icon="plus">New Story</Button>} />
+              action={<div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+                {tab === 'Stories' && <KpiToggle open={showKpis} onToggle={() => setShowKpis((v) => !v)} />}
+                <Button icon="plus">New Story</Button>
+              </div>} />
             {tab === 'Stories' && (
               <div className="stack-l">
-                <KpiRow items={[
+                {showKpis && <KpiRow items={[
                   { value: '16', label: 'Stories en desarrollo activo', trend: '12%' },
                   { value: '111', label: 'Story points en esta vista' },
                   { value: '8', label: 'Contributors asignados' },
-                ]} />
+                ]} />}
                 <div className="stack-l">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', flexWrap: 'wrap' }}>
                     <PillFilters options={FILTERS} value={filter} onChange={setFilter} />
@@ -256,6 +260,20 @@ function App() {
 
       <CommandPalette open={cmd} onClose={() => setCmd(false)} />
     </div>
+  );
+}
+
+// ── KpiToggle ── chevron que colapsa/expande la KPI row ──
+function KpiToggle({ open, onToggle }) {
+  return (
+    <button onClick={onToggle} aria-label={open ? 'Ocultar KPIs' : 'Mostrar KPIs'}
+      title={open ? 'Ocultar KPIs' : 'Mostrar KPIs'} aria-expanded={open}
+      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 38, height: 38,
+        border: '1px solid var(--border)', borderRadius: '9999px', background: 'transparent',
+        color: 'var(--muted-foreground)', cursor: 'pointer', transition: 'border-color .2s, color .2s' }}>
+      <Icon name="chevron" size={18}
+        style={{ transform: open ? 'rotate(-90deg)' : 'rotate(90deg)', transition: 'transform .2s' }} />
+    </button>
   );
 }
 

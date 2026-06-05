@@ -45,7 +45,7 @@ function RailDock({ items, active, onNavigate, onToggleSidebar }) {
 // ── Header well: search pill + big-pill tabs + action cluster ──
 function HeaderWell({ tabs, activeTab, onTab, onSearch, theme, onTheme }) {
   return (
-    <header style={{ position: 'fixed', left: '7.25rem', right: '2rem', top: '2rem', zIndex: 30,
+    <header style={{ position: 'fixed', left: '9rem', right: '2rem', top: '2rem', zIndex: 30,
       display: 'flex', alignItems: 'center', gap: '.75rem', height: 60, padding: '0 1.1rem 0 1.4rem',
       borderRadius: 18, ...chromeGlass, boxShadow: '0 10px 24px rgb(0 0 0/.18)' }}>
       <SearchPill onClick={onSearch} />

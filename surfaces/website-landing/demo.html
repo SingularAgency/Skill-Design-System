@@ -479,7 +479,7 @@
 .landing-heading--center { margin-inline: auto; text-align: center; }
 
 /* ── CTA (primary=blanco · accent=gradiente de marca · secondary=outline) ── */
-.cta { display: inline-flex; align-items: center; gap: .4rem; height: 3rem; padding-inline: 2rem; border-radius: var(--radius-full); font-weight: 500; font-size: 1rem; cursor: pointer; text-decoration: none; transition: background .2s, border-color .2s, transform .2s; }
+.cta { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; height: 3rem; padding-inline: 2rem; border-radius: var(--radius-full); font-weight: 500; font-size: 1rem; cursor: pointer; text-decoration: none; transition: background .2s, border-color .2s, transform .2s; }
 @media (min-width: 768px) { .cta { height: 3.5rem; font-size: 1.05rem; } }
 .cta--primary { background: #fff; color: #000; border: 1px solid #fff; }
 .cta--primary:hover { background: rgb(255 255 255 / .9); }
