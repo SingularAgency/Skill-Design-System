@@ -8,8 +8,8 @@ Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (cyan) sobre f
 | Uso | Tamaño | Safe zone |
 |---|---|---|
 | Post cuadrado | 1080×1080 | margen 64px |
-| Portrait / feed | 1080×1350 | margen 64px |
-| Story / Reel | 1080×1920 | 250px arriba/abajo (UI de la app) |
+| Portrait / feed recomendado | 1080×1350 (4:5) | margen 64px |
+| Story / Reel | 1080×1920 (9:16) | top 14% · bottom 35% · sides 6% |
 
 ## Anatomía
 1. **Fondo de marca** — dark `#050505` + mist cyan (grid opcional, sin stars en estático pequeño).
@@ -28,6 +28,8 @@ Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (cyan) sobre f
 
 ## Reglas
 - Texto **grande y escaso** (legible en miniatura del feed).
+- Feed por defecto en **4:5 portrait (1080×1350)**; es el ratio principal para Meta/IG feed.
+- Stories/Reels: mantener texto, logo y CTA dentro de la safe zone (top 14%, bottom 35%, sides 6%).
 - Contraste AA mínimo sobre el fondo.
 - Acento de marca en **una** palabra/dato.
 - Logo siempre presente; no deformar.
