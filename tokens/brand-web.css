@@ -1,68 +1,283 @@
 /* ============================================================
- * Brand profile: WEB (marketing / website) — primary AZUL/CYAN
+ * Brand profile: WEB (marketing / website) — azul/cyan
  * ============================================================
- * Mismo primary que el perfil app (azul #4567ed) + gradiente
- * azul→cyan + acentos cyan. Difiere solo en la SURFACE: negro
- * dramático de marketing (no el navy de la app). DARK-FIRST.
- * El rojo quedó descartado por completo.
+ * Fuente actual: singular-landing, rama codex/home-gargantua-scroll-camera.
+ * Perfil dark-first para marketing: mismo primary azul/cyan que Singular,
+ * surface profunda, acentos por pagina via data-page-accent.
+ * Rojo/naranja queda reservado para estados o experiencias de auditoria,
+ * no como marca base.
  * ============================================================ */
 
 :root {
-  /* ── Marca (azul/cyan, un solo primary para todo Singular) ── */
-  --primary: #4567ed;            /* azul Singular */
-  --primary-foreground: #ffffff;
-  --primary-strong: #2f6bf6;     /* azul de acción (CTAs/links) */
+  /* Marca base */
+  --primary: #4567ed;
+  --primary-foreground: #f7fbff;
+  --primary-strong: #2f6bf6;
   --primary-strong-hover: #1741e8;
-  --radius-card: var(--radius-2xl); /* rounded-2xl en marketing */
+  --singular-primary: #4567ed;
+  --singular-secondary: #06b6d4;
+  --singular-cyan: #22d3ee;
+  --singular-blue: #3b82f6;
+  --singular-purple: #6366f1;
+  --singular-green: #10b981;
+  --singular-yellow: #f59e0b;
+  --singular-red: #f87171;
+  --singular-coral: #22d3ee;
 
   /* Escala azul */
-  --singular-primary: #4567ED;
-  --singular-primary-100: #D1D9FA; --singular-primary-200: #A2B3F6;
-  --singular-primary-300: #748DF1; --singular-primary-400: #4567ED;
-  --singular-primary-500: #1741E8; --singular-primary-600: #1234BA;
-  --singular-primary-700: #0E278B; --singular-primary-800: #091A5D;
-  --singular-primary-900: #050D2E;
+  --singular-primary-100: #d1d9fa; --singular-primary-200: #a2b3f6;
+  --singular-primary-300: #748df1; --singular-primary-400: #4567ed;
+  --singular-primary-500: #1741e8; --singular-primary-600: #1234ba;
+  --singular-primary-700: #0e278b; --singular-primary-800: #091a5d;
+  --singular-primary-900: #050d2e;
 
-  /* Secundario = cyan (el otro extremo del gradiente) */
-  --singular-secondary: #06b6d4;
-  --singular-secondary-100: #CFF6FE; --singular-secondary-200: #A5EEFD;
-  --singular-secondary-300: #67E8F9; --singular-secondary-400: #22D3EE;
-  --singular-secondary-500: #06B6D4; --singular-secondary-600: #0891B2;
-  --singular-secondary-700: #0E7490; --singular-secondary-800: #155E75;
-  --singular-secondary-900: #164E63;
+  /* Escala cyan */
+  --singular-secondary-100: #cff6fe; --singular-secondary-200: #a5eefd;
+  --singular-secondary-300: #67e8f9; --singular-secondary-400: #22d3ee;
+  --singular-secondary-500: #06b6d4; --singular-secondary-600: #0891b2;
+  --singular-secondary-700: #0e7490; --singular-secondary-800: #155e75;
+  --singular-secondary-900: #164e63;
 
-  /* Acentos */
-  --singular-coral: #22d3ee; --singular-cyan: #06b6d4; --singular-purple: #6366f1;
-  --singular-blue: #3B82F6;  --singular-yellow: #f59e0b; --singular-red: #f87171;
-  --singular-green: #10b981;
+  /* Auditoria: acento de pagina, no marca base */
+  --audit-primary: #f97316;
+  --audit-secondary: #f59e0b;
+  --audit-foreground: #fff7ed;
+  --audit-gradient: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
 
-  /* ── Interactive (azul claro legible sobre negro) ── */
-  --interactive: #8babff;        --interactive-hover: #c4d4ff;
-  --interactive-fill: #4567ed;   --interactive-fill-hover: #1741e8;
-  --ring: #6f8fff;
+  /* Surface dark-first */
+  --background: #0b1020;
+  --foreground: #f4f8ff;
+  --foreground-strong: #ffffff;
+  --surface-1: #10172a;
+  --surface-2: #131d33;
+  --surface-3: color-mix(in srgb, var(--primary) 8%, #17223a);
+  --surface-4: color-mix(in srgb, var(--primary) 14%, #1d2d4a);
+  --section-bg: linear-gradient(180deg,
+    color-mix(in srgb, var(--primary) 5%, var(--background)) 0%,
+    color-mix(in srgb, var(--singular-secondary) 3%, var(--background)) 100%);
+  --section-bg-alt: linear-gradient(180deg,
+    color-mix(in srgb, var(--primary) 9%, #0e1729) 0%,
+    color-mix(in srgb, var(--singular-secondary) 5%, #111b31) 100%);
 
-  /* ── Surface (negro dramático, tint azul mínimo) ── */
-  --background: #050505;
-  --foreground: hsl(0 0% 98%);     --foreground-strong: #ffffff;
-  --card: color-mix(in srgb, var(--primary) 2%, #0a0a0a);     --card-foreground: hsl(0 0% 98%);
-  --popover: color-mix(in srgb, var(--primary) 2%, #0a0a0a);  --popover-foreground: hsl(0 0% 98%);
-  --muted: color-mix(in srgb, var(--primary) 3%, #141414);
-  --muted-foreground: rgb(255 255 255 / 0.55);
-  --accent: color-mix(in srgb, var(--primary) 5%, #1a1a1a);   --accent-foreground: hsl(0 0% 98%);
-  --secondary: #1a1a1a;            --secondary-foreground: hsl(0 0% 98%);
-  --border: rgb(255 255 255 / 0.10);
-  --input: rgb(255 255 255 / 0.10);
-  --sheet-content: #0a0a0a;
+  --card: var(--surface-2);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface-2);
+  --popover-foreground: var(--foreground);
+  --surface-glass: color-mix(in srgb, var(--surface-1) 72%, transparent);
+  --surface-glass-strong: color-mix(in srgb, var(--surface-2) 86%, transparent);
+  --surface-layered:
+    linear-gradient(180deg, color-mix(in srgb, var(--foreground) 5%, transparent), transparent 42%),
+    var(--surface-glass);
+  --card-surface:
+    linear-gradient(180deg, color-mix(in srgb, var(--foreground) 6%, transparent), transparent 46%),
+    color-mix(in srgb, var(--card-accent) 5%, var(--surface-glass));
+  --card-surface-hover:
+    linear-gradient(180deg, color-mix(in srgb, var(--foreground) 7%, transparent), transparent 46%),
+    color-mix(in srgb, var(--card-accent) 7%, var(--surface-glass-strong));
+  --card-surface-raised:
+    linear-gradient(180deg, color-mix(in srgb, var(--foreground) 8%, transparent), transparent 50%),
+    color-mix(in srgb, var(--card-accent) 9%, var(--surface-1));
+  --card-border-color: color-mix(in srgb, var(--primary) 24%, color-mix(in srgb, var(--foreground) 12%, transparent));
+  --card-border-hover: color-mix(in srgb, var(--singular-secondary) 42%, color-mix(in srgb, var(--foreground) 10%, transparent));
+  --card-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground) 8%, transparent), 0 18px 56px -42px rgb(0 0 0 / 0.92);
+  --card-shadow-hover: inset 0 1px 0 color-mix(in srgb, var(--foreground) 12%, transparent), 0 32px 90px -54px color-mix(in srgb, var(--primary) 76%, transparent), 0 18px 46px -32px rgb(0 0 0 / 0.9);
+  --card-accent: var(--singular-secondary);
 
-  /* ── Charts (azul → cyan) ── */
-  --chart-1: #4567ed; --chart-2: #3b82f6; --chart-3: #22d3ee; --chart-4: #06b6d4; --chart-5: #67e8f9;
+  --secondary: color-mix(in srgb, var(--primary) 7%, #111827);
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--primary) 8%, #192235);
+  --muted-foreground: #b4c2df;
+  --readable-foreground: #dbe7ff;
+  --readable-muted: #b4c2df;
+  --readable-subtle: #9fb0d3;
+  --accent: color-mix(in srgb, var(--singular-secondary) 16%, #142236);
+  --accent-foreground: var(--foreground);
+  --border: color-mix(in srgb, var(--primary) 24%, transparent);
+  --input: color-mix(in srgb, var(--primary) 18%, #15213a);
+  --ring: var(--singular-secondary);
+  --sheet-content: var(--surface-2);
 
-  /* ── Surface gradient ── */
-  --surface-gradient-from: #0d1018; --surface-gradient-to: #0b1420;
+  /* Interactive */
+  --interactive: #8babff;
+  --interactive-hover: #c4d4ff;
+  --interactive-fill: var(--primary);
+  --interactive-fill-hover: var(--primary-strong-hover);
 
-  /* ── Gradiente de marca (botones/CTA) — azul → cyan ── */
+  /* Buttons / CTA */
+  --button-outline: color-mix(in srgb, var(--primary) 24%, transparent);
+  --button-primary: var(--primary);
+  --button-primary-foreground: #ffffff;
+  --button-primary-border: color-mix(in srgb, var(--primary) 44%, transparent);
+  --button-secondary-bg: color-mix(in srgb, var(--card-accent) 14%, #14233d);
+  --button-secondary-border: color-mix(in srgb, var(--card-accent) 38%, transparent);
+  --button-link: var(--primary);
+  --button-gradient-primary:
+    linear-gradient(180deg, color-mix(in srgb, #ffffff 16%, transparent), transparent 48%),
+    var(--gradient-primary);
+  --button-gradient-primary-hover:
+    linear-gradient(180deg, color-mix(in srgb, #ffffff 20%, transparent), transparent 50%),
+    var(--gradient-primary-hover);
+  --button-shadow-primary: 0 16px 42px -22px color-mix(in srgb, var(--card-accent) 78%, transparent), inset 0 1px 0 rgba(255,255,255,0.18);
+  --primary-border: color-mix(in srgb, var(--primary) 40%, transparent);
+  --secondary-border: color-mix(in srgb, var(--primary) 18%, transparent);
+  --destructive-border: color-mix(in srgb, var(--destructive) 42%, transparent);
+
+  /* Motion */
+  --motion-fast: 160ms;
+  --motion-medium: 240ms;
+  --motion-slow: 520ms;
+  --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Radius / gradients */
+  --radius: 0.875rem;
+  --radius-card: 1.5rem;
+  --surface-gradient-from: #0d1018;
+  --surface-gradient-to: #0b1420;
   --gradient-primary: linear-gradient(135deg, #4567ed 0%, #22d3ee 100%);
   --gradient-primary-hover: linear-gradient(135deg, #1741e8 0%, #06b6d4 100%);
+
+  /* Charts */
+  --chart-1: #4567ed; --chart-2: #3b82f6; --chart-3: #22d3ee;
+  --chart-4: #06b6d4; --chart-5: #67e8f9;
+
+  /* Brand background */
+  --brand-bg-base: var(--background);
+  --brand-bg-mist-1: var(--primary);
+  --brand-bg-mist-2: var(--singular-secondary);
+  --brand-bg-mist-3: var(--singular-cyan);
+  --brand-bg-mist-strength: 0.34;
+  --brand-grid-color: transparent;
+  --brand-stars-opacity: 0.58;
+  --hero-gradient-base:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--brand-bg-mist-1) 30%, #070b17) 0%,
+      color-mix(in srgb, var(--brand-bg-mist-2) 18%, #0a1424) 48%,
+      color-mix(in srgb, var(--brand-bg-mist-3) 24%, #070b17) 100%);
 }
 
-/* TODO(light): el website es dark-first; bloque light pendiente. */
+:root[data-page-accent="home"] {
+  --primary: #2f6bf6;
+  --primary-strong: #2563eb;
+  --primary-strong-hover: #1d4ed8;
+  --singular-primary: #2f6bf6;
+  --singular-secondary: #22c5ff;
+  --singular-cyan: #22d3ee;
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+  --brand-bg-mist-1: #2f6bf6;
+  --brand-bg-mist-2: #22c5ff;
+  --brand-bg-mist-3: #38bdf8;
+  --brand-bg-mist-strength: 0.26;
+  --hero-gradient-base:
+    linear-gradient(135deg,
+      color-mix(in srgb, #2f6bf6 18%, #070b17) 0%,
+      color-mix(in srgb, #22c5ff 8%, #081322) 52%,
+      color-mix(in srgb, #38bdf8 9%, #070b17) 100%);
+}
+
+:root[data-page-accent="solutions"],
+:root[data-page-accent="ai"],
+:root[data-page-accent="automation"],
+:root[data-page-accent="airtable"],
+:root[data-page-accent="consulting"],
+:root[data-page-accent="software"],
+:root[data-page-accent="vercel"] {
+  --primary: #6d5dfc;
+  --primary-strong: #7c3aed;
+  --primary-strong-hover: #5b21b6;
+  --singular-primary: #6d5dfc;
+  --singular-secondary: #a78bfa;
+  --singular-cyan: #22d3ee;
+  --singular-purple: #8b5cf6;
+  --gradient-primary: linear-gradient(135deg, #6d5dfc 0%, #a855f7 48%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #5b21b6 0%, #9333ea 52%, #06b6d4 100%);
+  --card-accent: #a78bfa;
+  --brand-bg-mist-1: #4f46e5;
+  --brand-bg-mist-2: #8b5cf6;
+  --brand-bg-mist-3: #22d3ee;
+  --brand-bg-mist-strength: 0.42;
+  --hero-gradient-base:
+    linear-gradient(135deg,
+      color-mix(in srgb, #4f46e5 34%, #070b17) 0%,
+      color-mix(in srgb, #8b5cf6 24%, #0a1022) 48%,
+      color-mix(in srgb, #22d3ee 16%, #070b17) 100%);
+}
+
+:root[data-page-accent="custom-ai"],
+:root[data-page-accent="agentic"],
+:root[data-page-accent="claude"],
+:root[data-page-accent="codex"],
+:root[data-page-accent="openclaw"],
+:root[data-page-accent="vault"] {
+  --primary: #d946ef;
+  --primary-strong: #c026d3;
+  --primary-strong-hover: #a21caf;
+  --singular-primary: #d946ef;
+  --singular-secondary: #fb7185;
+  --singular-cyan: #f0abfc;
+  --singular-purple: #e879f9;
+  --gradient-primary: linear-gradient(135deg, #d946ef 0%, #fb7185 54%, #f0abfc 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #c026d3 0%, #e11d48 54%, #e879f9 100%);
+  --card-accent: #fb7185;
+  --brand-bg-mist-1: #d946ef;
+  --brand-bg-mist-2: #fb7185;
+  --brand-bg-mist-3: #f0abfc;
+  --brand-bg-mist-strength: 0.44;
+  --hero-gradient-base:
+    linear-gradient(135deg,
+      color-mix(in srgb, #d946ef 34%, #080711) 0%,
+      color-mix(in srgb, #fb7185 18%, #120711) 52%,
+      color-mix(in srgb, #f0abfc 18%, #080711) 100%);
+}
+
+:root[data-page-accent="success"] {
+  --primary: #059669;
+  --primary-strong: #10b981;
+  --primary-strong-hover: #047857;
+  --singular-primary: #10b981;
+  --singular-secondary: #34d399;
+  --singular-cyan: #6ee7b7;
+  --singular-green: #10b981;
+  --gradient-primary: linear-gradient(135deg, #10b981 0%, #34d399 56%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #047857 0%, #10b981 56%, #06b6d4 100%);
+  --card-accent: #34d399;
+  --brand-bg-mist-1: #10b981;
+  --brand-bg-mist-2: #34d399;
+  --brand-bg-mist-3: #22d3ee;
+  --brand-bg-mist-strength: 0.18;
+  --hero-gradient-base:
+    linear-gradient(135deg,
+      color-mix(in srgb, #10b981 12%, #070b17) 0%,
+      color-mix(in srgb, #34d399 7%, #071812) 50%,
+      color-mix(in srgb, #22d3ee 5%, #070b17) 100%);
+}
+
+:root[data-page-accent="assessment"] {
+  --primary: var(--audit-primary);
+  --primary-strong: #ea580c;
+  --primary-strong-hover: #c2410c;
+  --singular-primary: var(--audit-primary);
+  --singular-secondary: var(--audit-secondary);
+  --singular-cyan: #fdba74;
+  --gradient-primary: var(--audit-gradient);
+  --gradient-primary-hover: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
+  --card-accent: var(--audit-secondary);
+  --brand-bg-mist-1: #f97316;
+  --brand-bg-mist-2: #f59e0b;
+  --brand-bg-mist-3: #4567ed;
+  --brand-bg-mist-strength: 0.42;
+  --hero-gradient-base:
+    linear-gradient(135deg,
+      color-mix(in srgb, #f97316 28%, #070b17) 0%,
+      color-mix(in srgb, #f59e0b 18%, #11100a) 50%,
+      color-mix(in srgb, #4567ed 18%, #070b17) 100%);
+}
+
+:root[data-page-accent="editorial"] {
+  --brand-bg-mist-1: #38bdf8;
+  --brand-bg-mist-2: #818cf8;
+  --brand-bg-mist-3: #f472b6;
+  --brand-bg-mist-strength: 0.38;
+}
+
+/* TODO(light): el website real es dark-first; light queda pendiente. */

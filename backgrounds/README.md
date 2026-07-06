@@ -1,6 +1,6 @@
 # Fondo de marca
 
-El fondo de Singular —niebla + grilla + estrellas— unificado, **tokenizado y ligado a `--primary`**: se re-tinta solo con el brand profile (azul en app, rojo en web). Reemplaza las dos implementaciones divergentes (el `app-canvas-bg` CSS de Stories y el hero Framer del website).
+El fondo de Singular —niebla + grilla + estrellas— unificado, **tokenizado y ligado a `--primary`**: se re-tinta solo con el brand profile (azul en app, azul/cyan en web). Reemplaza las implementaciones divergentes de producto y `singular-landing`.
 
 ## Archivos
 | Archivo | Qué es |
@@ -11,7 +11,7 @@ El fondo de Singular —niebla + grilla + estrellas— unificado, **tokenizado y
 ## Variantes
 | Variante | Capas | Uso |
 |---|---|---|
-| `animated` | mist + grid + stars + **aurora** + **cursor-glow (mouse-follow)** | Heros del website, landings de alto impacto |
+| `animated` | mist + grid + stars estaticas + **aurora** + **cursor-glow (mouse-follow)** | Heros del website, landings de alto impacto |
 | `static` | mist + grid + stars | Canvas de app (dashboards), fondos de plataforma, slides |
 | `flat` | solo color base | Detrás de tablas/contenido denso (legibilidad) |
 
@@ -43,7 +43,10 @@ import { BrandBackground } from "@singular/ds/backgrounds/BrandBackground"
 | `--brand-grid-size` | `60px` | Densidad de la grilla |
 | `--brand-grid-color` | `rgb(255 255 255 / .028)` | Intensidad de las líneas |
 | `--brand-stars-opacity` | `0.55` | Presencia de las estrellas |
-| `--brand-stars-speed-a/-b` | `240s / 320s` | Velocidad de deriva |
+| `--brand-cursor-size/-strength/-opacity` | `520px / 10% / .32` | Glow de cursor en la variante `animated` |
+
+## Performance
+Las estrellas son estaticas por defecto. No reintroducir animacion por `background-position`: en `singular-landing` esa deriva repintaba el layer completo y penalizaba Lighthouse/PSI sin aportar una diferencia visible.
 
 ## Accesibilidad
-`prefers-reduced-motion: reduce` apaga estrellas, aurora y cursor-glow (y el componente no engancha el listener de mouse). Las capas son `aria-hidden`.
+`prefers-reduced-motion: reduce` apaga aurora y cursor-glow (y el componente no engancha el listener de mouse). Las capas son `aria-hidden`.

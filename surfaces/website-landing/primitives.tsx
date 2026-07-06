@@ -2,16 +2,23 @@
 
 /**
  * Primitivos del perfil WEBSITE/LANDING de Singular.
- * Portados de FramerSingular/custom-ai.tsx y tokenizados (sin hex hardcodeados):
- * los acentos salen de los tokens del DS (--primary, --gradient-primary, --border…).
+ * Fuente actual: singular-landing, rama codex/home-gargantua-scroll-camera.
+ *
+ * Portable: no importa next/*, wouter, booking providers, nav/footer del sitio
+ * ni datos comerciales. Los acentos salen de tokens del DS y data-page-accent.
  *
  * Requiere: framer-motion (peer dep del perfil web) + los CSS del DS
  * (theme-web.css + website.css + brand-background.css).
- *
- * Router-agnóstico: CtaButton usa <a> + scroll-to-anchor (no next/wouter).
  */
 import { motion, useReducedMotion } from "framer-motion"
-import type { ReactNode } from "react"
+import type { CSSProperties, ElementType, MouseEvent, ReactNode } from "react"
+import { BrandBackground } from "../../backgrounds/BrandBackground"
+
+const REVEAL_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
+function cx(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ")
+}
 
 /* Reveal on-scroll (respeta reduced-motion) */
 export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
@@ -19,22 +26,27 @@ export function Reveal({ children, delay = 0, className }: { children: ReactNode
   return (
     <motion.div
       className={className}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
       whileInView={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: reduce ? 0.01 : 0.52, delay: reduce ? 0 : delay, ease: REVEAL_EASE }}
     >
       {children}
     </motion.div>
   )
 }
 
-/* Eyebrow — label uppercase de marca (color --primary + dot) */
-export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <span className={`eyebrow eyebrow--brand ${className}`}>{children}</span>
+/* Shell minimo: el producto host decide nav/footer/routing. */
+export function PageShell({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <div className={cx("landing-page-shell", className)}>{children}</div>
 }
 
-/* Encabezado de sección: eyebrow + título + subtítulo */
+/* Eyebrow — label uppercase de marca (color --singular-secondary + dot) */
+export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <span className={cx("eyebrow eyebrow--brand", className)}>{children}</span>
+}
+
+/* Encabezado de seccion: eyebrow + titulo + subtitulo */
 export function SectionHeading({
   eyebrow,
   title,
@@ -43,21 +55,77 @@ export function SectionHeading({
 }: {
   eyebrow: string
   title: ReactNode
-  subtitle?: string
+  subtitle?: ReactNode
   center?: boolean
 }) {
   return (
-    <div className={center ? "landing-heading landing-heading--center" : "landing-heading"}>
+    <div className={cx("landing-heading", center && "landing-heading--center")}>
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="page-title" style={{ marginTop: "var(--gap-m)", fontSize: "clamp(1.875rem, 4vw, 3rem)" }}>
-        {title}
-      </h2>
-      {subtitle && <p className="page-subtitle" style={{ marginTop: "var(--gap-m)", maxWidth: "46rem" }}>{subtitle}</p>}
+      <h2 className="landing-heading__title">{title}</h2>
+      {subtitle && <p className="landing-heading__subtitle">{subtitle}</p>}
     </div>
   )
 }
 
-/* CTA — variantes tokenizadas. primary=blanco, accent=gradiente de marca, secondary=outline. */
+/* Hero canonico del perfil marketing. */
+export function HeroSection({
+  eyebrow,
+  title,
+  subtitle,
+  strapline,
+  children,
+  visual,
+  size = "standard",
+  layout,
+  className = "",
+  contentClassName = "",
+  titleClassName = "",
+  subtitleClassName = "",
+  visualClassName = "",
+  backgroundVariant = "static",
+}: {
+  eyebrow?: ReactNode
+  title: ReactNode
+  subtitle?: ReactNode
+  strapline?: ReactNode
+  children?: ReactNode
+  visual?: ReactNode
+  size?: "compact" | "standard" | "immersive"
+  layout?: "center" | "split"
+  className?: string
+  contentClassName?: string
+  titleClassName?: string
+  subtitleClassName?: string
+  visualClassName?: string
+  backgroundVariant?: "static" | "animated"
+}) {
+  const resolvedLayout = layout ?? (visual ? "split" : "center")
+
+  return (
+    <section
+      className={cx(
+        "singular-hero-section",
+        `singular-hero--${size}`,
+        resolvedLayout === "split" ? "singular-hero--split" : "singular-hero--center",
+        className
+      )}
+    >
+      <BrandBackground asBackdrop variant={backgroundVariant} />
+      <div className={cx("singular-hero-inner", resolvedLayout === "split" && "singular-hero-inner--split", contentClassName)}>
+        <div className={cx("singular-hero-copy", resolvedLayout === "center" && "singular-hero-copy--center")}>
+          {eyebrow && <Eyebrow className="singular-hero-eyebrow">{eyebrow}</Eyebrow>}
+          <h1 className={cx("singular-hero-title", size === "immersive" && "singular-hero-title--immersive", titleClassName)}>{title}</h1>
+          {subtitle && <p className={cx("singular-hero-subtitle", subtitleClassName)}>{subtitle}</p>}
+          {strapline && <p className="singular-hero-strapline">{strapline}</p>}
+          {children && <div className="singular-hero-actions">{children}</div>}
+        </div>
+        {visual && <Reveal delay={0.12} className={cx("singular-hero-visual", visualClassName)}>{visual}</Reveal>}
+      </div>
+    </section>
+  )
+}
+
+/* CTA simple — primary=blanco, accent=gradiente, secondary=glass outline. */
 export function CtaButton({
   cta,
   variant = "primary",
@@ -70,31 +138,48 @@ export function CtaButton({
   const reduce = useReducedMotion()
   const onClick =
     cta.href.startsWith("#")
-      ? (e: React.MouseEvent) => {
+      ? (e: MouseEvent<HTMLAnchorElement>) => {
           e.preventDefault()
           document.getElementById(cta.href.slice(1))?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
         }
       : undefined
   return (
-    <a href={cta.href} onClick={onClick} className={`cta cta--${variant} ${className}`}>
+    <a href={cta.href} onClick={onClick} className={cx("cta premium-cta", `cta--${variant}`, className)}>
       {cta.label}
     </a>
   )
 }
 
-/* Sección de landing: ritmo + borde + fondo (alt para alternar) */
-export function Section({ children, id, alt = false, pad = "m" }: { children: ReactNode; id?: string; alt?: boolean; pad?: "s" | "m" | "l" }) {
+/* Seccion de landing: ritmo + fondo semantico. */
+export function Section({
+  children,
+  id,
+  alt = false,
+  pad = "m",
+  className = "",
+}: {
+  children: ReactNode
+  id?: string
+  alt?: boolean
+  pad?: "s" | "m" | "l" | "prefooter"
+  className?: string
+}) {
   return (
-    <section id={id} className={`landing-section section-pad-${pad}`} style={alt ? { background: "color-mix(in srgb, var(--foreground) 2%, var(--background))" } : undefined}>
+    <section id={id} className={cx("landing-section", `section-pad-${pad}`, alt && "landing-section--alt", className)}>
       <div className="landing-container">{children}</div>
     </section>
   )
 }
 
+export function MarketingCard({ children, as, className = "", style }: { children: ReactNode; as?: ElementType; className?: string; style?: CSSProperties }) {
+  const Comp = as ?? "div"
+  return <Comp className={cx("marketing-card card-surface--interactive", className)} style={style}>{children}</Comp>
+}
+
 /* Chip de herramienta/sistema */
 export function SystemChip({ icon, label, className = "" }: { icon?: ReactNode; label: string; className?: string }) {
   return (
-    <span className={`system-chip ${className}`}>
+    <span className={cx("system-chip", className)}>
       {icon}
       {label}
     </span>
@@ -110,5 +195,68 @@ export function LogoMarquee({ children, speed = "40s" }: { children: ReactNode; 
         {children}
       </div>
     </div>
+  )
+}
+
+export function TestimonialCard({
+  quote,
+  author,
+  role,
+  image,
+  className = "",
+}: {
+  quote: ReactNode
+  author: string
+  role: string
+  image?: string | null
+  className?: string
+}) {
+  return (
+    <MarketingCard className={cx("testimonial-card", className)}>
+      <p className="testimonial-card__quote">{quote}</p>
+      <div className="testimonial-card__person">
+        <div className="testimonial-card__avatar">
+          {image ? <img src={image} alt={author} /> : author.slice(0, 1)}
+        </div>
+        <div>
+          <div className="testimonial-card__author">{author}</div>
+          <div className="testimonial-card__role">{role}</div>
+        </div>
+      </div>
+    </MarketingCard>
+  )
+}
+
+export function FinalCTA({
+  title,
+  subtitle,
+  cta,
+  secondaryCta,
+}: {
+  title: ReactNode
+  subtitle?: ReactNode
+  cta: { label: string; href: string }
+  secondaryCta?: { label: string; href: string }
+}) {
+  return (
+    <Section pad="prefooter" className="singular-cta-section">
+      <Reveal className="singular-final-cta">
+        <h2>{title}</h2>
+        {subtitle && <p>{subtitle}</p>}
+        <div className="singular-final-cta__actions">
+          <CtaButton cta={cta} variant="accent" />
+          {secondaryCta && <CtaButton cta={secondaryCta} variant="secondary" />}
+        </div>
+      </Reveal>
+    </Section>
+  )
+}
+
+export function InlineLinkCTA({ href, children, className = "" }: { href: string; children: ReactNode; className?: string }) {
+  return (
+    <a href={href} className={cx("inline-link-cta", className)}>
+      <span>{children}</span>
+      <span aria-hidden="true">-></span>
+    </a>
   )
 }

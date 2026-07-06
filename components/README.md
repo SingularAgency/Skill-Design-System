@@ -10,7 +10,7 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 | Perfil | Archivos |
 |---|---|
 | **web-app** | `surfaces/web-app/navigation.tsx` (sistema de navegación: SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabs, PageHeader, PoweredByFooter), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal), `patterns.ts` (big-pill-tabs, data-table-patterns), `web-app.css`. |
-| **website-landing** | `surfaces/website-landing/primitives.tsx` + `website.css`. |
+| **website-landing** | `surfaces/website-landing/primitives.tsx` + `website.css` (patrones promovidos desde `singular-landing`). |
 
 ## CORE universal (cualquier superficie web)
 | Familia | Componentes | Notas |
@@ -29,7 +29,9 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 KPI de dominio (`KpiCard`/`KpiRow` acoplados a `settings-context`), modales de entidad (`story/sprint/okr/epic/issue/...-detail-modal`), `entity-modal-stack-host`, `goal-tree`, `pert-gantt`, `qa-charts-*`, payments (`payments-*`), sprints/stories (`story-views`, `stories-table`, `sprint-sp-distributor`), talent (`talent-*`), sidebars de producto (`app/admin/client-sidebar`), `app-header`.
 
 ## Marketing / website (perfil website-landing)
-`Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `Reveal`, `SystemChip`, `LogoMarquee` → ver `surfaces/website-landing/primitives.tsx`.
+`PageShell`, `HeroSection`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `SystemChip`, `LogoMarquee` → ver `surfaces/website-landing/primitives.tsx`.
+
+No se portan al DS los providers de booking, rutas, navbar/footer ni datos comerciales de `singular-landing`; esos quedan en el sitio host.
 
 ## ⚠️ Higiene
 - ✅ API key Figma (`figd_…`) que estaba embebida en `sidebar-shell.tsx` de Stories: **NO viajó** al DS (el `navigation.tsx` portado no incluye el snippet MCP). Pendiente fuera de este repo: **rotar la key** en Stories.
