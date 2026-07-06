@@ -2,7 +2,7 @@
 
 > Documento vivo. Guía la construcción del **design system universal de marca Singular**: un solo sistema, usable por cualquier persona del equipo, para cualquier superficie (website, landing, web-app, slides, social, email), entregado como **skill de Claude + tokens + assets versionados**.
 >
-> **Estado:** Fase 0 (plan) — en revisión.
+> **Estado:** Fase 5 actualizada — perfil website/landing promovido desde `singular-landing`.
 > **Fecha de arranque:** 2026-06-02.
 
 ---
@@ -26,7 +26,7 @@
 
 ## 2. Hallazgos de la auditoría (2026-06-02)
 
-Auditoría en 5 frentes sobre `v0-singular-stories-app`, `FramerSingular`, el sistema de fondos, y el ecosistema de skills.
+Auditoría histórica en 5 frentes sobre `v0-singular-stories-app`, `FramerSingular`, el sistema de fondos y el ecosistema de skills. Para el perfil website/landing actual, usar `singular-landing` como fuente.
 
 ### 2.1 Tres design systems que se contradicen
 | | `s-skill-v1` (marca/web) | `singular-design-app-v2` (Stories) | `singular-design-system` (.sds-*) |
@@ -37,7 +37,7 @@ Auditoría en 5 frentes sobre `v0-singular-stories-app`, `FramerSingular`, el si
 | Tipografía | Poppins+Georgia+Inter | Poppins+JetBrains Mono | roles `.sds-text-*` |
 | Fuente de verdad | bundle `.skill` (no hallado) | `globals.css` de Stories | repo `singular-design-system-2026` (no clonado) |
 
-**El website vivo (FramerSingular) ya migró a primary ROJO `#d4513b` + fondo `#010203`. Ninguna skill lo documenta** (todas tratan el rojo como "solo logo"). → Origen de la decisión D1.
+**Actualizacion 2026-07-03:** el perfil website/landing ya no toma `FramerSingular` como fuente. La fuente actual es `singular-landing`, rama `codex/home-gargantua-scroll-camera`, con marca base azul/cyan y variaciones por `data-page-accent`. Rojo/naranja queda reservado para semantica o auditoria, no como marca base.
 
 ### 2.2 El motor multi-marca (la joya técnica)
 El `globals.css` de Stories deriva **todo el chrome** de `--primary` vía `color-mix(in srgb, var(--primary) X%, <neutral base>)`. Cambiar `--primary` re-tinta toda la UI. **Es el mecanismo que habilita el sistema dual sin rediseñar nada** — el primary es *un token*.
@@ -59,13 +59,13 @@ Status (`--success/--warning/--info/--destructive`) son semánticos compartidos 
 
 ### 2.4 Sistema de fondos de marca (gradient + grilla + stars)
 Existe en **2 implementaciones sin código compartido**:
-- **Web** (`InteractiveHeroBackground.tsx`): React + Framer Motion, capas con `mix-blend`, **mouse-follow** (springs), aurora, 20 partículas. **NO respeta `prefers-reduced-motion`.** Prop `theme` con default azul (≠ rojo de marca).
+- **Web histórico** (`InteractiveHeroBackground.tsx`): React + Framer Motion, capas con `mix-blend`, **mouse-follow** (springs), aurora, 20 partículas. Reemplazado como fuente por `singular-landing`.
 - **App** (`.app-canvas-bg` + `body::before/::after` en `globals.css`): CSS puro, 3 radiales de niebla + grid (50/60px) + 2 capas de stars animadas por `background-position`. **SÍ respeta `prefers-reduced-motion`.** Light + dark.
 
 → Unificable en un `<BrandBackground>` tokenizado (ver §3.3).
 
-### 2.5 `custom-ai.tsx` ya es el modelo del perfil marketing
-Abstrae `Section`, `SectionHeading`, `CtaButton`, `Reveal`, `SystemChip`. El resto del sitio lo hace a mano: **332 usos** del eyebrow `uppercase tracking-*`, `FadeIn` redefinido 4+ veces, acentos hardcodeados (`#d4513b`, `#d97757`, `#10a37f`…).
+### 2.5 `singular-landing` es el modelo actual del perfil marketing
+Promueve `PageShell`, `HeroSection`, `Section`, `SectionHeading`, `CtaButton`, `MarketingCard`, `Reveal`, `LogoMarquee`, tabs, CTAs premium y accents por pagina. Las referencias previas a `custom-ai.tsx` quedan como antecedente historico.
 
 ### 2.6 Componentes — portabilidad Next → Vite
 - **Altamente portables** (cero/casi-cero acople a Next): `ui/card`, `ui/button`, `ui/badge`, `status-badge`, `empty-state`, `pill-filter`, `kpi-card`, `data-table-patterns`, `side-modal-layout`.
@@ -94,11 +94,11 @@ singular-design-system/                ← skill madre (la consolidada)
   SKILL.md                             ← núcleo de marca + router "elegí tu superficie"
   tokens/                              ← FUENTE ÚNICA de tokens (multi-marca)
     core.css                           ← estructura: surface/status/spacing/radius/typo derivados
-    brand-web.css                      ← profile: --primary rojo + escala + neutrales negros
+    brand-web.css                      ← profile website azul/cyan + accents por pagina
     brand-app.css                      ← profile: --primary azul + escala + neutrales navy
     motion.css
   surfaces/
-    website-landing/guide.md           ← perfil marketing (primitivos de custom-ai)
+    website-landing/guide.md           ← perfil marketing (primitivos de singular-landing)
     web-app/guide.md                   ← incrusta singular-design-app-v2 (lee globals.css de Stories)
     slides-presentations/guide.md      ← specs de marca para Gamma/PPTX
     social-email/
@@ -119,7 +119,7 @@ core.css     → --background, --card, --border, --muted, --accent… = color-mi
                --success/--warning/--info/--destructive = compartidos (no siguen primary)
                escala --gap-*, --radius*, tipografía, --text-2xs/3xs
 
-brand-web.css → --primary: #d4513b; escala roja; neutrales negros (#050505/#010203); radius-card 2xl
+brand-web.css → --primary azul/cyan; surface dark-first; `data-page-accent` para home/solutions/agentic/success/audit/editorial; radius-card 1.5rem
 brand-app.css → --primary: #4567ed; escala azul; neutrales navy tintados; radius-card xl
 ```
 **Trabajo clave de la Fase 2:** tokenizar las islas de §2.2 para que cada profile re-tinte completo (hoy quedarían "islas azules" si solo cambiás `--primary`).
@@ -129,12 +129,12 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Variantes:** `brand-animated` (hero web, mouse-follow + aurora) · `brand-static` (canvas app, CSS) · `flat-dark` · `flat-tinted`.
 - **Capas:** `mist` (radiales) · `grid` · `stars` · `aurora` · `cursor-glow` (toggles).
 - **Tokens:** `--brand-bg-hue` (= `--primary`), `--brand-grid-size`, `--brand-stars-density`, `--brand-mist-strength`, `--brand-cursor-*`.
-- **A11y:** una regla global `@media (prefers-reduced-motion)` apaga stars/aurora/cursor — cierra la deuda del web.
+- **A11y/performance:** las estrellas quedan estaticas por defecto; `@media (prefers-reduced-motion)` apaga aurora/cursor y transiciones no esenciales.
 
 ### 3.4 Resolución de contradicciones
 | Conflicto | Resolución |
 |---|---|
-| `#3B82F6` vs `#4567ed` vs `#d4513b` | Dual por perfil (D1). Web=rojo, app=azul. `#3B82F6` queda como acento legacy a converger. |
+| `#3B82F6` vs `#4567ed` vs accents de pagina | Una marca base azul/cyan. Las variaciones viven en `data-page-accent`; rojo/naranja es semantica/auditoria, no marca base. |
 | `rounded-2xl` vs `rounded-xl` | Core define escala de radius; **default de card por perfil** (web 2xl, app xl). Documentado, no contradicción. |
 | `.sds-*` vs Tailwind/shadcn | Toolkit canónico = **Tailwind v4 + shadcn** (lo que está en producción). `.sds-*` se deprecа; se rescata `references/`. |
 
@@ -153,7 +153,7 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Done:** un solo lugar versionado con todo el material fuente.
 
 ### Fase 2 — Núcleo de tokens core (multi-marca)
-- **Tareas:** destilar `globals.css` de Stories → `tokens/core.css`; **tokenizar las islas** (§2.2); escribir `brand-web.css` (rojo) y `brand-app.css` (azul); generar la escala roja de marca para web.
+- **Tareas:** destilar `globals.css` de Stories → `tokens/core.css`; **tokenizar las islas** (§2.2); escribir `brand-web.css` (azul/cyan + accents de pagina) y `brand-app.css` (azul).
 - **Entregable:** `tokens/*.css` + tabla "token → core/profile" + demo de switch `data-brand`.
 - **Done:** cambiar de profile re-tinta el chrome completo sin islas fuera de marca.
 
@@ -172,10 +172,12 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 > - **Código** (`surfaces/web-app/`): `navigation.tsx` (FloatingSidebarProvider, SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabsNav, PageHeader, PoweredByFooter, SidebarContentWrapper — router-agnóstico vía `linkComponent`, **sin la Figma key**), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal), `patterns.ts` (big-pill-tabs, data-table-patterns), `web-app.css`.
 > - **Demo + docs:** `demo.html` reescrito (verificado light+dark en browser), `guide.md` + `components/README.md` + `SKILL.md` actualizados.
 
-### Fase 5 — Perfil website/landing (promover custom-ai)
-- **Tareas:** promover `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `Reveal`, `LogoMarquee`, `PricingCard`, `GlassTabs`; tokenizar acentos hardcodeados; section rhythm (`py-s/m/l`) → tokens; limpiar clases fantasma / código muerto.
-- **Entregable:** `surfaces/website-landing/guide.md` + primitivos.
-- **Done:** una sección de landing se arma con primitivos del DS, no a mano.
+### Fase 5 — Perfil website/landing (promover singular-landing)
+- **Tareas:** promover desde `singular-landing` los patrones reutilizables: `PageShell`, `HeroSection`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `LogoMarquee`; tokenizar page accents, card/button/motion tokens, section rhythm y tabs. No portar booking providers, rutas ni contenido del sitio.
+- **Entregable:** `tokens/brand-web.css`, `surfaces/website-landing/guide.md`, `primitives.tsx`, `website.css`, `demo.html`.
+- **Done:** una landing se arma con primitivos del DS y puede cambiar `data-page-accent` sin CSS local.
+
+> **Avance (2026-07-03) — perfil website/landing actualizado desde `singular-landing`.** Se promovieron los tokens dark-first azul/cyan, accents por pagina, card/elevation tokens, CTA premium, big-pill tabs, hero recipes, final CTA y la mejora de performance del fondo: estrellas estaticas por defecto, sin animacion por `background-position`.
 
 ### Fase 6 — Perfiles slides + social/email
 - **Tareas:** `slides-presentations/` (specs de marca para Gamma; alinear theme); `social-email/email.md` (migrar s-mail-v1); `social.md` (specs Meta nuevas).
@@ -183,9 +185,9 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Done:** las 4 superficies cubiertas en la skill madre.
 
 ### Fase 7 — Aplicar al website (piloto real)
-- **Tareas:** refactor de `custom-ai.tsx` al DS nuevo con `brand-web` (rojo); `<BrandBackground>`; tipografía/spacing/a11y; validación visual; luego roll-out a páginas clave.
-- **Entregable:** `custom-ai` corriendo sobre el DS; checklist de roll-out.
-- **Done:** página piloto se ve igual o mejor, 100% sobre tokens del DS.
+- **Tareas:** consumir el DS actualizado desde `singular-landing`; reemplazar patrones locales equivalentes por primitivas del DS; validar tipografía/spacing/a11y/performance; luego roll-out a páginas clave.
+- **Entregable:** pagina piloto corriendo sobre el DS; checklist de roll-out.
+- **Done:** pagina piloto se ve igual o mejor, 100% sobre tokens del DS.
 
 ### Fase 8 — Publicar la skill + deprecar las viejas
 - **Tareas:** publicar `singular-design-system` (vía marketplace/PR); deprecar `s-skill-v1`, `s-mail-v1`, `.sds-*`, `app-v2` suelta; mecanismo de re-audit cuando un producto cambie; **consolidar el preview core (`tokens/demo.html`) + un `demo.html` por superficie** (web-app, website-landing, slides-presentations, social-email) **y servirlos por GitHub Pages** como preview público del DS (la skill los referencia para que cualquiera previsualice sin clonar).
@@ -217,7 +219,7 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 ## 6. Fuentes y rutas
 | Qué | Ruta |
 |---|---|
-| Website (perfil web, primary rojo) | `/Users/csrspinozzi/Projects/FramerSingular` · tokens en `client/src/index.css` · modelo de primitivos en `client/src/pages/custom-ai.tsx` · hero `client/src/components/InteractiveHeroBackground.tsx` |
+| Website (perfil web, azul/cyan) | `/Users/csrspinozzi/Projects/singular-landing` · rama `codex/home-gargantua-scroll-camera` · tokens en `src/index.css` · primitivos en `src/components/marketing/MarketingPrimitives.tsx` · fondo en `src/ds/backgrounds/` |
 | Web-app Stories (perfil app, primary azul) | `/Users/csrspinozzi/Projects/v0-singular-stories-app` · tokens en `app/globals.css` (2262 líneas) · fondos `app-canvas-bg` L1060-1162 · componentes en `components/` + `components/ui/` |
 | Fuente editable app-v2 | `/Users/csrspinozzi/Documents/Work/Singular/singular-design-app-v2.skill` (ZIP) |
 | Skills runtime (DS) | `~/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/.../skills/{singular-design-app-v2,singular-design-system,...}/SKILL.md` |

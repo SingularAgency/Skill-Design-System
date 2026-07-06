@@ -18,7 +18,7 @@ tokens/                   ← fuente única de tokens (core + brand-web + brand-
 backgrounds/              ← <BrandBackground> unificado            [Fase 3]
 surfaces/
   web-app/                ← perfil app (incrusta app-v2)           [Fase 4]
-  website-landing/        ← perfil marketing (primitivos custom-ai)[Fase 5]
+  website-landing/        ← perfil marketing (singular-landing)      [Fase 5]
   slides-presentations/   ← specs de marca para Gamma              [Fase 6]
   social-email/           ← email (s-mail-v1) + social (Meta)      [Fase 6]
 components/               ← inventario core + por-perfil
@@ -52,7 +52,7 @@ En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo.
 | Perfil | Repo / fuente |
 |---|---|
 | **web-app** (azul) | [`v0-singular-stories-app`](https://github.com/SingularAgency/v0-singular-stories-app) — `app/globals.css` es la verdad de tokens del perfil app |
-| **website-landing** (cyan) | `FramerSingular` — `client/src/index.css` + primitivos de `client/src/pages/custom-ai.tsx` |
+| **website-landing** (cyan) | `singular-landing` — rama `codex/home-gargantua-scroll-camera`, tokens en `src/index.css` + primitivas en `src/components/marketing/MarketingPrimitives.tsx` |
 | skills legacy | `legacy/` (recuperadas de bundles `.skill` + copias runtime de Cowork) |
 
 ## Decisiones

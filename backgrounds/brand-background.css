@@ -3,7 +3,7 @@
  * ============================================================
  * El fondo de marca: niebla (mist) + grilla + estrellas, todo
  * tokenizado y ligado a --primary (se re-tinta con el brand profile).
- * Unifica el `app-canvas-bg` de Stories (CSS) y el hero del website.
+ * Unifica el app canvas de Stories y el background global de singular-landing.
  *
  * Variantes (clase en el contenedor):
  *   .brand-bg            → estático: mist + grid + stars (default)
@@ -12,7 +12,8 @@
  *                          componente <BrandBackground> (capa cursor/aurora)
  *
  * El contenido va dentro de .brand-bg__content (queda sobre las capas).
- * Stars respetan prefers-reduced-motion.
+ * Las estrellas son estaticas por performance: no reintroducir animacion por
+ * background-position; repinta el layer completo y empeora Lighthouse/PSI.
  * ============================================================ */
 
 :root {
@@ -22,6 +23,9 @@
   --brand-bg-mist-2: var(--singular-secondary); /* glow secundario */
   --brand-bg-mist-3: var(--singular-cyan);      /* acento frío */
   --brand-bg-mist-strength: 0.20;               /* 0–1, intensidad del glow principal */
+  --brand-cursor-size: 520px;
+  --brand-cursor-strength: 10%;
+  --brand-cursor-opacity: 0.32;
 
   /* Grilla */
   --brand-grid-size: 60px;
@@ -31,8 +35,6 @@
   /* Estrellas */
   --brand-stars-tile: 200px;
   --brand-stars-opacity: 0.55;
-  --brand-stars-speed-a: 240s;
-  --brand-stars-speed-b: 320s;
 }
 
 /* ── Contenedor ── */
@@ -64,7 +66,7 @@
   mask-image: var(--brand-grid-mask);
 }
 
-/* ── Estrellas (dos capas en deriva diagonal opuesta) ── */
+/* ── Estrellas (dos capas estaticas) ── */
 .brand-bg__stars { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
 .brand-bg__stars::before, .brand-bg__stars::after {
   content: ""; position: absolute; inset: -10%;
@@ -76,7 +78,8 @@
     radial-gradient(1px 1px at 90px 40px, color-mix(in srgb, var(--brand-bg-mist-3) 70%, #fff), transparent),
     radial-gradient(1.5px 1.5px at 160px 120px, color-mix(in srgb, var(--brand-bg-mist-2) 70%, #fff), transparent);
   background-size: var(--brand-stars-tile) var(--brand-stars-tile);
-  animation: brand-stars-a var(--brand-stars-speed-a) linear infinite;
+  /* Static by design. background-position animation repaints the full layer
+     every frame and was a measurable performance regression in singular-landing. */
 }
 .brand-bg__stars::after {
   background-image:
@@ -84,10 +87,7 @@
     radial-gradient(1px 1px at 50px 160px, #ffffff, transparent),
     radial-gradient(1px 1px at 130px 80px, color-mix(in srgb, var(--brand-bg-mist-2) 60%, #fff), transparent);
   background-size: calc(var(--brand-stars-tile) + 40px) calc(var(--brand-stars-tile) + 40px);
-  animation: brand-stars-b var(--brand-stars-speed-b) linear infinite;
 }
-@keyframes brand-stars-a { from { background-position: 0 0; } to { background-position: var(--brand-stars-tile) var(--brand-stars-tile); } }
-@keyframes brand-stars-b { from { background-position: 0 0; } to { background-position: calc(-1 * var(--brand-stars-tile)) calc(-1 * var(--brand-stars-tile)); } }
 
 /* ── Contenido sobre el fondo ── */
 .brand-bg__content { position: relative; z-index: 1; }
@@ -118,8 +118,9 @@
 
 /* Cursor glow — sigue --mx/--my (los setea <BrandBackground> con el mouse) */
 .brand-bg__cursor {
-  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 28%),
-    color-mix(in srgb, var(--brand-bg-mist-1) 22%, transparent), transparent 60%);
+  opacity: var(--brand-cursor-opacity);
+  background: radial-gradient(var(--brand-cursor-size) circle at var(--mx, 50%) var(--my, 28%),
+    color-mix(in srgb, var(--brand-bg-mist-1) var(--brand-cursor-strength), transparent), transparent 62%);
   mix-blend-mode: screen;
 }
 
