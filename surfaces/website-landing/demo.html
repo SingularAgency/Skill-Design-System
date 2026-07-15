@@ -9,215 +9,156 @@
 <link rel="stylesheet" href="../../tokens/core-utilities.css">
 <link rel="stylesheet" href="../../backgrounds/brand-background.css">
 <link rel="stylesheet" href="./website.css">
-<style>
-  body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
-  a { color: inherit; }
-  .demo-nav {
-    position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 1rem;
-    padding: .9rem 1rem; border-bottom: 1px solid var(--border);
-    background: color-mix(in srgb, var(--background) 72%, transparent);
-    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  }
-  .demo-nav strong { color: var(--foreground-strong); }
-  .demo-nav .spacer { flex: 1; }
-  .accent-picker { display: flex; gap: .4rem; overflow-x: auto; }
-  .accent-picker button {
-    min-height: 2.25rem; border: 1px solid var(--border); border-radius: 999px;
-    background: color-mix(in srgb, var(--surface-2) 82%, transparent);
-    color: var(--muted-foreground); cursor: pointer; font: inherit; font-size: .78rem; font-weight: 700;
-    padding-inline: .8rem;
-  }
-  .accent-picker button[aria-pressed="true"] {
-    background: var(--gradient-primary); color: var(--primary-foreground);
-    border-color: color-mix(in srgb, var(--singular-secondary) 42%, transparent);
-  }
-  .logo-row { align-items: center; gap: 2.5rem; padding-block: 1rem; }
-  .logo-chip {
-    display: inline-flex; min-width: 9rem; height: 3.25rem; align-items: center; justify-content: center;
-    border: 1px solid var(--border); border-radius: var(--radius-full);
-    background: color-mix(in srgb, var(--surface-2) 52%, transparent);
-    color: var(--muted-foreground); font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-  }
-  .demo-grid { display: grid; gap: 1rem; margin-top: 3rem; }
-  @media (min-width: 768px) { .demo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .demo-card { padding: 1.5rem; }
-  .demo-card .num { color: var(--singular-secondary); font-family: var(--font-mono); font-size: .8rem; font-weight: 800; }
-  .demo-card h3 { margin: 1rem 0 .5rem; color: var(--foreground); font-size: 1.25rem; }
-  .demo-card p { margin: 0; color: var(--muted-foreground); line-height: 1.65; }
-  .tabs-demo { margin-top: 2.5rem; }
-  .tab-panels { margin-top: 1rem; }
-  .tab-panel { display: none; padding: 1.5rem; }
-  .tab-panel[data-active="true"] { display: block; }
-  .proof-grid { display: grid; gap: 1rem; margin-top: 2.5rem; }
-  @media (min-width: 768px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .proof-card { padding: 1.5rem; }
-  .proof-card .metric { color: var(--foreground); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1; }
-  .proof-card h3 { margin: .75rem 0 .5rem; }
-  .proof-card p { color: var(--muted-foreground); line-height: 1.65; margin: 0; }
-</style>
 </head>
 <body>
-<nav class="demo-nav">
-  <strong>Website / Landing</strong>
-  <span class="spacer"></span>
-  <div class="accent-picker" aria-label="Page accent">
-    <button type="button" data-accent="home" aria-pressed="true">Home</button>
-    <button type="button" data-accent="solutions" aria-pressed="false">Solutions</button>
-    <button type="button" data-accent="custom-ai" aria-pressed="false">Agentic</button>
-    <button type="button" data-accent="success" aria-pressed="false">Success</button>
-    <button type="button" data-accent="assessment" aria-pressed="false">Audit</button>
-  </div>
-</nav>
-
-<main class="landing-page-shell">
-  <header class="singular-hero-section singular-hero--immersive singular-hero--center">
-    <div class="brand-bg brand-bg--backdrop">
-      <div class="brand-bg__stars" aria-hidden="true"></div>
+<main class="landing-page-shell website-home-shell">
+  <nav class="website-demo-nav" aria-label="Website demo navigation">
+    <a class="website-demo-brand" href="#top" aria-label="Singular demo home"><span></span>SINGULAR</a>
+    <div class="website-demo-nav__actions">
+      <a class="cta cta--primary premium-cta website-demo-nav__cta" href="#contact">Book a Strategy Call</a>
+      <button class="website-demo-menu" type="button" aria-label="Open navigation demo"><span></span><span></span></button>
     </div>
-    <div class="singular-hero-inner">
+  </nav>
+
+  <section id="top" class="singular-hero-section singular-hero--immersive singular-hero--center website-home-hero" data-interactive-hero>
+    <div class="website-home-gravity" aria-hidden="true"></div>
+    <div class="interactive-hero-bg interactive-hero-bg--active" aria-hidden="true">
+      <div class="brand-bg brand-bg--backdrop"><div class="brand-bg__stars"></div></div>
+      <div class="interactive-hero-bg__aurora"></div>
+      <div class="interactive-hero-bg__void"></div>
+      <div class="interactive-hero-bg__disk"></div>
+      <div class="interactive-hero-bg__horizon"></div>
+      <div class="interactive-hero-bg__cursor"></div>
+    </div>
+    <div class="singular-hero-inner website-home-hero__inner">
       <div class="singular-hero-copy singular-hero-copy--center">
-        <span class="eyebrow eyebrow--brand singular-hero-eyebrow">Marketing profile</span>
+        <span class="eyebrow eyebrow--brand singular-hero-eyebrow">AI Transformation Partner for Operators, Founders</span>
         <h1 class="singular-hero-title singular-hero-title--immersive">
-          Build public Singular pages from <span class="text-gradient-brand">one reusable system.</span>
+          Build the operating system your <span class="text-gradient-brand">company can run on.</span>
         </h1>
         <p class="singular-hero-subtitle">
-          The website profile promotes the production patterns from singular-landing: semantic accents,
-          immersive heroes, glass cards, big-pill tabs, premium CTAs, and performance-aware motion.
+          Turn complexity into systems, workflows, and AI capabilities that let your team move with more clarity and less manual work.
         </p>
-        <div class="singular-hero-actions">
-          <a class="cta cta--accent premium-cta" href="#patterns">Explore patterns</a>
-          <a class="cta cta--secondary premium-cta" href="#proof">See proof cards</a>
+        <div class="singular-hero-actions website-home-hero__actions">
+          <a class="cta cta--primary premium-cta" href="#contact">Book a Strategy Call</a>
+          <a class="cta cta--secondary premium-cta" href="#narrative">Free AI Audit</a>
         </div>
-      </div>
-    </div>
-  </header>
 
-  <section class="landing-section client-logo-section">
-    <div class="marquee-mask" aria-label="Example partner logos">
-      <div class="marquee logo-row" style="--marquee-speed: 36s">
-        <span class="logo-chip">Airtable</span>
-        <span class="logo-chip">Vercel</span>
-        <span class="logo-chip">Claude</span>
-        <span class="logo-chip">OpenAI</span>
-        <span class="logo-chip">FlutterFlow</span>
-        <span class="logo-chip">Airtable</span>
-        <span class="logo-chip">Vercel</span>
-        <span class="logo-chip">Claude</span>
-        <span class="logo-chip">OpenAI</span>
-        <span class="logo-chip">FlutterFlow</span>
+        <div class="website-home-proof">
+          <div class="website-home-proof__chips">
+            <span>Operating-system partner</span><span>Outcome-led</span><span>Built for adoption</span>
+          </div>
+          <p>"The system became easier to run, measure, and improve." <strong>Operating leader</strong></p>
+        </div>
+
+        <div class="website-home-metrics" aria-label="Example trust metrics">
+          <div><span>Time to value</span><strong>10d</strong></div>
+          <div><span>Workflow clarity</span><strong>4.9</strong></div>
+          <div><span>Teams supported</span><strong>+300</strong></div>
+          <div><span>Partner rating</span><strong>4.7</strong></div>
+          <div><span>Delivery quality</span><strong>5.0</strong></div>
+        </div>
+
+        <div class="website-home-logos">
+          <p>Trusted by industry leaders</p>
+          <div class="marquee-mask" aria-label="Example partner logos">
+            <div class="marquee website-home-logos__track" style="--marquee-speed: 44s">
+              <span>INVERCORP</span><span>OSMO</span><span>PRODUCT DRIVEN</span><span>TRAVELRY</span><span>FORGE</span>
+              <span aria-hidden="true">INVERCORP</span><span aria-hidden="true">OSMO</span><span aria-hidden="true">PRODUCT DRIVEN</span><span aria-hidden="true">TRAVELRY</span><span aria-hidden="true">FORGE</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="patterns" class="landing-section section-pad-m landing-section--alt">
+  <section id="narrative" class="landing-section section-pad-l website-home-narrative">
+    <div class="landing-container">
+      <div class="singular-tabs-shell website-home-tabs" role="tablist" aria-label="Homepage narrative">
+        <button class="singular-tab-button" type="button" role="tab" aria-selected="true" data-tab="problem"><span class="singular-tab-active"></span><span>The Problem</span></button>
+        <button class="singular-tab-button" type="button" role="tab" aria-selected="false" data-tab="partner"><span>Outcome Partner</span></button>
+        <button class="singular-tab-button" type="button" role="tab" aria-selected="false" data-tab="ai"><span>Why AI Fails</span></button>
+        <button class="singular-tab-button" type="button" role="tab" aria-selected="false" data-tab="agile"><span>Singular Agile</span></button>
+      </div>
+      <div class="website-home-narrative__content tab-panels">
+        <div class="tab-panel" data-panel="problem" data-active="true">
+          <div class="landing-heading landing-heading--center">
+            <span class="eyebrow eyebrow--brand">The Problem</span>
+            <h2 class="landing-heading__title">You built this company. You became its system.</h2>
+            <p class="landing-heading__subtitle">Growth created complexity. The owner who should be leading the company is now busy being the company.</p>
+          </div>
+          <div class="website-home-card-grid">
+            <article class="marketing-card"><span>01</span><h3>Every decision routes through you</h3></article>
+            <article class="marketing-card"><span>02</span><h3>Work keeps finding its way back to you</h3></article>
+            <article class="marketing-card"><span>03</span><h3>Strategic thinking gets crowded out</h3></article>
+          </div>
+          <p class="website-home-narrative__close">This isn't a leadership problem. It's a systems problem.</p>
+        </div>
+        <div class="tab-panel" data-panel="partner" data-active="false"><div class="landing-heading landing-heading--center"><span class="eyebrow eyebrow--brand">Outcome Partner</span><h2 class="landing-heading__title">Not another agency. An outcome partner with a date on it.</h2></div></div>
+        <div class="tab-panel" data-panel="ai" data-active="false"><div class="landing-heading landing-heading--center"><span class="eyebrow eyebrow--brand">Why AI Initiatives Fail</span><h2 class="landing-heading__title">Most AI initiatives fail before AI is the problem.</h2></div></div>
+        <div class="tab-panel" data-panel="agile" data-active="false"><div class="landing-heading landing-heading--center"><span class="eyebrow eyebrow--brand">Singular Agile</span><h2 class="landing-heading__title">Measure direction. Then compound the result.</h2></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section section-pad-l website-home-capabilities">
+    <div class="landing-container">
+      <div class="landing-heading">
+        <span class="eyebrow eyebrow--brand">Capabilities</span>
+        <h2 class="landing-heading__title">Innovation vehicles, <span class="text-gradient-brand">not just tools.</span></h2>
+        <p class="landing-heading__subtitle">The implementation layers behind adopted AI workflows: knowledge, memory, agents, apps, engineering, and governed execution.</p>
+      </div>
+      <div class="website-home-capabilities__grid">
+        <article class="marketing-card"><span>THE KNOWLEDGE LAYER</span><h3>Wiki Knowledge</h3><p>Turn scattered context into a shared operating layer.</p><a class="inline-link-cta" href="#contact">Explore layer <span aria-hidden="true">-&gt;</span></a></article>
+        <article class="marketing-card"><span>THE SHARED MEMORY</span><h3>Company Brain</h3><p>Keep team knowledge connected across systems and decisions.</p><a class="inline-link-cta" href="#contact">Explore layer <span aria-hidden="true">-&gt;</span></a></article>
+        <article class="marketing-card"><span>THE EXECUTION LAYER</span><h3>Hyperagents</h3><p>Move governed operational work through reliable AI workflows.</p><a class="inline-link-cta" href="#contact">Explore layer <span aria-hidden="true">-&gt;</span></a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section section-pad-l website-home-outcomes">
     <div class="landing-container">
       <div class="landing-heading landing-heading--center">
-        <span class="eyebrow eyebrow--brand">Portable patterns</span>
-        <h2 class="landing-heading__title">The pieces that should travel across marketing pages.</h2>
-        <p class="landing-heading__subtitle">These are system-level patterns, not homepage-specific content.</p>
+        <span class="eyebrow eyebrow--brand">Client Outcomes</span>
+        <h2 class="landing-heading__title">Operational improvements your team can feel.</h2>
+        <p class="landing-heading__subtitle">The proof is not a testimonial first. It is what changes in the operating system.</p>
       </div>
-      <div class="demo-grid">
-        <article class="marketing-card card-surface--interactive demo-card">
-          <div class="num">01</div>
-          <h3>Hero recipes</h3>
-          <p>Compact, standard, immersive, centered, and split hero layouts share one background and type rhythm.</p>
-        </article>
-        <article class="marketing-card card-surface--interactive demo-card">
-          <div class="num">02</div>
-          <h3>Accent tokens</h3>
-          <p>Page accents retint primary, secondary, card accent, gradients, and background mist from one attribute.</p>
-        </article>
-        <article class="marketing-card card-surface--interactive demo-card">
-          <div class="num">03</div>
-          <h3>Premium controls</h3>
-          <p>CTAs, cards, tabs, and links use shared elevation, focus, hover, and reduced-motion rules.</p>
-        </article>
+      <div class="website-home-proof-tabs" role="tablist" aria-label="Proof tabs">
+        <button type="button" role="tab" aria-selected="true">Client Outcomes</button><button type="button" role="tab" aria-selected="false">Qualification</button>
       </div>
-
-      <div class="tabs-demo">
-        <div class="singular-tabs-shell" role="tablist" aria-label="Landing tab demo">
-          <button class="singular-tab-button" type="button" role="tab" aria-selected="true" data-tab="outcome"><span class="singular-tab-active"></span><span>Outcome</span></button>
-          <button class="singular-tab-button" type="button" role="tab" aria-selected="false" data-tab="system"><span>System</span></button>
-          <button class="singular-tab-button" type="button" role="tab" aria-selected="false" data-tab="motion"><span>Motion</span></button>
-        </div>
-        <div class="tab-panels">
-          <div class="singular-tab-panel tab-panel" data-panel="outcome" data-active="true">
-            <h3>Lead with the operating result.</h3>
-            <p class="page-subtitle">The DS keeps the page structure consistent while the page copy stays specific to the offer.</p>
-          </div>
-          <div class="singular-tab-panel tab-panel" data-panel="system">
-            <h3>Use tokens instead of page-local CSS.</h3>
-            <p class="page-subtitle">Cards, surfaces, sections, CTAs, and focus rings inherit the active page accent.</p>
-          </div>
-          <div class="singular-tab-panel tab-panel" data-panel="motion">
-            <h3>Keep motion intentional and cheap.</h3>
-            <p class="page-subtitle">Stars are static, marquees pause on hover, and reduced-motion removes transitions.</p>
-          </div>
-        </div>
+      <div class="website-home-outcomes__grid">
+        <article class="marketing-card"><strong>75%</strong><h3>Faster Setup</h3><p>First useful capability reaches operators faster because the system starts from the workflow.</p></article>
+        <article class="marketing-card"><strong>90%</strong><h3>Less Manual Reporting</h3><p>Recurring status, KPI, and follow-up work moves into governed reporting loops.</p></article>
+        <article class="marketing-card"><strong>40%</strong><h3>Fewer Bottlenecks</h3><p>Handoffs, approvals, and checks become visible enough to remove or automate.</p></article>
+        <article class="marketing-card"><strong>1</strong><h3>Source of Truth</h3><p>Teams stop rebuilding context and start working from the same operating picture.</p></article>
       </div>
     </div>
   </section>
 
-  <section id="proof" class="landing-section section-pad-m">
-    <div class="landing-container">
-      <div class="landing-heading landing-heading--center">
-        <span class="eyebrow eyebrow--brand">Proof cards</span>
-        <h2 class="landing-heading__title">Cards are reusable shells for metrics, quotes, and fit checks.</h2>
-      </div>
-      <div class="proof-grid">
-        <article class="marketing-card proof-card">
-          <div class="metric">3x</div>
-          <h3>Faster page assembly</h3>
-          <p>New landing pages can start from documented primitives instead of repeating one-off hero, card, tab, and CTA markup.</p>
-        </article>
-        <article class="marketing-card proof-card">
-          <div class="metric">1</div>
-          <h3>Brand surface</h3>
-          <p>The base stays azul/cyan; per-page accents are controlled variations, including the audit accent.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="landing-section section-pad-prefooter singular-cta-section">
-    <div class="landing-container">
-      <div class="singular-final-cta">
-        <h2>Use this as the source for the next Singular marketing page.</h2>
-        <p>The DS now carries the reusable decisions from singular-landing without taking its routes, content, or booking implementation.</p>
-        <div class="singular-final-cta__actions">
-          <a class="cta cta--accent premium-cta" href="./guide.md">Read the guide</a>
-          <a class="cta cta--secondary premium-cta" href="../../tokens/demo.html">Open tokens</a>
-        </div>
-      </div>
-    </div>
+  <section id="contact" class="landing-section section-pad-prefooter singular-cta-section website-home-closing">
+    <div class="landing-container"><div class="singular-final-cta"><h2>Ready to turn complexity into adopted AI workflows?</h2><p>Bring the painpoint. Map the first workflow and build the fastest path to a measurable capability.</p><div class="singular-final-cta__actions"><a class="cta cta--primary premium-cta" href="#top">Book a Strategy Call</a><a class="cta cta--secondary premium-cta" href="./guide.md">Read the guide</a></div></div></div>
   </section>
 </main>
 
 <script>
-  const accentButtons = document.querySelectorAll("[data-accent]");
-  accentButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      document.documentElement.dataset.pageAccent = button.dataset.accent;
-      accentButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-    });
-  });
-
   const tabButtons = document.querySelectorAll("[data-tab]");
   const panels = document.querySelectorAll("[data-panel]");
   tabButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      tabButtons.forEach((item) => {
-        item.setAttribute("aria-selected", String(item === button));
-        item.querySelector(".singular-tab-active")?.remove();
-      });
-      const active = document.createElement("span");
-      active.className = "singular-tab-active";
-      button.prepend(active);
-      panels.forEach((panel) => {
-        panel.dataset.active = String(panel.dataset.panel === button.dataset.tab);
-      });
+      tabButtons.forEach((item) => { item.setAttribute("aria-selected", String(item === button)); item.querySelector(".singular-tab-active")?.remove(); });
+      const active = document.createElement("span"); active.className = "singular-tab-active"; active.setAttribute("aria-hidden", "true"); button.prepend(active);
+      panels.forEach((panel) => { panel.dataset.active = String(panel.dataset.panel === button.dataset.tab); });
     });
   });
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const hero = document.querySelector("[data-interactive-hero]");
+    hero?.addEventListener("pointermove", (event) => {
+      const bounds = hero.getBoundingClientRect();
+      hero.style.setProperty("--hero-pointer-x", `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
+      hero.style.setProperty("--hero-pointer-y", `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
+    });
+  }
 </script>
 </body>
 </html>

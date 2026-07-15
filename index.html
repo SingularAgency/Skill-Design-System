@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="tokens/core-utilities.css" />
 <link rel="stylesheet" href="backgrounds/brand-background.css" />
 <link rel="stylesheet" href="surfaces/website-landing/website.css" />
+<link rel="stylesheet" href="surfaces/preview-shell.css" />
 <style>
   :root { --logo-icon: url("data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNjI3LjU5IDM3NC41MiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNlNjM0MDA7fS5jbHMtMntmaWxsOiMwMGQyZjQ7fS5jbHMtM3tmaWxsOiNmZmY7fTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTQyNy4wNSwyMzkuNDhhMTM3LjI4LDEzNy4yOCwwLDAsMC0zMC43Mi0xMS4xOCw2LjY5LDYuNjksMCwwLDAtNy4yOCwzLjExQTkzLjQ0LDkzLjQ0LDAsMCwxLDMwOC45MywyNzdoLS4xN2E5NC4wOCw5NC4wOCwwLDAsMS0zOC41Mi04LjMsNi42OCw2LjY4LDAsMCwwLTcuNzMsMS42MkExMzguMzYsMTM4LjM2LDAsMCwwLDI0My43NCwyOTdhNi42NCw2LjY0LDAsMCwwLDIuODQsOS4wNSwxMzcuNzgsMTM3Ljc4LDAsMCwwLDYyLjE2LDE0Ljg4aC4yYTEzNy4zMywxMzcuMzMsMCwwLDAsOTguNzUtNDIsMTM1Ljg2LDEzNS44NiwwLDAsMCwyMi4yMS0zMC4zOEE2LjY1LDYuNjUsMCwwLDAsNDI3LjA1LDIzOS40OFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01NzUuODIsMTY2LjQxYy0xMy4zNC0yLjA2LTMxLjcxLTMuOTQtNTQuMDYtNS41NmgtLjA2Yy0uOTEtLjA3LTEuODktLjEzLTMtLjIyLS41NSwwLTEuMTEtLjA4LTEuNy0uMTJsLTItLjE0LTIuMjEtLjE1LTEuNTUtLjEtMi44OS0uMTljLTIuMDctLjEyLTQuMi0uMjYtNi4zNC0uNGwtMS43LS4xYTUuNjIsNS42MiwwLDAsMC0uNywwbC0uNjIsMC0xLjU4LS4wOS0xLjM4LS4wOC0yLjY4LS4xNGMtLjQyLDAtLjg0LDAtMS4yMy0uMDdsLTEuMDUsMGMtNS4wNS0uMjItNi44LS4yNy04LjE0LS4zOS0uMjQsMC0uNDYtLjA2LS42OC0uMDksMCwwLDAsMC0uMDUsMC02LjcyLS44NC0xMi4yNy00Ljc2LTE3LjY3LTEwLjcxLTExLjUtMTIuNjMtMjIuMzUtMzQuNC00Mi4xOS01NS4yMmExNzcuMjcsMTc3LjI3LDAsMCwwLTMxLjE0LTI1Ljg4aDBhMTQ3LjIxLDE0Ny4yMSwwLDAsMC0xNjQuNiwwLDEsMSwwLDAsMC0uMjQuMTdBMTc1LjU3LDE3NS41NywwLDAsMCwxOTUuNCw5Mi41MWMtMjkuMTksMzAuNi0zOC44Nyw2My4yNy01OS44Nyw2NS45MiwwLDAsMCwwLS4wNSwwLS4yMiwwLS40NC4wNy0uNjguMDgtMS4zNC4xMy0zLjA3LjE4LTguMTMuNGwtMSwuMDUtMS4yNC4wNy0xLjczLjA5Yy0xLjU0LjA4LTMuMjcuMTctNS4yNC4yOWwtMS42OC4xYy0xLjA4LjA3LTIuMTQuMTQtMy4xOS4xOWwtMy4xNS4yYy0xLC4wNy0xLjk0LjE0LTIuOS4xOWwtMS41NC4xLTEuNDkuMTEtMi4xOS4xNS0uNjEsMGMtLjU4LDAtMS4xNC4wNy0xLjY5LjEybC0zLC4yM0g5NmMtNDguNzMsMy41Mi03OC41Niw4LjI5LTc4LjU2LDEzLjUxLDAsNy4zNiw1OS4xMiwxMy43OSwxNDYuODgsMTcuMmw0LjM1LjE3LDMuNDguMTRjOC41OS4yOSwxNy40MS41OCwyNi40OC44MnE4Ljc5LjI3LDE3Ljg0LjQ3YzQuNzMuMSw5LjUxLjIxLDE0LjM2LjI5LDI0Ljg0LjQ2LDUxLC43Miw3OC4wNi43MmgwYzIzLjU3LDAsNDYuNS0uMTgsNjguNDMtLjU0cTEyLjIxLS4yLDI0LS40NmM2LS4xNCwxMi0uMjksMTcuODMtLjQ2LDkuMDctLjI0LDE3LjktLjUzLDI2LjQ4LS44Mmw3Ljg0LS4zMWMxMS41NS0uNDUsMjIuNjItLjk0LDMzLjExLTEuNDksNjkuMi0zLjYzLDExMy43Ny05LjMsMTEzLjc3LTE1LjY5QzYwMC4zMiwxNzEuNTUsNTkxLjU4LDE2OC44Niw1NzUuODIsMTY2LjQxWm0tMTg1LjU3LDhIMjI3LjQ2YTkuNDksOS40OSwwLDAsMS05LjE5LTExLjhjNy0yOC4zLDM3LjA3LTY5LjMyLDkwLjYtNjkuMzFzODMuNTcsNDEsOTAuNTcsNjkuM0E5LjUsOS41LDAsMCwxLDM5MC4yNSwxNzQuMzdaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNDM2LjkzLDI1MS41OWExMzYuODIsMTM2LjgyLDAsMCwwLTMwLjcyLTExLjE5LDYuNzIsNi43MiwwLDAsMC03LjI4LDMuMTEsOTMuNDQsOTMuNDQsMCwwLDEtODAuMTIsNDUuNTloLS4xN2E5NC4wOCw5NC4wOCwwLDAsMS0zOC41Mi04LjMxLDYuNjksNi42OSwwLDAsMC03LjczLDEuNjMsMTM4LjA1LDEzOC4wNSwwLDAsMC0xOC43NywyNi42OSw2LjY0LDYuNjQsMCwwLDAsMi44NCw5LjA1QTEzNy41NiwxMzcuNTYsMCwwLDAsMzE4LjYyLDMzM2guMmExMzcuMjksMTM3LjI5LDAsMCwwLDk4Ljc1LTQyLDEzNS44NiwxMzUuODYsMCwwLDAsMjIuMjEtMzAuMzhBNi42NCw2LjY0LDAsMCwwLDQzNi45MywyNTEuNTlaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNTg1LjY5LDE3OC41MmMtMTMuMzMtMi4wNi0zMS43LTQtNTQuMDUtNS41NmgtLjA2bC0zLS4yMmMtLjU1LS4wNi0xLjExLS4wOS0xLjctLjEzcy0xLjM1LS4xLTItLjEzbC0yLjIxLS4xNi0xLjU1LS4xYy0xLS4wNS0xLjkxLS4xMi0yLjg5LS4xOWwtNi4zNC0uMzktMS43LS4xYy0uMjQsMC0uNDgsMC0uNywwbC0uNjIsMC0xLjU4LS4wOS0xLjM4LS4wOWMtMSwwLTEuODUtLjEtMi42OC0uMTNsLTEuMjMtLjA3LTEuMDUtLjA1Yy01LjA1LS4yMy02LjgtLjI4LTguMTQtLjQtLjI0LDAtLjQ2LDAtLjY4LS4wOGgtLjA1Yy02LjcyLS44NC0xMi4yNy00Ljc3LTE3LjY3LTEwLjcyLTExLjUtMTIuNjMtMjIuMzUtMzQuMzktNDIuMTktNTUuMjFhMTc3LjY4LDE3Ny42OCwwLDAsMC0zMS4xNC0yNS44OWgwYTE0Ny4xOCwxNDcuMTgsMCwwLDAtMTY0LjYsMCwxLDEsMCwwLDAtLjI0LjE2LDE3Ni40NiwxNzYuNDYsMCwwLDAtMzAuOTIsMjUuNzFjLTI5LjE5LDMwLjYxLTM4Ljg3LDYzLjI3LTU5Ljg3LDY1LjkyLDAsMCwwLDAsMCwwbC0uNjguMDhjLTEuMzQuMTItMy4wNy4xNy04LjEzLjM5bC0xLC4wNmMtLjQsMC0uODEuMDUtMS4yNC4wNnMtMS4xMy4wNi0xLjczLjA5Yy0xLjU0LjA4LTMuMjcuMTctNS4yNC4yOWwtMS42OC4xYy0xLjA4LjA3LTIuMTQuMTQtMy4xOS4xOWwtMy4xNS4yMS0yLjkuMTgtMS41NC4xMS0xLjQ5LjEtMi4xOS4xNWMtLjIxLDAtLjQyLDAtLjYxLDAtLjU4LDAtMS4xNC4wNy0xLjY5LjEybC0zLC4yMmgtLjA2Yy00OC43MywzLjUzLTc4LjU2LDguMjktNzguNTYsMTMuNTIsMCw3LjM1LDU5LjEyLDEzLjc4LDE0Ni44OCwxNy4ybDQuMzUuMTdMMTgyLDIwNGM4LjU5LjI5LDE3LjQxLjU4LDI2LjQ4LjgycTguNzkuMjUsMTcuODQuNDYsNy4wOS4xNiwxNC4zNi4zYzI0Ljg0LjQ2LDUxLC43Miw3OC4wNi43MmgwYzIzLjU3LDAsNDYuNS0uMTksNjguNDMtLjU0cTEyLjIxLS4yMSwyNC0uNDZjNi0uMTQsMTItLjMsMTcuODQtLjQ3LDkuMDctLjIzLDE3LjktLjUzLDI2LjQ4LS44Mmw3LjgzLS4zMWMxMS41Ni0uNDQsMjIuNjMtLjk0LDMzLjEyLTEuNDgsNjkuMi0zLjYzLDExMy43Ny05LjMsMTEzLjc3LTE1LjdDNjEwLjIsMTgzLjY2LDYwMS40NiwxODEsNTg1LjY5LDE3OC41MlptLTE4NS41Niw3Ljk1SDIzNy4zNGE5LjQ4LDkuNDgsMCwwLDEtOS4xOS0xMS43OWM3LTI4LjMsMzcuMDctNjkuMzIsOTAuNi02OS4zMnM4My41Nyw0MSw5MC41Nyw2OS4zQTkuNSw5LjUsMCwwLDEsNDAwLjEzLDE4Ni40N1oiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0zMDguNzEsMzIwLjloLjJhMTM3LjMsMTM3LjMsMCwwLDAsOTguNzUtNDIsMTM1LjYzLDEzNS42MywwLDAsMCwyMi4yMS0zMC4zOCwxLjE5LDEuMTksMCwwLDAsLjA4LS4yLDEzNi40NCwxMzYuNDQsMCwwLDAtMjMuNzctNy45Miw2LjY5LDYuNjksMCwwLDAtNy4yOCwzLjExLDkzLjQ0LDkzLjQ0LDAsMCwxLTgwLjEyLDQ1LjU5aC0uMTdhOTQuMDgsOTQuMDgsMCwwLDEtMzguNTItOC4zLDYuNjgsNi42OCwwLDAsMC03LjczLDEuNjIsMTM4LjM2LDEzOC4zNiwwLDAsMC0xOC43NywyNi42OWMwLC4wNy0uMDUuMTUtLjA5LjIyYTEzNy41NCwxMzcuNTQsMCwwLDAsNTUuMjEsMTEuNjFaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMTY4LjU5LDE5MS42N2wzLjQ4LjE0YzguNTkuMjksMTcuNDEuNTgsMjYuNDguODJxOC43OS4yNiwxNy44NC40N2wxNC4zNi4yOWMyNC44NC40Niw1MSwuNzIsNzguMDYuNzJoMGMyMy41NywwLDQ2LjUtLjE4LDY4LjQzLS41NHExMi4yMS0uMjEsMjQtLjQ2YzYtLjE0LDEyLS4yOSwxNy44NC0uNDYsOS4wNy0uMjQsMTcuOS0uNTMsMjYuNDgtLjgybDcuODMtLjMxYzExLjU2LS40NSwyMi42My0uOTQsMzMuMTEtMS40OSw1MC40OS0yLjY1LDg3Ljg0LTYuMzgsMTA0LjM3LTEwLjY5LTEuNjUtLjI5LTMuMzgtLjU4LTUuMjItLjg3LTEzLjMzLTIuMDUtMzEuNy0zLjk0LTU0LTUuNTVoLS4wNmwtMy0uMjNjLS41NS0uMDUtMS4xMS0uMDgtMS43LS4xMnMtMS4zNS0uMS0yLS4xM2wtMi4yMS0uMTYtMS41NS0uMWMtMS0uMDUtMS45MS0uMTItMi44OS0uMTlsLTYuMzQtLjM5LTEuNy0uMTEtLjcsMC0uNjIsMGMtLjU1LDAtMS4wNi0uMDctMS41OC0uMDhsLTEuMzgtLjA5Yy0xLS4wNS0xLjg1LS4xLTIuNjgtLjEzbC0xLjIzLS4wN0w1MDAuOSwxNzFjLTUtLjIzLTYuOC0uMjgtOC4xNC0uNC0uMjQsMC0uNDYsMC0uNjgtLjA5YS4wNS4wNSwwLDAsMS0uMDUsMGMtNi43Mi0uODQtMTIuMjctNC43Ny0xNy42Ny0xMC43MmExMTQuMjcsMTE0LjI3LDAsMCwxLTgtMTAuMTVjLS42Mi0uNjMtMS4yNC0xLjI3LTEuODYtMi04LjMzLTkuMTUtMTYuMzQtMjMuMS0yNy42NS0zOC0xLjUxLTEuNzEtMy0zLjQxLTQuNjYtNS4xMUExNzcuNzEsMTc3LjcxLDAsMCwwLDQwMSw3OC43aDBhMTQ3LjIxLDE0Ny4yMSwwLDAsMC0xNjQuNiwwLDEuNDYsMS40NiwwLDAsMC0uMjQuMTcsMTc1LjYzLDE3NS42MywwLDAsMC0zMC45MiwyNS43MWMtMjkuMTksMzAuNi0zOC44Nyw2My4yNy01OS44Nyw2NS45MiwwLDAsMCwwLDAsMC0uMjIsMC0uNDQuMDctLjY4LjA5LTEuMzQuMTItMy4wNy4xNy04LjEzLjM5bC0xLC4wNmMtLjQsMC0uODEsMC0xLjI0LjA2cy0xLjEzLDAtMS43My4wOWMtMS41NC4wOC0zLjI3LjE3LTUuMjQuMjlsLTEuNjguMWMtMS4wOC4wNy0yLjE0LjE0LTMuMTkuMTlsLTMuMTUuMjEtMi45LjE4LTEuNTQuMTEtMS40OS4xLTIuMi4xNWMtLjIsMC0uNDEsMC0uNiwwLS41OCwwLTEuMTQuMDctMS42OS4xMmwtMywuMjJoLS4wNmMtMzIuNiwyLjM2LTU2LjcyLDUuMjctNjkuMTMsOC41MSwyNC4yLDQuMjgsNjkuNjQsNy44NCwxMjcuNTcsMTAuMVptNDkuNjUtMjkuMTVjNy0yOC4zLDM3LjA3LTY5LjMyLDkwLjYtNjkuMzEsMzYuOCwwLDYyLjUxLDE5LjQsNzcuMjYsNDAuNzIsMTIuMzQsMTIuOTEsMjAuMDYsMjgsMjMuMTksNDAuNjhhOS41LDkuNSwwLDAsMS05LjE5LDExLjgySDIzNy4zMWE5LjQ4LDkuNDgsMCwwLDEtOS4xOS0xMS43OSwyLjgxLDIuODEsMCwwLDEsLjA4LS4zMWgtLjc3QTkuNSw5LjUsMCwwLDEsMjE4LjI0LDE2Mi41MloiLz48L3N2Zz4="); }
   body { margin: 0; font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
@@ -64,9 +65,35 @@
   .doc h4 { margin: 0 0 .15rem; font-size: .92rem; color: var(--foreground-strong); }
   .doc p { margin: 0; font-size: .8rem; color: var(--muted-foreground); }
   footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; color: var(--muted-foreground); font-size: .85rem; }
+
+  /* Index showcase: same composition and visual hierarchy as the current
+     singular-landing home, adapted to a design-system catalog. */
+  .ds-index { background-color: #070b17; }
+  .ds-index .nav { min-height: 4.5rem; padding-inline: clamp(1rem, 4vw, 4rem); border-color: rgb(81 130 214 / .28); background: rgb(7 11 23 / .86); }
+  .ds-index .nav .logo { color: #f7f9ff; }
+  .ds-index .nav a.link { margin-left: 0; padding: .52rem .8rem; border: 1px solid transparent; border-radius: var(--radius-full); color: #aab9d4; font-weight: 700; }
+  .ds-index .nav a.link:hover { border-color: rgb(57 140 255 / .4); color: #fff; }
+  .ds-index .hero { min-height: min(52rem, calc(100dvh - 4.5rem)); display: grid; place-items: center; isolation: isolate; }
+  .ds-index .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 36% 30% at 50% 52%, rgb(54 166 255 / .17), transparent 76%), radial-gradient(ellipse 54% 36% at 50% 12%, rgb(39 99 200 / .18), transparent 76%); }
+  .ds-index .hero .inner { padding: clamp(6rem, 11vw, 9rem) 1.5rem clamp(5rem, 10vw, 8rem); }
+  .ds-index h1 { max-width: 52rem; margin-inline: auto; font-size: clamp(2.8rem, 6vw, 5rem); letter-spacing: 0; line-height: 1; }
+  .ds-index .accent { background-image: linear-gradient(135deg, #4c86ff, #22d3ee); }
+  .ds-index .lead { color: #b8c5df; }
+  .ds-index section { border-top: 1px solid rgb(75 126 207 / .2); padding-block: clamp(5rem, 9vw, 8rem); }
+  .ds-index .h2 { font-size: clamp(2rem, 4vw, 3.35rem); letter-spacing: 0; }
+  .ds-index .sub { color: #b5c3dc; }
+  .ds-index .feat, .ds-index .demo-card, .ds-index .doc { border-color: rgb(72 124 208 / .36); border-radius: 8px; background: linear-gradient(145deg, rgb(29 57 94 / .74), rgb(10 27 55 / .82)); box-shadow: inset 0 1px 0 rgb(255 255 255 / .07), 0 18px 48px rgb(0 0 0 / .15); }
+  .ds-index .feat { min-height: 8rem; }
+  .ds-index .feat .ic { border-radius: 6px; color: #37c8ff; background: rgb(44 123 241 / .16); }
+  .ds-index .demo-card { border-width: 1px; }
+  .ds-index .demo-card:hover { transform: translateY(-4px); border-color: rgb(55 172 255 / .72); }
+  .ds-index .demo-card img { opacity: .9; }
+  .ds-index .doc { align-items: center; }
+  .ds-index footer { border-color: rgb(75 126 207 / .22); background: rgb(5 11 26 / .66); }
+  @media (max-width: 760px) { .ds-index .nav a.link:nth-of-type(n+3) { display: none; } }
 </style>
 </head>
-<body>
+<body class="ds-index">
 
 <nav class="nav">
   <a class="logo" href="#top"><span class="mk"></span> Singular Design System</a>
@@ -83,8 +110,8 @@
   <div class="brand-bg__stars" aria-hidden="true"></div>
   <div class="inner">
     <span class="eyebrow eyebrow--brand">Design System · Singular</span>
-    <h1>El sistema de diseño <span class="accent">de Singular</span></h1>
-    <p class="lead">Un solo set de tokens, componentes y fondos de marca para construir <strong>cualquier cosa de Singular</strong> con la misma identidad: sitios web, apps y dashboards, presentaciones, piezas de social y emails.</p>
+    <h1>Un sistema que viaja <span class="accent">por cada superficie.</span></h1>
+    <p class="lead">Tokens, componentes y fondos listos para construir sitios, producto, presentaciones, social y email con la identidad actual de Singular.</p>
     <div class="row">
       <a class="cta cta--accent" href="#demos">Ver los demos ↓</a>
       <a class="cta cta--secondary" href="#docs">Cómo se usa</a>
@@ -112,7 +139,7 @@
   <p class="sub">Cada tarjeta abre un ejemplo navegable. En el primero podés alternar marca (web/app) y tema (claro/oscuro) en vivo.</p>
   <div class="demos">
     <a class="demo-card" href="tokens/demo.html"><img src="previews/core.png" alt="Tokens y componentes" /><div class="b"><h3>Tokens & componentes <span class="tag app">core</span></h3><p>El motor: paleta, tipografía, botones, inputs, búsqueda, menús, tarjetas, tablas, KPIs…</p></div></a>
-    <a class="demo-card" href="backgrounds/demo.html"><img src="previews/backgrounds.png" alt="Fondo de marca" /><div class="b"><h3>Fondo de marca <span class="tag web">web</span></h3><p>El fondo animado de Singular (degradé + grilla + estrellas) que reacciona al mouse.</p></div></a>
+    <a class="demo-card" href="backgrounds/demo.html"><img src="previews/backgrounds.png" alt="Fondo de marca" /><div class="b"><h3>Fondo de marca <span class="tag web">web</span></h3><p>Canvas oscuro con grilla y estrellas estáticas; cursor interactivo solo como variante explícita.</p></div></a>
     <a class="demo-card" href="surfaces/web-app/demo.html"><img src="previews/web-app.png" alt="Web-app" /><div class="b"><h3>App / producto <span class="tag app">azul</span></h3><p>Dashboards y herramientas internas. Ejemplo: una pantalla de gestión de trabajo.</p></div></a>
     <a class="demo-card" href="surfaces/website-landing/demo.html"><img src="previews/website.png" alt="Website" /><div class="b"><h3>Website / landing <span class="tag web">cyan</span></h3><p>Sitios y páginas de marketing. Ejemplo: una landing de producto.</p></div></a>
     <a class="demo-card" href="surfaces/slides-presentations/demo.html"><img src="previews/slides.png" alt="Slides" /><div class="b"><h3>Presentaciones <span class="tag web">slides</span></h3><p>Decks on-brand: portada, contenido y datos, en 16:9.</p></div></a>
@@ -138,7 +165,7 @@
 <footer>
   Singular Design System · <a href="https://github.com/SingularAgency/Skill-Design-System">Repo</a> ·
   <a href="https://github.com/SingularAgency/Skill-Design-System/tree/main/assets">Assets</a><br>
-  Hecho con el propio sistema. 🪐
+  Hecho con el propio sistema.
 </footer>
 
 </body>

@@ -11,8 +11,11 @@
  * (theme-web.css + website.css + brand-background.css).
  */
 import { motion, useReducedMotion } from "framer-motion"
-import type { CSSProperties, ElementType, MouseEvent, ReactNode } from "react"
+import { useId, useState, type CSSProperties, type ElementType, type KeyboardEvent, type MouseEvent, type ReactNode } from "react"
 import { BrandBackground } from "../../backgrounds/BrandBackground"
+import { InteractiveHeroBackground } from "./InteractiveHeroBackground"
+
+export { InteractiveHeroBackground } from "./InteractiveHeroBackground"
 
 const REVEAL_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -97,7 +100,8 @@ export function HeroSection({
   titleClassName?: string
   subtitleClassName?: string
   visualClassName?: string
-  backgroundVariant?: "static" | "animated"
+  /** `interactive` mounts the cursor-responsive hero backdrop after pointer input. */
+  backgroundVariant?: "static" | "animated" | "interactive"
 }) {
   const resolvedLayout = layout ?? (visual ? "split" : "center")
 
@@ -110,7 +114,11 @@ export function HeroSection({
         className
       )}
     >
-      <BrandBackground asBackdrop variant={backgroundVariant} />
+      {backgroundVariant === "interactive" ? (
+        <InteractiveHeroBackground />
+      ) : (
+        <BrandBackground asBackdrop variant={backgroundVariant} />
+      )}
       <div className={cx("singular-hero-inner", resolvedLayout === "split" && "singular-hero-inner--split", contentClassName)}>
         <div className={cx("singular-hero-copy", resolvedLayout === "center" && "singular-hero-copy--center")}>
           {eyebrow && <Eyebrow className="singular-hero-eyebrow">{eyebrow}</Eyebrow>}
@@ -125,7 +133,7 @@ export function HeroSection({
   )
 }
 
-/* CTA simple — primary=blanco, accent=gradiente, secondary=glass outline. */
+/* CTA simple — primary=azul, accent=gradiente azul/cyan, secondary=glass. */
 export function CtaButton({
   cta,
   variant = "primary",
@@ -176,6 +184,100 @@ export function MarketingCard({ children, as, className = "", style }: { childre
   return <Comp className={cx("marketing-card card-surface--interactive", className)} style={style}>{children}</Comp>
 }
 
+export interface LandingTab {
+  id: string
+  label: ReactNode
+  panel: ReactNode
+  disabled?: boolean
+}
+
+/** Big-pill tabs with controlled/uncontrolled state and keyboard navigation. */
+export function LandingTabs({
+  tabs,
+  ariaLabel,
+  className = "",
+  defaultValue,
+  value,
+  onValueChange,
+}: {
+  tabs: LandingTab[]
+  ariaLabel: string
+  className?: string
+  defaultValue?: string
+  value?: string
+  onValueChange?: (id: string) => void
+}) {
+  const firstTab = tabs.find((tab) => !tab.disabled)?.id ?? ""
+  const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue ?? firstTab)
+  const activeValue = value ?? uncontrolledValue
+  const activeTab = tabs.find((tab) => tab.id === activeValue && !tab.disabled) ?? tabs.find((tab) => !tab.disabled)
+  const baseId = useId().replace(/:/g, "")
+
+  const select = (id: string) => {
+    if (value === undefined) setUncontrolledValue(id)
+    onValueChange?.(id)
+  }
+
+  const moveFocus = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const enabled = tabs.filter((tab) => !tab.disabled)
+    if (!enabled.length) return
+    const current = enabled.findIndex((tab) => tab.id === tabs[index]?.id)
+    const direction = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : event.key === "ArrowLeft" || event.key === "ArrowUp" ? -1 : 0
+    const next = event.key === "Home" ? 0 : event.key === "End" ? enabled.length - 1 : (current + direction + enabled.length) % enabled.length
+
+    if (!direction && event.key !== "Home" && event.key !== "End") return
+    event.preventDefault()
+    const nextTab = enabled[next]
+    select(nextTab.id)
+    document.getElementById(`${baseId}-tab-${nextTab.id}`)?.focus()
+  }
+
+  if (!activeTab) return null
+
+  return (
+    <div className={cx("landing-tabs", className)}>
+      <div className="singular-tabs-shell" role="tablist" aria-label={ariaLabel}>
+        {tabs.map((tab, index) => {
+          const selected = tab.id === activeTab.id
+          const tabId = `${baseId}-tab-${tab.id}`
+          const panelId = `${baseId}-panel-${tab.id}`
+          return (
+            <button
+              key={tab.id}
+              id={tabId}
+              className="singular-tab-button"
+              type="button"
+              role="tab"
+              aria-controls={panelId}
+              aria-selected={selected}
+              disabled={tab.disabled}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => select(tab.id)}
+              onKeyDown={(event) => moveFocus(event, index)}
+            >
+              {selected && <span className="singular-tab-active" aria-hidden="true" />}
+              <span>{tab.label}</span>
+            </button>
+          )
+        })}
+      </div>
+      {tabs.map((tab) => (
+        <div
+          key={tab.id}
+          id={`${baseId}-panel-${tab.id}`}
+          className="singular-tab-panel"
+          role="tabpanel"
+          aria-labelledby={`${baseId}-tab-${tab.id}`}
+          hidden={tab.id !== activeTab.id}
+          tabIndex={0}
+        >
+          {tab.panel}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 /* Chip de herramienta/sistema */
 export function SystemChip({ icon, label, className = "" }: { icon?: ReactNode; label: string; className?: string }) {
   return (
@@ -186,13 +288,23 @@ export function SystemChip({ icon, label, className = "" }: { icon?: ReactNode; 
   )
 }
 
-/* Marquee de logos (duplicar children para loop seamless) */
-export function LogoMarquee({ children, speed = "40s" }: { children: ReactNode; speed?: string }) {
+/* Marquee de logos: el duplicado es visual, no vuelve a anunciar el contenido. */
+export function LogoMarquee({
+  children,
+  speed = "40s",
+  ariaLabel = "Brand logos",
+  className = "",
+}: {
+  children: ReactNode
+  speed?: string
+  ariaLabel?: string
+  className?: string
+}) {
   return (
-    <div className="marquee-mask">
+    <div className={cx("marquee-mask", className)} aria-label={ariaLabel}>
       <div className="marquee" style={{ ["--marquee-speed" as string]: speed }}>
-        {children}
-        {children}
+        <div className="marquee__group">{children}</div>
+        <div className="marquee__group" aria-hidden="true">{children}</div>
       </div>
     </div>
   )
@@ -256,7 +368,7 @@ export function InlineLinkCTA({ href, children, className = "" }: { href: string
   return (
     <a href={href} className={cx("inline-link-cta", className)}>
       <span>{children}</span>
-      <span aria-hidden="true">-></span>
+      <span aria-hidden="true">{"->"}</span>
     </a>
   )
 }

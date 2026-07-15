@@ -100,6 +100,8 @@
 
 /* ── Capas animadas (variante .brand-bg--animated; las monta <BrandBackground>) ── */
 .brand-bg__aurora, .brand-bg__cursor { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.brand-bg:not(.brand-bg--animated) .brand-bg__aurora,
+.brand-bg:not(.brand-bg--animated) .brand-bg__cursor { display: none; }
 .brand-bg__aurora { overflow: hidden; }
 .brand-bg__aurora::before, .brand-bg__aurora::after {
   content: ""; position: absolute; width: 60vw; height: 60vw; border-radius: 50%;

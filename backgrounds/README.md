@@ -11,9 +11,11 @@ El fondo de Singular —niebla + grilla + estrellas— unificado, **tokenizado y
 ## Variantes
 | Variante | Capas | Uso |
 |---|---|---|
-| `animated` | mist + grid + stars estaticas + **aurora** + **cursor-glow (mouse-follow)** | Heros del website, landings de alto impacto |
+| `animated` | mist + grid + stars estaticas + **aurora** + **cursor-glow (mouse-follow)** | Heros del website que no necesiten la lente interactiva |
 | `static` | mist + grid + stars | Canvas de app (dashboards), fondos de plataforma, slides |
 | `flat` | solo color base | Detrás de tablas/contenido denso (legibilidad) |
+
+Para el hero público del home y variantes equivalentes, usar `InteractiveHeroBackground` de `surfaces/website-landing/InteractiveHeroBackground`. Agrega la lente, horizonte y glow reactivos al cursor sobre la base estática.
 
 ## Uso
 
@@ -46,7 +48,7 @@ import { BrandBackground } from "@singular/ds/backgrounds/BrandBackground"
 | `--brand-cursor-size/-strength/-opacity` | `520px / 10% / .32` | Glow de cursor en la variante `animated` |
 
 ## Performance
-Las estrellas son estaticas por defecto. No reintroducir animacion por `background-position`: en `singular-landing` esa deriva repintaba el layer completo y penalizaba Lighthouse/PSI sin aportar una diferencia visible.
+Las estrellas son estaticas por defecto. No reintroducir animacion por `background-position`: en `singular-landing` esa deriva repintaba el layer completo y penalizaba Lighthouse/PSI sin aportar una diferencia visible. La variante `animated` y `InteractiveHeroBackground` no montan capas reactivas ni un RAF hasta el primer movimiento de puntero; el smoothing se detiene cuando el cursor deja de moverse.
 
 ## Accesibilidad
 `prefers-reduced-motion: reduce` apaga aurora y cursor-glow (y el componente no engancha el listener de mouse). Las capas son `aria-hidden`.

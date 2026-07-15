@@ -65,7 +65,7 @@ Existe en **2 implementaciones sin código compartido**:
 → Unificable en un `<BrandBackground>` tokenizado (ver §3.3).
 
 ### 2.5 `singular-landing` es el modelo actual del perfil marketing
-Promueve `PageShell`, `HeroSection`, `Section`, `SectionHeading`, `CtaButton`, `MarketingCard`, `Reveal`, `LogoMarquee`, tabs, CTAs premium y accents por pagina. Las referencias previas a `custom-ai.tsx` quedan como antecedente historico.
+Promueve `PageShell`, `HeroSection`, `Section`, `SectionHeading`, `CtaButton`, `MarketingCard`, `Reveal`, `LogoMarquee`, tabs, CTAs premium y accents por pagina. El home suma un backdrop interactivo que responde al mouse; el DS lo expone como `InteractiveHeroBackground` portable y como `HeroSection backgroundVariant="interactive"`. Las referencias previas a `custom-ai.tsx` quedan como antecedente historico.
 
 ### 2.6 Componentes — portabilidad Next → Vite
 - **Altamente portables** (cero/casi-cero acople a Next): `ui/card`, `ui/button`, `ui/badge`, `status-badge`, `empty-state`, `pill-filter`, `kpi-card`, `data-table-patterns`, `side-modal-layout`.
@@ -126,7 +126,7 @@ brand-app.css → --primary: #4567ed; escala azul; neutrales navy tintados; radi
 
 ### 3.3 Sistema de fondos `<BrandBackground>`
 Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **reduced-motion en todas**.
-- **Variantes:** `brand-animated` (hero web, mouse-follow + aurora) · `brand-static` (canvas app, CSS) · `flat-dark` · `flat-tinted`.
+- **Variantes:** `brand-animated` (aurora + cursor glow), `InteractiveHeroBackground` (hero website con lente mouse-follow), `brand-static` (canvas app, CSS) · `flat-dark` · `flat-tinted`.
 - **Capas:** `mist` (radiales) · `grid` · `stars` · `aurora` · `cursor-glow` (toggles).
 - **Tokens:** `--brand-bg-hue` (= `--primary`), `--brand-grid-size`, `--brand-stars-density`, `--brand-mist-strength`, `--brand-cursor-*`.
 - **A11y/performance:** las estrellas quedan estaticas por defecto; `@media (prefers-reduced-motion)` apaga aurora/cursor y transiciones no esenciales.
@@ -173,11 +173,13 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 > - **Demo + docs:** `demo.html` reescrito (verificado light+dark en browser), `guide.md` + `components/README.md` + `SKILL.md` actualizados.
 
 ### Fase 5 — Perfil website/landing (promover singular-landing)
-- **Tareas:** promover desde `singular-landing` los patrones reutilizables: `PageShell`, `HeroSection`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `LogoMarquee`; tokenizar page accents, card/button/motion tokens, section rhythm y tabs. No portar booking providers, rutas ni contenido del sitio.
+- **Tareas:** promover desde `singular-landing` los patrones reutilizables: `PageShell`, `HeroSection`, `InteractiveHeroBackground`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `LogoMarquee`, `LandingTabs`; tokenizar page accents, card/button/motion tokens, section rhythm y tabs. No portar booking providers, rutas ni contenido del sitio.
 - **Entregable:** `tokens/brand-web.css`, `surfaces/website-landing/guide.md`, `primitives.tsx`, `website.css`, `demo.html`.
 - **Done:** una landing se arma con primitivos del DS y puede cambiar `data-page-accent` sin CSS local.
 
-> **Avance (2026-07-03) — perfil website/landing actualizado desde `singular-landing`.** Se promovieron los tokens dark-first azul/cyan, accents por pagina, card/elevation tokens, CTA premium, big-pill tabs, hero recipes, final CTA y la mejora de performance del fondo: estrellas estaticas por defecto, sin animacion por `background-position`.
+> **Avance (2026-07-14) — perfil website/landing actualizado desde la implementación actual de `singular-landing`.** Se promovieron los tokens dark-first azul/cyan, accents por pagina, card/elevation tokens, CTA premium, big-pill tabs accesibles, hero recipes, final CTA y `InteractiveHeroBackground`: backdrop mouse-follow portable con base estática, activación por interacción y reduced-motion. Las estrellas permanecen estáticas; no se anima `background-position`. El CTA principal queda fijado a `--button-*` azul/cyan y no hereda acentos púrpura.
+
+> **Aprendizajes transferibles (2026-07-14) —** además del perfil marketing, se promovieron al core los patrones de `singular-landing` que no dependen de rutas ni contenido: `MetricStrip` para proof/KPIs, `ComparisonTable` para decisiones, `SourceTag` para citas/contexto y `LazyVisible` para diferir contenido costoso. También se centralizaron utilidades de atmósfera de sección, clipping, reduced-motion y forced-colors. El detalle de qué se porta y qué queda en el host vive en `references/singular-landing-portable-patterns.md`.
 
 ### Fase 6 — Perfiles slides + social/email
 - **Tareas:** `slides-presentations/` (specs de marca para Gamma; alinear theme); `social-email/email.md` (migrar s-mail-v1); `social.md` (specs Meta nuevas).
