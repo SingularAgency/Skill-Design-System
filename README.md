@@ -47,12 +47,20 @@ Publicado en **GitHub Pages** (no hace falta clonar):
 
 En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo. (Local: `open tokens/demo.html`.)
 
+Todos los previews cargan `surfaces/preview-shell.css`: canvas dark-first, grilla y estrellas estáticas, chrome azul/cyan y elevación consistente. Cada demo conserva la ergonomía de su propia superficie en vez de convertirse en una landing genérica.
+
+Los patrones portables aprendidos de `singular-landing` están documentados en
+[`references/singular-landing-portable-patterns.md`](./references/singular-landing-portable-patterns.md)
+y se entregan como `MetricStrip`, `ComparisonTable`, `SourceTag` y `LazyVisible`.
+Así la misma lógica de prueba, contexto, comparación y performance puede viajar
+entre website, app, slides y social sin copiar componentes de negocio.
+
 ## Fuentes de verdad
 
 | Perfil | Repo / fuente |
 |---|---|
 | **web-app** (azul) | [`v0-singular-stories-app`](https://github.com/SingularAgency/v0-singular-stories-app) — `app/globals.css` es la verdad de tokens del perfil app |
-| **website-landing** (cyan) | `singular-landing` — rama `codex/home-gargantua-scroll-camera`, tokens en `src/index.css` + primitivas en `src/components/marketing/MarketingPrimitives.tsx` |
+| **website-landing** (cyan) | `singular-landing` — implementación actual del website; tokens en `src/index.css`, primitivas en `src/components/marketing/MarketingPrimitives.tsx` y hero interactivo del home en `src/app/components/HomeGargantuaBackground.tsx` |
 | skills legacy | `legacy/` (recuperadas de bundles `.skill` + copias runtime de Cowork) |
 
 ## Decisiones

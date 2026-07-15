@@ -15,7 +15,7 @@
  *
  * a11y: respeta prefers-reduced-motion (sin listener, sin aurora/cursor).
  */
-import { useEffect, useRef, type ReactNode } from "react"
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react"
 
 export type BrandBackgroundVariant = "animated" | "static" | "flat"
 
@@ -27,7 +27,7 @@ export interface BrandBackgroundProps {
    *  `absolute inset-0`, es aria-hidden y NO envuelve children. */
   asBackdrop?: boolean
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
   children?: ReactNode
 }
 
@@ -40,6 +40,7 @@ export function BrandBackground({
   children,
 }: BrandBackgroundProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const [interactive, setInteractive] = useState(false)
 
   useEffect(() => {
     if (variant !== "animated") return
@@ -49,21 +50,37 @@ export function BrandBackground({
 
     let raf = 0
     let tx = 50, ty = 28, cx = 50, cy = 28
+    let running = false
     const onMove = (e: MouseEvent) => {
       const r = el.getBoundingClientRect()
       tx = ((e.clientX - r.left) / r.width) * 100
       ty = ((e.clientY - r.top) / r.height) * 100
+      if (!running) {
+        running = true
+        raf = requestAnimationFrame(tick)
+      }
     }
     const tick = () => {
       cx += (tx - cx) * 0.08
       cy += (ty - cy) * 0.08
       el.style.setProperty("--mx", `${cx}%`)
       el.style.setProperty("--my", `${cy}%`)
-      raf = requestAnimationFrame(tick)
+      if (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.05) {
+        raf = requestAnimationFrame(tick)
+      } else {
+        running = false
+      }
     }
-    window.addEventListener("mousemove", onMove)
-    raf = requestAnimationFrame(tick)
+    const activate = (e: PointerEvent) => {
+      setInteractive(true)
+      onMove(e)
+      window.addEventListener("mousemove", onMove, { passive: true })
+    }
+    // There is no visual value before a real pointer interaction. Deferring the
+    // RAF and animated layers protects hero LCP and idle CPU time.
+    window.addEventListener("pointermove", activate, { passive: true, once: true })
     return () => {
+      window.removeEventListener("pointermove", activate)
       window.removeEventListener("mousemove", onMove)
       cancelAnimationFrame(raf)
     }
@@ -73,6 +90,7 @@ export function BrandBackground({
     "brand-bg",
     variant === "flat" && "brand-bg--flat",
     variant === "animated" && "brand-bg--animated",
+    interactive && "brand-bg--interactive",
     asBackdrop && "brand-bg--backdrop",
     className,
   ]
@@ -81,9 +99,9 @@ export function BrandBackground({
 
   return (
     <div ref={ref} className={cls} style={style} aria-hidden={asBackdrop || undefined}>
-      {variant === "animated" && <div className="brand-bg__aurora" aria-hidden="true" />}
+      {variant === "animated" && interactive && <div className="brand-bg__aurora" aria-hidden="true" />}
       {stars && variant !== "flat" && <div className="brand-bg__stars" aria-hidden="true" />}
-      {variant === "animated" && <div className="brand-bg__cursor" aria-hidden="true" />}
+      {variant === "animated" && interactive && <div className="brand-bg__cursor" aria-hidden="true" />}
       {!asBackdrop && <div className="brand-bg__content">{children}</div>}
     </div>
   )

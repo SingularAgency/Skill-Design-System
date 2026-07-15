@@ -24,12 +24,26 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 | Branding | `Logo`, `SingularFullLogo`, `PoweredByFooter` | Theme-aware; assets → Fase 9. |
 | Modales (andamiaje) | `side-modal-layout`, `side-modal-expandable-card`, `side-modal-pill-tabs-row` | El *patrón* es universal. |
 | Tablas (kit) | `data-table-patterns.ts` | Clases, no componente. |
+| Proof / datos | `MetricStrip` | `<dl>` responsive para métricas, resultados y KPIs; sirve en web, app, slides y social. |
+| Comparación | `ComparisonTable` | Tabla semántica de dos columnas con outcome destacado por tokens. |
+| Contexto | `SourceTag` | Tag compacto para fuente, cita, dataset o salida de IA. |
+| Performance | `LazyVisible` | Monta contenido pesado cerca del viewport con `IntersectionObserver`. |
+| Layout / motion | `section-atmosphere`, `overflow-clip-x`, `text-gradient-safe` | Utilidades portadas de singular-landing con reduced-motion y forced-colors. |
 
 ## APP / producto (específicos de Singular Stories)
 KPI de dominio (`KpiCard`/`KpiRow` acoplados a `settings-context`), modales de entidad (`story/sprint/okr/epic/issue/...-detail-modal`), `entity-modal-stack-host`, `goal-tree`, `pert-gantt`, `qa-charts-*`, payments (`payments-*`), sprints/stories (`story-views`, `stories-table`, `sprint-sp-distributor`), talent (`talent-*`), sidebars de producto (`app/admin/client-sidebar`), `app-header`.
 
 ## Marketing / website (perfil website-landing)
-`PageShell`, `HeroSection`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `SystemChip`, `LogoMarquee` → ver `surfaces/website-landing/primitives.tsx`.
+`PageShell`, `HeroSection`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `SystemChip`, `LogoMarquee`, `LandingTabs` → ver `surfaces/website-landing/primitives.tsx`.
+
+`InteractiveHeroBackground` vive en `surfaces/website-landing/InteractiveHeroBackground.tsx`: backdrop mouse-follow portable, activado sólo después de interacción y sin acople a rutas, booking o contenido. `HeroSection backgroundVariant="interactive"` lo monta automáticamente.
+
+Los patrones que atraviesan superficies se mantienen en `components/` y no dentro de
+`website-landing`: `MetricStrip` para prueba/KPI, `ComparisonTable` para decisiones,
+`SourceTag` para contexto y `LazyVisible` para diferir gráficos, media o carruseles.
+La implementación sigue las garantías observadas en `singular-landing`: targets de
+interacción amplios, `aria` semántico, lazy loading de contenido pesado y fallback
+cuando `IntersectionObserver` no existe.
 
 No se portan al DS los providers de booking, rutas, navbar/footer ni datos comerciales de `singular-landing`; esos quedan en el sitio host.
 

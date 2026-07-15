@@ -5,30 +5,32 @@
 <link id="brand" rel="stylesheet" href="../tokens/brand-app.css">
 <link rel="stylesheet" href="../tokens/core-utilities.css">
 <link rel="stylesheet" href="./brand-background.css">
+<link rel="stylesheet" href="../surfaces/preview-shell.css">
 <style>
   body{margin:0;font-family:var(--font-sans);color:var(--foreground)}
-  .bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:.4rem;background:color-mix(in srgb,#000 35%,var(--card));border:1px solid var(--border);border-radius:var(--radius-full);padding:.35rem}
+  .bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:.4rem;background:color-mix(in srgb,#070b17 80%,transparent);border:1px solid rgb(75 133 225/.42);border-radius:var(--radius-full);padding:.35rem;backdrop-filter:blur(14px)}
   .bar button{font:inherit;font-size:.8rem;cursor:pointer;border:0;border-radius:var(--radius-full);padding:.4rem .9rem;background:transparent;color:var(--foreground)}
   .bar button.on{background-image:var(--gradient-primary);color:var(--primary-foreground)}
   .hero{min-height:100vh;display:grid;place-items:center;padding:40px}
   .brand-bg__content{text-align:center;max-width:600px}
   h1{font-size:3rem;margin:.4rem 0 1rem;letter-spacing:-.025em;color:var(--foreground-strong)}
-  .accent{background-image:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .accent{background-image:linear-gradient(135deg,#4c86ff,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
   p{color:var(--muted-foreground);font-size:1.05rem;line-height:1.6}
   .btn{margin-top:1.6rem;background-image:var(--gradient-primary);color:var(--primary-foreground);border:0;border-radius:var(--radius-full);padding:.7rem 1.5rem;font:inherit;font-weight:600;cursor:pointer;box-shadow:0 2px 10px rgb(0 0 0/.35),inset 0 1px 0 rgb(255 255 255/.2)}
 </style></head><body>
 <div class="bar">
   <button id="b-app" class="on" onclick="setBrand('app')">App (azul)</button>
-  <button id="b-web" onclick="setBrand('web')">Web (rojo)</button>
+  <button id="b-web" onclick="setBrand('web')">Web (azul/cyan)</button>
+  <button id="motion" onclick="toggleMotion()">Cursor: off</button>
 </div>
-<section id="bg" class="brand-bg brand-bg--animated hero" style="--mx:50%;--my:35%">
+<section id="bg" class="brand-bg hero" style="--mx:50%;--my:35%">
   <div class="brand-bg__aurora" aria-hidden="true"></div>
   <div class="brand-bg__stars" aria-hidden="true"></div>
   <div class="brand-bg__cursor" aria-hidden="true"></div>
   <div class="brand-bg__content">
     <div class="eyebrow" style="justify-content:center">Singular Design System</div>
-    <h1>Fondo <span class="accent">animado</span> de marca</h1>
-    <p>Aurora + grilla + estrellas + glow que sigue el mouse. Tokenizado y ligado a <code>--primary</code> — cambiá de marca y se re-tinta solo. Movés el cursor y reacciona.</p>
+    <h1>Fondo de marca <span class="accent">con intención</span></h1>
+    <p>La grilla y las estrellas son estáticas. El glow de cursor es una variante explícita, tokenizada y ligada a <code>--primary</code>.</p>
     <button class="btn">Empezar</button>
   </div>
 </section>
@@ -36,8 +38,21 @@
   function setBrand(w){document.getElementById('brand').href = w==='web'?'../tokens/brand-web.css':'../tokens/brand-app.css';
     document.getElementById('b-app').classList.toggle('on',w==='app');document.getElementById('b-web').classList.toggle('on',w==='web');}
   const _p=new URLSearchParams(location.search); if(_p.get('brand')==='web') setBrand('web');
-  const el=document.getElementById('bg'); let tx=50,ty=35,cx=50,cy=35;
-  addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();tx=(e.clientX-r.left)/r.width*100;ty=(e.clientY-r.top)/r.height*100});
-  (function tick(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;el.style.setProperty('--mx',cx+'%');el.style.setProperty('--my',cy+'%');requestAnimationFrame(tick)})();
+  const el=document.getElementById('bg'); const motion=document.getElementById('motion');
+  let enabled=false, running=false, tx=50,ty=35,cx=50,cy=35;
+  function tick(){
+    cx+=(tx-cx)*.08; cy+=(ty-cy)*.08;
+    el.style.setProperty('--mx',cx+'%'); el.style.setProperty('--my',cy+'%');
+    if(enabled && Math.abs(tx-cx)+Math.abs(ty-cy)>.05) requestAnimationFrame(tick); else running=false;
+  }
+  function toggleMotion(){
+    enabled=!enabled; el.classList.toggle('brand-bg--animated',enabled);
+    motion.classList.toggle('on',enabled); motion.textContent=enabled?'Cursor: on':'Cursor: off';
+  }
+  addEventListener('mousemove',e=>{
+    if(!enabled) return;
+    const r=el.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width*100; ty=(e.clientY-r.top)/r.height*100;
+    if(!running){running=true;requestAnimationFrame(tick)}
+  });
 </script>
 </body></html>
