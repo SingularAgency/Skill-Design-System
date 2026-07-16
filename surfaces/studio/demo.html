@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Singular Studio profile</title>
+  <link rel="stylesheet" href="../../tokens/core.css" />
+  <link rel="stylesheet" href="../../tokens/brand-app.css" />
+  <link rel="stylesheet" href="../../tokens/core-utilities.css" />
+  <link rel="stylesheet" href="../../backgrounds/brand-background.css" />
+  <link rel="stylesheet" href="../preview-shell.css" />
+  <link rel="stylesheet" href="studio.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font-sans); }
+    button { font: inherit; }
+    .demo-studio { min-height: 100dvh; position: relative; isolation: isolate; }
+    .demo-studio .brand-bg { position: fixed; inset: 0; z-index: -1; }
+    .studio-conversation { display: flex; flex-direction: column; padding: 1rem; }
+    .brand { color: var(--foreground-strong); font-weight: 700; letter-spacing: -.02em; }
+    .thread { display: grid; gap: .75rem; margin-top: 1.5rem; }
+    .message { border: 1px solid var(--border); border-radius: var(--radius-card); padding: .9rem; background: color-mix(in srgb, var(--card) 84%, transparent); color: var(--foreground); line-height: 1.5; }
+    .message.user { margin-left: 2rem; border-color: color-mix(in srgb, var(--primary) 38%, var(--border)); }
+    .trace { display: grid; gap: .6rem; margin-top: 1rem; }
+    .trace-row { display: grid; grid-template-columns: 8px 1fr auto; gap: .65rem; align-items: start; color: var(--muted-foreground); font-size: .78rem; }
+    .dot { width: 8px; height: 8px; margin-top: .3rem; border-radius: 50%; background: var(--success-foreground); box-shadow: 0 0 0 4px color-mix(in srgb, var(--success) 24%, transparent); }
+    .composer { margin-top: auto; border: 1px solid var(--border); border-radius: var(--radius-card); padding: .8rem; background: var(--card); color: var(--muted-foreground); }
+    .workspace-top { display: flex; justify-content: space-between; gap: 1rem; align-items: center; color: var(--muted-foreground); font-size: .8rem; }
+    .workspace-top strong { color: var(--foreground-strong); }
+    .studio-preview { display: grid; place-items: center; background: linear-gradient(145deg, #f8fafc, #e2e8f0); }
+    .preview-card { width: min(88%, 38rem); padding: 2rem; color: #0f172a; border-radius: 1rem; background: white; box-shadow: 0 18px 54px rgb(15 23 42 / .14); }
+    .preview-card h2 { margin: 0 0 .65rem; font-size: clamp(1.5rem, 4vw, 2.6rem); }
+    .preview-card p { color: #475569; line-height: 1.6; }
+    .evidence-tabs { display: flex; gap: .35rem; padding: .45rem; }
+    .evidence-tabs button { min-height: 44px; border: 0; border-radius: var(--radius-full); padding: 0 1rem; background: transparent; color: var(--muted-foreground); }
+    .evidence-tabs .active { background: var(--sidebar-nav-active); color: var(--interactive); }
+    .decision-copy { color: var(--muted-foreground); font-size: .82rem; }
+    .primary-action { min-height: 44px; border: 0; border-radius: var(--radius-full); padding: 0 1.1rem; color: white; background: var(--button-gradient-primary); box-shadow: var(--button-shadow-primary); }
+    @media (max-width: 767px) { .studio-workspace { display: none; } }
+  </style>
+</head>
+<body>
+  <main class="demo-studio">
+    <div class="brand-bg" aria-hidden="true"><div class="brand-bg__stars"></div></div>
+    <div class="studio-shell">
+      <aside class="studio-conversation" aria-label="Conversation">
+        <div class="brand">Singularity Studio</div>
+        <div class="thread">
+          <div class="message user">Make the sprint summary easier for clients to scan.</div>
+          <div class="message">I mapped the request to the summary cards and mobile hierarchy. The proposed change is ready for review.</div>
+        </div>
+        <div class="trace studio-agent-trace" aria-label="Agent activity">
+          <div class="trace-row"><span class="dot"></span><span>Product Owner · checked scope and blast radius</span><span>1.2s</span></div>
+          <div class="trace-row"><span class="dot"></span><span>UX/UI Agent · updated hierarchy and spacing</span><span>2.8s</span></div>
+          <div class="trace-row"><span class="dot"></span><span>QA Agent · verified responsive states</span><span>1.7s</span></div>
+        </div>
+        <div class="composer">Describe a revision…</div>
+      </aside>
+
+      <section class="studio-workspace" aria-label="Preview workspace">
+        <div class="workspace-top">
+          <strong>Client preview</strong>
+          <span>Desktop · 1440 px · sandbox</span>
+        </div>
+        <div class="studio-preview">
+          <article class="preview-card">
+            <p class="eyebrow">Sprint 18 · Pre-work</p>
+            <h2>Clear decisions before execution starts.</h2>
+            <p>The preview is visually separate from Studio chrome, so users can judge the product change rather than the editing tool.</p>
+          </article>
+        </div>
+        <div class="studio-evidence">
+          <div class="evidence-tabs" role="tablist" aria-label="Result evidence">
+            <button class="active" role="tab" aria-selected="true">Preview</button>
+            <button role="tab" aria-selected="false">Diff</button>
+            <button role="tab" aria-selected="false">Sources</button>
+          </div>
+        </div>
+        <div class="studio-decision-bar">
+          <span class="decision-copy">Ready for review · no external change has been published.</span>
+          <button class="primary-action">Approve revision</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

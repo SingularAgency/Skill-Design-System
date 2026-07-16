@@ -1,47 +1,50 @@
 /* ============================================================
- * Brand profile: APP (producto / web-app) — primary AZUL
+ * Brand profile: APP (producto / web-app) — action blue
  * ============================================================
  * Fuente de verdad: v0-singular-stories-app/app/globals.css.
  * Carga junto a core.css. Light por defecto + .dark.
- * Todo el chrome se deriva de --primary vía color-mix → cambiar
- * --primary re-tinta la UI (el "motor multi-marca").
+ * Identity stays anchored in --brand-primary (#4567ed). Product
+ * interaction uses the brighter --primary (#0b84ff) observed in
+ * Singular Stories. Both remain in the same blue/cyan family.
  * ============================================================ */
 
 :root {
   /* ── Marca ── */
-  --primary: #4567ed;            /* singular-primary-400 — fills, bg-primary */
+  --brand-primary: #4567ed;
+  --brand-cyan: #22d3ee;
+  --primary: #0b84ff;
   --primary-foreground: #ffffff;
-  --primary-strong: #1741e8;     /* azul de acción — CTAs, links */
-  --primary-strong-hover: #1234ba;
+  --primary-strong: #0067d6;
+  --primary-strong-hover: #0054b3;
   --radius-card: var(--radius-xl); /* rounded-xl en la app */
 
-  --singular-primary: #4567ED;
-  --singular-primary-100: #D1D9FA; --singular-primary-200: #A2B3F6;
-  --singular-primary-300: #748DF1; --singular-primary-400: #4567ED;
-  --singular-primary-500: #1741E8; --singular-primary-600: #1234BA;
-  --singular-primary-700: #0E278B; --singular-primary-800: #091A5D;
-  --singular-primary-900: #050D2E;
+  --singular-primary: #0b84ff;
+  --singular-primary-100: #dff3ff; --singular-primary-200: #b8e3ff;
+  --singular-primary-300: #7ccaff; --singular-primary-400: #2fa7ff;
+  --singular-primary-500: #0b84ff; --singular-primary-600: #0067d6;
+  --singular-primary-700: #0054b3; --singular-primary-800: #073f7d;
+  --singular-primary-900: #062a52;
 
-  /* Secundario = cyan (un solo lenguaje de color para todo Singular) */
-  --singular-secondary: #06b6d4;
-  --singular-secondary-100: #CFF6FE; --singular-secondary-200: #A5EEFD;
-  --singular-secondary-300: #67E8F9; --singular-secondary-400: #22D3EE;
-  --singular-secondary-500: #06B6D4; --singular-secondary-600: #0891B2;
-  --singular-secondary-700: #0E7490; --singular-secondary-800: #155E75;
-  --singular-secondary-900: #164E63;
+  --singular-secondary: #128dff;
+  --singular-secondary-100: #e2f4ff; --singular-secondary-200: #b9e4ff;
+  --singular-secondary-300: #7fd0ff; --singular-secondary-400: #2fa7ff;
+  --singular-secondary-500: #128dff; --singular-secondary-600: #006edb;
+  --singular-secondary-700: #0756a9; --singular-secondary-800: #073f7d;
+  --singular-secondary-900: #062a52;
 
-  --singular-coral: #22d3ee; --singular-cyan: #06b6d4; --singular-purple: #6366f1;
-  --singular-blue: #3B82F6;  --singular-yellow: #f59e0b; --singular-red: #f87171;
-  --singular-green: #10b981;
+  --singular-coral: #0b84ff; --singular-cyan: #0d9488; --singular-purple: #0b84ff;
+  --singular-blue: #0b84ff; --singular-yellow: #d97706; --singular-red: #dc2626;
+  --singular-green: #16a34a;
 
   /* ── Interactive ── */
-  --interactive: #1741e8;        --interactive-hover: #1234ba;
-  --interactive-fill: #4567ed;   --interactive-fill-hover: #1741e8;
-  --ring: #1741e8;
+  --interactive: #0b84ff;        --interactive-hover: #0067d6;
+  --interactive-fill: #0b84ff;   --interactive-fill-hover: #0067d6;
+  --interactive-muted: color-mix(in srgb, var(--singular-primary-500) 8%, #ffffff);
+  --ring: #0b84ff;
 
   /* Gradientes de marca (botones/CTA) — azul → cyan (unificado con el perfil web) */
-  --gradient-primary: linear-gradient(135deg, #4567ed 0%, #22d3ee 100%);
-  --gradient-primary-hover: linear-gradient(135deg, #1741e8 0%, #06b6d4 100%);
+  --gradient-primary: linear-gradient(135deg, #0b84ff 0%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #0067d6 0%, #06b6d4 100%);
 
   /* ── Surface (neutrales tintados al primary) ── */
   --background: color-mix(in srgb, var(--primary) 4%, #f6f8fd);
@@ -74,9 +77,11 @@
   /* Section route tabs (big-pill): clearance bajo el header + gap al título */
   --section-tabs-top-inset: 1.5rem; /* 24px */
   --section-tabs-to-title-gap: 60px;
+  --page-header-standalone-top-inset: 72px;
+  --gap-filters-to-grid: 1.25rem;
 
   /* ── Charts (light: escala azul mono) ── */
-  --chart-1: #1741E8; --chart-2: #4567ED; --chart-3: #748DF1; --chart-4: #A2B3F6; --chart-5: #D1D9FA;
+  --chart-1: #0b84ff; --chart-2: #2fa7ff; --chart-3: #7ccaff; --chart-4: #b8e3ff; --chart-5: #dff3ff;
 
   /* ── Surface gradient (liquid glass) ── */
   --surface-gradient-from: #e3e8fa; --surface-gradient-to: #eaeefb;
@@ -85,6 +90,19 @@
   --button-outline-border: #2b4182;
   --button-outline-foreground: var(--primary);
   --button-outline-hover-bg: color-mix(in srgb, var(--primary) 14%, transparent);
+  --button-primary: #0b84ff;
+  --button-primary-hover: #0067d6;
+  --button-primary-foreground: #ffffff;
+  --button-primary-border: color-mix(in srgb, #22d3ee 42%, transparent);
+  --button-gradient-primary:
+    linear-gradient(180deg, color-mix(in srgb, #ffffff 16%, transparent), transparent 48%),
+    linear-gradient(135deg, #0b84ff 0%, #22d3ee 100%);
+  --button-gradient-primary-hover:
+    linear-gradient(180deg, color-mix(in srgb, #ffffff 20%, transparent), transparent 50%),
+    linear-gradient(135deg, #0067d6 0%, #06b6d4 100%);
+  --button-shadow-primary:
+    0 16px 42px -22px color-mix(in srgb, #22d3ee 72%, transparent),
+    inset 0 1px 0 rgb(255 255 255 / 0.18);
   --card-translucent-surface: color-mix(in srgb, var(--singular-secondary-100) 20%, color-mix(in srgb, var(--singular-primary-100) 22%, color-mix(in srgb, var(--primary) 4.5%, #f3f5fc)));
   /* anchos de popover/command (theme-independent) */
   --container-popover-sm: 16rem; --container-popover-md: 26.25rem; --container-popover-lg: 31.25rem; --container-popover-xl: 45rem;
@@ -103,15 +121,16 @@
   --input: color-mix(in srgb, var(--primary) 14%, #2a3150);
   --sheet-content: color-mix(in srgb, var(--primary) 7%, #12172a);
 
-  --interactive: #8babff;          --interactive-hover: #c4d4ff;
-  --interactive-fill: #4567ed;     --interactive-fill-hover: #1741e8;
-  --ring: #6f8fff;
+  --interactive: #7ccaff;          --interactive-hover: #c8ecff;
+  --interactive-fill: #0b84ff;     --interactive-fill-hover: #0067d6;
+  --interactive-muted: color-mix(in srgb, var(--interactive-fill) 16%, #1a1f36);
+  --ring: #7ccaff;
 
   --sidebar: #121528; --sidebar-foreground: #C4CED9;
   --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1c2138; --sidebar-border: #2a3150;
   --sidebar-nav-hover: rgb(255 255 255 / 0.06);
-  --sidebar-nav-active: color-mix(in srgb, var(--primary) 22%, #1c2138);
+  --sidebar-nav-active: color-mix(in srgb, var(--primary) 28%, #2a3358);
 
   /* Header well + search (dark) */
   --header-well-bg: color-mix(in srgb, #000 22%, var(--sidebar));
@@ -121,10 +140,12 @@
 
   /* Componentes (dark): outline hover + card glass */
   --button-outline-hover-bg: color-mix(in srgb, var(--primary) 18%, transparent);
+  --button-primary: #0b84ff;
+  --button-primary-hover: #0067d6;
   --card-translucent-surface: rgb(38 46 82 / 0.4);
 
   /* Charts (dark: multicolor saturado para leer sobre navy) */
-  --chart-1: #6f8fff; --chart-2: #3ECFEF; --chart-3: #94B8FF; --chart-4: #F0B429; --chart-5: #5EEAD4;
+  --chart-1: #7ccaff; --chart-2: #3ecfef; --chart-3: #b8e3ff; --chart-4: #f0b429; --chart-5: #5eead4;
 
   --surface-gradient-from: #171e35; --surface-gradient-to: #162144;
 }

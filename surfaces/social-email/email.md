@@ -17,7 +17,7 @@ Emails de Singular (marketing, transaccional, newsletter). Hereda de la marca co
 | Fondo | `#050505` (dark) / `#f4f4f7` (light) |
 | Card | `#0f0f10` / `#ffffff` |
 | Texto | `#f5f5f5` / `#1a202c` · secundario `#9aa0aa` |
-| Acento / CTA | `#4567ed` · link `#e8806c` (dark) / `#1741e8` (light) |
+| Acento / CTA | `#4567ed` · link `#7ccaff` (dark) / `#1741e8` (light) |
 | Tipografía | Poppins (títulos) → fallback Arial; Inter (cuerpo) → fallback Helvetica |
 
 ## Reglas

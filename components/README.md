@@ -11,6 +11,8 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 |---|---|
 | **web-app** | `surfaces/web-app/navigation.tsx` (sistema de navegación: SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabs, PageHeader, PoweredByFooter), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal), `patterns.ts` (big-pill-tabs, data-table-patterns), `web-app.css`. |
 | **website-landing** | `surfaces/website-landing/primitives.tsx` + `website.css` (patrones promovidos desde `singular-landing`). |
+| **studio** | `surfaces/studio/patterns.ts` + `studio.css` + `guide.md` (state model y layout chat/canvas/evidence). |
+| **ios-app** | `surfaces/ios-app/SingularFoundation.swift` + `SingularPrimitives.swift` (tokens y primitivas SwiftUI portables). |
 
 ## CORE universal (cualquier superficie web)
 | Familia | Componentes | Notas |
@@ -32,6 +34,33 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 
 ## APP / producto (específicos de Singular Stories)
 KPI de dominio (`KpiCard`/`KpiRow` acoplados a `settings-context`), modales de entidad (`story/sprint/okr/epic/issue/...-detail-modal`), `entity-modal-stack-host`, `goal-tree`, `pert-gantt`, `qa-charts-*`, payments (`payments-*`), sprints/stories (`story-views`, `stories-table`, `sprint-sp-distributor`), talent (`talent-*`), sidebars de producto (`app/admin/client-sidebar`), `app-header`.
+
+### Patrones candidatos observados en Stories
+
+No copiarlos sin limpiar dependencias. Son candidatos para próximas promociones:
+
+- `DataGrid`, `DataCard`, `DataCardGrid`, `ListPagination`.
+- `GridSectionHeader`, `EdgeFadeScroller`, `LabelWithHint`.
+- `StatusDropdown` con la regla read-only badge en grids / edición en detail.
+- `AiProcessButton`, `ChartExplainer`.
+
+Promover sólo cuando la API sea router/data-agnostic y exista un segundo uso o
+una necesidad clara del core.
+
+## Studio / AI workspace
+
+El DS define contratos, no la orquestación:
+
+- conversation rail, agent trace, preview canvas, evidence tabs y decision bar;
+- estados `idle|understanding|planning|working|review|blocked|failed|published`;
+- no marcar `published/live/merged` sin confirmación externa;
+- SSE, MCP, permisos, prompts y publish quedan en Singularity.
+
+## iOS / SwiftUI
+
+El foundation portable incluye spacing, radius, elevation, dynamic colors,
+typography roles, surfaces, action buttons, detail headers, metric tiles y
+empty states. Approval/KYC/biometric/Slack y jerarquía Stories quedan en la app.
 
 ## Marketing / website (perfil website-landing)
 `PageShell`, `HeroSection`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `SystemChip`, `LogoMarquee`, `LandingTabs` → ver `surfaces/website-landing/primitives.tsx`.

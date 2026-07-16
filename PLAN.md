@@ -2,7 +2,7 @@
 
 > Documento vivo. Guía la construcción del **design system universal de marca Singular**: un solo sistema, usable por cualquier persona del equipo, para cualquier superficie (website, landing, web-app, slides, social, email), entregado como **skill de Claude + tokens + assets versionados**.
 >
-> **Estado:** Fase 5 actualizada — perfil website/landing promovido desde `singular-landing`.
+> **Estado:** Fase 10 completada — arquitectura multiplataforma, perfiles Studio/iOS, manifest, governance y tooling.
 > **Fecha de arranque:** 2026-06-02.
 
 ---
@@ -11,16 +11,19 @@
 
 | # | Decisión | Detalle |
 |---|---|---|
-| D1 | **Un solo primary azul/cyan** | 🔵 Azul `#4567ed` + gradiente **azul→cyan** + acentos cyan, para **todas** las superficies. App y web difieren solo en la *surface* (navy / negro), no en el color. (El rojo y el dual quedaron descartados — evolución: rojo → cyan → un solo azul/cyan.) |
+| D1 | **Una identidad azul/cyan** | Anchor `#4567ed` + gradiente azul→cyan para todas las superficies. Los perfiles pueden usar un action blue más brillante sin crear otra marca. |
 | D2 | **Arquitectura: núcleo + perfiles** | Una skill madre con un **core de marca** (tokens, voz, a11y, motion) + **sub-perfiles por superficie**. `singular-design-app-v2` se **incrusta** como perfil `web-app` (sigue leyendo el `globals.css` de Stories como su verdad). `.sds-*` se **deprecan como sistema de clases**, pero se rescata su andamiaje (`references/`: audit-checklist, decision-tree, patterns). |
-| D3 | **Superficies v1** | Las 4: `website-landing`, `web-app`, `slides-presentations`, `social-email`. |
+| D3 | **Superficies** | `website-landing`, `web-app`, `studio`, `ios-app`, `slides-presentations`, `social`, `email`. |
 | D4 | **Arranque** | Este documento maestro primero; luego ejecución paso a paso. |
 | D5 | **Assets en el mismo repo** | Logos y símbolos de marca viven en `assets/` de este repo (se descartó el repo aparte `singular-skill-assets`). |
+| D6 | **Foundation + platform + surface + domain** | El DS centraliza contratos compartidos; cada producto conserva routing, datos, permisos, orquestación y copy. |
+| D7 | **Identidad ≠ interacción** | Anchor corporativo `#4567ed`; action blue de producto `#0b84ff`; cyan `#22d3ee`. Los perfiles adaptan interacción sin crear marcas paralelas. |
+| D8 | **Distribución verificable** | `design-system.json` + exporter de snapshots + manifest de release/commit. No más copias manuales sin versión. |
 
 ### Decisiones derivadas / pendientes de confirmar
 - **Valores exactos de neutrales por perfil** (web negro `#050505`/`#010203` vs app navy tintado): a afinar con diseño. La arquitectura no depende del valor final.
 - **Contradicción de radius** (`rounded-2xl` web vs `rounded-xl` app): se resuelve como **default por perfil**, no como regla global. El core define la escala; cada perfil elige su radio de card.
-- **Hex final del primary**: dual confirmado; valores afinables con diseño.
+- **Neutrales y contraste**: revisar por plataforma sin cambiar los anchors de identidad.
 
 ---
 
@@ -28,7 +31,7 @@
 
 Auditoría histórica en 5 frentes sobre `v0-singular-stories-app`, `FramerSingular`, el sistema de fondos y el ecosistema de skills. Para el perfil website/landing actual, usar `singular-landing` como fuente.
 
-### 2.1 Tres design systems que se contradicen
+### 2.1 Hallazgo histórico: tres design systems que se contradecían
 | | `s-skill-v1` (marca/web) | `singular-design-app-v2` (Stories) | `singular-design-system` (.sds-*) |
 |---|---|---|---|
 | Clases | Tailwind + `--sg-*` | Tailwind/shadcn | `.sds-*` propietarias |
@@ -37,7 +40,7 @@ Auditoría histórica en 5 frentes sobre `v0-singular-stories-app`, `FramerSingu
 | Tipografía | Poppins+Georgia+Inter | Poppins+JetBrains Mono | roles `.sds-text-*` |
 | Fuente de verdad | bundle `.skill` (no hallado) | `globals.css` de Stories | repo `singular-design-system-2026` (no clonado) |
 
-**Actualizacion 2026-07-03:** el perfil website/landing ya no toma `FramerSingular` como fuente. La fuente actual es `singular-landing`, rama `codex/home-gargantua-scroll-camera`, con marca base azul/cyan y variaciones por `data-page-accent`. Rojo/naranja queda reservado para semantica o auditoria, no como marca base.
+**Actualizacion 2026-07-03:** el perfil website/landing ya no toma `FramerSingular` como fuente. La fuente actual es la rama de trabajo vigente de `singular-landing`, con marca base azul/cyan y variaciones por `data-page-accent`. Rojo/naranja queda reservado para semantica o auditoria, no como marca base.
 
 ### 2.2 El motor multi-marca (la joya técnica)
 El `globals.css` de Stories deriva **todo el chrome** de `--primary` vía `color-mix(in srgb, var(--primary) X%, <neutral base>)`. Cambiar `--primary` re-tinta toda la UI. **Es el mecanismo que habilita el sistema dual sin rediseñar nada** — el primary es *un token*.
@@ -55,7 +58,7 @@ Status (`--success/--warning/--info/--destructive`) son semánticos compartidos 
 - **Radius real** de Stories: `--radius: 0.5rem` (no `0.75rem` ni `rounded-xl`/`rounded-2xl` como dicen las skills).
 - Stack real: Next **16.1.6**, React **19.2.4**, Tailwind **4.2**, recharts.
 - Status real = `--success/--warning/--info/--destructive`, no el `--status-*` que documenta la skill.
-- "primary #4567ed" oculta el rol dual: el azul de **acción** (links/ring/CTAs) es `#1741e8` (`--primary-strong`/`--interactive`).
+- Tratar `#4567ed` como única variable ocultaba la diferencia entre identidad y acción. En julio de 2026 Stories usa `#0b84ff` para interacción de producto.
 
 ### 2.4 Sistema de fondos de marca (gradient + grilla + stars)
 Existe en **2 implementaciones sin código compartido**:
@@ -100,6 +103,8 @@ singular-design-system/                ← skill madre (la consolidada)
   surfaces/
     website-landing/guide.md           ← perfil marketing (primitivos de singular-landing)
     web-app/guide.md                   ← incrusta singular-design-app-v2 (lee globals.css de Stories)
+    studio/guide.md                    ← chat + agentes + preview + evidencia
+    ios-app/guide.md                   ← mapping y primitivas SwiftUI
     slides-presentations/guide.md      ← specs de marca para Gamma/PPTX
     social-email/
       email.md                         ← s-mail-v1 migrado
@@ -120,7 +125,7 @@ core.css     → --background, --card, --border, --muted, --accent… = color-mi
                escala --gap-*, --radius*, tipografía, --text-2xs/3xs
 
 brand-web.css → --primary azul/cyan; surface dark-first; `data-page-accent` para home/solutions/agentic/success/audit/editorial; radius-card 1.5rem
-brand-app.css → --primary: #4567ed; escala azul; neutrales navy tintados; radius-card xl
+brand-app.css → --brand-primary: #4567ed; --primary: #0b84ff; neutrales navy tintados; radius-card xl
 ```
 **Trabajo clave de la Fase 2:** tokenizar las islas de §2.2 para que cada profile re-tinte completo (hoy quedarían "islas azules" si solo cambiás `--primary`).
 
@@ -184,7 +189,7 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 ### Fase 6 — Perfiles slides + social/email
 - **Tareas:** `slides-presentations/` (specs de marca para Gamma; alinear theme); `social-email/email.md` (migrar s-mail-v1); `social.md` (specs Meta nuevas).
 - **Entregable:** las 2 superficies restantes documentadas.
-- **Done:** las 4 superficies cubiertas en la skill madre.
+- **Done:** slides, social y email cubiertos en la skill madre.
 
 ### Fase 7 — Aplicar al website (piloto real)
 - **Tareas:** consumir el DS actualizado desde `singular-landing`; reemplazar patrones locales equivalentes por primitivas del DS; validar tipografía/spacing/a11y/performance; luego roll-out a páginas clave.
@@ -201,6 +206,15 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Entregable:** `assets/` con los assets oficiales versionados junto al resto del DS.
 - **Done:** todo el DS convive en un solo repo; sin assets duplicados por tema. *(Se descartó el repo aparte `singular-skill-assets`: todo vive acá.)*
 
+### Fase 10 — Arquitectura multiplataforma + governance ✅
+- **Tareas:** auditar los cuatro productos activos; agregar perfiles `studio` e
+  `ios-app`; separar identidad de interacción; crear manifest machine-readable,
+  contrato para agentes, governance, export de snapshots y auditoría de drift.
+- **Entregable:** `design-system.json`, `references/{architecture,adoption-and-governance,ai-agent-contract,product-audit-2026-07}.md`,
+  `surfaces/{studio,ios-app}/`, `scripts/{export-snapshot,audit-products}.mjs`.
+- **Done:** humanos y agentes pueden elegir una superficie, entender ownership,
+  exportar una distribución reproducible y detectar drift entre repos.
+
 ---
 
 ## 5. Riesgos y pendientes
@@ -209,6 +223,10 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Repos no clonados** (`claude-marketplace`, `singular-design-system-2026`): clonar en Fase 1 para no perder material de `.sds-*`.
 - **Contradicción de radius**: resuelta por perfil; verificar que no rompa expectativas de ningún producto en uso.
 - **app-v2 lee `globals.css` de Stories**: el perfil web-app queda acoplado a ese repo; mantener el contrato de "Stories es la verdad del perfil app".
+- **Paquete web pendiente**: los snapshots son el contrato actual; migrar a
+  package registry cuando las APIs portables se estabilicen.
+- **Rollout separado**: actualizar los snapshots/implementaciones de cada
+  producto en PRs propios para no mezclar cambios de dominio con foundation.
 
 ### Follow-ups (abiertos tras el pase del 2026-06-04)
 - **Rotar la Figma key** `figd_…` en `v0-singular-stories-app/components/sidebar-shell.tsx` (estaba embebida en el snippet MCP; **no viajó** al DS pero sigue viva en Stories).
