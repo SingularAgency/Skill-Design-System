@@ -32,6 +32,13 @@ const products = productArgs.length
 
 const extensions = new Set([".css", ".tsx", ".ts", ".jsx", ".js", ".swift"])
 const excluded = new Set(["node_modules", ".next", ".git", "DerivedData", "build", "dist"])
+const snapshotPaths = [
+  "design-system/singular/.singular-ds-snapshot.json",
+  "src/design-system/singular/.singular-ds-snapshot.json",
+]
+const vendoredRoots = snapshotPaths.map((snapshotPath) =>
+  path.dirname(snapshotPath).split("/").join(path.sep),
+)
 const rules = [
   { id: "hex", pattern: /#[0-9a-fA-F]{6,8}\b|0x[0-9a-fA-F]{6}\b/g },
   { id: "arbitrary-radius", pattern: /rounded-\[[^\]]+\]|cornerRadius:\s*\d+|border-radius:\s*\d+(?:\.\d+)?/g },
@@ -72,24 +79,28 @@ for (const product of products) {
   const files = await walk(product.root)
   const counts = Object.fromEntries(rules.map((rule) => [rule.id, 0]))
   let snapshotRelease = null
+  let snapshotCommit = null
+  let snapshotDirty = null
 
   for (const file of files) {
     const relative = path.relative(product.root, file)
-    if (relative.startsWith(`design-system${path.sep}singular${path.sep}`)) continue
+    if (vendoredRoots.some((root) => relative.startsWith(`${root}${path.sep}`))) continue
     const content = await readFile(file, "utf8")
     for (const rule of rules) counts[rule.id] += content.match(rule.pattern)?.length ?? 0
   }
 
-  try {
-    const snapshot = JSON.parse(
-      await readFile(
-        path.join(product.root, "design-system/singular/.singular-ds-snapshot.json"),
-        "utf8",
-      ),
-    )
-    snapshotRelease = snapshot.release ?? null
-  } catch {
-    // Products without a vendored snapshot are expected.
+  for (const snapshotPath of snapshotPaths) {
+    try {
+      const snapshot = JSON.parse(
+        await readFile(path.join(product.root, snapshotPath), "utf8"),
+      )
+      snapshotRelease = snapshot.release ?? null
+      snapshotCommit = snapshot.sourceCommit?.slice(0, 12) ?? null
+      snapshotDirty = snapshot.sourceDirty ?? null
+      break
+    } catch {
+      // Try the next supported snapshot location.
+    }
   }
 
   report.push({
@@ -97,6 +108,8 @@ for (const product of products) {
     root: product.root,
     files: files.length,
     snapshotRelease,
+    snapshotCommit,
+    snapshotDirty,
     ...counts,
   })
 }

@@ -70,6 +70,18 @@ node scripts/audit-products.mjs \
   --workspace=/path/containing/the/four/repos
 ```
 
+When a migration lives in another Git worktree, override its path explicitly:
+
+```bash
+node scripts/audit-products.mjs \
+  --product=singular-landing:/path/to/singular-landing-ui-update \
+  --product=singularity-2026:/path/to/singularity-2026
+```
+
+The audit recognizes snapshots vendored at either `design-system/singular` or
+`src/design-system/singular`, excludes their copied source from drift counts,
+and reports release, source commit and dirty-source metadata.
+
 Review:
 
 - hardcoded color/radius growth;

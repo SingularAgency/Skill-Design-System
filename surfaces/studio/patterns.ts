@@ -31,8 +31,10 @@ export const studioRunStateMeta: Record<
 
 export const studioLayoutPatterns = {
   shell: "studio-shell",
+  shellLayout: "studio-shell-layout",
   conversation: "studio-conversation",
   workspace: "studio-workspace",
+  workspaceLayout: "studio-workspace-layout",
   preview: "studio-preview",
   evidence: "studio-evidence",
   decisionBar: "studio-decision-bar",

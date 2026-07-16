@@ -1,7 +1,7 @@
 {
   "name": "singular-design-system",
   "schemaVersion": 1,
-  "release": "2026.07",
+  "release": "2026.07.1",
   "brand": {
     "anchor": "#4567ed",
     "action": "#0b84ff",
@@ -33,29 +33,33 @@
       "id": "singular-landing",
       "repository": "SingularAgency/singular-landing",
       "surface": "website-landing",
-      "sourcePaths": ["src/index.css", "src/components/marketing/MarketingPrimitives.tsx"],
-      "adoption": "upstream-reference"
+      "sourcePaths": ["src/design-system/singular/", "src/index.css", "src/components/marketing/MarketingPrimitives.tsx"],
+      "adoption": "vendored-snapshot",
+      "implementationStatus": "working-tree"
     },
     {
       "id": "singular-stories-web",
       "repository": "SingularAgency/v0-singular-stories-app",
       "surface": "web-app",
       "sourcePaths": ["app/globals.css", "components/", "scripts/check-design-system.mjs"],
-      "adoption": "upstream-reference"
+      "adoption": "host-integrated",
+      "implementationStatus": "merged"
     },
     {
       "id": "singular-stories-ios",
       "repository": "SingularAgency/ss-ios-prototype",
       "surface": "ios-app",
       "sourcePaths": ["SingularApprovals/Theme.swift", "SingularApprovals/DesignSystem/"],
-      "adoption": "upstream-reference"
+      "adoption": "host-integrated",
+      "implementationStatus": "merged"
     },
     {
       "id": "singularity-studio",
       "repository": "SingularAgency/singularity-2026",
       "surface": "studio",
       "sourcePaths": ["design-system/singular/", "components/studio/", "app/globals.css"],
-      "adoption": "vendored-snapshot"
+      "adoption": "vendored-snapshot",
+      "implementationStatus": "working-tree"
     }
   ],
   "bundles": {
@@ -107,7 +111,8 @@
       "references/architecture.md",
       "references/adoption-and-governance.md",
       "references/ai-agent-contract.md",
-      "references/product-audit-2026-07.md"
+      "references/product-audit-2026-07.md",
+      "references/adoption-audit-2026-07-16.md"
     ]
   }
 }

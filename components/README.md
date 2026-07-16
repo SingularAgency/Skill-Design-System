@@ -11,7 +11,7 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 |---|---|
 | **web-app** | `surfaces/web-app/navigation.tsx` (sistema de navegación: SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabs, PageHeader, PoweredByFooter), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal), `patterns.ts` (big-pill-tabs, data-table-patterns), `web-app.css`. |
 | **website-landing** | `surfaces/website-landing/primitives.tsx` + `website.css` (patrones promovidos desde `singular-landing`). |
-| **studio** | `surfaces/studio/patterns.ts` + `studio.css` + `guide.md` (state model y layout chat/canvas/evidence). |
+| **studio** | `surfaces/studio/patterns.ts` + `studio.css` + `guide.md` (state model, chrome y layout opt-in chat/canvas/evidence). |
 | **ios-app** | `surfaces/ios-app/SingularFoundation.swift` + `SingularPrimitives.swift` (tokens y primitivas SwiftUI portables). |
 
 ## CORE universal (cualquier superficie web)
@@ -59,8 +59,9 @@ El DS define contratos, no la orquestación:
 ## iOS / SwiftUI
 
 El foundation portable incluye spacing, radius, elevation, dynamic colors,
-typography roles, surfaces, action buttons, detail headers, metric tiles y
-empty states. Approval/KYC/biometric/Slack y jerarquía Stories quedan en la app.
+typography roles, `SingularSemanticTone`, surfaces, action buttons, detail
+headers, metric tiles y empty states. Approval/KYC/biometric/Slack y jerarquía
+Stories quedan en la app.
 
 ## Marketing / website (perfil website-landing)
 `PageShell`, `HeroSection`, `Section`, `SectionHeading`, `Eyebrow`, `CtaButton`, `MarketingCard`, `TestimonialCard`, `FinalCTA`, `InlineLinkCTA`, `Reveal`, `SystemChip`, `LogoMarquee`, `LandingTabs` → ver `surfaces/website-landing/primitives.tsx`.

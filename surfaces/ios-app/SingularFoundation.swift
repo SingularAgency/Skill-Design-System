@@ -75,10 +75,16 @@ public extension Color {
   static let singularGreen = Color(red: 34 / 255, green: 197 / 255, blue: 94 / 255)
   static let singularAmber = Color(red: 245 / 255, green: 158 / 255, blue: 11 / 255)
   static let singularRed = Color(red: 239 / 255, green: 68 / 255, blue: 68 / 255)
+  static let singularViolet = Color(red: 139 / 255, green: 92 / 255, blue: 246 / 255)
 
   static let singularBackground = Color(
     uiColor: UIColor { traits in
       traits.userInterfaceStyle == .dark ? UIColor(hex: 0x000000) : UIColor(hex: 0xFFFFFF)
+    }
+  )
+  static let singularBackgroundSecondary = Color(
+    uiColor: UIColor { traits in
+      traits.userInterfaceStyle == .dark ? UIColor(hex: 0x03050B) : UIColor(hex: 0xF8FAFC)
     }
   )
   static let singularPanel = Color(
@@ -108,19 +114,52 @@ public extension Color {
       traits.userInterfaceStyle == .dark ? UIColor(hex: 0x94A3B8) : UIColor(hex: 0x475569)
     }
   )
+  static let singularTextMuted = Color(
+    uiColor: UIColor { _ in UIColor(hex: 0x64748B) }
+  )
 }
 
 public extension Font {
-  static let singularPageTitle = Font.system(size: 28, weight: .bold)
+  static let singularPageTitle = Font.system(.title, design: .default, weight: .bold)
   static let singularTitle = Font.system(.title3, design: .default, weight: .semibold)
   static let singularHeading = Font.system(.headline, design: .default, weight: .semibold)
-  static let singularBody = Font.system(.body)
+  static let singularBody = Font.system(.body, design: .default, weight: .regular)
   static let singularBodyEmphasis = Font.system(.body, design: .default, weight: .semibold)
-  static let singularSubheadline = Font.system(.subheadline)
-  static let singularMeta = Font.system(.footnote)
+  static let singularTaskStory = Font.system(.body, design: .default, weight: .regular)
+  static let singularSubheadline = Font.system(.subheadline, design: .default, weight: .regular)
+  static let singularMeta = Font.system(.footnote, design: .default, weight: .regular)
   static let singularMetaEmphasis = Font.system(.footnote, design: .default, weight: .semibold)
   static let singularEyebrow = Font.system(.caption, design: .default, weight: .semibold)
   static let singularMetric = Font.system(.title2, design: .default, weight: .semibold).monospacedDigit()
+  static let singularInlineMetric = Font.system(.headline, design: .default, weight: .semibold).monospacedDigit()
+}
+
+public enum SingularSemanticTone: Hashable {
+  case neutral
+  case info
+  case success
+  case warning
+  case destructive
+  case accent
+
+  public var tint: Color {
+    switch self {
+    case .neutral: .singularTextSecondary
+    case .info: .singularAction
+    case .success: .singularGreen
+    case .warning: .singularAmber
+    case .destructive: .singularRed
+    case .accent: .singularCyan
+    }
+  }
+
+  public var softFill: Color {
+    tint.opacity(0.08)
+  }
+
+  public var subtleStroke: Color {
+    tint.opacity(0.16)
+  }
 }
 
 private extension UIColor {
