@@ -30,6 +30,21 @@ backgrounds for empty/onboarding moments and respect reduced motion.
 On mobile, expose conversation and preview as explicit peer views. Do not stack
 the full desktop shell into a narrow canvas.
 
+## Layout ownership
+
+`studio.css` separates semantic chrome from composition:
+
+- `studio-shell`, `studio-conversation`, `studio-workspace`, `studio-preview`,
+  `studio-evidence` and `studio-decision-bar` provide the visual contract.
+- `studio-shell-layout` opts into the reference two-column rail/canvas grid.
+- `studio-workspace-layout` opts into the reference preview/evidence/decision
+  stack.
+
+Use the layout classes only when the host follows the reference composition.
+Existing products may keep their own responsive shell and apply only the
+semantic classes. Do not override shared classes with `!important` merely to
+undo a reference grid.
+
 ## State model
 
 Use the exported states in `patterns.ts`:

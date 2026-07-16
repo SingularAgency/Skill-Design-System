@@ -19,10 +19,12 @@ in the host app.
 | Web role | SwiftUI role |
 |---|---|
 | `--background` | `Color.singularBackground` |
+| nested page background | `Color.singularBackgroundSecondary` |
 | `--card` | `Color.singularPanel` |
 | `--muted` / nested surface | `Color.singularPanelRaised` |
 | `--foreground` | `Color.singularTextPrimary` |
 | `--muted-foreground` | `Color.singularTextSecondary` |
+| tertiary metadata | `Color.singularTextMuted` |
 | brand anchor | `Color.singularBrand` |
 | product action | `Color.singularAction` |
 | spacing/radius vars | `SingularSpacing` / `SingularRadius` |
@@ -38,6 +40,9 @@ Dynamic Type and platform legibility remain native.
 - Support Dynamic Type without clipped primary actions.
 - Use continuous rounded rectangles and the radius scale.
 - Keep status color subtle: icon, label, stroke or soft fill.
+- Use `SingularSemanticTone` for portable neutral/info/success/warning/error
+  treatment. Map approval phases, sprint stages and other domain enums to those
+  tones inside the host app.
 - Use `SingularSurface` rather than repeating rounded rectangle chrome.
 - Use `SingularActionButtonStyle`; avoid mixing arbitrary native button styles
   across product surfaces.
@@ -67,6 +72,7 @@ cards, drill-down screens or native lists.
 
 ## Adoption
 
-The current `ss-ios-prototype` already contains mature product-specific
-primitives. Reconcile it by replacing duplicate foundation values with these
-files, then keep approval-specific components in the app repository.
+The current `ss-ios-prototype` validated the expanded background/text roles,
+Dynamic Type typography and soft semantic treatments in a real Swift 6 build.
+Keep its `ApprovalPhase`, `WorkSurface`, KYC, Slack and Stories mappings in the
+app repository; only the generic `SingularSemanticTone` contract is portable.

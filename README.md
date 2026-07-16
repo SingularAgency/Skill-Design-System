@@ -79,6 +79,8 @@ node scripts/export-snapshot.mjs \
 
 El export escribe `.singular-ds-snapshot.json` con release, commit y bundles.
 Ver [`references/adoption-and-governance.md`](./references/adoption-and-governance.md).
+El estado verificado de los cuatro productos vive en
+[`references/adoption-audit-2026-07-16.md`](./references/adoption-audit-2026-07-16.md).
 
 ## Usar como skill
 
@@ -98,7 +100,9 @@ node scripts/audit-products.mjs --workspace=/path/to/Projects
 
 El reporte mide drift potencial (hex, radius, type y adopción de tokens). No
 convierte todos los literales en errores: email, charts y puentes nativos pueden
-tener excepciones documentadas.
+tener excepciones documentadas. Para worktrees alternativos usá
+`--product=nombre:/ruta/al/worktree`; ver
+[`references/adoption-and-governance.md`](./references/adoption-and-governance.md).
 
 ## Fuentes de verdad
 
@@ -126,3 +130,5 @@ git diff --check
 Arquitectura completa:
 [`references/architecture.md`](./references/architecture.md). Auditoría base:
 [`references/product-audit-2026-07.md`](./references/product-audit-2026-07.md).
+Auditoría de adopción:
+[`references/adoption-audit-2026-07-16.md`](./references/adoption-audit-2026-07-16.md).
