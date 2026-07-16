@@ -7,6 +7,7 @@ OUT="${1:-$HOME/Documents/Work/Singular/singular-design-system.skill}"
 TMP="$(mktemp -d)"; mkdir -p "$TMP/singular-design-system"
 rsync -a \
   --exclude='.git' --exclude='previews' --exclude='PLAN.md' \
+  --exclude='/README.md' \
   --exclude='index.html' --exclude='*.skill' --exclude='.DS_Store' \
   --exclude='build-skill.sh' \
   "$DS/" "$TMP/singular-design-system/"

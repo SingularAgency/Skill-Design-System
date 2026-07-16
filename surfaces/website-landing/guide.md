@@ -2,7 +2,7 @@
 
 La superficie de **marketing público** de Singular. Marca **azul/cyan** (`brand-web`), dark-first, fondos de marca por pagina, secciones narrativas, cards glass, big-pill tabs y CTAs premium.
 
-> Fuente actual: `singular-landing`, rama `codex/home-gargantua-scroll-camera`. Los primitivos son router-agnósticos y no portan `BookingProvider`, rutas, navbar/footer ni datos del sitio.
+> Fuente actual: la rama de trabajo vigente de `singular-landing`. Los primitivos son router-agnósticos y no portan `BookingProvider`, rutas, navbar/footer ni datos del sitio.
 
 ## Setup
 ```css
@@ -38,7 +38,7 @@ import {
 ## Reglas del perfil
 - **Ritmo de sección**: `.section-pad-s/-m/-l/-prefooter` (no `py-16` sueltos).
 - **Eyebrow**: `<Eyebrow>` (`.eyebrow.eyebrow--brand`) — el patrón de marca, no `text-[10px] uppercase` a mano (estaba 332× en el sitio).
-- **Acentos tokenizados**: base azul/cyan; variaciones por pagina con `data-page-accent="home|solutions|custom-ai|success|assessment|editorial"`.
+- **Acentos tokenizados**: base azul/cyan; variaciones por página agrupadas en `home`, solutions/AI, custom AI/agentic, success/editorial, assessment, journey y schedule. Ver `tokens/brand-web.css`.
 - **CTA**: `primary` (azul), `accent` (gradiente azul/cyan), `secondary` (glass outline). `CtaButton` soporta scroll-to-anchor (`#id`) y links. Los CTAs primarios usan `--button-*`, no `--primary`: siguen azul/cyan aunque el acento de página sea púrpura, verde u naranja.
 - **Hero interactivo**: `backgroundVariant="interactive"` usa el nuevo `<InteractiveHeroBackground>` del home. Pinta el fondo estático de inmediato y monta la lente mouse-follow después del primer movimiento de puntero; con `prefers-reduced-motion` queda estático.
 - **Motion**: `<Reveal>` para entradas on-scroll; fondos con estrellas estaticas por performance; no animar `background-position`.

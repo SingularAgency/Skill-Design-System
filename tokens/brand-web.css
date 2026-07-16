@@ -1,7 +1,7 @@
 /* ============================================================
  * Brand profile: WEB (marketing / website) — azul/cyan
  * ============================================================
- * Fuente actual: singular-landing, rama codex/home-gargantua-scroll-camera.
+ * Fuente actual: rama de trabajo vigente de singular-landing.
  * Perfil dark-first para marketing: mismo primary azul/cyan que Singular,
  * surface profunda, acentos por pagina via data-page-accent.
  * Rojo/naranja queda reservado para estados o experiencias de auditoria,
@@ -10,6 +10,8 @@
 
 :root {
   /* Marca base */
+  --brand-primary: #4567ed;
+  --brand-cyan: #22d3ee;
   --primary: #4567ed;
   --primary-foreground: #f7fbff;
   --primary-strong: #2f6bf6;
@@ -208,7 +210,9 @@
 :root[data-page-accent="claude"],
 :root[data-page-accent="codex"],
 :root[data-page-accent="openclaw"],
-:root[data-page-accent="vault"] {
+:root[data-page-accent="vault"],
+:root[data-page-accent="clawdbot"],
+:root[data-page-accent="capabilities"] {
   --primary: #d946ef;
   --primary-strong: #c026d3;
   --primary-strong-hover: #a21caf;
@@ -252,6 +256,13 @@
       color-mix(in srgb, #22d3ee 5%, #070b17) 100%);
 }
 
+:root[data-page-accent="journey"] {
+  --brand-bg-mist-1: #6366f1;
+  --brand-bg-mist-2: #f472b6;
+  --brand-bg-mist-3: #22d3ee;
+  --brand-bg-mist-strength: 0.4;
+}
+
 :root[data-page-accent="assessment"] {
   --primary: var(--audit-primary);
   --primary-strong: #ea580c;
@@ -273,11 +284,28 @@
       color-mix(in srgb, #4567ed 18%, #070b17) 100%);
 }
 
-:root[data-page-accent="editorial"] {
-  --brand-bg-mist-1: #38bdf8;
-  --brand-bg-mist-2: #818cf8;
-  --brand-bg-mist-3: #f472b6;
+:root[data-page-accent="schedule"] {
+  --brand-bg-mist-1: #22d3ee;
+  --brand-bg-mist-2: #4567ed;
+  --brand-bg-mist-3: #34d399;
   --brand-bg-mist-strength: 0.38;
+}
+
+:root[data-page-accent="editorial"] {
+  --primary: #059669;
+  --primary-strong: #10b981;
+  --primary-strong-hover: #047857;
+  --singular-primary: #10b981;
+  --singular-secondary: #34d399;
+  --singular-cyan: #6ee7b7;
+  --singular-green: #10b981;
+  --gradient-primary: linear-gradient(135deg, #10b981 0%, #34d399 56%, #22d3ee 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #047857 0%, #10b981 56%, #06b6d4 100%);
+  --card-accent: #34d399;
+  --brand-bg-mist-1: #10b981;
+  --brand-bg-mist-2: #34d399;
+  --brand-bg-mist-3: #22d3ee;
+  --brand-bg-mist-strength: 0.4;
 }
 
 /* TODO(light): el website real es dark-first; light queda pendiente. */

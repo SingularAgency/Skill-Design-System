@@ -1,6 +1,6 @@
 # Perfil: Web-app / Producto
 
-La superficie de **producto interno** de Singular (dashboards, OKR, sprints, QA, payments). Marca **azul** (`brand-app`), **dark-first** vía `next-themes`, densa en datos.
+La superficie de **producto interno** de Singular (dashboards, OKR, sprints, QA, payments). Identidad azul/cyan con action blue `#0b84ff` (`brand-app`), **dark-first** vía `next-themes`, densa en datos.
 
 > **Fuente de verdad:** `v0-singular-stories-app/app/globals.css` + `components/`. Este perfil **espeja** ese repo — cuando cambie, re-auditar (Fase 8). No re-tokeniza: usa los tokens del DS.
 
@@ -60,7 +60,7 @@ El chrome que reemplaza al sidebar "de caja": **rail flotante glass** + **header
 4. **Contenido** — `Card surface="solid"` envolviendo una tabla (`data-table-patterns`) o un grid de cards.
 5. **Paginación** — `PAGE_SIZE` 9 (grids) / 25 (tablas).
 
-Ritmo: `gap-l` (24px) entre bloques; `gap-filters-to-grid` (48px) entre filtros y contenido.
+Ritmo: `gap-l` (24px) entre bloques; `gap-filters-to-grid` (20px) entre filtros y contenido en producto.
 
 ## Componentes canónicos (API real)
 | Componente | Props clave |
@@ -76,10 +76,23 @@ Ritmo: `gap-l` (24px) entre bloques; `gap-filters-to-grid` (48px) entre filtros 
 | **side-modal-layout** | `SideModalScrollBody`, `SideModalStaticSection`, `SideModalPillTabsRow` + `entity-modal-stack-host`. |
 | **data-table-patterns** | Kit de clases para tablas (no componente): `dataTableCardFlushClass`, `dataTableBodyRowInteractiveClass`, etc. |
 
-## Portabilidad Next → Vite (el website es Vite)
+## Portabilidad Next → cualquier React
 - **Portables tal cual** (cero acople a Next): Card, Button, Badge, StatusBadge, EmptyState, PillFilter, KpiCard, data-table-patterns, side-modal-layout.
 - **Necesitan adaptador de routing** (`next/link`, `next/navigation`): SidebarShell, PageHeader (`backLink`), SectionTopTabs, app-header → introducir un **`<Link>` inyectable** (prop/slot) en vez de importar `next/link`.
 - **Re-trabajo**: logo/branding (hoy un asset por tema → idealmente SVG monocromo + tokens, ver Fase 9).
+
+## Próximas promociones candidatas
+
+La auditoría 2026-07 detectó patrones maduros en Stories que todavía deben
+limpiarse antes de entrar al código portable:
+
+- `DataGrid` / `DataCard` / `ListPagination`;
+- `GridSectionHeader` / `EdgeFadeScroller`;
+- `LabelWithHint`;
+- `StatusDropdown` sólo para edición en detail; `StatusBadge` en grids;
+- `AiProcessButton` / `ChartExplainer`.
+
+No copiar dependencias de datos, routing o settings. Ver `components/README.md`.
 
 ## Tokens de dominio (NO están en core)
 `--okr-*`, `--pert-*`, `--payments-grid-*` y `.payments-sprint-grid` son **específicos de Stories** — viven en su `globals.css`, no en el core del DS. Si otro producto los necesita, se promueven conscientemente.

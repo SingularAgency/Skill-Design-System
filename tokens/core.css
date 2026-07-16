@@ -10,6 +10,7 @@
  *   - brand-web.css   (marketing / website, primary azul/cyan)
  *
  * CONTRATO — un brand profile DEBE definir:
+ *   --brand-primary, --brand-cyan (stable identity anchors)
  *   --primary, --primary-foreground, --primary-strong, --primary-strong-hover
  *   --interactive, --interactive-hover, --interactive-fill, --interactive-fill-hover
  *   --ring, --radius-card

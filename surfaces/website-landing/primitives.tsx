@@ -2,7 +2,7 @@
 
 /**
  * Primitivos del perfil WEBSITE/LANDING de Singular.
- * Fuente actual: singular-landing, rama codex/home-gargantua-scroll-camera.
+ * Fuente actual: rama de trabajo vigente de singular-landing.
  *
  * Portable: no importa next/*, wouter, booking providers, nav/footer del sitio
  * ni datos comerciales. Los acentos salen de tokens del DS y data-page-accent.

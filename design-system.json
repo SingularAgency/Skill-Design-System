@@ -1,0 +1,113 @@
+{
+  "name": "singular-design-system",
+  "schemaVersion": 1,
+  "release": "2026.07",
+  "brand": {
+    "anchor": "#4567ed",
+    "action": "#0b84ff",
+    "cyan": "#22d3ee",
+    "gradient": "linear-gradient(135deg, #4567ed 0%, #22d3ee 100%)",
+    "principle": "One blue/cyan identity with platform-specific interaction profiles."
+  },
+  "layers": [
+    {
+      "id": "foundation",
+      "owns": ["brand", "semantic color", "type roles", "spacing", "radius", "motion", "accessibility"]
+    },
+    {
+      "id": "platform",
+      "owns": ["web tokens", "SwiftUI tokens", "email constraints", "image and slide constraints"]
+    },
+    {
+      "id": "surface",
+      "owns": ["website", "web app", "studio", "iOS app", "slides", "social", "email"]
+    },
+    {
+      "id": "domain",
+      "owns": ["Stories entities", "approval rules", "Studio orchestration", "website content"],
+      "location": "host product repositories"
+    }
+  ],
+  "products": [
+    {
+      "id": "singular-landing",
+      "repository": "SingularAgency/singular-landing",
+      "surface": "website-landing",
+      "sourcePaths": ["src/index.css", "src/components/marketing/MarketingPrimitives.tsx"],
+      "adoption": "upstream-reference"
+    },
+    {
+      "id": "singular-stories-web",
+      "repository": "SingularAgency/v0-singular-stories-app",
+      "surface": "web-app",
+      "sourcePaths": ["app/globals.css", "components/", "scripts/check-design-system.mjs"],
+      "adoption": "upstream-reference"
+    },
+    {
+      "id": "singular-stories-ios",
+      "repository": "SingularAgency/ss-ios-prototype",
+      "surface": "ios-app",
+      "sourcePaths": ["SingularApprovals/Theme.swift", "SingularApprovals/DesignSystem/"],
+      "adoption": "upstream-reference"
+    },
+    {
+      "id": "singularity-studio",
+      "repository": "SingularAgency/singularity-2026",
+      "surface": "studio",
+      "sourcePaths": ["design-system/singular/", "components/studio/", "app/globals.css"],
+      "adoption": "vendored-snapshot"
+    }
+  ],
+  "bundles": {
+    "core": [
+      "SKILL.md",
+      "design-system.json",
+      "tokens/core.css",
+      "tokens/core-utilities.css",
+      "tokens/theme-mapping.css",
+      "tokens/README.md",
+      "components/Logo.tsx",
+      "components/README.md",
+      "backgrounds/BrandBackground.tsx",
+      "backgrounds/brand-background.css",
+      "backgrounds/README.md",
+      "assets"
+    ],
+    "web-app": [
+      "tokens/brand-app.css",
+      "tokens/theme-app.css",
+      "surfaces/web-app",
+      "components/MetricStrip.tsx",
+      "components/ComparisonTable.tsx",
+      "components/SourceTag.tsx",
+      "components/LazyVisible.tsx"
+    ],
+    "website-landing": [
+      "tokens/brand-web.css",
+      "tokens/theme-web.css",
+      "surfaces/website-landing",
+      "components/MetricStrip.tsx",
+      "components/ComparisonTable.tsx",
+      "components/SourceTag.tsx",
+      "components/LazyVisible.tsx"
+    ],
+    "studio": [
+      "surfaces/studio"
+    ],
+    "ios-app": [
+      "surfaces/ios-app"
+    ],
+    "slides": [
+      "surfaces/slides-presentations"
+    ],
+    "social-email": [
+      "surfaces/social-email"
+    ],
+    "governance": [
+      "references/architecture.md",
+      "references/adoption-and-governance.md",
+      "references/ai-agent-contract.md",
+      "references/product-audit-2026-07.md"
+    ]
+  }
+}

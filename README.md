@@ -1,35 +1,52 @@
 # Singular Design System
 
-El **design system universal de marca Singular**: un solo sistema, usable por cualquier persona del equipo, para cualquier superficie — website, landing, web-app, slides, social, email. Se entrega como **skill de Claude + tokens + assets versionados**.
-
-> **Estado:** en construcción. Ver [`PLAN.md`](./PLAN.md) para el plan maestro y las fases.
+Sistema de producto y marca de Singular para humanos e IA. Cubre website,
+Singular Stories web, Singular Stories iOS, Singularity Studio, slides, social
+y email mediante tokens, componentes, assets, guías, contratos y herramientas
+de governance.
 
 ## Principios
 
-- **Un solo primary** — 🔵 azul `#4567ed` + gradiente **azul→cyan** + acentos cyan, para todas las superficies. Los perfiles solo difieren en la *surface* (app navy · web negro).
-- **Núcleo + perfiles** — un core de marca (tokens, voz, a11y, motion) + sub-perfiles por superficie.
-- **Motor multi-marca** — el chrome se deriva de `--primary` vía `color-mix()`; cambiar el profile re-tinta todo.
+- Una identidad azul/cyan: anchor `#4567ed`, action blue `#0b84ff`, cyan `#22d3ee`.
+- Foundation + platform + surface + domain.
+- Tokens y variantes antes que valores o componentes locales.
+- Comportamiento nativo por plataforma; SwiftUI no imita CSS.
+- El DS comparte contratos. Rutas, datos, permisos y copy viven en cada producto.
 
 ## Estructura
 
 ```
-SKILL.md                  ← skill madre (router + core)            [Fase 2+]
-tokens/                   ← fuente única de tokens (core + brand-web + brand-app)  [Fase 2]
-backgrounds/              ← <BrandBackground> unificado            [Fase 3]
+SKILL.md                  ← router conciso para agentes
+design-system.json        ← manifiesto machine-readable
+tokens/                   ← foundation web + perfiles app/web
+backgrounds/              ← BrandBackground unificado
 surfaces/
-  web-app/                ← perfil app (incrusta app-v2)           [Fase 4]
-  website-landing/        ← perfil marketing (singular-landing)      [Fase 5]
-  slides-presentations/   ← specs de marca para Gamma              [Fase 6]
-  social-email/           ← email (s-mail-v1) + social (Meta)      [Fase 6]
-components/               ← inventario core + por-perfil
+  web-app/                ← Stories web / producto
+  website-landing/        ← company website / marketing
+  studio/                 ← chat + agentes + preview + evidencia
+  ios-app/                ← SwiftUI foundation + primitives
+  slides-presentations/   ← decks
+  social-email/           ← social + email
+components/               ← inventario y componentes portables
+references/               ← arquitectura, auditoría, IA y governance
+scripts/                  ← audit y export de snapshots
 colors_and_type.css       ← foundation autocontenida (fuentes + paleta + type) para artefactos sueltos
 preview/                  ← galería de cards de specs del DS (colores, type, spacing, componentes)
 ui_kits/
   web-app/                ← UI kit interactivo "Singular Stories" (React UMD, click-thru)
-references/               ← audit-checklist, decision-tree, patterns
 assets/                   ← logos + símbolos de marca (en este repo)
-legacy/                   ← FUENTES recuperados (input, no se publican)
 ```
+
+## Elegir superficie
+
+| Producto/asset | Guía |
+|---|---|
+| singular-landing | [`surfaces/website-landing/guide.md`](./surfaces/website-landing/guide.md) |
+| v0-singular-stories-app | [`surfaces/web-app/guide.md`](./surfaces/web-app/guide.md) |
+| singularity-2026 | [`surfaces/studio/guide.md`](./surfaces/studio/guide.md) |
+| ss-ios-prototype | [`surfaces/ios-app/guide.md`](./surfaces/ios-app/guide.md) |
+| Slides | [`surfaces/slides-presentations/guide.md`](./surfaces/slides-presentations/guide.md) |
+| Social / email | [`surfaces/social-email/`](./surfaces/social-email/) |
 
 ## Preview del DS — en vivo
 
@@ -41,6 +58,7 @@ Publicado en **GitHub Pages** (no hace falta clonar):
 | Fondo de marca (`BrandBackground`) | https://singularagency.github.io/Skill-Design-System/backgrounds/demo.html |
 | Web-app / producto (azul) | https://singularagency.github.io/Skill-Design-System/surfaces/web-app/demo.html |
 | Website / landing (cyan) | https://singularagency.github.io/Skill-Design-System/surfaces/website-landing/demo.html |
+| Studio / AI workspace | https://singularagency.github.io/Skill-Design-System/surfaces/studio/demo.html |
 | Slides / presentaciones | https://singularagency.github.io/Skill-Design-System/surfaces/slides-presentations/demo.html |
 | Social + email | https://singularagency.github.io/Skill-Design-System/surfaces/social-email/demo.html |
 | **UI kit interactivo** (Singular Stories) | https://singularagency.github.io/Skill-Design-System/ui_kits/web-app/index.html |
@@ -49,20 +67,62 @@ En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo.
 
 Todos los previews cargan `surfaces/preview-shell.css`: canvas dark-first, grilla y estrellas estáticas, chrome azul/cyan y elevación consistente. Cada demo conserva la ergonomía de su propia superficie en vez de convertirse en una landing genérica.
 
-Los patrones portables aprendidos de `singular-landing` están documentados en
-[`references/singular-landing-portable-patterns.md`](./references/singular-landing-portable-patterns.md)
-y se entregan como `MetricStrip`, `ComparisonTable`, `SourceTag` y `LazyVisible`.
-Así la misma lógica de prueba, contexto, comparación y performance puede viajar
-entre website, app, slides y social sin copiar componentes de negocio.
+## Consumir desde otro repo
+
+Mientras no exista un package registry, usar snapshots versionados:
+
+```bash
+node scripts/export-snapshot.mjs \
+  --bundle=core,web-app,studio,governance \
+  --target=/path/to/product/design-system/singular
+```
+
+El export escribe `.singular-ds-snapshot.json` con release, commit y bundles.
+Ver [`references/adoption-and-governance.md`](./references/adoption-and-governance.md).
+
+## Usar como skill
+
+```bash
+./build-skill.sh /tmp/singular-design-system.skill
+```
+
+La skill enruta a la guía correcta y usa disclosure progresivo. El contrato para
+Codex/Claude vive en
+[`references/ai-agent-contract.md`](./references/ai-agent-contract.md).
+
+## Auditar productos
+
+```bash
+node scripts/audit-products.mjs --workspace=/path/to/Projects
+```
+
+El reporte mide drift potencial (hex, radius, type y adopción de tokens). No
+convierte todos los literales en errores: email, charts y puentes nativos pueden
+tener excepciones documentadas.
 
 ## Fuentes de verdad
 
 | Perfil | Repo / fuente |
 |---|---|
-| **web-app** (azul) | [`v0-singular-stories-app`](https://github.com/SingularAgency/v0-singular-stories-app) — `app/globals.css` es la verdad de tokens del perfil app |
-| **website-landing** (cyan) | `singular-landing` — implementación actual del website; tokens en `src/index.css`, primitivas en `src/components/marketing/MarketingPrimitives.tsx` y hero interactivo del home en `src/app/components/HomeGargantuaBackground.tsx` |
-| skills legacy | `legacy/` (recuperadas de bundles `.skill` + copias runtime de Cowork) |
+| Foundation y governance | Este repo |
+| Marketing | `singular-landing` como fuente de descubrimiento |
+| Producto web | `v0-singular-stories-app` como fuente de descubrimiento |
+| Native mobile | `ss-ios-prototype` como fuente de descubrimiento |
+| AI Studio | `singularity-2026` como fuente de descubrimiento |
 
-## Decisiones
+Los productos no reemplazan automáticamente el foundation. Los patrones se
+promueven sólo cuando son portables y no contienen lógica de dominio.
 
-Registradas en [`PLAN.md`](./PLAN.md) §1. Resumen: azul/cyan unificado, núcleo+perfiles, 4 superficies en v1, `.sds-*` deprecado (se rescata su andamiaje en `references/`), assets al final.
+## Validación
+
+```bash
+python3 /path/to/skill-creator/scripts/quick_validate.py .
+node scripts/export-snapshot.mjs --bundle=core,web-app,studio,governance --target=/tmp/singular-ds
+node scripts/audit-products.mjs --workspace=/Users/you/Projects
+./build-skill.sh /tmp/singular-design-system.skill
+git diff --check
+```
+
+Arquitectura completa:
+[`references/architecture.md`](./references/architecture.md). Auditoría base:
+[`references/product-audit-2026-07.md`](./references/product-audit-2026-07.md).
