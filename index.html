@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="tokens/core-utilities.css" />
   <link rel="stylesheet" href="backgrounds/brand-background.css" />
   <link rel="stylesheet" href="surfaces/website-landing/website.css" />
-  <link rel="stylesheet" href="site/design-system-page.css" />
+  <link rel="stylesheet" href="site/design-system-page.css?v=20260717.4" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -29,10 +29,19 @@
     </a>
 
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#surfaces">Surfaces</a>
+      <details class="site-nav__menu">
+        <summary>Surfaces <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"></path></svg></summary>
+        <div class="site-nav__dropdown">
+          <a href="surfaces/website-landing/demo.html"><strong>Website</strong><small>Narrative and editorial</small></a>
+          <a href="surfaces/web-app/demo.html"><strong>Web app</strong><small>Dense and operational</small></a>
+          <a href="surfaces/studio/demo.html"><strong>Studio</strong><small>Agentic workspace</small></a>
+          <a href="surfaces/ios-app/guide.md"><strong>iOS</strong><small>Native product guide</small></a>
+          <a href="surfaces/slides-presentations/demo.html"><strong>Slides</strong><small>Presentation system</small></a>
+          <a href="surfaces/social-email/demo.html"><strong>Social</strong><small>Campaign formats</small></a>
+          <a href="surfaces/social-email/email.md"><strong>Email</strong><small>Compatible templates</small></a>
+        </div>
+      </details>
       <a href="catalog.html">Components</a>
-      <a href="#brand-assets">Logos</a>
-      <a href="#documentation">Documentation</a>
       <a href="https://github.com/SingularAgency/Skill-Design-System" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </nav>
 
@@ -101,72 +110,15 @@
             <code>source: main</code>
           </div>
         </div>
-        <div class="hero-principles" aria-label="System principles">
-          <div class="hero-principles__intro">
-            <span>The system behind the system</span>
-            <strong>Consistency without uniformity.</strong>
-            <p>Every platform keeps its ergonomics. Identity, semantics, and decision patterns remain shared.</p>
+
+        <div class="hero-catalog reveal-item" aria-labelledby="library-title">
+          <div class="hero-catalog__intro">
+            <div>
+              <p class="eyebrow eyebrow--brand">Component explorer</p>
+              <h2 id="library-title">The living catalog.</h2>
+            </div>
+            <p>Filter by platform and category, then switch variants, density, and viewport. Every story includes usage guidance and an implementation snippet.</p>
           </div>
-          <article><span>01 / Foundation</span><strong>One source of truth</strong><p>Color, type, spacing, radius, motion, and accessibility travel as contracts.</p></article>
-          <article><span>02 / Platform</span><strong>Native where it matters</strong><p>CSS and Tailwind on web, SwiftUI on iOS, and format-specific compatibility.</p></article>
-          <article><span>03 / Governance</span><strong>Readable by people and AI</strong><p>A manifest, skills, guides, versioned snapshots, and drift audits.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="surface-section section-shell" id="surfaces" aria-labelledby="surfaces-title">
-      <div class="section-heading section-heading--split">
-        <div>
-          <p class="eyebrow eyebrow--brand">Platform profiles</p>
-          <h2 id="surfaces-title">One brand. Purpose-built ergonomics.</h2>
-        </div>
-        <p>Open each demo to see how the foundation adapts to density, interaction, format, and context.</p>
-      </div>
-      <div class="surface-track" role="list">
-        <a class="surface-card surface-card--website" href="surfaces/website-landing/demo.html" role="listitem">
-          <div class="surface-card__top"><span>Website</span><span>01</span></div>
-          <div class="surface-card__visual"><div class="surface-mini-hero"><i></i><b></b><em></em></div></div>
-          <p>Narrative · editorial · expressive</p><span class="surface-card__link">View demo →</span>
-        </a>
-        <a class="surface-card surface-card--app" href="surfaces/web-app/demo.html" role="listitem">
-          <div class="surface-card__top"><span>Web app</span><span>02</span></div>
-          <div class="surface-card__visual"><div class="surface-mini-app"><i></i><b></b><em></em><strong></strong></div></div>
-          <p>Dense · operational · predictable</p><span class="surface-card__link">View demo →</span>
-        </a>
-        <a class="surface-card surface-card--studio" href="surfaces/studio/demo.html" role="listitem">
-          <div class="surface-card__top"><span>Studio</span><span>03</span></div>
-          <div class="surface-card__visual"><div class="surface-mini-studio"><i></i><b></b><em></em></div></div>
-          <p>Intent · activity · evidence</p><span class="surface-card__link">View demo →</span>
-        </a>
-        <a class="surface-card surface-card--ios" href="surfaces/ios-app/guide.md" role="listitem">
-          <div class="surface-card__top"><span>iOS</span><span>04</span></div>
-          <div class="surface-card__visual"><div class="surface-mini-phone"><i></i><b></b><em></em></div></div>
-          <p>Native · focused · Dynamic Type</p><span class="surface-card__link">Open guide →</span>
-        </a>
-        <a class="surface-card surface-card--slides" href="surfaces/slides-presentations/demo.html" role="listitem">
-          <div class="surface-card__top"><span>Slides</span><span>05</span></div>
-          <div class="surface-card__visual"><div class="surface-mini-slide"><i></i><b></b></div></div>
-          <p>16:9 · narrative · data</p><span class="surface-card__link">View demo →</span>
-        </a>
-        <a class="surface-card surface-card--social" href="surfaces/social-email/demo.html" role="listitem">
-          <div class="surface-card__top"><span>Social + Email</span><span>06—07</span></div>
-          <div class="surface-card__visual"><div class="surface-mini-social"><i></i><b></b><em></em></div></div>
-          <p>Campaign · safe zones · fallback</p><span class="surface-card__link">View demo →</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="library-section" id="library" aria-labelledby="library-title">
-      <div class="section-shell library-intro">
-        <div class="section-heading section-heading--split">
-          <div>
-            <p class="eyebrow eyebrow--brand">Component explorer</p>
-            <h2 id="library-title">The living catalog.</h2>
-          </div>
-          <p>Filter by platform and category, then switch variants, density, and viewport. Every story includes usage guidance and an implementation snippet.</p>
-        </div>
-      </div>
-
       <div class="explorer" data-explorer>
         <aside class="explorer-sidebar" aria-label="Filters and components">
           <div class="explorer-sidebar__header">
@@ -266,7 +218,62 @@
           </section>
         </div>
       </div>
+        </div>
+        <div class="hero-principles" aria-label="System principles">
+          <div class="hero-principles__intro">
+            <span>The system behind the system</span>
+            <strong>Consistency without uniformity.</strong>
+            <p>Every platform keeps its ergonomics. Identity, semantics, and decision patterns remain shared.</p>
+          </div>
+          <article><span>01 / Foundation</span><strong>One source of truth</strong><p>Color, type, spacing, radius, motion, and accessibility travel as contracts.</p></article>
+          <article><span>02 / Platform</span><strong>Native where it matters</strong><p>CSS and Tailwind on web, SwiftUI on iOS, and format-specific compatibility.</p></article>
+          <article><span>03 / Governance</span><strong>Readable by people and AI</strong><p>A manifest, skills, guides, versioned snapshots, and drift audits.</p></article>
+        </div>
+      </div>
     </section>
+
+    <section class="surface-section section-shell" id="surfaces" aria-labelledby="surfaces-title">
+      <div class="section-heading section-heading--split">
+        <div>
+          <p class="eyebrow eyebrow--brand">Platform profiles</p>
+          <h2 id="surfaces-title">One brand. Purpose-built ergonomics.</h2>
+        </div>
+        <p>Open each demo to see how the foundation adapts to density, interaction, format, and context.</p>
+      </div>
+      <div class="surface-track" role="list">
+        <a class="surface-card surface-card--website" href="surfaces/website-landing/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Website</span><span>01</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-hero"><i></i><b></b><em></em></div></div>
+          <p>Narrative · editorial · expressive</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--app" href="surfaces/web-app/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Web app</span><span>02</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-app"><i></i><b></b><em></em><strong></strong></div></div>
+          <p>Dense · operational · predictable</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--studio" href="surfaces/studio/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Studio</span><span>03</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-studio"><i></i><b></b><em></em></div></div>
+          <p>Intent · activity · evidence</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--ios" href="surfaces/ios-app/guide.md" role="listitem">
+          <div class="surface-card__top"><span>iOS</span><span>04</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-phone"><i></i><b></b><em></em></div></div>
+          <p>Native · focused · Dynamic Type</p><span class="surface-card__link">Open guide →</span>
+        </a>
+        <a class="surface-card surface-card--slides" href="surfaces/slides-presentations/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Slides</span><span>05</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-slide"><i></i><b></b></div></div>
+          <p>16:9 · narrative · data</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--social" href="surfaces/social-email/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Social + Email</span><span>06—07</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-social"><i></i><b></b><em></em></div></div>
+          <p>Campaign · safe zones · fallback</p><span class="surface-card__link">View demo →</span>
+        </a>
+      </div>
+    </section>
+
 
     <section class="documentation section-shell" id="documentation" aria-labelledby="documentation-title">
       <div class="section-heading section-heading--split">
@@ -294,33 +301,27 @@
     </section>
 
     <section class="brand-assets section-shell" id="brand-assets" aria-labelledby="brand-assets-title">
-      <div class="brand-kit-banner">
-        <div>
-          <p class="eyebrow eyebrow--brand">Brand assets</p>
-          <h2 id="brand-assets-title">The Singular logo kit, ready for every background.</h2>
-          <p>Download the complete package with SVG and PNG exports, or preview and download the exact raster asset you need.</p>
+      <div class="brand-assets-card">
+        <div class="brand-kit-banner">
+          <div>
+            <p class="eyebrow eyebrow--brand">Brand assets</p>
+            <h2 id="brand-assets-title">The Singular logo kit, ready for every background.</h2>
+            <p>Download the complete package, or filter every approved logo by format, style, background, and text treatment.</p>
+          </div>
+          <a class="site-cta site-cta--primary" href="assets/logos/singular-logos.zip" download>Download complete ZIP <span aria-hidden="true">↓</span></a>
         </div>
-        <a class="site-cta site-cta--primary" href="assets/logos/singular-logos.zip" download>Download complete ZIP <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="logo-download-grid">
-        <article class="logo-download-card">
-          <button class="logo-download-card__preview logo-preview--neutral" type="button" data-logo-preview data-src="assets/logos/singular-favicon-256.png" data-title="Singular icon" aria-label="Preview Singular icon">
-            <img src="assets/logos/singular-favicon-256.png" alt="Singular icon in color" />
-          </button>
-          <div><h3>Singular icon</h3><p>256 × 256 PNG · favicon and compact placements</p><a href="assets/logos/singular-favicon-256.png" download>Download PNG ↓</a></div>
-        </article>
-        <article class="logo-download-card">
-          <button class="logo-download-card__preview logo-preview--dark" type="button" data-logo-preview data-src="assets/logos/singular-full-dark-bg.png" data-title="Full logo for dark backgrounds" aria-label="Preview full logo for dark backgrounds">
-            <img src="assets/logos/singular-full-dark-bg.png" alt="White Singular logo for dark backgrounds" />
-          </button>
-          <div><h3>Full logo · dark background</h3><p>2048 × 409 PNG · light wordmark</p><a href="assets/logos/singular-full-dark-bg.png" download>Download PNG ↓</a></div>
-        </article>
-        <article class="logo-download-card">
-          <button class="logo-download-card__preview logo-preview--light" type="button" data-logo-preview data-src="assets/logos/singular-full-light-bg.png" data-title="Full logo for light backgrounds" aria-label="Preview full logo for light backgrounds">
-            <img src="assets/logos/singular-full-light-bg.png" alt="Dark Singular logo for light backgrounds" />
-          </button>
-          <div><h3>Full logo · light background</h3><p>2048 × 409 PNG · dark wordmark</p><a href="assets/logos/singular-full-light-bg.png" download>Download PNG ↓</a></div>
-        </article>
+        <div class="brand-assets-library">
+          <div class="logo-library-toolbar" aria-label="Logo filters">
+            <label><span>Format</span><select data-logo-filter="format"><option value="all">All formats</option><option value="svg">SVG</option><option value="png">PNG</option></select></label>
+            <label><span>Style</span><select data-logo-filter="style"><option value="all">All styles</option><option value="full">Full logo</option><option value="icon">Icon</option><option value="wordmark">Wordmark</option></select></label>
+            <label><span>Background</span><select data-logo-filter="background"><option value="all">All backgrounds</option><option value="dark">Dark</option><option value="light">Light</option><option value="neutral">Neutral</option></select></label>
+            <label><span>Text</span><select data-logo-filter="text"><option value="all">All options</option><option value="with-text">With text</option><option value="no-text">No text</option></select></label>
+            <button type="button" data-logo-reset>Reset filters</button>
+            <p aria-live="polite"><strong data-logo-result-count>9</strong> assets</p>
+          </div>
+          <div class="logo-download-grid" data-logo-library></div>
+          <p class="logo-library-empty" data-logo-empty hidden>No logo assets match these filters.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -347,7 +348,7 @@
       <button type="button" data-lightbox-close aria-label="Close preview">Close ×</button>
     </div>
     <div class="asset-lightbox__canvas"><img data-lightbox-image src="" alt="" /></div>
-    <a class="site-cta site-cta--primary" data-lightbox-download href="" download>Download PNG ↓</a>
+    <a class="site-cta site-cta--primary" data-lightbox-download href="" download>Download asset ↓</a>
   </dialog>
 
   <script src="site/theme-and-assets.js" defer></script>
