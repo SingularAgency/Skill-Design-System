@@ -1,174 +1,356 @@
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Singular Design System</title>
-<meta name="description" content="El design system de Singular: tokens, componentes, perfiles y governance para website, producto web, Studio, iOS, slides, social y email." />
-<link rel="icon" type="image/png" href="assets/logos/singular-favicon-256.png" />
-<link rel="stylesheet" href="tokens/core.css" />
-<link rel="stylesheet" href="tokens/brand-web.css" />
-<link rel="stylesheet" href="tokens/core-utilities.css" />
-<link rel="stylesheet" href="backgrounds/brand-background.css" />
-<link rel="stylesheet" href="surfaces/website-landing/website.css" />
-<link rel="stylesheet" href="surfaces/preview-shell.css" />
-<style>
-  :root { --logo-icon: url("data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNjI3LjU5IDM3NC41MiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNlNjM0MDA7fS5jbHMtMntmaWxsOiMwMGQyZjQ7fS5jbHMtM3tmaWxsOiNmZmY7fTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTQyNy4wNSwyMzkuNDhhMTM3LjI4LDEzNy4yOCwwLDAsMC0zMC43Mi0xMS4xOCw2LjY5LDYuNjksMCwwLDAtNy4yOCwzLjExQTkzLjQ0LDkzLjQ0LDAsMCwxLDMwOC45MywyNzdoLS4xN2E5NC4wOCw5NC4wOCwwLDAsMS0zOC41Mi04LjMsNi42OCw2LjY4LDAsMCwwLTcuNzMsMS42MkExMzguMzYsMTM4LjM2LDAsMCwwLDI0My43NCwyOTdhNi42NCw2LjY0LDAsMCwwLDIuODQsOS4wNSwxMzcuNzgsMTM3Ljc4LDAsMCwwLDYyLjE2LDE0Ljg4aC4yYTEzNy4zMywxMzcuMzMsMCwwLDAsOTguNzUtNDIsMTM1Ljg2LDEzNS44NiwwLDAsMCwyMi4yMS0zMC4zOEE2LjY1LDYuNjUsMCwwLDAsNDI3LjA1LDIzOS40OFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01NzUuODIsMTY2LjQxYy0xMy4zNC0yLjA2LTMxLjcxLTMuOTQtNTQuMDYtNS41NmgtLjA2Yy0uOTEtLjA3LTEuODktLjEzLTMtLjIyLS41NSwwLTEuMTEtLjA4LTEuNy0uMTJsLTItLjE0LTIuMjEtLjE1LTEuNTUtLjEtMi44OS0uMTljLTIuMDctLjEyLTQuMi0uMjYtNi4zNC0uNGwtMS43LS4xYTUuNjIsNS42MiwwLDAsMC0uNywwbC0uNjIsMC0xLjU4LS4wOS0xLjM4LS4wOC0yLjY4LS4xNGMtLjQyLDAtLjg0LDAtMS4yMy0uMDdsLTEuMDUsMGMtNS4wNS0uMjItNi44LS4yNy04LjE0LS4zOS0uMjQsMC0uNDYtLjA2LS42OC0uMDksMCwwLDAsMC0uMDUsMC02LjcyLS44NC0xMi4yNy00Ljc2LTE3LjY3LTEwLjcxLTExLjUtMTIuNjMtMjIuMzUtMzQuNC00Mi4xOS01NS4yMmExNzcuMjcsMTc3LjI3LDAsMCwwLTMxLjE0LTI1Ljg4aDBhMTQ3LjIxLDE0Ny4yMSwwLDAsMC0xNjQuNiwwLDEsMSwwLDAsMC0uMjQuMTdBMTc1LjU3LDE3NS41NywwLDAsMCwxOTUuNCw5Mi41MWMtMjkuMTksMzAuNi0zOC44Nyw2My4yNy01OS44Nyw2NS45MiwwLDAsMCwwLS4wNSwwLS4yMiwwLS40NC4wNy0uNjguMDgtMS4zNC4xMy0zLjA3LjE4LTguMTMuNGwtMSwuMDUtMS4yNC4wNy0xLjczLjA5Yy0xLjU0LjA4LTMuMjcuMTctNS4yNC4yOWwtMS42OC4xYy0xLjA4LjA3LTIuMTQuMTQtMy4xOS4xOWwtMy4xNS4yYy0xLC4wNy0xLjk0LjE0LTIuOS4xOWwtMS41NC4xLTEuNDkuMTEtMi4xOS4xNS0uNjEsMGMtLjU4LDAtMS4xNC4wNy0xLjY5LjEybC0zLC4yM0g5NmMtNDguNzMsMy41Mi03OC41Niw4LjI5LTc4LjU2LDEzLjUxLDAsNy4zNiw1OS4xMiwxMy43OSwxNDYuODgsMTcuMmw0LjM1LjE3LDMuNDguMTRjOC41OS4yOSwxNy40MS41OCwyNi40OC44MnE4Ljc5LjI3LDE3Ljg0LjQ3YzQuNzMuMSw5LjUxLjIxLDE0LjM2LjI5LDI0Ljg0LjQ2LDUxLC43Miw3OC4wNi43MmgwYzIzLjU3LDAsNDYuNS0uMTgsNjguNDMtLjU0cTEyLjIxLS4yLDI0LS40NmM2LS4xNCwxMi0uMjksMTcuODMtLjQ2LDkuMDctLjI0LDE3LjktLjUzLDI2LjQ4LS44Mmw3Ljg0LS4zMWMxMS41NS0uNDUsMjIuNjItLjk0LDMzLjExLTEuNDksNjkuMi0zLjYzLDExMy43Ny05LjMsMTEzLjc3LTE1LjY5QzYwMC4zMiwxNzEuNTUsNTkxLjU4LDE2OC44Niw1NzUuODIsMTY2LjQxWm0tMTg1LjU3LDhIMjI3LjQ2YTkuNDksOS40OSwwLDAsMS05LjE5LTExLjhjNy0yOC4zLDM3LjA3LTY5LjMyLDkwLjYtNjkuMzFzODMuNTcsNDEsOTAuNTcsNjkuM0E5LjUsOS41LDAsMCwxLDM5MC4yNSwxNzQuMzdaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNDM2LjkzLDI1MS41OWExMzYuODIsMTM2LjgyLDAsMCwwLTMwLjcyLTExLjE5LDYuNzIsNi43MiwwLDAsMC03LjI4LDMuMTEsOTMuNDQsOTMuNDQsMCwwLDEtODAuMTIsNDUuNTloLS4xN2E5NC4wOCw5NC4wOCwwLDAsMS0zOC41Mi04LjMxLDYuNjksNi42OSwwLDAsMC03LjczLDEuNjMsMTM4LjA1LDEzOC4wNSwwLDAsMC0xOC43NywyNi42OSw2LjY0LDYuNjQsMCwwLDAsMi44NCw5LjA1QTEzNy41NiwxMzcuNTYsMCwwLDAsMzE4LjYyLDMzM2guMmExMzcuMjksMTM3LjI5LDAsMCwwLDk4Ljc1LTQyLDEzNS44NiwxMzUuODYsMCwwLDAsMjIuMjEtMzAuMzhBNi42NCw2LjY0LDAsMCwwLDQzNi45MywyNTEuNTlaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNTg1LjY5LDE3OC41MmMtMTMuMzMtMi4wNi0zMS43LTQtNTQuMDUtNS41NmgtLjA2bC0zLS4yMmMtLjU1LS4wNi0xLjExLS4wOS0xLjctLjEzcy0xLjM1LS4xLTItLjEzbC0yLjIxLS4xNi0xLjU1LS4xYy0xLS4wNS0xLjkxLS4xMi0yLjg5LS4xOWwtNi4zNC0uMzktMS43LS4xYy0uMjQsMC0uNDgsMC0uNywwbC0uNjIsMC0xLjU4LS4wOS0xLjM4LS4wOWMtMSwwLTEuODUtLjEtMi42OC0uMTNsLTEuMjMtLjA3LTEuMDUtLjA1Yy01LjA1LS4yMy02LjgtLjI4LTguMTQtLjQtLjI0LDAtLjQ2LDAtLjY4LS4wOGgtLjA1Yy02LjcyLS44NC0xMi4yNy00Ljc3LTE3LjY3LTEwLjcyLTExLjUtMTIuNjMtMjIuMzUtMzQuMzktNDIuMTktNTUuMjFhMTc3LjY4LDE3Ny42OCwwLDAsMC0zMS4xNC0yNS44OWgwYTE0Ny4xOCwxNDcuMTgsMCwwLDAtMTY0LjYsMCwxLDEsMCwwLDAtLjI0LjE2LDE3Ni40NiwxNzYuNDYsMCwwLDAtMzAuOTIsMjUuNzFjLTI5LjE5LDMwLjYxLTM4Ljg3LDYzLjI3LTU5Ljg3LDY1LjkyLDAsMCwwLDAsMCwwbC0uNjguMDhjLTEuMzQuMTItMy4wNy4xNy04LjEzLjM5bC0xLC4wNmMtLjQsMC0uODEuMDUtMS4yNC4wNnMtMS4xMy4wNi0xLjczLjA5Yy0xLjU0LjA4LTMuMjcuMTctNS4yNC4yOWwtMS42OC4xYy0xLjA4LjA3LTIuMTQuMTQtMy4xOS4xOWwtMy4xNS4yMS0yLjkuMTgtMS41NC4xMS0xLjQ5LjEtMi4xOS4xNWMtLjIxLDAtLjQyLDAtLjYxLDAtLjU4LDAtMS4xNC4wNy0xLjY5LjEybC0zLC4yMmgtLjA2Yy00OC43MywzLjUzLTc4LjU2LDguMjktNzguNTYsMTMuNTIsMCw3LjM1LDU5LjEyLDEzLjc4LDE0Ni44OCwxNy4ybDQuMzUuMTdMMTgyLDIwNGM4LjU5LjI5LDE3LjQxLjU4LDI2LjQ4LjgycTguNzkuMjUsMTcuODQuNDYsNy4wOS4xNiwxNC4zNi4zYzI0Ljg0LjQ2LDUxLC43Miw3OC4wNi43MmgwYzIzLjU3LDAsNDYuNS0uMTksNjguNDMtLjU0cTEyLjIxLS4yMSwyNC0uNDZjNi0uMTQsMTItLjMsMTcuODQtLjQ3LDkuMDctLjIzLDE3LjktLjUzLDI2LjQ4LS44Mmw3LjgzLS4zMWMxMS41Ni0uNDQsMjIuNjMtLjk0LDMzLjEyLTEuNDgsNjkuMi0zLjYzLDExMy43Ny05LjMsMTEzLjc3LTE1LjdDNjEwLjIsMTgzLjY2LDYwMS40NiwxODEsNTg1LjY5LDE3OC41MlptLTE4NS41Niw3Ljk1SDIzNy4zNGE5LjQ4LDkuNDgsMCwwLDEtOS4xOS0xMS43OWM3LTI4LjMsMzcuMDctNjkuMzIsOTAuNi02OS4zMnM4My41Nyw0MSw5MC41Nyw2OS4zQTkuNSw5LjUsMCwwLDEsNDAwLjEzLDE4Ni40N1oiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0zMDguNzEsMzIwLjloLjJhMTM3LjMsMTM3LjMsMCwwLDAsOTguNzUtNDIsMTM1LjYzLDEzNS42MywwLDAsMCwyMi4yMS0zMC4zOCwxLjE5LDEuMTksMCwwLDAsLjA4LS4yLDEzNi40NCwxMzYuNDQsMCwwLDAtMjMuNzctNy45Miw2LjY5LDYuNjksMCwwLDAtNy4yOCwzLjExLDkzLjQ0LDkzLjQ0LDAsMCwxLTgwLjEyLDQ1LjU5aC0uMTdhOTQuMDgsOTQuMDgsMCwwLDEtMzguNTItOC4zLDYuNjgsNi42OCwwLDAsMC03LjczLDEuNjIsMTM4LjM2LDEzOC4zNiwwLDAsMC0xOC43NywyNi42OWMwLC4wNy0uMDUuMTUtLjA5LjIyYTEzNy41NCwxMzcuNTQsMCwwLDAsNTUuMjEsMTEuNjFaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMTY4LjU5LDE5MS42N2wzLjQ4LjE0YzguNTkuMjksMTcuNDEuNTgsMjYuNDguODJxOC43OS4yNiwxNy44NC40N2wxNC4zNi4yOWMyNC44NC40Niw1MSwuNzIsNzguMDYuNzJoMGMyMy41NywwLDQ2LjUtLjE4LDY4LjQzLS41NHExMi4yMS0uMjEsMjQtLjQ2YzYtLjE0LDEyLS4yOSwxNy44NC0uNDYsOS4wNy0uMjQsMTcuOS0uNTMsMjYuNDgtLjgybDcuODMtLjMxYzExLjU2LS40NSwyMi42My0uOTQsMzMuMTEtMS40OSw1MC40OS0yLjY1LDg3Ljg0LTYuMzgsMTA0LjM3LTEwLjY5LTEuNjUtLjI5LTMuMzgtLjU4LTUuMjItLjg3LTEzLjMzLTIuMDUtMzEuNy0zLjk0LTU0LTUuNTVoLS4wNmwtMy0uMjNjLS41NS0uMDUtMS4xMS0uMDgtMS43LS4xMnMtMS4zNS0uMS0yLS4xM2wtMi4yMS0uMTYtMS41NS0uMWMtMS0uMDUtMS45MS0uMTItMi44OS0uMTlsLTYuMzQtLjM5LTEuNy0uMTEtLjcsMC0uNjIsMGMtLjU1LDAtMS4wNi0uMDctMS41OC0uMDhsLTEuMzgtLjA5Yy0xLS4wNS0xLjg1LS4xLTIuNjgtLjEzbC0xLjIzLS4wN0w1MDAuOSwxNzFjLTUtLjIzLTYuOC0uMjgtOC4xNC0uNC0uMjQsMC0uNDYsMC0uNjgtLjA5YS4wNS4wNSwwLDAsMS0uMDUsMGMtNi43Mi0uODQtMTIuMjctNC43Ny0xNy42Ny0xMC43MmExMTQuMjcsMTE0LjI3LDAsMCwxLTgtMTAuMTVjLS42Mi0uNjMtMS4yNC0xLjI3LTEuODYtMi04LjMzLTkuMTUtMTYuMzQtMjMuMS0yNy42NS0zOC0xLjUxLTEuNzEtMy0zLjQxLTQuNjYtNS4xMUExNzcuNzEsMTc3LjcxLDAsMCwwLDQwMSw3OC43aDBhMTQ3LjIxLDE0Ny4yMSwwLDAsMC0xNjQuNiwwLDEuNDYsMS40NiwwLDAsMC0uMjQuMTcsMTc1LjYzLDE3NS42MywwLDAsMC0zMC45MiwyNS43MWMtMjkuMTksMzAuNi0zOC44Nyw2My4yNy01OS44Nyw2NS45MiwwLDAsMCwwLDAsMC0uMjIsMC0uNDQuMDctLjY4LjA5LTEuMzQuMTItMy4wNy4xNy04LjEzLjM5bC0xLC4wNmMtLjQsMC0uODEsMC0xLjI0LjA2cy0xLjEzLDAtMS43My4wOWMtMS41NC4wOC0zLjI3LjE3LTUuMjQuMjlsLTEuNjguMWMtMS4wOC4wNy0yLjE0LjE0LTMuMTkuMTlsLTMuMTUuMjEtMi45LjE4LTEuNTQuMTEtMS40OS4xLTIuMi4xNWMtLjIsMC0uNDEsMC0uNiwwLS41OCwwLTEuMTQuMDctMS42OS4xMmwtMywuMjJoLS4wNmMtMzIuNiwyLjM2LTU2LjcyLDUuMjctNjkuMTMsOC41MSwyNC4yLDQuMjgsNjkuNjQsNy44NCwxMjcuNTcsMTAuMVptNDkuNjUtMjkuMTVjNy0yOC4zLDM3LjA3LTY5LjMyLDkwLjYtNjkuMzEsMzYuOCwwLDYyLjUxLDE5LjQsNzcuMjYsNDAuNzIsMTIuMzQsMTIuOTEsMjAuMDYsMjgsMjMuMTksNDAuNjhhOS41LDkuNSwwLDAsMS05LjE5LDExLjgySDIzNy4zMWE5LjQ4LDkuNDgsMCwwLDEtOS4xOS0xMS43OSwyLjgxLDIuODEsMCwwLDEsLjA4LS4zMWgtLjc3QTkuNSw5LjUsMCwwLDEsMjE4LjI0LDE2Mi41MloiLz48L3N2Zz4="); }
-  body { margin: 0; font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
-  a { color: inherit; }
-  .wrap { max-width: 1080px; margin-inline: auto; padding-inline: 1.5rem; }
-  /* nav */
-  .nav { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 1rem; padding: .9rem 1.5rem;
-    background: color-mix(in srgb, var(--background) 72%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
-  .nav .logo { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--foreground-strong); }
-  .nav .logo .mk { width: 26px; aspect-ratio: 627.59 / 374.52; display: inline-block; background: var(--logo-icon) center / contain no-repeat; }
-  .nav .sp { flex: 1; }
-  .nav a.link { color: var(--muted-foreground); text-decoration: none; font-size: .9rem; margin-left: 1.1rem; }
-  .nav a.link:hover { color: var(--foreground); }
-  /* hero */
-  .hero { position: relative; }
-  .hero .inner { position: relative; z-index: 1; text-align: center; padding: 6rem 1.5rem 5rem; max-width: 820px; margin-inline: auto; }
-  h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; margin: 1rem 0; color: var(--foreground-strong); }
-  .accent { background-image: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .lead { font-size: 1.15rem; color: var(--muted-foreground); line-height: 1.6; max-width: 40rem; margin: 0 auto; }
-  .row { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; }
-  /* sections */
-  section { padding-block: 4rem; border-top: 1px solid var(--border); }
-  .eyebrow.eyebrow--brand { justify-content: center; }
-  .h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; letter-spacing: -.02em; text-align: center; margin: .6rem 0 0; color: var(--foreground-strong); }
-  .sub { color: var(--muted-foreground); text-align: center; max-width: 42rem; margin: 1rem auto 0; line-height: 1.6; }
-  /* feature chips */
-  .feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
-  .feat { padding: 1.25rem; }
-  .feat .ic { width: 34px; height: 34px; border-radius: 9px; background: color-mix(in srgb, var(--primary) 16%, transparent); color: var(--primary); display: grid; place-items: center; margin-bottom: .7rem; }
-  .feat h3 { margin: 0 0 .35rem; font-size: 1rem; color: var(--foreground-strong); }
-  .feat p { margin: 0; color: var(--muted-foreground); font-size: .88rem; line-height: 1.5; }
-  .ico { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  /* demo grid */
-  .demos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
-  .demo-card { display: block; border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--border);
-    background: color-mix(in srgb, var(--foreground) 4%, transparent); text-decoration: none; transition: transform .2s, border-color .2s; }
-  .demo-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--primary) 45%, transparent); }
-  .demo-card img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; border-bottom: 1px solid var(--border); }
-  .demo-card .b { padding: 1rem 1.1rem 1.2rem; }
-  .demo-card h3 { margin: 0 0 .3rem; font-size: 1.02rem; color: var(--foreground-strong); display: flex; align-items: center; gap: .5rem; }
-  .demo-card .tag { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; padding: .12rem .45rem; border-radius: var(--radius-full); }
-  .tag.web { background: color-mix(in srgb, var(--singular-cyan) 18%, transparent); color: var(--singular-cyan); }
-  .tag.app { background: color-mix(in srgb, #4567ed 22%, transparent); color: #8babff; }
-  .demo-card p { margin: 0; color: var(--muted-foreground); font-size: .88rem; line-height: 1.5; }
-  /* docs links */
-  .docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .9rem; margin-top: 2.5rem; }
-  .doc { display: flex; gap: .7rem; align-items: flex-start; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-lg);
-    text-decoration: none; transition: border-color .2s; }
-  .doc:hover { border-color: color-mix(in srgb, var(--primary) 45%, transparent); }
-  .doc .ic { color: var(--primary); margin-top: 2px; }
-  .doc h4 { margin: 0 0 .15rem; font-size: .92rem; color: var(--foreground-strong); }
-  .doc p { margin: 0; font-size: .8rem; color: var(--muted-foreground); }
-  footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; color: var(--muted-foreground); font-size: .85rem; }
-
-  /* Index showcase: same composition and visual hierarchy as the current
-     singular-landing home, adapted to a design-system catalog. */
-  .ds-index { background-color: #070b17; }
-  .ds-index .nav { min-height: 4.5rem; padding-inline: clamp(1rem, 4vw, 4rem); border-color: rgb(81 130 214 / .28); background: rgb(7 11 23 / .86); }
-  .ds-index .nav .logo { color: #f7f9ff; }
-  .ds-index .nav a.link { margin-left: 0; padding: .52rem .8rem; border: 1px solid transparent; border-radius: var(--radius-full); color: #aab9d4; font-weight: 700; }
-  .ds-index .nav a.link:hover { border-color: rgb(57 140 255 / .4); color: #fff; }
-  .ds-index .hero { min-height: min(52rem, calc(100dvh - 4.5rem)); display: grid; place-items: center; isolation: isolate; }
-  .ds-index .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 36% 30% at 50% 52%, rgb(54 166 255 / .17), transparent 76%), radial-gradient(ellipse 54% 36% at 50% 12%, rgb(39 99 200 / .18), transparent 76%); }
-  .ds-index .hero .inner { padding: clamp(6rem, 11vw, 9rem) 1.5rem clamp(5rem, 10vw, 8rem); }
-  .ds-index h1 { max-width: 52rem; margin-inline: auto; font-size: clamp(2.8rem, 6vw, 5rem); letter-spacing: 0; line-height: 1; }
-  .ds-index .accent { background-image: linear-gradient(135deg, #4c86ff, #22d3ee); }
-  .ds-index .lead { color: #b8c5df; }
-  .ds-index section { border-top: 1px solid rgb(75 126 207 / .2); padding-block: clamp(5rem, 9vw, 8rem); }
-  .ds-index .h2 { font-size: clamp(2rem, 4vw, 3.35rem); letter-spacing: 0; }
-  .ds-index .sub { color: #b5c3dc; }
-  .ds-index .feat, .ds-index .demo-card, .ds-index .doc { border-color: rgb(72 124 208 / .36); border-radius: 8px; background: linear-gradient(145deg, rgb(29 57 94 / .74), rgb(10 27 55 / .82)); box-shadow: inset 0 1px 0 rgb(255 255 255 / .07), 0 18px 48px rgb(0 0 0 / .15); }
-  .ds-index .feat { min-height: 8rem; }
-  .ds-index .feat .ic { border-radius: 6px; color: #37c8ff; background: rgb(44 123 241 / .16); }
-  .ds-index .demo-card { border-width: 1px; }
-  .ds-index .demo-card:hover { transform: translateY(-4px); border-color: rgb(55 172 255 / .72); }
-  .ds-index .demo-card img { opacity: .9; }
-  .ds-index .doc { align-items: center; }
-  .ds-index footer { border-color: rgb(75 126 207 / .22); background: rgb(5 11 26 / .66); }
-  @media (max-width: 760px) { .ds-index .nav a.link:nth-of-type(n+3) { display: none; } }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#070b17" />
+  <title>Singular Design System — Foundations, components and surfaces</title>
+  <meta name="description" content="Explore the tokens, components, variants, and platform profiles that power Singular across websites, web products, Studio, iOS, slides, social, and email." />
+  <script>try{const t=localStorage.getItem("singular-ds-theme");document.documentElement.classList.toggle("dark",t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)}catch{document.documentElement.classList.add("dark")}</script>
+  <link rel="icon" type="image/png" href="assets/logos/singular-favicon-256.png" />
+  <link rel="stylesheet" href="colors_and_type.css" />
+  <link rel="stylesheet" href="tokens/core.css" />
+  <link rel="stylesheet" href="tokens/brand-web.css" />
+  <link rel="stylesheet" href="tokens/core-utilities.css" />
+  <link rel="stylesheet" href="backgrounds/brand-background.css" />
+  <link rel="stylesheet" href="surfaces/website-landing/website.css" />
+  <link rel="stylesheet" href="site/design-system-page.css" />
 </head>
-<body class="ds-index">
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-<nav class="nav">
-  <a class="logo" href="#top"><span class="mk"></span> Singular Design System</a>
-  <span class="sp"></span>
-  <a class="link" href="#demos">Demos</a>
-  <a class="link" href="#docs">Documentación</a>
-  <a class="link" href="https://claude.ai/design/p/462a42c0-f576-4e7b-b4a5-ef70e74b0b36?via=share">Claude Design ↗</a>
-  <a class="link" href="https://claude.ai/customize/skills?selectedId=skill_015Hx2suxuiuwHEQyRaHBdoF">Claude Cowork ↗</a>
-  <a class="link" href="https://github.com/SingularAgency/Skill-Design-System">GitHub ↗</a>
-</nav>
+  <header class="site-header" data-site-header>
+    <a class="site-brand" href="#top" aria-label="Singular Design System — home">
+      <span class="site-brand__logo" aria-hidden="true">
+        <img class="theme-logo theme-logo--dark" src="assets/logos/singular-full-dark-bg.svg" alt="" />
+        <img class="theme-logo theme-logo--light" src="assets/logos/singular-full-light-bg.svg" alt="" />
+      </span>
+      <span class="site-brand__division">Design System</span>
+    </a>
 
-<!-- HERO -->
-<header class="hero brand-bg" id="top">
-  <div class="brand-bg__stars" aria-hidden="true"></div>
-  <div class="inner">
-    <span class="eyebrow eyebrow--brand">Design System · Singular</span>
-    <h1>Un sistema que viaja <span class="accent">por cada superficie.</span></h1>
-    <p class="lead">Tokens, componentes, perfiles y governance para construir website, producto web, Studio, iOS, presentaciones, social y email con la identidad actual de Singular.</p>
-    <div class="row">
-      <a class="cta cta--accent" href="#demos">Ver los demos ↓</a>
-      <a class="cta cta--secondary" href="#docs">Cómo se usa</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#surfaces">Surfaces</a>
+      <a href="catalog.html">Components</a>
+      <a href="#brand-assets">Logos</a>
+      <a href="#documentation">Documentation</a>
+      <a href="https://github.com/SingularAgency/Skill-Design-System" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+
+    <div class="site-header__actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode" aria-pressed="true">
+        <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path></svg>
+      </button>
+      <a class="header-action" href="catalog.html">Open catalog <span aria-hidden="true">→</span></a>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- QUÉ ES -->
-<section class="wrap" id="que-es">
-  <span class="eyebrow eyebrow--brand">Qué es</span>
-  <h2 class="h2">Una sola fuente de verdad para la marca</h2>
-  <p class="sub">Un <em>design system</em> es el kit de piezas reutilizables (colores, tipografías, botones, tarjetas…) que mantiene todo lo que hace Singular consistente y reconocible. Esto es ese kit, listo para usar.</p>
-  <div class="feats">
-    <div class="feat surface-gradient-bordered"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="14" r="2.5"/><circle cx="8.5" cy="17.5" r="2.5"/><circle cx="6.5" cy="9" r="2.5"/></svg></div><h3>Una identidad, varios perfiles</h3><p>El anchor de marca se mantiene estable y cada plataforma adapta interacción, densidad y comportamiento.</p></div>
-    <div class="feat surface-gradient-bordered"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div><h3>Tokens, no copy-paste</h3><p>Colores, tipografía y espaciado viven en un solo lugar. Cambiás una vez, cambia en todos lados.</p></div>
-    <div class="feat surface-gradient-bordered"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div><h3>7 perfiles</h3><p>Website, app, Studio, iOS, slides, social y email — con reglas específicas por plataforma.</p></div>
-    <div class="feat surface-gradient-bordered"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><h3>Accesible</h3><p>Contraste AA, foco visible, respeta "reducir movimiento". Pensado para todos.</p></div>
-  </div>
-</section>
+  <main id="main-content">
+    <section class="hero brand-bg" id="top" aria-labelledby="hero-title">
+      <div class="brand-bg__stars" aria-hidden="true"></div>
+      <div class="brand-bg__aurora" aria-hidden="true"></div>
+      <div class="hero__spotlight" aria-hidden="true"></div>
 
-<!-- DEMOS -->
-<section class="wrap" id="demos">
-  <span class="eyebrow eyebrow--brand">Demos en vivo</span>
-  <h2 class="h2">Tocá y mirá cómo se ve</h2>
-  <p class="sub">Cada tarjeta abre un ejemplo navegable. En el primero podés alternar marca (web/app) y tema (claro/oscuro) en vivo.</p>
-  <div class="demos">
-    <a class="demo-card" href="tokens/demo.html"><img src="previews/core.png" alt="Tokens y componentes" /><div class="b"><h3>Tokens & componentes <span class="tag app">core</span></h3><p>El motor: paleta, tipografía, botones, inputs, búsqueda, menús, tarjetas, tablas, KPIs…</p></div></a>
-    <a class="demo-card" href="backgrounds/demo.html"><img src="previews/backgrounds.png" alt="Fondo de marca" /><div class="b"><h3>Fondo de marca <span class="tag web">web</span></h3><p>Canvas oscuro con grilla y estrellas estáticas; cursor interactivo solo como variante explícita.</p></div></a>
-    <a class="demo-card" href="surfaces/web-app/demo.html"><img src="previews/web-app.png" alt="Web-app" /><div class="b"><h3>App / producto <span class="tag app">azul</span></h3><p>Dashboards y herramientas internas. Ejemplo: una pantalla de gestión de trabajo.</p></div></a>
-    <a class="demo-card" href="surfaces/website-landing/demo.html"><img src="previews/website.png" alt="Website" /><div class="b"><h3>Website / landing <span class="tag web">cyan</span></h3><p>Sitios y páginas de marketing. Ejemplo: una landing de producto.</p></div></a>
-    <a class="demo-card" href="surfaces/slides-presentations/demo.html"><img src="previews/slides.png" alt="Slides" /><div class="b"><h3>Presentaciones <span class="tag web">slides</span></h3><p>Decks on-brand: portada, contenido y datos, en 16:9.</p></div></a>
-    <a class="demo-card" href="surfaces/social-email/demo.html"><img src="previews/social.png" alt="Social y email" /><div class="b"><h3>Social + Email <span class="tag web">web</span></h3><p>Piezas para redes (Meta/IG) y emails de marca.</p></div></a>
-  </div>
-</section>
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <div class="release-pill reveal-item">
+            <span class="release-pill__pulse" aria-hidden="true"></span>
+            Release 2026.07.1
+            <span class="release-pill__divider" aria-hidden="true"></span>
+            7 surfaces
+          </div>
+          <p class="eyebrow eyebrow--brand reveal-item">Singular's product language</p>
+          <h1 id="hero-title" class="reveal-item">
+            <span class="hero-title__primary">One interface for every surface.</span>
+            <span class="text-gradient-brand">One language for all.</span>
+          </h1>
+          <p class="hero__lead reveal-item">
+            Foundations, components, and patterns connected by one shared logic. Built so people and AI can create Singular experiences that are consistent, fast, and unmistakable.
+          </p>
+          <div class="hero__actions reveal-item">
+            <a class="site-cta site-cta--primary" href="catalog.html">Explore components <span aria-hidden="true">→</span></a>
+            <a class="site-cta site-cta--secondary" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/SKILL.md">Read the guide <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
 
-<!-- DOCS -->
-<section class="wrap" id="docs">
-  <span class="eyebrow eyebrow--brand">Documentación</span>
-  <h2 class="h2">Cómo se usa</h2>
-  <p class="sub">Guías por superficie y referencias técnicas. Si vas a construir algo, empezá por la guía de tu superficie.</p>
-  <div class="docs">
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/SKILL.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span><div><h4>Guía general</h4><p>Qué es, marca, reglas y cómo elegir tu superficie.</p></div></a>
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/tokens/README.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="14" r="2.5"/><circle cx="8.5" cy="17.5" r="2.5"/></svg></span><div><h4>Tokens</h4><p>El motor de color/tipografía y cómo importarlo.</p></div></a>
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/surfaces/web-app/guide.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span><div><h4>Guía: App / producto</h4><p>Anatomía de una pantalla, componentes, API.</p></div></a>
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/surfaces/website-landing/guide.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><div><h4>Guía: Website</h4><p>Cómo armar una landing con los primitivos.</p></div></a>
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/surfaces/studio/guide.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3V4z"/><path d="M8 8h8M8 12h5"/></svg></span><div><h4>Guía: Studio</h4><p>Chat, agentes, preview, evidencia y decisiones.</p></div></a>
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/surfaces/ios-app/guide.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span><div><h4>Guía: iOS / SwiftUI</h4><p>Foundation y primitivas nativas portables.</p></div></a>
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/surfaces/slides-presentations/guide.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div><h4>Guía: Slides</h4><p>Specs de marca para presentaciones.</p></div></a>
-    <a class="doc" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/surfaces/social-email/email.md"><span class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span><div><h4>Guía: Social + Email</h4><p>Piezas de redes y emails on-brand.</p></div></a>
-  </div>
-</section>
+        <div class="hero-system reveal-item" aria-label="System map by platform">
+          <div class="hero-system__topbar">
+            <div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span>system.map</span>
+            <span class="hero-system__status"><i aria-hidden="true"></i> synced</span>
+          </div>
+          <div class="hero-system__body">
+            <div class="hero-system__core">
+              <span class="hero-system__kicker">Foundation</span>
+              <strong>One identity</strong>
+              <small>brand · type · spacing · motion</small>
+            </div>
+            <div class="hero-system__orbit" aria-hidden="true"></div>
+            <div class="hero-system__nodes">
+              <a href="surfaces/website-landing/demo.html"><span>01</span>Website<small>narrative</small></a>
+              <a href="surfaces/web-app/demo.html"><span>02</span>Web app<small>operational</small></a>
+              <a href="surfaces/studio/demo.html"><span>03</span>Studio<small>agentic</small></a>
+              <a href="surfaces/ios-app/guide.md"><span>04</span>iOS<small>native</small></a>
+              <a href="surfaces/slides-presentations/demo.html"><span>05</span>Slides<small>storytelling</small></a>
+              <a href="surfaces/social-email/demo.html"><span>06</span>Social<small>campaign</small></a>
+              <a href="surfaces/social-email/email.md"><span>07</span>Email<small>compatible</small></a>
+            </div>
+          </div>
+          <div class="hero-system__footer">
+            <span><i class="status-dot status-dot--success"></i> Foundations healthy</span>
+            <code>source: main</code>
+          </div>
+        </div>
+        <div class="hero-principles" aria-label="System principles">
+          <div class="hero-principles__intro">
+            <span>The system behind the system</span>
+            <strong>Consistency without uniformity.</strong>
+            <p>Every platform keeps its ergonomics. Identity, semantics, and decision patterns remain shared.</p>
+          </div>
+          <article><span>01 / Foundation</span><strong>One source of truth</strong><p>Color, type, spacing, radius, motion, and accessibility travel as contracts.</p></article>
+          <article><span>02 / Platform</span><strong>Native where it matters</strong><p>CSS and Tailwind on web, SwiftUI on iOS, and format-specific compatibility.</p></article>
+          <article><span>03 / Governance</span><strong>Readable by people and AI</strong><p>A manifest, skills, guides, versioned snapshots, and drift audits.</p></article>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  Singular Design System · <a href="https://github.com/SingularAgency/Skill-Design-System">Repo</a> ·
-  <a href="https://github.com/SingularAgency/Skill-Design-System/tree/main/assets">Assets</a><br>
-  Hecho con el propio sistema.
-</footer>
+    <section class="surface-section section-shell" id="surfaces" aria-labelledby="surfaces-title">
+      <div class="section-heading section-heading--split">
+        <div>
+          <p class="eyebrow eyebrow--brand">Platform profiles</p>
+          <h2 id="surfaces-title">One brand. Purpose-built ergonomics.</h2>
+        </div>
+        <p>Open each demo to see how the foundation adapts to density, interaction, format, and context.</p>
+      </div>
+      <div class="surface-track" role="list">
+        <a class="surface-card surface-card--website" href="surfaces/website-landing/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Website</span><span>01</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-hero"><i></i><b></b><em></em></div></div>
+          <p>Narrative · editorial · expressive</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--app" href="surfaces/web-app/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Web app</span><span>02</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-app"><i></i><b></b><em></em><strong></strong></div></div>
+          <p>Dense · operational · predictable</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--studio" href="surfaces/studio/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Studio</span><span>03</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-studio"><i></i><b></b><em></em></div></div>
+          <p>Intent · activity · evidence</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--ios" href="surfaces/ios-app/guide.md" role="listitem">
+          <div class="surface-card__top"><span>iOS</span><span>04</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-phone"><i></i><b></b><em></em></div></div>
+          <p>Native · focused · Dynamic Type</p><span class="surface-card__link">Open guide →</span>
+        </a>
+        <a class="surface-card surface-card--slides" href="surfaces/slides-presentations/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Slides</span><span>05</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-slide"><i></i><b></b></div></div>
+          <p>16:9 · narrative · data</p><span class="surface-card__link">View demo →</span>
+        </a>
+        <a class="surface-card surface-card--social" href="surfaces/social-email/demo.html" role="listitem">
+          <div class="surface-card__top"><span>Social + Email</span><span>06—07</span></div>
+          <div class="surface-card__visual"><div class="surface-mini-social"><i></i><b></b><em></em></div></div>
+          <p>Campaign · safe zones · fallback</p><span class="surface-card__link">View demo →</span>
+        </a>
+      </div>
+    </section>
 
+    <section class="library-section" id="library" aria-labelledby="library-title">
+      <div class="section-shell library-intro">
+        <div class="section-heading section-heading--split">
+          <div>
+            <p class="eyebrow eyebrow--brand">Component explorer</p>
+            <h2 id="library-title">The living catalog.</h2>
+          </div>
+          <p>Filter by platform and category, then switch variants, density, and viewport. Every story includes usage guidance and an implementation snippet.</p>
+        </div>
+      </div>
+
+      <div class="explorer" data-explorer>
+        <aside class="explorer-sidebar" aria-label="Filters and components">
+          <div class="explorer-sidebar__header">
+            <label class="search-field">
+              <span class="sr-only">Search components</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+              <input type="search" placeholder="Search stories…" autocomplete="off" data-search />
+              <kbd>/</kbd>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-group__label"><span>Platform</span><button type="button" data-clear-filters>Reset</button></div>
+            <div class="filter-chips" data-platform-filters></div>
+          </div>
+
+          <div class="filter-group filter-group--categories">
+            <div class="filter-group__label"><span>Category</span></div>
+            <div class="category-list" data-category-filters></div>
+          </div>
+
+          <div class="filter-group filter-group--traits">
+            <div class="filter-group__label"><span>Traits</span></div>
+            <div class="filter-chips" data-trait-filters></div>
+          </div>
+
+          <div class="component-index__header">
+            <span>Stories</span>
+            <span data-result-count aria-live="polite">0</span>
+          </div>
+          <div class="component-index" data-component-list role="listbox" aria-label="Component stories"></div>
+          <p class="empty-results" data-empty-results hidden>No stories match these filters.</p>
+        </aside>
+
+        <div class="explorer-workspace">
+          <header class="explorer-toolbar">
+            <div class="story-breadcrumb" data-story-breadcrumb>Core / Button</div>
+            <div class="explorer-toolbar__controls">
+              <label class="toolbar-select">
+                <span>Variant</span>
+                <select data-variant-select aria-label="Component variant"></select>
+              </label>
+              <div class="segmented-control" role="group" aria-label="Density">
+                <button type="button" data-density="compact" aria-pressed="false">Compact</button>
+                <button type="button" data-density="comfortable" aria-pressed="true">Comfort</button>
+              </div>
+              <div class="icon-control" role="group" aria-label="Preview viewport">
+                <button type="button" data-viewport="mobile" aria-label="Viewport mobile" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M11 18h2"></path></svg></button>
+                <button type="button" data-viewport="tablet" aria-label="Viewport tablet" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"></rect><path d="M11 18h2"></path></svg></button>
+                <button type="button" data-viewport="desktop" aria-label="Viewport desktop" aria-pressed="true"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></button>
+              </div>
+              <button class="fullscreen-control" type="button" data-fullscreen-toggle aria-label="View catalog in fullscreen" aria-pressed="false" title="Fullscreen">
+                <svg class="fullscreen-control__enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path></svg>
+                <svg class="fullscreen-control__exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5"></path></svg>
+              </button>
+            </div>
+          </header>
+
+          <div class="preview-stage" data-preview-stage data-viewport="desktop" data-density="comfortable">
+            <div class="preview-stage__grid" aria-hidden="true"></div>
+            <div class="preview-frame" data-preview-frame>
+              <div class="component-preview" data-component-preview></div>
+            </div>
+            <span class="preview-size" data-preview-size>1280 × auto</span>
+          </div>
+
+          <section class="story-docs" aria-labelledby="story-title">
+            <div class="story-docs__heading">
+              <div>
+                <div class="story-badges" data-story-badges></div>
+                <h3 id="story-title" data-story-title>Button</h3>
+                <p data-story-description></p>
+              </div>
+              <a class="source-link" data-source-link href="#">View source <span aria-hidden="true">↗</span></a>
+            </div>
+
+            <div class="docs-tabs" role="tablist" aria-label="Component documentation">
+              <button type="button" role="tab" aria-selected="true" aria-controls="usage-panel" id="usage-tab" data-doc-tab="usage">Usage</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="code-panel" id="code-tab" data-doc-tab="code">Code</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="a11y-panel" id="a11y-tab" data-doc-tab="a11y">Accessibility</button>
+            </div>
+            <div class="docs-panel" id="usage-panel" role="tabpanel" aria-labelledby="usage-tab" data-doc-panel="usage">
+              <div class="usage-grid">
+                <div><span>When to use it</span><p data-story-usage></p></div>
+                <div><span>Contract</span><p data-story-contract></p></div>
+              </div>
+            </div>
+            <div class="docs-panel" id="code-panel" role="tabpanel" aria-labelledby="code-tab" data-doc-panel="code" hidden>
+              <div class="code-block">
+                <div class="code-block__top"><span data-code-language>tsx</span><button type="button" data-copy-code>Copy</button></div>
+                <pre><code data-story-code></code></pre>
+              </div>
+            </div>
+            <div class="docs-panel" id="a11y-panel" role="tabpanel" aria-labelledby="a11y-tab" data-doc-panel="a11y" hidden>
+              <p class="a11y-note" data-story-a11y></p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="documentation section-shell" id="documentation" aria-labelledby="documentation-title">
+      <div class="section-heading section-heading--split">
+        <div>
+          <p class="eyebrow eyebrow--brand">Documentation and tools</p>
+          <h2 id="documentation-title">Designed to be used.</h2>
+        </div>
+        <p>Choose a surface, consume a versioned snapshot, or load the skill from Codex, Claude Code, or Cowork.</p>
+      </div>
+      <div class="documentation-grid">
+        <a class="documentation-card documentation-card--wide" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/SKILL.md">
+          <span class="documentation-card__eyebrow">Start here</span>
+          <h3>A guide for people and AI</h3>
+          <p>Surface routing, non-negotiable rules, and the implementation workflow in one contract.</p>
+          <code>Read SKILL.md → select surface → build</code>
+        </a>
+        <a class="documentation-card" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/tokens/README.md"><span class="documentation-card__number">01</span><h3>Tokens</h3><p>Identity, interaction, status, and profile mapping.</p><span>Read guide →</span></a>
+        <a class="documentation-card" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/components/README.md"><span class="documentation-card__number">02</span><h3>Components</h3><p>A portable inventory with clear domain boundaries.</p><span>View inventory →</span></a>
+        <a class="documentation-card" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/references/adoption-and-governance.md"><span class="documentation-card__number">03</span><h3>Governance</h3><p>Snapshots, versioning, ownership, and drift audits.</p><span>Open reference →</span></a>
+      </div>
+      <div class="install-command">
+        <div><span>Versioned snapshot</span><code>node scripts/export-snapshot.mjs --bundle=core,website-landing --target=./design-system/singular</code></div>
+        <button type="button" data-copy-install>Copy command</button>
+      </div>
+    </section>
+
+    <section class="brand-assets section-shell" id="brand-assets" aria-labelledby="brand-assets-title">
+      <div class="brand-kit-banner">
+        <div>
+          <p class="eyebrow eyebrow--brand">Brand assets</p>
+          <h2 id="brand-assets-title">The Singular logo kit, ready for every background.</h2>
+          <p>Download the complete package with SVG and PNG exports, or preview and download the exact raster asset you need.</p>
+        </div>
+        <a class="site-cta site-cta--primary" href="assets/logos/singular-logos.zip" download>Download complete ZIP <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="logo-download-grid">
+        <article class="logo-download-card">
+          <button class="logo-download-card__preview logo-preview--neutral" type="button" data-logo-preview data-src="assets/logos/singular-favicon-256.png" data-title="Singular icon" aria-label="Preview Singular icon">
+            <img src="assets/logos/singular-favicon-256.png" alt="Singular icon in color" />
+          </button>
+          <div><h3>Singular icon</h3><p>256 × 256 PNG · favicon and compact placements</p><a href="assets/logos/singular-favicon-256.png" download>Download PNG ↓</a></div>
+        </article>
+        <article class="logo-download-card">
+          <button class="logo-download-card__preview logo-preview--dark" type="button" data-logo-preview data-src="assets/logos/singular-full-dark-bg.png" data-title="Full logo for dark backgrounds" aria-label="Preview full logo for dark backgrounds">
+            <img src="assets/logos/singular-full-dark-bg.png" alt="White Singular logo for dark backgrounds" />
+          </button>
+          <div><h3>Full logo · dark background</h3><p>2048 × 409 PNG · light wordmark</p><a href="assets/logos/singular-full-dark-bg.png" download>Download PNG ↓</a></div>
+        </article>
+        <article class="logo-download-card">
+          <button class="logo-download-card__preview logo-preview--light" type="button" data-logo-preview data-src="assets/logos/singular-full-light-bg.png" data-title="Full logo for light backgrounds" aria-label="Preview full logo for light backgrounds">
+            <img src="assets/logos/singular-full-light-bg.png" alt="Dark Singular logo for light backgrounds" />
+          </button>
+          <div><h3>Full logo · light background</h3><p>2048 × 409 PNG · dark wordmark</p><a href="assets/logos/singular-full-light-bg.png" download>Download PNG ↓</a></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__brand">
+      <span class="site-brand__logo" aria-hidden="true">
+        <img class="theme-logo theme-logo--dark" src="assets/logos/singular-full-dark-bg.svg" alt="" />
+        <img class="theme-logo theme-logo--light" src="assets/logos/singular-full-light-bg.svg" alt="" />
+      </span>
+      <div><strong>Design System</strong><span>One identity. Every surface.</span></div>
+    </div>
+    <div class="site-footer__links">
+      <a href="https://github.com/SingularAgency/Skill-Design-System/tree/main/assets">Assets</a>
+      <a href="https://github.com/SingularAgency/Skill-Design-System/blob/main/references/architecture.md">Architecture</a>
+      <a href="https://github.com/SingularAgency/Skill-Design-System">GitHub</a>
+    </div>
+    <span class="site-footer__release">Release 2026.07.1</span>
+  </footer>
+
+  <dialog class="asset-lightbox" data-asset-lightbox aria-labelledby="asset-lightbox-title">
+    <div class="asset-lightbox__toolbar">
+      <h2 id="asset-lightbox-title" data-lightbox-title>Logo preview</h2>
+      <button type="button" data-lightbox-close aria-label="Close preview">Close ×</button>
+    </div>
+    <div class="asset-lightbox__canvas"><img data-lightbox-image src="" alt="" /></div>
+    <a class="site-cta site-cta--primary" data-lightbox-download href="" download>Download PNG ↓</a>
+  </dialog>
+
+  <script src="site/theme-and-assets.js" defer></script>
+  <script src="site/component-explorer.js" defer></script>
 </body>
 </html>
