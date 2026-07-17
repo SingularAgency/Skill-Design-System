@@ -73,6 +73,35 @@
           </div>
         </div>
 
+        <div class="hero-system reveal-item" aria-label="System map by platform">
+          <div class="hero-system__topbar">
+            <div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span>system.map</span>
+            <span class="hero-system__status"><i aria-hidden="true"></i> synced</span>
+          </div>
+          <div class="hero-system__body">
+            <div class="hero-system__core">
+              <span class="hero-system__kicker">Foundation</span>
+              <strong>One identity</strong>
+              <small>brand · type · spacing · motion</small>
+            </div>
+            <div class="hero-system__orbit" aria-hidden="true"></div>
+            <div class="hero-system__nodes">
+              <a href="surfaces/website-landing/demo.html"><span>01</span>Website<small>narrative</small></a>
+              <a href="surfaces/web-app/demo.html"><span>02</span>Web app<small>operational</small></a>
+              <a href="surfaces/studio/demo.html"><span>03</span>Studio<small>agentic</small></a>
+              <a href="surfaces/ios-app/guide.md"><span>04</span>iOS<small>native</small></a>
+              <a href="surfaces/slides-presentations/demo.html"><span>05</span>Slides<small>storytelling</small></a>
+              <a href="surfaces/social-email/demo.html"><span>06</span>Social<small>campaign</small></a>
+              <a href="surfaces/social-email/email.md"><span>07</span>Email<small>compatible</small></a>
+            </div>
+          </div>
+          <div class="hero-system__footer">
+            <span><i class="status-dot status-dot--success"></i> Foundations healthy</span>
+            <code>source: main</code>
+          </div>
+        </div>
+
         <div class="hero-catalog reveal-item" aria-labelledby="library-title">
           <div class="hero-catalog__intro">
             <div>
@@ -263,24 +292,28 @@
     </section>
 
     <section class="brand-assets section-shell" id="brand-assets" aria-labelledby="brand-assets-title">
-      <div class="brand-kit-banner">
-        <div>
-          <p class="eyebrow eyebrow--brand">Brand assets</p>
-          <h2 id="brand-assets-title">The Singular logo kit, ready for every background.</h2>
-          <p>Download the complete package, or filter every approved logo by format, style, background, and text treatment.</p>
+      <div class="brand-assets-card">
+        <div class="brand-kit-banner">
+          <div>
+            <p class="eyebrow eyebrow--brand">Brand assets</p>
+            <h2 id="brand-assets-title">The Singular logo kit, ready for every background.</h2>
+            <p>Download the complete package, or filter every approved logo by format, style, background, and text treatment.</p>
+          </div>
+          <a class="site-cta site-cta--primary" href="assets/logos/singular-logos.zip" download>Download complete ZIP <span aria-hidden="true">↓</span></a>
         </div>
-        <a class="site-cta site-cta--primary" href="assets/logos/singular-logos.zip" download>Download complete ZIP <span aria-hidden="true">↓</span></a>
+        <div class="brand-assets-library">
+          <div class="logo-library-toolbar" aria-label="Logo filters">
+            <label><span>Format</span><select data-logo-filter="format"><option value="all">All formats</option><option value="svg">SVG</option><option value="png">PNG</option></select></label>
+            <label><span>Style</span><select data-logo-filter="style"><option value="all">All styles</option><option value="full">Full logo</option><option value="icon">Icon</option><option value="wordmark">Wordmark</option></select></label>
+            <label><span>Background</span><select data-logo-filter="background"><option value="all">All backgrounds</option><option value="dark">Dark</option><option value="light">Light</option><option value="neutral">Neutral</option></select></label>
+            <label><span>Text</span><select data-logo-filter="text"><option value="all">All options</option><option value="with-text">With text</option><option value="no-text">No text</option></select></label>
+            <button type="button" data-logo-reset>Reset filters</button>
+            <p aria-live="polite"><strong data-logo-result-count>9</strong> assets</p>
+          </div>
+          <div class="logo-download-grid" data-logo-library></div>
+          <p class="logo-library-empty" data-logo-empty hidden>No logo assets match these filters.</p>
+        </div>
       </div>
-      <div class="logo-library-toolbar" aria-label="Logo filters">
-        <label><span>Format</span><select data-logo-filter="format"><option value="all">All formats</option><option value="svg">SVG</option><option value="png">PNG</option></select></label>
-        <label><span>Style</span><select data-logo-filter="style"><option value="all">All styles</option><option value="full">Full logo</option><option value="icon">Icon</option><option value="wordmark">Wordmark</option></select></label>
-        <label><span>Background</span><select data-logo-filter="background"><option value="all">All backgrounds</option><option value="dark">Dark</option><option value="light">Light</option><option value="neutral">Neutral</option></select></label>
-        <label><span>Text</span><select data-logo-filter="text"><option value="all">All options</option><option value="with-text">With text</option><option value="no-text">No text</option></select></label>
-        <button type="button" data-logo-reset>Reset filters</button>
-        <p aria-live="polite"><strong data-logo-result-count>9</strong> assets</p>
-      </div>
-      <div class="logo-download-grid" data-logo-library></div>
-      <p class="logo-library-empty" data-logo-empty hidden>No logo assets match these filters.</p>
     </section>
   </main>
 
