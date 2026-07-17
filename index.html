@@ -298,30 +298,20 @@
         <div>
           <p class="eyebrow eyebrow--brand">Brand assets</p>
           <h2 id="brand-assets-title">The Singular logo kit, ready for every background.</h2>
-          <p>Download the complete package with SVG and PNG exports, or preview and download the exact raster asset you need.</p>
+          <p>Download the complete package, or filter every approved logo by format, style, background, and text treatment.</p>
         </div>
         <a class="site-cta site-cta--primary" href="assets/logos/singular-logos.zip" download>Download complete ZIP <span aria-hidden="true">↓</span></a>
       </div>
-      <div class="logo-download-grid">
-        <article class="logo-download-card">
-          <button class="logo-download-card__preview logo-preview--neutral" type="button" data-logo-preview data-src="assets/logos/singular-favicon-256.png" data-title="Singular icon" aria-label="Preview Singular icon">
-            <img src="assets/logos/singular-favicon-256.png" alt="Singular icon in color" />
-          </button>
-          <div><h3>Singular icon</h3><p>256 × 256 PNG · favicon and compact placements</p><a href="assets/logos/singular-favicon-256.png" download>Download PNG ↓</a></div>
-        </article>
-        <article class="logo-download-card">
-          <button class="logo-download-card__preview logo-preview--dark" type="button" data-logo-preview data-src="assets/logos/singular-full-dark-bg.png" data-title="Full logo for dark backgrounds" aria-label="Preview full logo for dark backgrounds">
-            <img src="assets/logos/singular-full-dark-bg.png" alt="White Singular logo for dark backgrounds" />
-          </button>
-          <div><h3>Full logo · dark background</h3><p>2048 × 409 PNG · light wordmark</p><a href="assets/logos/singular-full-dark-bg.png" download>Download PNG ↓</a></div>
-        </article>
-        <article class="logo-download-card">
-          <button class="logo-download-card__preview logo-preview--light" type="button" data-logo-preview data-src="assets/logos/singular-full-light-bg.png" data-title="Full logo for light backgrounds" aria-label="Preview full logo for light backgrounds">
-            <img src="assets/logos/singular-full-light-bg.png" alt="Dark Singular logo for light backgrounds" />
-          </button>
-          <div><h3>Full logo · light background</h3><p>2048 × 409 PNG · dark wordmark</p><a href="assets/logos/singular-full-light-bg.png" download>Download PNG ↓</a></div>
-        </article>
+      <div class="logo-library-toolbar" aria-label="Logo filters">
+        <label><span>Format</span><select data-logo-filter="format"><option value="all">All formats</option><option value="svg">SVG</option><option value="png">PNG</option></select></label>
+        <label><span>Style</span><select data-logo-filter="style"><option value="all">All styles</option><option value="full">Full logo</option><option value="icon">Icon</option><option value="wordmark">Wordmark</option></select></label>
+        <label><span>Background</span><select data-logo-filter="background"><option value="all">All backgrounds</option><option value="dark">Dark</option><option value="light">Light</option><option value="neutral">Neutral</option></select></label>
+        <label><span>Text</span><select data-logo-filter="text"><option value="all">All options</option><option value="with-text">With text</option><option value="no-text">No text</option></select></label>
+        <button type="button" data-logo-reset>Reset filters</button>
+        <p aria-live="polite"><strong data-logo-result-count>9</strong> assets</p>
       </div>
+      <div class="logo-download-grid" data-logo-library></div>
+      <p class="logo-library-empty" data-logo-empty hidden>No logo assets match these filters.</p>
     </section>
   </main>
 
@@ -347,7 +337,7 @@
       <button type="button" data-lightbox-close aria-label="Close preview">Close ×</button>
     </div>
     <div class="asset-lightbox__canvas"><img data-lightbox-image src="" alt="" /></div>
-    <a class="site-cta site-cta--primary" data-lightbox-download href="" download>Download PNG ↓</a>
+    <a class="site-cta site-cta--primary" data-lightbox-download href="" download>Download asset ↓</a>
   </dialog>
 
   <script src="site/theme-and-assets.js" defer></script>
