@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#070b17" />
+  <title>Catalog — Singular Design System</title>
+  <meta name="description" content="Interactive catalog of components, variants, and platform profiles from the Singular Design System." />
+  <script>try{const t=localStorage.getItem("singular-ds-theme");document.documentElement.classList.toggle("dark",t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)}catch{document.documentElement.classList.add("dark")}</script>
+  <link rel="icon" type="image/png" href="assets/logos/singular-favicon-256.png" />
+  <link rel="stylesheet" href="colors_and_type.css" />
+  <link rel="stylesheet" href="tokens/core.css" />
+  <link rel="stylesheet" href="tokens/brand-web.css" />
+  <link rel="stylesheet" href="tokens/core-utilities.css" />
+  <link rel="stylesheet" href="backgrounds/brand-background.css" />
+  <link rel="stylesheet" href="surfaces/website-landing/website.css" />
+  <link rel="stylesheet" href="site/design-system-page.css" />
+</head>
+<body class="catalog-page">
+  <a class="skip-link" href="#catalog">Skip to catalog</a>
+
+  <header class="site-header catalog-app-header">
+    <a class="site-brand" href="index.html" aria-label="Singular Design System — home">
+      <span class="site-brand__logo" aria-hidden="true">
+        <img class="theme-logo theme-logo--dark" src="assets/logos/singular-full-dark-bg.svg" alt="" />
+        <img class="theme-logo theme-logo--light" src="assets/logos/singular-full-light-bg.svg" alt="" />
+      </span>
+      <span class="site-brand__division">Design System</span>
+      <span class="catalog-app-header__page">Catalog</span>
+    </a>
+    <div class="catalog-app-status" aria-label="Catalog status"><i aria-hidden="true"></i><span>Component library</span><strong>16 stories · 49 variants</strong></div>
+    <div class="catalog-header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode" aria-pressed="true">
+        <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path></svg>
+      </button>
+      <a class="header-action catalog-home-link" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8"></path><path d="M5 10v10h14V10M9 20v-6h6v6"></path></svg>Back to home</a>
+    </div>
+  </header>
+
+  <main class="catalog-main" id="catalog">
+    <section class="library-section catalog-library" aria-label="Component catalog">
+      <div class="explorer" data-explorer>
+        <aside class="explorer-sidebar" aria-label="Filters and components">
+          <div class="explorer-sidebar__header">
+            <label class="search-field">
+              <span class="sr-only">Search components</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+              <input type="search" placeholder="Search stories…" autocomplete="off" data-search />
+              <kbd>/</kbd>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-group__label"><span>Platform</span><button type="button" data-clear-filters>Reset</button></div>
+            <div class="filter-chips" data-platform-filters></div>
+          </div>
+          <div class="filter-group filter-group--categories">
+            <div class="filter-group__label"><span>Category</span></div>
+            <div class="category-list" data-category-filters></div>
+          </div>
+          <div class="filter-group filter-group--traits">
+            <div class="filter-group__label"><span>Traits</span></div>
+            <div class="filter-chips" data-trait-filters></div>
+          </div>
+          <div class="component-index__header"><span>Stories</span><span data-result-count aria-live="polite">0</span></div>
+          <div class="component-index" data-component-list role="listbox" aria-label="Component stories"></div>
+          <p class="empty-results" data-empty-results hidden>No stories match these filters.</p>
+        </aside>
+
+        <div class="explorer-workspace">
+          <header class="explorer-toolbar">
+            <div class="story-breadcrumb" data-story-breadcrumb>Core / Button</div>
+            <div class="explorer-toolbar__controls">
+              <label class="toolbar-select"><span>Variant</span><select data-variant-select aria-label="Component variant"></select></label>
+              <div class="segmented-control" role="group" aria-label="Density">
+                <button type="button" data-density="compact" aria-pressed="false">Compact</button>
+                <button type="button" data-density="comfortable" aria-pressed="true">Comfort</button>
+              </div>
+              <div class="icon-control" role="group" aria-label="Preview viewport">
+                <button type="button" data-viewport="mobile" aria-label="Viewport mobile" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M11 18h2"></path></svg></button>
+                <button type="button" data-viewport="tablet" aria-label="Viewport tablet" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"></rect><path d="M11 18h2"></path></svg></button>
+                <button type="button" data-viewport="desktop" aria-label="Viewport desktop" aria-pressed="true"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></button>
+              </div>
+              <button class="fullscreen-control" type="button" data-fullscreen-toggle aria-label="View catalog in fullscreen" aria-pressed="false" title="Fullscreen">
+                <svg class="fullscreen-control__enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path></svg>
+                <svg class="fullscreen-control__exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5"></path></svg>
+              </button>
+            </div>
+          </header>
+
+          <div class="preview-stage" data-preview-stage data-viewport="desktop" data-density="comfortable">
+            <div class="preview-stage__grid" aria-hidden="true"></div>
+            <div class="preview-frame" data-preview-frame><div class="component-preview" data-component-preview></div></div>
+            <span class="preview-size" data-preview-size>1280 × auto</span>
+          </div>
+
+          <section class="story-docs" aria-labelledby="story-title">
+            <div class="story-docs__heading">
+              <div>
+                <div class="story-badges" data-story-badges></div>
+                <h2 id="story-title" data-story-title>Button</h2>
+                <p data-story-description></p>
+              </div>
+              <a class="source-link" data-source-link href="#">View source <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="docs-tabs" role="tablist" aria-label="Component documentation">
+              <button type="button" role="tab" aria-selected="true" aria-controls="usage-panel" id="usage-tab" data-doc-tab="usage">Usage</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="code-panel" id="code-tab" data-doc-tab="code">Code</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="a11y-panel" id="a11y-tab" data-doc-tab="a11y">Accessibility</button>
+            </div>
+            <div class="docs-panel" id="usage-panel" role="tabpanel" aria-labelledby="usage-tab" data-doc-panel="usage">
+              <div class="usage-grid"><div><span>When to use it</span><p data-story-usage></p></div><div><span>Contract</span><p data-story-contract></p></div></div>
+            </div>
+            <div class="docs-panel" id="code-panel" role="tabpanel" aria-labelledby="code-tab" data-doc-panel="code" hidden>
+              <div class="code-block"><div class="code-block__top"><span data-code-language>tsx</span><button type="button" data-copy-code>Copy</button></div><pre><code data-story-code></code></pre></div>
+            </div>
+            <div class="docs-panel" id="a11y-panel" role="tabpanel" aria-labelledby="a11y-tab" data-doc-panel="a11y" hidden><p class="a11y-note" data-story-a11y></p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="site/theme-and-assets.js"></script>
+  <script src="site/component-explorer.js"></script>
+</body>
+</html>
