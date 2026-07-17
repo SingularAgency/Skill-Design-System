@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="tokens/core-utilities.css" />
   <link rel="stylesheet" href="backgrounds/brand-background.css" />
   <link rel="stylesheet" href="surfaces/website-landing/website.css" />
-  <link rel="stylesheet" href="site/design-system-page.css" />
+  <link rel="stylesheet" href="site/design-system-page.css?v=20260717.4" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -29,10 +29,19 @@
     </a>
 
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#surfaces">Surfaces</a>
+      <details class="site-nav__menu">
+        <summary>Surfaces <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"></path></svg></summary>
+        <div class="site-nav__dropdown">
+          <a href="surfaces/website-landing/demo.html"><strong>Website</strong><small>Narrative and editorial</small></a>
+          <a href="surfaces/web-app/demo.html"><strong>Web app</strong><small>Dense and operational</small></a>
+          <a href="surfaces/studio/demo.html"><strong>Studio</strong><small>Agentic workspace</small></a>
+          <a href="surfaces/ios-app/guide.md"><strong>iOS</strong><small>Native product guide</small></a>
+          <a href="surfaces/slides-presentations/demo.html"><strong>Slides</strong><small>Presentation system</small></a>
+          <a href="surfaces/social-email/demo.html"><strong>Social</strong><small>Campaign formats</small></a>
+          <a href="surfaces/social-email/email.md"><strong>Email</strong><small>Compatible templates</small></a>
+        </div>
+      </details>
       <a href="catalog.html">Components</a>
-      <a href="#brand-assets">Logos</a>
-      <a href="#documentation">Documentation</a>
       <a href="https://github.com/SingularAgency/Skill-Design-System" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </nav>
 
