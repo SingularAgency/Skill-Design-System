@@ -1,7 +1,7 @@
 # Fondo de marca
 
 Este fondo expresa la identidad visual compartida dentro de la foundation de
-[calm authority](../docs/05-experience-foundations.md#8-express-calm-authority).
+[calm authority](../docs/05-experience-foundations.md#6-express-calm-authority-accessibly).
 No debe competir con información, estado, evidencia o decisión; por eso su
 actividad y densidad cambian según la superficie.
 

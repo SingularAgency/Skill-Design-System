@@ -1,9 +1,8 @@
 # Componentes
 
 Un componente compartido debe responder a un user job y a una foundation, no
-solamente repetirse en código. Antes de promover o crear uno, usar el
-[Decision framework](../docs/07-decision-framework.md) y la sección
-[Apply to a Design System decision](../docs/08-application-map.md#apply-to-a-design-system-decision).
+solamente repetirse en código. Antes de promover o crear uno, usar
+[Trace a material decision](../docs/08-application-map.md#trace-a-material-decision).
 
 Inventario de los componentes del DS, clasificados. La **API real** vive en cada perfil; acá está el mapa de qué es reutilizable universal vs específico de producto.
 

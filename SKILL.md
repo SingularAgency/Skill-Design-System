@@ -25,8 +25,8 @@ plataforma. Mantener la lógica de negocio en cada producto.
    proponer una decisión compartida.
 3. Leer `docs/08-application-map.md` para enrutar intención y superficie.
 4. Leer `design-system.json`.
-5. Si la tarea incluye copy, leer `ux-voice/README.md` y elegir Marketing o
-   Product según la intención.
+5. Si la tarea incluye copy, elegir `ux-voice/marketing.md` o
+   `ux-voice/product.md` según la intención.
 6. Elegir una superficie primaria y leer su guía.
 7. Leer `tokens/README.md` para web o `surfaces/ios-app/guide.md` para SwiftUI.
 8. Leer `components/README.md` antes de crear un componente.
@@ -41,15 +41,12 @@ o evidencia de usuario.
 
 | Pregunta | Leer |
 |---|---|
-| ¿Qué empresa sirve Singular? | `docs/01-client-context.md` |
-| ¿Quién es el usuario y qué intenta resolver? | `docs/02-users-jobs-and-pain-points.md` |
-| ¿Cuál es la causa y el outcome? | `docs/03-problem-and-outcome-model.md` |
-| ¿Cómo colabora Singular? | `docs/04-how-singular-collaborates.md` |
-| ¿Qué principle gobierna la decisión? | `docs/05-experience-foundations.md` |
-| ¿Cómo se expresa la marca visual y verbal? | `brand/README.md` + `ux-voice/README.md` |
-| ¿Qué layer debe ser owner? | `docs/06-from-foundations-to-system.md` |
-| ¿Cómo se documenta y aplica? | `docs/07-decision-framework.md` + `docs/08-application-map.md` |
-| ¿Es un hecho, inferencia o claim? | `docs/09-evidence-and-evolution.md` |
+| ¿Qué empresa sirve Singular, quién vive el problema y qué outcome necesita? | `docs/01-client-context.md` |
+| ¿Cómo colabora Singular y qué foundation gobierna la decisión? | `docs/05-experience-foundations.md` |
+| ¿Cómo se expresa la identidad y voz compartida? | `brand/README.md` |
+| ¿Cómo se escribe para adquisición o posicionamiento? | `ux-voice/marketing.md` |
+| ¿Cómo se escribe un estado, acción, decisión o recovery? | `ux-voice/product.md` |
+| ¿Cómo se enruta, documenta y valida? | `docs/08-application-map.md` |
 
 ## Router de superficies
 
@@ -67,8 +64,8 @@ o evidencia de usuario.
 
 | Trabajo que debe resolver el copy | Capítulo |
 |---|---|
-| Posicionamiento, adquisición, narrativa, prueba o conversión | `ux-voice/README.md#6-marketing-voice-and-tone` |
-| Estado, acción, decisión, recuperación, permisos o confianza | `ux-voice/README.md#7-product-voice-and-tone` |
+| Posicionamiento, adquisición, narrativa, prueba o conversión | `ux-voice/marketing.md` |
+| Estado, acción, decisión, recuperación, permisos o confianza | `ux-voice/product.md` |
 
 La intención manda sobre el canal. Un deck de revisión puede requerir Product;
 un error en el website puede requerir Product. Antes de escribir, identificar

@@ -1,285 +1,152 @@
-# Singular Brand Foundation
+# Brand & core voice
 
-**Status:** v0.1 working reference
+**Status:** v0.2 working reference
 
 **Audience:** Anyone creating or reviewing a Singular experience
 
 **Owner:** Product Design
 
-**Last reviewed:** July 29, 2026
+Singular's identity exists to make consequential operating change feel
+understandable, governed, credible, and human. Read the
+[client reality](../docs/01-client-context.md) and
+[Singular model](../docs/05-experience-foundations.md) before changing it.
 
-This document defines the shared brand idea and visual character that connect
-Singular's website, products, presentations, social content, and email. It is a
-human-readable bridge between the
-[experience foundations](../docs/05-experience-foundations.md), the
-[UX Writing, Voice & Tone Manual](../ux-voice/README.md), and the technical
-[Design System](../README.md).
-
-## The brand starts with the client
-
-Singular serves established SMBs whose operations have become harder to
-coordinate as they grow. Their experience is often fragmented, manual, and
-dependent on a few people. They want leverage, but not opacity; speed, but not
-recklessness; expertise, but not a new dependency.
-
-The brand must therefore make complex transformation feel:
-
-- understandable;
-- governed;
-- connected;
-- credible;
-- ambitious without hype;
-- human without artificial warmth.
-
-Read the full [client context](../docs/01-client-context.md) and
-[problem model](../docs/03-problem-and-outcome-model.md) before changing the
-brand system.
-
-## The brand idea
+## Brand idea
 
 > Singular turns operating complexity into a system people can understand,
 > control, and evolve.
 
-This is a foundation for expression, not a public tagline or a verified
-commercial claim.
+This is a foundation for expression, not a public tagline or commercial claim.
 
-## Brand character
+## Shared character
 
-### Calm
+The visual and verbal systems share five traits.
 
-Singular does not use visual urgency or AI spectacle to manufacture
-importance. Hierarchy, spacing, motion, and language let the main decision
-stand out.
+| Trait | Behavior |
+|---|---|
+| Calm | The primary information or decision dominates urgency, hype, and AI spectacle. |
+| Clear | Hierarchy and language reveal the main point without hiding necessary complexity. |
+| Precise | Identity, action, status, evidence, and data have distinct roles. |
+| Transparent | Fact, inference, proposal, limitation, and confirmed outcome remain distinguishable. |
+| Human | The experience respects context and consequence without sterility or artificial warmth. |
 
-### Precise
+Across these traits, Singular stays connected across surfaces, uses restrained
+motion to make activity feel alive, and connects work to outcomes without
+inventing impact.
 
-Visual roles have meaning. Identity, action, status, evidence, and data are not
-represented as one undifferentiated glow.
+## Core voice
 
-### Connected
+> Singular communicates with the clarity of a product system and the judgment
+> of a senior operating partner. It makes complexity navigable, commitments
+> visible, and the next decision clear.
 
-The system should feel like one company across marketing and product, even
-when each surface has different density and behavior.
+Singular is not an AI evangelist, motivational speaker, generic consultancy,
+tool vendor, or system performing certainty.
 
-### Structured
+When principles compete, use this order:
 
-Complexity becomes readable through sequence, contrast, grouping, and
-progressive disclosure.
+1. Truth, safety, and user control.
+2. Clear outcome, state, and action.
+3. Relevant context and evidence.
+4. Brevity and tone.
+5. Brand distinction.
 
-### Alive
+Never make language more “Singular” by making it less true or useful.
 
-Subtle atmosphere and motion can communicate an active operating system.
-Activity must never compete with content or imply autonomous “magic.”
+## Writing behaviors
 
-### Human
+- Lead with what changed, matters, or must be decided.
+- Start from the operating problem, not the tool.
+- Use one primary idea per block.
+- Use exact verbs, objects, owners, and states.
+- Preserve only the context that changes interpretation.
+- Separate proof from promise and fact from uncertainty.
+- Explain the next decision and consequence.
+- Remove language that does not help someone understand, decide, act,
+  validate, recover, or anticipate.
 
-The brand respects the reader's context and consequence. It avoids cold
-enterprise sterility and playful AI-assistant performance.
+Authority comes from judgment and evidence—not words such as revolutionary,
+world-class, game-changing, seamless, magical, or AI-powered without an
+explained behavior.
 
-## One identity, different operating profiles
+### Editorial conventions
 
-Singular uses one stable blue/cyan identity.
+- Prefer active voice and name the actor when ownership matters.
+- Use sentence case, put the subject and verb early, and keep one idea per
+  sentence.
+- Use **you** for the reader's action and **we** only for Singular's actual
+  commitment.
+- Use natural contractions unless legal, audit, or high-stakes precision
+  requires otherwise.
+- Define numeric units and comparisons; use unambiguous dates and timezones
+  when they change interpretation.
+- Expand unfamiliar acronyms. Avoid emojis, exclamation marks, and artificial
+  enthusiasm by default.
+
+## Visual identity
+
+Singular uses one stable blue/cyan identity across every surface.
 
 | Role | Current value | Purpose |
 |---|---|---|
-| Brand anchor | `#4567ed` | Stable recognition across surfaces |
-| Brand cyan | `#22d3ee` | Connected energy and gradient endpoint |
+| Brand anchor | `#4567ed` | Recognition across surfaces |
+| Brand cyan | `#22d3ee` | Gradient endpoint and selective energy |
 | Product action | `#0b84ff` | High-clarity interaction in operational UI |
 | Marketing base | `#050505` | Dark-first editorial canvas |
 
-These values are current Design System decisions. They are not customer
-research findings.
+These are Design System decisions, not customer research findings.
 
-Identity and interaction remain separate:
-
-- brand colors establish recognition;
-- interaction tokens identify actions and focus;
-- semantic colors communicate success, warning, error, information, or domain
-  state;
-- no important state depends on color alone.
-
-See [Tokens](../tokens/README.md) for implementation roles.
+Brand color establishes identity. Interaction tokens identify action and
+focus. Semantic colors communicate success, warning, error, information, or
+domain state. No status depends on brand color or color alone.
 
 ## Typography
 
-| Role | Family | Character |
-|---|---|---|
-| Display and marketing headings | Poppins | Direct, confident, geometric |
-| Product and body reading | Inter | Neutral, legible, operational |
-| Data, metrics, code, and trace | JetBrains Mono | Exact, technical, scannable |
-| Editorial quotation when appropriate | Georgia | Human, reflective, distinct |
+| Role | Family |
+|---|---|
+| Display and marketing headings | Poppins |
+| Product and body reading | Inter |
+| Data, metrics, code, and trace | JetBrains Mono |
+| Editorial quotation when appropriate | Georgia |
 
 Native products preserve platform typography when it improves usability.
-Singular iOS uses semantic system font roles instead of forcing web typefaces.
+Typography establishes hierarchy; it does not compensate for unclear content.
 
-Typography establishes hierarchy; it must not compensate for unclear content.
+## Visual rules
 
-## Visual principles
+1. **Information before atmosphere.** Backgrounds, gradients, and motion never
+   reduce the legibility of a decision, claim, source, or state.
+2. **One meaningful accent.** A composition has one primary emphasis.
+3. **Semantic state before brand decoration.** Brand blue never means approved,
+   complete, or safe by itself.
+4. **Density follows the job.** Marketing creates narrative space; products
+   support operational reading; mobile protects decision context.
+5. **Motion explains relationship or state.** It never implies capability,
+   completion, or urgency the system cannot prove.
+6. **Accessibility preserves the promise.** Contrast, reduced motion, keyboard
+   access, Dynamic Type, VoiceOver, touch targets, and status beyond color are
+   part of clarity and control.
 
-### 1. Information before atmosphere
+## Signature elements
 
-Backgrounds, gradients, and motion support hierarchy. They never reduce the
-legibility of a decision, claim, source, or state.
+The mist, grid, stars, blue-to-cyan gradient, continuous surfaces, and official
+logo create recognition. Use them selectively according to density and
+information priority. Prefer real operating relationships and evidence-bearing
+product context. Avoid robots, AI brains, cyberpunk spectacle, generic magic
+glows, fake evidence, and unapproved client assets.
 
-### 2. One meaningful accent
+## Expression by job
 
-A composition should have one primary visual emphasis. If every word, card, or
-control glows, the user cannot identify what matters.
-
-### 3. Semantic state over brand decoration
-
-Operational status uses semantic treatment and an explicit label. Brand blue
-does not automatically mean approved, complete, or safe.
-
-### 4. Density follows the job
-
-- Marketing uses editorial space and narrative rhythm.
-- Stories uses structured density for operating work.
-- Studio keeps activity secondary to preview, evidence, and decision.
-- iOS uses native hierarchy for focused review and action.
-- Slides and social reduce the composition to one takeaway.
-- Email prioritizes robust reading and action across clients.
-
-### 5. Motion explains relationship or state
-
-Use motion to reveal sequence, continuity, or response. Do not use it to imply
-intelligence, completion, or urgency the system cannot prove.
-
-### 6. Accessibility preserves the brand promise
-
-Contrast, reduced motion, keyboard access, Dynamic Type, VoiceOver, touch
-targets, and status beyond color are part of clarity and control.
-
-## Signature visual elements
-
-### Brand background
-
-The mist, grid, and star system creates continuity across expressive surfaces.
-Use its static, animated, or flat variant according to information density and
-motion context.
-
-See [Brand Background](../backgrounds/README.md).
-
-### Gradient
-
-The blue-to-cyan gradient is a selective identity accent. Use it for a primary
-word, meaningful emphasis, or signature action—not for large blocks of text or
-every control.
-
-### Shape
-
-Rounded, continuous surfaces and pill actions create a coherent system. Radius
-must remain tokenized and should not make dense operational UI visually soft or
-ambiguous.
-
-### Logo
-
-Use official, theme-appropriate assets. Preserve proportion, clear space, and
-legibility. Do not redraw or ask an image model to recreate the logo.
-
-See [Assets](../assets/README.md).
-
-## Imagery and illustration guardrails
-
-Prefer:
-
-- clear system or workflow relationships;
-- chaos-to-clarity transformations;
-- editorial line work;
-- real operating context;
-- restrained abstract energy when it supports the narrative;
-- visible evidence and real product context when appropriate.
-
-Avoid:
-
-- robots, humanoid assistants, or AI-brain clip art;
-- decorative circuit-board clichés;
-- neon cyberpunk spectacle;
-- generic “magic” glows applied to every element;
-- fake dashboards or charts presented as evidence;
-- client logos or testimonials without permission;
-- imagery that suggests autonomous control the product does not have.
-
-These are current working guardrails. A new visual direction must still pass
-the [decision framework](../docs/07-decision-framework.md).
-
-## Verbal identity
-
-The visual and verbal systems express the same character.
-
-Singular voice is:
-
-- clear;
-- sharp;
-- structured;
-- transparent;
-- outcome-driven;
-- human.
-
-Marketing creates recognition and grounded ambition. Product reduces ambiguity
-and protects informed control. Use the
-[UX Writing, Voice & Tone Manual](../ux-voice/README.md) for definitions,
-terminology, examples, and claims.
-
-## Expression by surface
-
-| Surface | Brand expression | What must remain primary |
+| Job | Expression | What stays primary |
 |---|---|---|
-| Website | Dark editorial canvas, expressive blue/cyan atmosphere | Operating future, problem, mechanism, proof, CTA |
-| Stories web | Dense operational hierarchy, restrained brand, semantic state | Context, evidence, ownership, next decision |
-| Singularity Studio | Calm active workspace, quiet trace, distinct client preview | Intent, sources, proposed change, human decision |
-| iOS | Native behavior with Singular color, shape, hierarchy, and assets | Scope, evidence, consequence, accessibility |
-| Slides | Executive narrative with one accent and clear data | Takeaway, evidence, risk, decision |
-| Social | One recognizable claim or idea | Legibility and claim discipline |
-| Email | Robust single-column brand expression | Message intent and exact next action |
+| Marketing | Dark, editorial, ambitious but grounded | Problem, operating future, mechanism, proof, CTA |
+| Product | Dense or focused according to surface; calm and semantically restrained | Context, evidence, ownership, consequence, next decision |
 
-Detailed contracts and their source files are mapped in
-[Application map: surface routing](../docs/08-application-map.md#surface-routing).
+Use the [Marketing manual](../ux-voice/marketing.md) or
+[Product manual](../ux-voice/product.md) for applied language. Tokens,
+components, accessibility contracts, and platform mappings remain canonical in
+the Design System.
 
-## Relationship to the Design System
+**Previous:** [The Singular model](../docs/05-experience-foundations.md)
 
-The Brand Foundation owns:
-
-- shared brand idea and character;
-- identity intent;
-- visual principles;
-- high-level typography and imagery direction;
-- cross-surface recognition.
-
-The Design System owns:
-
-- token values and semantic roles;
-- components and variants;
-- accessibility contracts;
-- platform mappings;
-- surface profiles;
-- distribution and governance.
-
-Product repositories own:
-
-- routes and data;
-- permissions;
-- domain states;
-- customer content;
-- orchestration;
-- local composition;
-- proof that a product or business state is true.
-
-## Brand review
-
-- [ ] The client and intended audience are identifiable.
-- [ ] The experience feels calm, precise, connected, and structured.
-- [ ] The main information or decision dominates the atmosphere.
-- [ ] Brand, interaction, and semantic state roles are distinct.
-- [ ] The surface behaves appropriately for its job.
-- [ ] The verbal and visual character agree.
-- [ ] Motion and imagery do not imply false capability.
-- [ ] Accessibility remains intact.
-- [ ] Claims, logos, and testimonials have appropriate evidence and permission.
-- [ ] New choices are traced to a foundation and system owner.
-
----
-
-**Upstream:** [Experience foundations](../docs/05-experience-foundations.md)
-
-**Apply:** [Application map](../docs/08-application-map.md)
+**Next:** [Marketing manual](../ux-voice/marketing.md)

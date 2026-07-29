@@ -17,20 +17,8 @@
         {
           id: "client-context",
           path: "docs/01-client-context.md",
-          label: "Client context",
-          description: "Who Singular serves, the operating situation, buying tensions, fit, and success.",
-        },
-        {
-          id: "users-jobs-pains",
-          path: "docs/02-users-jobs-and-pain-points.md",
-          label: "People, jobs & pains",
-          description: "Audiences and product roles, their JTBD, pains, decisions, and journey.",
-        },
-        {
-          id: "problem-outcomes",
-          path: "docs/03-problem-and-outcome-model.md",
-          label: "Problem → outcome",
-          description: "How symptoms connect to root causes, consequences, and desired outcomes.",
+          label: "Client reality",
+          description: "The company, operating problem, people, and desired change.",
         },
       ],
     },
@@ -38,22 +26,10 @@
       label: "Define the experience",
       items: [
         {
-          id: "collaboration",
-          path: "docs/04-how-singular-collaborates.md",
-          label: "How Singular collaborates",
-          description: "Singular's role, client ownership, trust boundaries, and outcome boundary.",
-        },
-        {
           id: "foundations",
           path: "docs/05-experience-foundations.md",
-          label: "Experience foundations",
-          description: "Principles governing brand, content, product, and Design System decisions.",
-        },
-        {
-          id: "system-derivation",
-          path: "docs/06-from-foundations-to-system.md",
-          label: "From foundations to system",
-          description: "How foundations become Brand & Voice, DS layers, surfaces, and product rules.",
+          label: "The Singular model",
+          description: "How Singular collaborates and how client needs become system decisions.",
         },
       ],
     },
@@ -63,42 +39,31 @@
         {
           id: "brand",
           path: "brand/README.md",
-          label: "Brand foundation",
-          description: "Brand idea, character, visual principles, signatures, and surface profiles.",
+          label: "Brand & core voice",
+          description: "The shared idea, character, voice, and visual rules.",
         },
         {
-          id: "voice",
-          path: "ux-voice/README.md",
-          label: "UX writing, voice & tone",
-          description: "Core voice, Marketing and Product guidance, terminology, claims, and examples.",
+          id: "marketing-voice",
+          path: "ux-voice/marketing.md",
+          label: "Marketing manual",
+          description: "Positioning, narrative, surfaces, claims, and commercial next steps.",
+        },
+        {
+          id: "product-voice",
+          path: "ux-voice/product.md",
+          label: "Product manual",
+          description: "States, actions, approvals, AI communication, and terminology.",
         },
       ],
     },
     {
-      label: "Apply the system",
+      label: "Apply & evolve",
       items: [
-        {
-          id: "decisions",
-          path: "docs/07-decision-framework.md",
-          label: "Decision framework",
-          description: "Trace consequential choices from user need and evidence to an applied rule.",
-        },
         {
           id: "application",
           path: "docs/08-application-map.md",
-          label: "Application map",
-          description: "Route a task to the right intent, surface, guidance, and completion checks.",
-        },
-      ],
-    },
-    {
-      label: "Learn & evolve",
-      items: [
-        {
-          id: "evidence",
-          path: "docs/09-evidence-and-evolution.md",
-          label: "Evidence & evolution",
-          description: "What is documented or inferred, which claims are provisional, and what changes next.",
+          label: "Apply & evolve",
+          description: "Route work, trace decisions, and keep evidence distinct from assumption.",
         },
       ],
     },
@@ -112,6 +77,14 @@
   const DOCUMENT_BY_PATH = new Map(
     DOCUMENTS.map((document) => [new URL(document.path, BASE_URL).pathname, document]),
   );
+  const LEGACY_DOCUMENT_IDS = new Map([
+    ["users-jobs-pains", "client-context"],
+    ["problem-outcomes", "client-context"],
+    ["collaboration", "foundations"],
+    ["system-derivation", "foundations"],
+    ["decisions", "application"],
+    ["evidence", "application"],
+  ]);
   const REPOSITORY_URL = "https://github.com/SingularAgency/Skill-Design-System";
 
   const chapterNavigation = document.querySelector("[data-chapter-navigation]");
@@ -441,9 +414,33 @@
     } catch {
       route = "start";
     }
-    const [documentId, ...sectionParts] = route.split("/");
+    const [requestedId, ...sectionParts] = route.split("/");
+    let documentId = LEGACY_DOCUMENT_IDS.get(requestedId) || requestedId;
+    let section = sectionParts.join("/");
+
+    if (requestedId === "voice") {
+      if (section.startsWith("7-product-voice-and-tone") || section.startsWith("8-terminology")) {
+        documentId = "product-voice";
+        section = section.startsWith("8-terminology") ? "product-terminology" : "";
+      } else if (section.startsWith("4-core-singular-voice")) {
+        documentId = "brand";
+        section = "core-voice";
+      } else if (section.startsWith("5-core-writing-principles")) {
+        documentId = "brand";
+        section = "writing-behaviors";
+      } else if (section.startsWith("9-claims-and-evidence") || section.startsWith("11-sources")) {
+        documentId = "application";
+        section = "evidence-appendix";
+      } else {
+        documentId = "marketing-voice";
+        section = "";
+      }
+    } else if (LEGACY_DOCUMENT_IDS.has(requestedId)) {
+      section = "";
+    }
+
     const document = DOCUMENT_BY_ID.get(documentId) || DOCUMENT_BY_ID.get("start");
-    return { document, section: sectionParts.join("/") };
+    return { document, section };
   };
 
   const sourceEditUrl = (path) => `${REPOSITORY_URL}/edit/main/${path}`;

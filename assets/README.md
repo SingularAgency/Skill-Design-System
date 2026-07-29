@@ -1,7 +1,7 @@
 # Assets
 
 Los assets son la capa de reconocimiento visual del sistema descrito en
-[From foundations to system](../docs/06-from-foundations-to-system.md). Usarlos
+[The Singular model](../docs/05-experience-foundations.md#from-foundation-to-system). Usarlos
 de forma consistente refuerza una identidad; no reemplazan jerarquía, evidencia
 ni claridad de producto.
 

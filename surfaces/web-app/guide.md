@@ -6,10 +6,10 @@ La superficie de **producto interno** de Singular (dashboards, OKR, sprints, QA,
 
 ## UX writing
 
-Empezar por los [external and internal product users](../../docs/02-users-jobs-and-pain-points.md#external-product-users)
-y las [experience foundations](../../docs/05-experience-foundations.md) para
+Empezar por [Client reality](../../docs/01-client-context.md#the-people-in-the-change)
+y [The Singular model](../../docs/05-experience-foundations.md) para
 entender por qué contexto, state, evidence y ownership tienen prioridad.
-Leer [Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone)
+Leer [Product voice and tone](../../ux-voice/product.md)
 para labels, acciones, estados, approvals, evidence, QA y AI content. Mantener
 la terminología del producto host y no convertir estados operativos en copy de
 marketing.

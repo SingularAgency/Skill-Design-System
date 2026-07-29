@@ -6,14 +6,13 @@ La superficie de **marketing público** de Singular. Marca **azul/cyan** (`brand
 
 ## UX writing
 
-Empezar por [Client context](../../docs/01-client-context.md) y
-[Problem and outcome model](../../docs/03-problem-and-outcome-model.md) para
+Empezar por [Client reality](../../docs/01-client-context.md) para
 conectar la narrativa con la situación real del buyer.
-Para positioning, narrative, proof y conversion, leer el capítulo
-[Marketing voice and tone](../../ux-voice/README.md#6-marketing-voice-and-tone)
-y las reglas de [Claims and evidence](../../ux-voice/README.md#9-claims-and-evidence).
+Para positioning, narrative, proof y conversion, leer
+[Marketing voice and tone](../../ux-voice/marketing.md)
+y el [evidence appendix](../../docs/08-application-map.md#evidence-appendix).
 Si la superficie comunica error, recovery, estado o una decisión operativa,
-usar en cambio [Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone).
+usar en cambio [Product voice and tone](../../ux-voice/product.md).
 
 ## Setup
 ```css
