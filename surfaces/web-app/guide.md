@@ -4,6 +4,16 @@ La superficie de **producto interno** de Singular (dashboards, OKR, sprints, QA,
 
 > **Fuente de verdad:** `v0-singular-stories-app/app/globals.css` + `components/`. Este perfil **espeja** ese repo — cuando cambie, re-auditar (Fase 8). No re-tokeniza: usa los tokens del DS.
 
+## UX writing
+
+Empezar por los [external and internal product users](../../docs/02-users-jobs-and-pain-points.md#external-product-users)
+y las [experience foundations](../../docs/05-experience-foundations.md) para
+entender por qué contexto, state, evidence y ownership tienen prioridad.
+Leer [Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone)
+para labels, acciones, estados, approvals, evidence, QA y AI content. Mantener
+la terminología del producto host y no convertir estados operativos en copy de
+marketing.
+
 ## Setup
 ```css
 @import "@singular/ds/tokens/theme-app.css";           /* core + brand azul + utilities */

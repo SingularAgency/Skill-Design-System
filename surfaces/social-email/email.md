@@ -4,6 +4,16 @@ Emails de Singular (marketing, transaccional, newsletter). Hereda de la marca co
 
 > Email = HTML **table-based** + estilos inline (no clases ni var() — los clientes de correo no los soportan). Los tokens del DS son la **referencia de valores** a inlinear.
 
+## UX writing
+
+Empezar por el [user journey](../../docs/02-users-jobs-and-pain-points.md#the-user-journey-across-singular)
+y definir qué job debe resolver el mensaje.
+Para campaigns, newsletters y commercial follow-up, leer
+[Marketing voice and tone](../../ux-voice/README.md#6-marketing-voice-and-tone).
+Para transactional email, errors, approvals y status, leer
+[Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone).
+La intención del mensaje define la voz; el formato email no la define.
+
 ## Estructura
 - Ancho máximo **600px**, centrado, sobre fondo `#050505` (o `#f4f4f7` para variante clara).
 - **Header**: logo Singular (PNG/SVG hospedado — Fase 9), 24–32px de alto.

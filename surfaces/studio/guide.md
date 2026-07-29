@@ -6,6 +6,16 @@ decides whether to publish or hand off.
 
 The Studio profile extends `web-app`; it is not a dashboard skin.
 
+## UX writing
+
+Start with the
+[Singularity operator](../../docs/02-users-jobs-and-pain-points.md#singularity-operator)
+and the [automation-without-control problem](../../docs/03-problem-and-outcome-model.md#5-automation-without-control).
+Read [Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone)
+for agent states, uncertainty, source trace, recovery, review, and publish
+language. Never claim `published`, `live`, or `merged` without external
+confirmation.
+
 ## Setup
 
 ```css

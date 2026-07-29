@@ -4,6 +4,16 @@ Use this profile for Singular Stories mobile and future native client apps.
 Follow Apple platform behavior first, then map Singular identity through
 semantic tokens and reusable native primitives.
 
+## UX writing
+
+Start with the
+[mobile executive approver](../../docs/02-users-jobs-and-pain-points.md#mobile-executive-approver)
+and the traced [product approval decision](../../docs/07-decision-framework.md#worked-decision-2-product-approval).
+Read [Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone)
+for concise context, approvals, evidence, errors, recovery, and agent content.
+Use `Task` in mobile-facing copy and preserve exact action consequences before
+biometric or final confirmation.
+
 ## Source files
 
 - `SingularFoundation.swift`: color, typography, spacing, radius, icon and
