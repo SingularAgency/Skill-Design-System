@@ -1,20 +1,15 @@
 # Product voice & tone
 
-**Status:** v0.2 working reference
-
 **Use for:** Singular Stories, Singular Approvals, Singularity Studio,
 transactional email, notifications, and product-facing Design System guidance
 
 **Owner:** Product Design; reviewed by product owners
 
-Product writing helps a person understand state, scope, evidence, consequence,
-and the next available action. It optimizes for informed action, not
-persuasion.
-
-For the canonical client and problem, read
-[Client reality](../docs/01-client-context.md). Product roles and permissions
-remain canonical in their product repositories. This manual inherits the
-shared [Brand & core voice](../brand/README.md).
+Product writing supports informed action—not persuasion—by making state, scope,
+evidence, consequence, and the next action clear. It applies
+[Client reality](../docs/01-client-context.md) and
+[Brand & core voice](../brand/README.md); product repositories remain canonical
+for roles and permissions.
 
 ## The reader's job
 
@@ -34,8 +29,8 @@ understand or decide now.
 Product tone is **calm, precise, operational, transparent, concise, and
 non-defensive**.
 
-Warmth never replaces information. Reassurance must be supported by a fact:
-preserved work, a reversible action, a known owner, or a recovery path.
+Warmth never replaces information. Reassurance needs a fact: preserved work, a
+reversible action, a known owner, or a recovery path.
 
 Use this information order when it applies:
 
@@ -124,23 +119,18 @@ authorization.
 
 ## Evidence and QA
 
-- Attribute evidence to its source.
-- Explain what the evidence supports.
-- Separate delivery evidence from QA findings and client acceptance.
+- Attribute evidence and explain what it supports.
+- Separate delivery evidence, QA findings, and client acceptance.
 - When returning work, name the finding and required correction.
-- Preserve relevant history and attribution.
-- Never treat the presence of evidence as proof of acceptance or business
-  impact.
+- Preserve history and attribution; evidence alone does not prove acceptance
+  or business impact.
 
 ## AI communication
 
 AI writing distinguishes:
 
-- what the system understood;
-- what it plans or changed;
-- which sources it used;
-- what it inferred;
-- what it could not confirm;
+- what the system understood, plans, or changed;
+- its sources, inferences, and unconfirmed information;
 - whether the result is a proposal, preview, artifact, or confirmed external
   outcome;
 - what requires human judgment.
@@ -193,13 +183,10 @@ parallel visible hierarchy.
 
 ## Product review
 
-- Does the copy match the person's role, state, and permission?
-- Are scope, consequence, ownership, and resulting state clear?
-- Does the action label name the actual transition?
-- Are evidence and limitations visible at the decision point?
-- Does an error explain impact, preservation, and recovery?
+- Does the copy match the person's role, permission, and current state?
+- Are scope, consequence, owner, transition, and resulting state clear?
+- Are evidence, limitations, and recovery visible where needed?
 - Does AI copy separate sources, inference, and external outcome?
-- Is the language still useful without visual decoration?
 
 **Previous:** [Marketing manual](./marketing.md)
 

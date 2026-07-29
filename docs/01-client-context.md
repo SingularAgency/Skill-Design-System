@@ -1,10 +1,5 @@
 # Client reality
 
-**Status:** v0.2 working reference
-
-**Purpose:** Define who Singular serves, the operating problem, the people
-affected, and the change they need
-
 ## Who Singular serves
 
 > An established US SMB, typically generating USD 5M–20M annually, with
@@ -13,12 +8,10 @@ affected, and the change they need
 
 **Evidence:** Documented
 
-This company already has a functioning business, operating history, multiple
-tools, and work that crosses roles or systems. It is not primarily looking for
-an AI demonstration. It needs to grow without multiplying coordination cost.
-
-The revenue range is the current central ICP. It is a qualification boundary,
-not proof that every company in the range has the same needs.
+This company already has a functioning business, multiple tools, and work that
+crosses roles or systems. Its need is growth without multiplying coordination
+cost—not an AI demonstration. The revenue range is a qualification boundary,
+not proof that every company in it has the same needs.
 
 ## The operating problem
 
@@ -54,8 +47,7 @@ flowchart LR
 
 ## When it becomes urgent
 
-The buyer usually acts when the operating friction produces a visible
-consequence:
+The buyer usually acts when friction produces a visible consequence:
 
 - a key person becomes a bottleneck;
 - reporting consumes senior time;
@@ -68,15 +60,13 @@ consequence:
 
 ## The people in the change
 
-There are three essential human perspectives.
-
 | Person | Job | Tension | Decision |
 |---|---|---|---|
 | Founder, owner, or executive operator | Create leverage without losing control of the business | Another tool may increase disruption, dependency, or risk | Is this the right workflow and partner to invest in first? |
 | Business Champion or workflow owner | Turn a recurring problem into a credible operating change | Must align stakeholders, exceptions, adoption, and evidence | Can this work in the real operation and earn support? |
 | Team adopter | Complete recurring work with less coordination | New technology often adds work or hides judgment | Can I understand, correct, and trust this workflow? |
 
-Product roles are expressions of these perspectives at a decision point:
+Product roles express these perspectives at a decision point:
 
 - a client approver needs scope, evidence, consequence, and the resulting state;
 - a delivery role needs exact ownership, requirements, and proof;
@@ -89,28 +79,21 @@ distinguish sourced fact, inference, action, and external outcome.
 
 ## What the buyer is actually buying
 
-The buyer may ask for AI, automation, better reporting, or a product change.
-The deeper job is:
+The buyer may ask for AI, automation, reporting, or a product change. The
+deeper job is:
 
 > Create operating leverage without losing control of the business.
 
 They need one consequential workflow to become a capability the company can
-understand, use, and own. That means:
-
-- relevant context arrives with the work;
-- rules and exceptions are usable beyond one person's memory;
-- ownership and decisions are visible;
-- human judgment remains where consequence is high;
-- evidence distinguishes activity, QA, acceptance, and business impact;
-- the client can keep and evolve the resulting workflow and assets.
-
-The central buyer is therefore a systems buyer, not merely an “AI buyer.”
+understand, use, and own. The central buyer is therefore a systems buyer, not
+merely an “AI buyer.”
 
 ## The desired change
 
 | From | To |
 |---|---|
 | Context must be reconstructed | Relevant context arrives with the work |
+| Rules and exceptions live in key people's memory | The workflow makes them usable |
 | People route information manually | Events and states route the next action |
 | Status is visible but ambiguous | State, evidence, consequence, and owner are distinct |
 | AI gives generic or opaque output | AI uses governed context and names its limits |

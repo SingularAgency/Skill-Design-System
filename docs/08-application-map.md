@@ -1,10 +1,5 @@
 # Apply & evolve
 
-**Status:** v0.2 working reference
-
-**Purpose:** Route a task, trace a consequential decision, and keep evidence
-separate from assumption
-
 ## Route by intent
 
 Use Marketing when the communication helps someone recognize a problem,
@@ -31,21 +26,7 @@ a website support message may also use Product writing.
 
 ## Trace a material decision
 
-A consequential decision should answer:
-
-```text
-client situation
-→ person and job
-→ pain or risk
-→ evidence
-→ experience foundation
-→ decision
-→ system owner
-→ applied behavior
-→ validation need
-```
-
-Use this compact record:
+Use this record:
 
 ```markdown
 ## Decision
@@ -61,9 +42,8 @@ Application:
 Validation:
 ```
 
-Do not write a decision record for every local copy edit. Use it when a choice
-changes shared meaning, state communication, a consequential action, or more
-than one surface.
+Use it only when a choice changes shared meaning, state communication, a
+consequential action, or more than one surface.
 
 ## Worked decision: product approval
 
@@ -96,8 +76,8 @@ authorization, and what remains proposed.
 
 ### Evidence labels
 
-- **Documented:** explicit in approved direction, canonical product behavior,
-  traceable customer evidence, or a Design System contract.
+- **Documented:** explicit in approved direction, product behavior, traceable
+  customer evidence, or a Design System contract.
 - **Inferred:** consistently suggested by product structure, flows, or aligned
   indirect sources.
 - **Needs validation:** useful hypothesis with insufficient evidence.
@@ -144,9 +124,9 @@ When evidence changes the story:
 
 1. update the canonical upstream concept;
 2. review the downstream Brand, Marketing, Product, and DS implications;
-3. leave domain behavior in the product repository;
-4. record the material decision and validation need;
-5. verify links, skill packaging, and the published documentation.
+3. keep domain behavior in the product repository and record the material
+   decision;
+4. verify links, skill packaging, and the published documentation.
 
 When sources conflict, current product behavior wins for what the product does;
 approved business direction wins for positioning; customer research wins for

@@ -1,22 +1,15 @@
 # The Singular model
 
-**Status:** v0.2 working reference
-
-**Purpose:** Explain Singular's role, the experience foundations, and how they
-become shared system decisions
-
 ## Singular's role
 
 > Singular helps an established SMB turn fragmented context and manual
 > coordination into a governed operating capability the client can own and
 > adopt.
 
-Singular is not useful because it adds AI to a company. It is useful when it
-changes how consequential work happens while keeping context, evidence,
-ownership, and human judgment visible.
-
-This makes Singular an outcome partner—not a generic AI consultancy, chatbot
-shop, tool reseller, or agency that owns the client's operating system.
+Singular is useful when it changes consequential work while keeping context,
+evidence, ownership, and human judgment visible—not when it merely adds AI.
+It is an outcome partner, not a generic AI consultancy, tool reseller, or
+owner of the client's operating system.
 
 ## How Singular collaborates
 
@@ -44,22 +37,14 @@ The client keeps the relevant workflow, documentation, rules, prompts,
 automations, interfaces, code, and decision history. The next capability comes
 from observed value and remaining bottlenecks—not a preset list of AI features.
 
-```mermaid
-flowchart LR
-    A["Frame the problem"] --> B["Design one governed workflow"]
-    B --> C["Deliver and prove"]
-    C --> D["Transfer ownership and scale from evidence"]
-```
-
 The client contributes operating context, access, decisions, review, and
 participation in adoption. Singular contributes problem framing, system
 design, implementation judgment, explicit boundaries, and evidence discipline.
 
 ## Six experience foundations
 
-These foundations bridge client reality and implementation. They apply across
-marketing, products, presentations, social, and email, but their expression
-changes with the user's job.
+These foundations bridge client reality and implementation. Their expression
+changes with the user's job and surface.
 
 ### 1. Start from operating reality
 
@@ -145,8 +130,8 @@ behavior required for each surface and job.
 
 A local choice becomes shared only when its user job and state are understood,
 its meaning applies beyond one instance, existing system roles cannot support
-it, product data and permission logic remain local, and accessibility and
-trade-offs are documented.
+it, and accessibility and trade-offs are documented. Product data and
+permissions remain local.
 
 Reuse alone does not make a pattern a foundation.
 

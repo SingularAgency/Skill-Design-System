@@ -1,15 +1,13 @@
 # Brand & core voice
 
-**Status:** v0.2 working reference
-
 **Audience:** Anyone creating or reviewing a Singular experience
 
 **Owner:** Product Design
 
-Singular's identity exists to make consequential operating change feel
-understandable, governed, credible, and human. Read the
+Singular's identity makes consequential operating change understandable,
+governed, credible, and human. It derives from the
 [client reality](../docs/01-client-context.md) and
-[Singular model](../docs/05-experience-foundations.md) before changing it.
+[Singular model](../docs/05-experience-foundations.md).
 
 ## Brand idea
 
@@ -30,9 +28,8 @@ The visual and verbal systems share five traits.
 | Transparent | Fact, inference, proposal, limitation, and confirmed outcome remain distinguishable. |
 | Human | The experience respects context and consequence without sterility or artificial warmth. |
 
-Across these traits, Singular stays connected across surfaces, uses restrained
-motion to make activity feel alive, and connects work to outcomes without
-inventing impact.
+Across them, Singular connects surfaces, uses restrained motion to signal
+activity, and links work to outcomes without inventing impact.
 
 ## Core voice
 
@@ -55,15 +52,14 @@ Never make language more “Singular” by making it less true or useful.
 
 ## Writing behaviors
 
-- Lead with what changed, matters, or must be decided.
-- Start from the operating problem, not the tool.
+- Lead with what changed, matters, or must be decided—not the tool.
 - Use one primary idea per block.
 - Use exact verbs, objects, owners, and states.
 - Preserve only the context that changes interpretation.
 - Separate proof from promise and fact from uncertainty.
-- Explain the next decision and consequence.
-- Remove language that does not help someone understand, decide, act,
-  validate, recover, or anticipate.
+- Make the next decision and consequence clear.
+- Remove anything that does not help someone understand, decide, act, or
+  recover.
 
 Authority comes from judgment and evidence—not words such as revolutionary,
 world-class, game-changing, seamless, magical, or AI-powered without an
@@ -72,8 +68,7 @@ explained behavior.
 ### Editorial conventions
 
 - Prefer active voice and name the actor when ownership matters.
-- Use sentence case, put the subject and verb early, and keep one idea per
-  sentence.
+- Use sentence case and put the subject and verb early.
 - Use **you** for the reader's action and **we** only for Singular's actual
   commitment.
 - Use natural contractions unless legal, audit, or high-stakes precision
@@ -94,11 +89,9 @@ Singular uses one stable blue/cyan identity across every surface.
 | Product action | `#0b84ff` | High-clarity interaction in operational UI |
 | Marketing base | `#050505` | Dark-first editorial canvas |
 
-These are Design System decisions, not customer research findings.
-
-Brand color establishes identity. Interaction tokens identify action and
-focus. Semantic colors communicate success, warning, error, information, or
-domain state. No status depends on brand color or color alone.
+These are Design System decisions, not customer research findings. Brand color
+establishes identity; interaction and semantic tokens communicate action,
+focus, and state. No status depends on brand color or color alone.
 
 ## Typography
 
@@ -110,7 +103,7 @@ domain state. No status depends on brand color or color alone.
 | Editorial quotation when appropriate | Georgia |
 
 Native products preserve platform typography when it improves usability.
-Typography establishes hierarchy; it does not compensate for unclear content.
+Typography establishes hierarchy; it cannot fix unclear content.
 
 ## Visual rules
 
@@ -130,10 +123,9 @@ Typography establishes hierarchy; it does not compensate for unclear content.
 ## Signature elements
 
 The mist, grid, stars, blue-to-cyan gradient, continuous surfaces, and official
-logo create recognition. Use them selectively according to density and
-information priority. Prefer real operating relationships and evidence-bearing
-product context. Avoid robots, AI brains, cyberpunk spectacle, generic magic
-glows, fake evidence, and unapproved client assets.
+logo create recognition. Use them selectively. Prefer real operating
+relationships and evidence-bearing product context; avoid robots, AI brains,
+cyberpunk spectacle, fake evidence, and unapproved client assets.
 
 ## Expression by job
 

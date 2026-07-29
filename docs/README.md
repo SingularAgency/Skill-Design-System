@@ -1,6 +1,6 @@
 # Start here — The Singular system
 
-**Status:** v0.2 working reference
+**Status:** v0.3 working reference
 
 **Audience:** Anyone working with Singular
 
@@ -16,17 +16,15 @@ writing system. Start with the client—not colors, components, or AI.
 ## The story
 
 Singular serves established US SMBs, typically generating USD 5M–20M annually.
-They have employees, customers, systems, and operating history. As they grow,
-context fragments, coordination becomes manual, and important decisions keep
-returning to founders and key operators. Adding another AI tool rarely changes
-that operating reality.
+They already have employees, customers, systems, and operating history. Growth
+fragments context, adds manual coordination, and sends decisions back to
+founders and key operators. Another AI tool rarely changes that reality.
 
-Singular starts with one consequential workflow. We connect the context, rules,
-owners, decisions, and evidence required to make that workflow dependable.
-People keep meaningful control, and the client owns what is created. Those
-needs define the Singular experience foundations. The foundations shape Brand
-& Voice and the Design System; those systems guide every surface, state,
-component, and sentence.
+Singular starts with one consequential workflow and connects the context,
+rules, owners, decisions, and evidence it needs. People keep meaningful
+control, and the client owns what is created. These needs become experience
+foundations, Brand & Voice, and Design System rules that guide each surface,
+state, component, and sentence.
 
 ```mermaid
 flowchart LR

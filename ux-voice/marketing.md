@@ -1,20 +1,14 @@
 # Marketing voice & tone
 
-**Status:** v0.2 working reference
-
 **Use for:** Website, presentations, proposals, case studies, social, marketing
 email, and public Design System narrative
 
 **Owner:** Product Design; reviewed by Marketing
 
 Marketing helps the right buyer recognize an operating problem, understand
-Singular's approach, trust the boundary between proof and promise, and choose a
-useful next step.
-
-For the canonical ICP, people, pains, and outcomes, read
-[Client reality](../docs/01-client-context.md). This manual applies that context
-without redefining it and inherits the shared
-[Brand & core voice](../brand/README.md).
+Singular's approach, distinguish proof from promise, and choose a useful next
+step. It applies [Client reality](../docs/01-client-context.md) and
+[Brand & core voice](../brand/README.md) without redefining them.
 
 ## The reader and the decision
 
@@ -28,10 +22,9 @@ team, or creating another dependency.
 Marketing must answer:
 
 1. Do you understand the operating problem?
-2. What changes in the way work happens?
-3. Why is Singular the right partner?
-4. What is proven, provisional, or still unknown?
-5. What is the next commitment?
+2. What changes, and why is Singular the right partner?
+3. What is proven, provisional, or unknown?
+4. What is the next commitment?
 
 Strong fit requires a consequential recurring workflow, an accountable owner,
 a visible consequence, willingness to change how work happens, and a way to
@@ -48,8 +41,7 @@ Use these boundaries:
 - start with operating pain, not an AI category;
 - describe changed work, not disconnected tools or automations;
 - include context, ownership, review, and adoption in the mechanism;
-- make client ownership explicit;
-- present human judgment as part of the system, not a failure of automation.
+- make client ownership and meaningful human judgment explicit.
 
 Avoid positioning Singular as an AI consultancy, tool shop, chatbot vendor, or
 partner that owns the client's systems.
@@ -121,8 +113,8 @@ meaningful without the visual and avoids abstract category language.
 - Weak: “Unlock transformative AI-powered growth.”
 - Singular: “Turn operational drag into a system your team can run.”
 
-The supporting copy should add the audience, problem, mechanism, or boundary.
-It must not repeat the headline in more words.
+Supporting copy adds the audience, problem, mechanism, or boundary; it does not
+repeat the headline.
 
 Contrast—“Not X. Y.”—is optional. Use it to correct a false category, not as a
 signature in every section.
@@ -146,7 +138,6 @@ next action is known. Verify the current commercial path before publishing.
 - Use one decision or claim per slide.
 - State the takeaway in the title.
 - Separate current state, proposed change, evidence, risk, and decision.
-- Use numbers only with a source and definition.
 - End decision slides with the exact approval or next step.
 
 - Weak title: “Automation opportunities”
@@ -155,14 +146,11 @@ next action is known. Verify the current commercial path before publishing.
 
 ### Case studies, social, and email
 
-A case study follows: client context → operating problem → constraint → what
-changed → evidence → outcome and boundary.
-
-Social reduces the story to one recognizable idea. It does not remove the claim
-boundary to gain attention.
-
-Marketing email states why the message matters and the next action. Do not use
-manufactured urgency, clickbait, or artificial enthusiasm.
+- **Case study:** client context → problem → constraint → change → evidence →
+  outcome and boundary.
+- **Social:** one recognizable idea without removing the claim boundary.
+- **Email:** why the message matters and the next action, without manufactured
+  urgency or artificial enthusiasm.
 
 ## Claims and evidence
 
@@ -173,13 +161,10 @@ intelligent, AI-native, or automation require a defined behavior or comparison.
 
 ## Marketing review
 
-- Is the buyer and operating problem recognizable?
-- Is the consequence visible before the tool?
+- Are the buyer, problem, and consequence recognizable before the tool?
 - Does the mechanism explain changed work, ownership, and review?
-- Does the tone feel calm, specific, and grounded?
-- Is the CTA the actual next step?
-- Are proof and promise distinct?
-- Could this copy belong to any generic AI consultancy?
+- Are the CTA and evidence boundary explicit?
+- Is the language calm, specific, and unmistakably Singular?
 
 **Previous:** [Brand & core voice](../brand/README.md)
 
