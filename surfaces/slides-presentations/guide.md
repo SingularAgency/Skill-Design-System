@@ -7,12 +7,12 @@ Decks de Singular (kickoffs, propuestas, QBRs, pitch). Marca **corporativa** (cy
 ## UX writing
 
 Primero definir audience, job y decision con
-[Users, jobs, and pain points](../../docs/02-users-jobs-and-pain-points.md) y el
-[Application map](../../docs/08-application-map.md#surface-routing).
+[Client reality](../../docs/01-client-context.md) y
+[Apply & evolve](../../docs/08-application-map.md#route-by-surface).
 Para pitch, positioning y proposals, leer
-[Marketing voice and tone](../../ux-voice/README.md#6-marketing-voice-and-tone).
+[Marketing voice and tone](../../ux-voice/marketing.md).
 Para product reviews, approvals o decision decks, leer
-[Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone).
+[Product voice and tone](../../ux-voice/product.md).
 Una slide debe declarar el takeaway o la decisión, no sólo el tema.
 
 ## Cómo se produce

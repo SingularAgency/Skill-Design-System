@@ -1,355 +1,155 @@
-# Experience foundations
+# The Singular model
 
-**Status:** v0.1 working reference
+**Status:** v0.2 working reference
 
-**Purpose:** Convert the client and problem model into principles that govern
-brand, content, product, and Design System decisions
+**Purpose:** Explain Singular's role, the experience foundations, and how they
+become shared system decisions
 
-These foundations are the bridge between strategy and execution. They explain
-why Singular should sound, look, and behave the way it does.
+## Singular's role
 
-## The core experience promise
+> Singular helps an established SMB turn fragmented context and manual
+> coordination into a governed operating capability the client can own and
+> adopt.
 
-At every meaningful point, a Singular experience should help the person answer:
+Singular is not useful because it adds AI to a company. It is useful when it
+changes how consequential work happens while keeping context, evidence,
+ownership, and human judgment visible.
 
-1. Where am I in the work?
-2. What is happening or required?
-3. Why does it matter?
-4. What context or evidence supports it?
-5. What is known, inferred, or still uncertain?
-6. Who owns the next action or decision?
-7. What happens next?
-8. What remains under human control?
+This makes Singular an outcome partner—not a generic AI consultancy, chatbot
+shop, tool reseller, or agency that owns the client's operating system.
 
-Not every screen or message needs to display all eight answers. The experience
-must preserve the answers required for the current job and consequence.
+## How Singular collaborates
 
-## Foundation map
+### 1. Frame the operating problem
 
-| Client reality | Experience foundation |
-|---|---|
-| Context is fragmented | Preserve relevant context |
-| Complexity has grown | Make complexity navigable |
-| Decisions return to key people | Make ownership and commitments explicit |
-| Status lacks proof | Use evidence before assertion |
-| AI creates uncertainty | Expose system behavior and limits |
-| Automation creates anxiety | Keep meaningful human control |
-| Tools fail to become workflow | Design for adoption |
-| Buyers distrust hype | Express calm authority |
+Identify where context is lost, which coordination repeats, what decision
+returns to the same person, and what consequence is visible. Separate fact,
+inference, and unknown before selecting technology.
 
-## 1. Start from operating reality
+### 2. Design one governed workflow
 
-### Why
+Choose a scope narrow enough to understand and important enough to matter.
+Define its context, rules, owner, permissions, decisions, exceptions, evidence,
+and human review model.
 
-The client does not need another abstract AI category. They need to recognize
-the work that is slow, fragile, or dependent on private knowledge.
+### 3. Deliver and prove the capability
 
-### Principle
+Coordinate human and agent work inside explicit boundaries. Verify not only
+that the system was built, but that the target user can understand, use,
+correct, and adopt it in real work.
 
-Begin with the user's operating job, current workflow, trigger, and consequence
-before selecting a feature, component, agent, or message.
+### 4. Transfer ownership and choose what scales
 
-### In content
+The client keeps the relevant workflow, documentation, rules, prompts,
+automations, interfaces, code, and decision history. The next capability comes
+from observed value and remaining bottlenecks—not a preset list of AI features.
 
-- Name the operating problem before the tool.
-- Explain how the workflow changes.
-- Connect activity to an observable outcome.
+```mermaid
+flowchart LR
+    A["Frame the problem"] --> B["Design one governed workflow"]
+    B --> C["Deliver and prove"]
+    C --> D["Transfer ownership and scale from evidence"]
+```
 
-### In product
+The client contributes operating context, access, decisions, review, and
+participation in adoption. Singular contributes problem framing, system
+design, implementation judgment, explicit boundaries, and evidence discipline.
 
-- Organize around user decisions and work states.
-- Preserve the hierarchy that gives an item meaning.
-- Do not expose internal implementation structure as the user's primary model.
+## Six experience foundations
 
-### Design check
+These foundations bridge client reality and implementation. They apply across
+marketing, products, presentations, social, and email, but their expression
+changes with the user's job.
 
-Can the decision be explained without mentioning the technology first?
+### 1. Start from operating reality
 
-## 2. Make complexity navigable
+Begin with the user's workflow, trigger, and consequence before a feature,
+agent, component, or message.
 
-### Why
+- **Check:** Can the decision be explained without mentioning technology first?
 
-The client's operation is genuinely complex. Pretending it is simple hides
-scope, exceptions, and consequence.
+### 2. Make complexity navigable and preserve context
 
-### Principle
+Use hierarchy, sequence, grouping, and progressive disclosure without erasing
+the relationships required to interpret the work.
 
-Use hierarchy, sequence, grouping, and progressive disclosure to make
-complexity understandable without erasing it.
+Relevant context may include the client, objective, project, Sprint, Story or
+Task, owner, approver, source, evidence, environment, and prior state. Carry
+only what changes interpretation.
 
-### In content
+- **Check:** Can the person find the main point without asking someone else to
+  reconstruct the situation?
 
-- One primary idea per block.
-- Distinguish context, decision, impact, evidence, and next step.
-- Use plain English before specialist terms.
+### 3. Make ownership and commitments explicit
 
-### In product
+Name who owns the next action and distinguish states that change a commitment:
+proposed, authorized, delivered, QA-complete, accepted, released, published,
+and paid are not interchangeable.
 
-- Stable page and navigation hierarchy.
-- Summary before detail.
-- Dense information remains grouped and scannable.
-- Mobile prioritizes the decision, not every desktop field.
+- **Check:** Can the person predict what changes and who becomes responsible?
 
-### Design check
+### 4. Use evidence before assertion
 
-Can a first-time reader find the main point and then inspect the necessary
-detail?
+Show the source, scope, proof, and confirmation boundary appropriate to a claim
+or state. Do not use confidence, motion, or visual polish as evidence.
 
-## 3. Preserve relevant context
+- **Check:** What would a skeptical reader need to verify this?
 
-### Why
+### 5. Keep meaningful human control and design for adoption
 
-People lose time reconstructing why work exists and how it connects to the
-business.
+Automated behavior should be inspectable, bounded, recoverable when possible,
+and routed to human judgment when consequence or ambiguity is high.
 
-### Principle
+Comprehension, exceptions, recovery, and operating ownership are part of the
+capability—not post-launch support.
 
-Carry forward the minimum context needed to interpret or act.
+- **Check:** Can the intended user use, correct, stop, and explain the workflow?
 
-### Relevant context may include
+### 6. Express calm authority accessibly
 
-- Client and Project;
-- Objective and Key Result;
-- Key Project;
-- Sprint and atomic work item;
-- owner and approver;
-- environment and version;
-- source and evidence;
-- due date or decision date;
-- prior state and next state.
+Confidence comes from judgment, specificity, structure, and craft—not urgency,
+superlatives, or AI spectacle.
 
-### In content
+Clarity and control must work with keyboard and assistive technology, adequate
+contrast and touch targets, status beyond color, reduced motion, native
+accessibility behavior, and language understandable without visual context.
 
-Name the affected workflow, owner, and business consequence.
+- **Check:** Is confidence coming from useful information or theatre?
 
-### In product
+## From foundation to system
 
-Keep decision briefs, breadcrumbs, source traces, and linked entities available
-at the point of action.
+```text
+client need
+→ experience foundation
+→ Brand & Voice rule
+→ Design System contract
+→ surface or product behavior
+→ concrete content, component, and interaction
+→ observed evidence
+```
 
-### Design check
+Brand & Voice governs meaning, character, narrative, terminology, and claims.
+The Design System governs shared tokens, type roles, components, states,
+accessibility, platform mappings, and surface profiles. Product repositories
+govern routes, permissions, data, orchestration, and domain transitions.
 
-Would the user need to open another tool or ask another person to interpret
-this state?
+These layers meet in the experience but do not replace one another. Brand color
+cannot prove status. A shared component cannot define customer permission. A
+local product state cannot silently redefine the brand foundation.
 
-## 4. Make ownership and commitments explicit
+Shared foundations create coherence; the
+[application map](./08-application-map.md#route-by-surface) preserves the
+behavior required for each surface and job.
 
-### Why
+## Promotion rule
 
-Ambiguous ownership sends decisions back to founders, operators, and managers.
+A local choice becomes shared only when its user job and state are understood,
+its meaning applies beyond one instance, existing system roles cannot support
+it, product data and permission logic remain local, and accessibility and
+trade-offs are documented.
 
-### Principle
+Reuse alone does not make a pattern a foundation.
 
-Name who owns the next action and distinguish every state that changes a
-commitment.
+**Previous:** [Client reality](./01-client-context.md)
 
-### Required distinctions
-
-- proposed;
-- selected;
-- authorized;
-- in progress;
-- delivered;
-- QA-complete;
-- accepted;
-- released;
-- published;
-- paid.
-
-### In content
-
-Use exact verbs and objects. Avoid generic “Submit,” “Confirm,” or “Done” when
-the resulting state is known.
-
-### In product
-
-Action labels, confirmation content, permissions, and state feedback must
-describe the same transition.
-
-### Design check
-
-Can the user predict what changes, who becomes responsible, and whether the
-action can be undone?
-
-## 5. Use evidence before assertion
-
-### Why
-
-Activity, confidence, and visual polish do not prove delivery or business
-impact.
-
-### Principle
-
-Show the source, evidence, scope, and confirmation boundary appropriate to the
-claim or state.
-
-### In content
-
-- Separate proof from promise.
-- Define metrics and comparison periods.
-- Mark claims as verified, provisional, or retired.
-- Never manufacture testimonials, approvals, or quotes.
-
-### In product
-
-- Separate delivery evidence, QA evidence, and client acceptance.
-- Show source trace for agent work.
-- Never infer external publication from local success.
-
-### Design check
-
-What would a skeptical reader need to verify this statement?
-
-## 6. Keep automation under meaningful human control
-
-### Why
-
-The client wants leverage without opaque or irreversible action.
-
-### Principle
-
-Make automated behavior inspectable, bounded, and interruptible where the
-product supports it. Route consequential ambiguity and risk to human judgment.
-
-### In content
-
-- Explain what the system understood and could not confirm.
-- Do not use reassurance without a recovery fact.
-- Name when an expert decision is required.
-
-### In product
-
-- Expose agent state, sources, and limitations.
-- Show scope before destructive or approval actions.
-- Provide review, revise, cancel, stop, or handoff when supported.
-- Do not show controls the user cannot use.
-
-### Design check
-
-Does the user understand what the system can do, what it did, and where their
-decision still matters?
-
-## 7. Design for adoption, not delivery alone
-
-### Why
-
-A working implementation can still fail if it adds effort, ignores exceptions,
-or does not fit the team's weekly work.
-
-### Principle
-
-Treat comprehension, exception handling, recovery, and operating ownership as
-part of the capability.
-
-### In content
-
-- Explain the changed workflow, not only the feature.
-- Use terminology the role already understands.
-- Make escalation and next steps actionable.
-
-### In product
-
-- Cover loading, empty, error, success, disabled, permission, and offline or
-  delayed states when relevant.
-- Preserve history and attribution.
-- Avoid parallel workflows that duplicate existing decision channels.
-
-### Design check
-
-Can the intended user use, correct, and explain this capability in real work?
-
-## 8. Express calm authority
-
-### Why
-
-The buyer and user are making consequential decisions. Hype increases distance
-from the operating reality and weakens trust.
-
-### Principle
-
-Communicate through judgment, specificity, structure, and restraint.
-
-### In voice
-
-Singular is:
-
-- clear;
-- sharp;
-- structured;
-- transparent;
-- outcome-driven;
-- human.
-
-See the full
-[UX Writing, Voice & Tone Manual](../ux-voice/README.md#4-core-singular-voice).
-
-### In visual design
-
-Singular should feel:
-
-- coherent rather than ornamental;
-- precise rather than sterile;
-- alive rather than theatrical;
-- premium through hierarchy and craft, not excess;
-- calm even when the underlying system is active.
-
-The blue/cyan identity, restrained motion, semantic status, legible hierarchy,
-and controlled backgrounds express this character. They are brand decisions,
-not claims that a color has been validated through user research.
-
-### Design check
-
-Is confidence coming from clear information and craft, or from spectacle?
-
-## Accessibility is foundational
-
-Accessibility is not a surface-specific enhancement.
-
-Singular experiences must:
-
-- preserve contrast;
-- communicate status beyond color;
-- support keyboard and assistive technology;
-- respect Dynamic Type on native platforms;
-- provide meaningful focus and touch targets;
-- reduce or remove motion when requested;
-- use language that is understandable without visual context;
-- avoid time pressure unless the underlying task truly requires it.
-
-This is especially important because clarity, control, and evidence cannot be
-available only to users who perceive or interact with the default presentation.
-
-## Shared principles, different expressions
-
-The foundation remains stable while tone and density change by job.
-
-| Context | Foundation emphasis |
-|---|---|
-| Marketing | Recognition, operating future, mechanism, proof, next step |
-| Singular Stories | Context, state, commitment, evidence, ownership |
-| iOS approvals | Decision quality, concise scope, consequence, identity |
-| Singularity Studio | Intent, agent trace, sources, uncertainty, human gate |
-| Slides | Takeaway, evidence, risk, and decision |
-| Social | One recognizable idea with a verified claim boundary |
-| Email | Intent-specific action, state, or narrative with a clear next step |
-
-## Foundation review
-
-Before approving a shared decision, ask:
-
-- Which user and job does it support?
-- Which pain or risk does it reduce?
-- Which foundation requires it?
-- What evidence supports the choice?
-- What trade-off is accepted?
-- Which layers and surfaces inherit it?
-- What must remain local to a product?
-
-The next document explains how these foundations become systems rather than
-isolated preferences.
-
----
-
-**Previous:** [How Singular collaborates](./04-how-singular-collaborates.md)
-
-**Next:** [From foundations to system](./06-from-foundations-to-system.md)
+**Next:** [Brand & core voice](../brand/README.md)

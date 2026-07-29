@@ -8,10 +8,8 @@ The Studio profile extends `web-app`; it is not a dashboard skin.
 
 ## UX writing
 
-Start with the
-[Singularity operator](../../docs/02-users-jobs-and-pain-points.md#singularity-operator)
-and the [automation-without-control problem](../../docs/03-problem-and-outcome-model.md#5-automation-without-control).
-Read [Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone)
+Start with the [people and operating problem](../../docs/01-client-context.md#the-people-in-the-change).
+Read [Product voice and tone](../../ux-voice/product.md)
 for agent states, uncertainty, source trace, recovery, review, and publish
 language. Never claim `published`, `live`, or `merged` without external
 confirmation.

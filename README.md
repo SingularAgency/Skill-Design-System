@@ -26,15 +26,14 @@ cliente
 
 | Para entender… | Leer |
 |---|---|
-| Qué empresa atendemos y en qué situación está | [Client context](./docs/01-client-context.md) |
-| Quiénes son los usuarios, sus JTBD y pain points | [Users, jobs, and pain points](./docs/02-users-jobs-and-pain-points.md) |
-| Cómo se conectan los problemas y outcomes | [Problem and outcome model](./docs/03-problem-and-outcome-model.md) |
-| Qué rol cumple Singular y qué controla el cliente | [How Singular collaborates](./docs/04-how-singular-collaborates.md) |
-| Por qué existen los principles y guidelines | [Experience foundations](./docs/05-experience-foundations.md) |
-| Cómo bajan al Brand & Voice y al DS | [From foundations to system](./docs/06-from-foundations-to-system.md) y [Brand Foundation](./brand/README.md) |
-| Cómo justificar y aplicar una decisión | [Decision framework](./docs/07-decision-framework.md) y [Application map](./docs/08-application-map.md) |
+| Qué empresa atendemos, quién vive el problema y qué cambio necesita | [Client reality](./docs/01-client-context.md) |
+| Cómo colabora Singular y qué foundations gobiernan el sistema | [The Singular model](./docs/05-experience-foundations.md) |
+| Cómo se expresa la identidad visual y verbal compartida | [Brand & core voice](./brand/README.md) |
+| Cómo escribir para adquisición, posicionamiento o conversión | [Marketing voice & tone](./ux-voice/marketing.md) |
+| Cómo escribir estados, acciones, decisiones o recuperación | [Product voice & tone](./ux-voice/product.md) |
+| Cómo enrutar, justificar y evolucionar una decisión | [Apply & evolve](./docs/08-application-map.md) |
 
-Una persona nueva debería poder leer los primeros seis documentos y comprender
+Una persona nueva debería poder leer los tres primeros capítulos y comprender
 el sistema sin conocer previamente los repositorios ni la terminología de
 producto.
 
@@ -88,15 +87,15 @@ assets/                   ← logos + símbolos de marca (en este repo)
 ## Elegir voz
 
 Primero identificar usuario, problema y decisión mediante la
-[historia documental](./docs/README.md). El manual operativo vive en
-[`ux-voice/README.md`](./ux-voice/README.md), y la experiencia navegable se
+[historia documental](./docs/README.md). Los manuales operativos viven en
+[`ux-voice/`](./ux-voice/README.md), y la experiencia navegable se
 publica en [Brand & Voice](https://singularagency.github.io/Skill-Design-System/brand-voice.html).
 Usá:
 
 | Intención | Capítulo |
 |---|---|
-| Posicionamiento, adquisición, narrativa o conversión | [Marketing voice and tone](./ux-voice/README.md#6-marketing-voice-and-tone) |
-| Estado, acción, decisión, recuperación, permisos o confianza | [Product voice and tone](./ux-voice/README.md#7-product-voice-and-tone) |
+| Posicionamiento, adquisición, narrativa o conversión | [Marketing voice & tone](./ux-voice/marketing.md) |
+| Estado, acción, decisión, recuperación, permisos o confianza | [Product voice & tone](./ux-voice/product.md) |
 
 La superficie no decide por sí sola: elegí el capítulo según el trabajo que
 debe resolver la comunicación.
@@ -146,8 +145,8 @@ La skill enruta a la guía correcta y usa disclosure progresivo. El contrato par
 Codex/Claude vive en
 [`references/ai-agent-contract.md`](./references/ai-agent-contract.md). Para
 trabajo estratégico, de contenido o experiencia, empieza por
-[`docs/README.md`](./docs/README.md); para copy, también enruta al capítulo
-correcto del [`manual de UX Voice`](./ux-voice/README.md).
+[`docs/README.md`](./docs/README.md); para copy, también enruta al manual
+correcto desde [`ux-voice/README.md`](./ux-voice/README.md).
 
 ## Auditar productos
 
@@ -168,7 +167,7 @@ tener excepciones documentadas. Para worktrees alternativos usá
 | Contexto, usuarios, pains y foundations | [`docs/README.md`](./docs/README.md) |
 | Brand character y principios visuales | [`brand/README.md`](./brand/README.md) |
 | Foundation y governance | Este repo |
-| UX writing, voice y tone | [`ux-voice/README.md`](./ux-voice/README.md) |
+| UX writing, voice y tone | [`ux-voice/marketing.md`](./ux-voice/marketing.md) + [`ux-voice/product.md`](./ux-voice/product.md) |
 | Marketing | `singular-landing` como fuente de descubrimiento |
 | Producto web | `v0-singular-stories-app` como fuente de descubrimiento |
 | Native mobile | `ss-ios-prototype` como fuente de descubrimiento |

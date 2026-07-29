@@ -1,17 +1,11 @@
-# Client context
+# Client reality
 
-**Status:** v0.1 working reference
+**Status:** v0.2 working reference
 
-**Purpose:** Define the company Singular is built to serve
+**Purpose:** Define who Singular serves, the operating problem, the people
+affected, and the change they need
 
-**Primary evidence:** User direction, current website positioning, and product
-context
-
-Singular is not designed for a generic “AI user.” It is designed for an
-established company whose operating complexity has grown faster than its
-ability to coordinate work, context, and decisions.
-
-## The client in one sentence
+## Who Singular serves
 
 > An established US SMB, typically generating USD 5M–20M annually, with
 > employees, customers, existing systems, and consequential workflows that
@@ -19,197 +13,124 @@ ability to coordinate work, context, and decisions.
 
 **Evidence:** Documented
 
-The revenue range describes the current central ICP. It is a qualification
-boundary, not a claim that every company in the range has the same needs.
+This company already has a functioning business, operating history, multiple
+tools, and work that crosses roles or systems. It is not primarily looking for
+an AI demonstration. It needs to grow without multiplying coordination cost.
 
-## What “established SMB” means here
+The revenue range is the current central ICP. It is a qualification boundary,
+not proof that every company in the range has the same needs.
 
-The company usually has:
+## The operating problem
 
-- a functioning business model and recurring operating work;
-- employees and functional responsibility beyond the founding team;
-- customers, financial obligations, and delivery expectations;
-- a stack that already includes email, documents, spreadsheets, finance tools,
-  a CRM, collaboration tools, and specialist systems;
-- workflows that cross teams or systems;
-- enough operating history to have rules, exceptions, and institutional
-  knowledge;
-- enough complexity that weak coordination has a visible business cost.
+Growth has made the company harder to coordinate.
 
-This is not primarily an early-stage startup trying to discover a product. It
-is a real operation trying to grow without multiplying coordination cost.
+### Context depends on people
 
-**Evidence:** Documented / inferred
+Customer history, financial information, operating rules, exceptions, and
+previous decisions are split across tools and experienced employees. Before
+acting, the team must reconstruct the situation.
 
-## The situation inside the company
+### Coordination has become work
 
-Growth has changed the operating environment.
+People copy information, rebuild reports, chase status, route approvals, and
+translate between systems. Important decisions return to the founder or the
+same key operators because ownership and decision boundaries are not portable.
 
-What once worked through direct supervision, memory, and informal
-communication now creates friction:
+### New tools do not create a governed workflow
 
-- the same decisions return to the owner;
-- employees ask the same experienced person for context;
-- customer and financial information lives in different systems;
-- reports are rebuilt by hand;
-- approvals move through messages and meetings;
-- teams copy information between tools;
-- process exceptions live in people's heads;
-- AI is used individually, but not as a reliable operating capability.
+An AI subscription, chatbot, dashboard, or isolated automation may add
+capability without changing context, ownership, permissions, review, recovery,
+or adoption. When people cannot see what the system used, changed, or could not
+confirm, automation either raises risk or remains unused.
 
-The company does not necessarily lack software. It lacks a dependable way for
-context, rules, decisions, and work to move together.
+```mermaid
+flowchart LR
+    A["Growth"] --> B["Fragmented context"]
+    B --> C["Manual coordination"]
+    C --> D["Decisions return to key people"]
+    D --> E["Another tool is added"]
+    E --> B
+```
 
-**Evidence:** Documented / inferred
+## When it becomes urgent
 
-## The moment the problem becomes urgent
+The buyer usually acts when the operating friction produces a visible
+consequence:
 
-The buyer is more likely to act when one or more triggers appear:
-
-| Trigger | What it reveals |
-|---|---|
-| Growth exposes recurring process failure | Informal coordination no longer scales |
-| A key person becomes a bottleneck | Critical knowledge and decisions are not portable |
-| Reporting consumes senior time | Systems do not produce decision-ready context |
-| A missed follow-up, error, or delay affects revenue | Fragmentation now has a visible business cost |
-| An AI pilot fails to change weekly work | The problem is the operating model, not access to a model |
-| Leadership needs better visibility | Current tools show activity without shared interpretation |
-| A new initiative crosses multiple teams | Ownership, handoffs, and source context are unclear |
+- a key person becomes a bottleneck;
+- reporting consumes senior time;
+- a missed follow-up, error, or delay affects revenue;
+- leadership cannot interpret performance across systems;
+- an AI pilot fails to change weekly work;
+- a cross-team initiative exposes unclear ownership and handoffs.
 
 **Evidence:** Inferred from current positioning and product models
 
+## The people in the change
+
+There are three essential human perspectives.
+
+| Person | Job | Tension | Decision |
+|---|---|---|---|
+| Founder, owner, or executive operator | Create leverage without losing control of the business | Another tool may increase disruption, dependency, or risk | Is this the right workflow and partner to invest in first? |
+| Business Champion or workflow owner | Turn a recurring problem into a credible operating change | Must align stakeholders, exceptions, adoption, and evidence | Can this work in the real operation and earn support? |
+| Team adopter | Complete recurring work with less coordination | New technology often adds work or hides judgment | Can I understand, correct, and trust this workflow? |
+
+Product roles are expressions of these perspectives at a decision point:
+
+- a client approver needs scope, evidence, consequence, and the resulting state;
+- a delivery role needs exact ownership, requirements, and proof;
+- a Singularity operator needs intent, affected surfaces, sources, limitations,
+  and a human decision boundary;
+- an admin needs predictable permissions and auditable overrides.
+
+AI agents are actors, not personas. Their output must support a human job and
+distinguish sourced fact, inference, action, and external outcome.
+
 ## What the buyer is actually buying
 
-The buyer may arrive asking for AI, automation, a product change, or better
-reporting. The deeper job is usually:
+The buyer may ask for AI, automation, better reporting, or a product change.
+The deeper job is:
 
 > Create operating leverage without losing control of the business.
 
-They are evaluating whether Singular can help the company:
+They need one consequential workflow to become a capability the company can
+understand, use, and own. That means:
 
-- reduce dependency on a few people;
-- connect context without forcing an unnecessary rip-and-replace;
-- make decisions and ownership visible;
-- turn one workflow into a repeatable capability;
-- keep human judgment where consequence is high;
-- prove value before expanding;
-- leave the client with usable and owned operating assets.
+- relevant context arrives with the work;
+- rules and exceptions are usable beyond one person's memory;
+- ownership and decisions are visible;
+- human judgment remains where consequence is high;
+- evidence distinguishes activity, QA, acceptance, and business impact;
+- the client can keep and evolve the resulting workflow and assets.
 
-This is why the central buyer is a **systems buyer**, not merely an “AI buyer.”
+The central buyer is therefore a systems buyer, not merely an “AI buyer.”
 
-**Evidence:** Documented direction; “systems buyer” remains a working
-positioning description
+## The desired change
 
-## The buyer's tensions
-
-The decision is not simply “AI or no AI.” The buyer is balancing:
-
-### Leverage vs. control
-
-They want more throughput and less manual coordination, but they do not want
-opaque automation making consequential decisions.
-
-### Speed vs. disruption
-
-They want visible progress, but another large transformation program could
-consume the team before it creates value.
-
-### Expertise vs. ownership
-
-They want a partner with judgment, but not a dependency that owns the resulting
-workflow, code, or operating knowledge.
-
-### Ambition vs. proof
-
-They may believe AI can change the company, but they need one credible
-capability and evidence of adoption before scaling the promise.
-
-### Simplicity vs. reality
-
-They need the problem made understandable, but not oversimplified into a list
-of automations that ignores permissions, exceptions, and people.
-
-## Buying and adoption roles
-
-One person may occupy several roles in a smaller company.
-
-| Role | Primary concern |
+| From | To |
 |---|---|
-| Founder, owner, or executive operator | Business consequence, investment, control, and outcome |
-| Business Champion | Internal credibility, first scope, stakeholder alignment, and early proof |
-| Workflow owner | How the operating process changes and who owns exceptions |
-| Team adopter | Whether the new workflow reduces work without removing judgment or agency |
-| Technical or systems stakeholder | Access, integration, security, maintenance, and constraints |
+| Context must be reconstructed | Relevant context arrives with the work |
+| People route information manually | Events and states route the next action |
+| Status is visible but ambiguous | State, evidence, consequence, and owner are distinct |
+| AI gives generic or opaque output | AI uses governed context and names its limits |
+| Automation hides decisions | Human gates appear where judgment is required |
+| The partner becomes a dependency | The client owns the workflow and assets |
 
-Detailed user definitions live in
-[Users, jobs, and pain points](./02-users-jobs-and-pain-points.md).
+The shared outcomes are **clarity, control, confidence, throughput, adoption,
+and ownership**. Business impact must still be measured; a delivered feature
+does not prove an operating result.
 
-## Fit signals
+## Evidence boundary
 
-Singular is more likely to help when:
+The ICP and broad operating direction are documented. Pain frequency,
+role-specific language, industry differences, buying committees, and adoption
+barriers still need direct research. Inferred needs may guide current design,
+but must not be represented as validated customer quotes.
 
-- a recurring workflow has measurable operating drag;
-- an accountable owner can describe the current work;
-- leadership is willing to change the workflow, not only add a tool;
-- the company can identify an outcome and evidence standard;
-- relevant systems and people can be made available;
-- adoption and client ownership matter after launch.
-
-## Weak-fit signals
-
-Fit is weaker when:
-
-- the request is only “show us an AI demo”;
-- no one owns the workflow;
-- the company will not change any operating behavior;
-- there is no business consequence or success definition;
-- the buyer expects autonomous action without review or accountability;
-- the request depends on an unverified pricing, speed, or ROI promise.
-
-These are working qualification signals, not a final commercial policy.
-
-## What success feels like to the client
-
-The client should be able to say:
-
-- “The right people can see the same context.”
-- “The next decision and owner are clear.”
-- “We know what the system did and what still needs judgment.”
-- “The workflow works inside the tools and habits we can actually adopt.”
-- “We can see evidence of change, not only a new interface.”
-- “We own what was created for our company.”
-- “We can decide what to scale next.”
-
-## Downstream implications
-
-Because this is the client context:
-
-- Marketing must create recognition before explaining AI.
-- Product must protect state, scope, evidence, and control.
-- Brand must feel calm and competent rather than speculative.
-- The Design System must separate identity from status and interaction.
-- Agent experiences must expose sources, uncertainty, and human gates.
-- Every surface must preserve the information required for the next decision.
-
-These implications are derived in
-[Experience foundations](./05-experience-foundations.md), then implemented
-through [Brand & Voice and the Design System](./06-from-foundations-to-system.md).
-
-## Known gaps
-
-- The ICP has not yet been validated through a documented research program.
-- Company maturity, employee count, buying committee, and industry differences
-  need direct evidence.
-- Existing industry archetypes and deal values are discovery inputs, not
-  approved public segmentation.
-- We do not yet have a canonical set of customer interviews describing pains
-  in their own words.
-
-See [Evidence and evolution](./09-evidence-and-evolution.md) before treating an
-inference as a customer fact.
-
----
+The [Singular model](./05-experience-foundations.md) turns this reality into
+shared experience decisions.
 
 **Previous:** [Start here](./README.md)
 
-**Next:** [Users, jobs, and pain points](./02-users-jobs-and-pain-points.md)
+**Next:** [The Singular model](./05-experience-foundations.md)

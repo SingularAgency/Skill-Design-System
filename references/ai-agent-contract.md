@@ -9,7 +9,7 @@ Read this before generating or refactoring Singular UI.
    foundation. Use `docs/08-application-map.md` to route the task.
 3. Read `design-system.json`.
 4. Select exactly one primary surface and read that surface guide.
-5. For copy, choose Marketing or Product in `ux-voice/README.md`.
+5. For copy, choose `ux-voice/marketing.md` or `ux-voice/product.md` by intent.
 6. Read `tokens/README.md` for web, or the iOS guide for SwiftUI.
 7. Read `components/README.md` before creating a component.
 8. Inspect the host product's local docs and current implementation.

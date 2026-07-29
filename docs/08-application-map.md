@@ -1,246 +1,157 @@
-# Application map
+# Apply & evolve
 
-**Status:** v0.1 working reference
+**Status:** v0.2 working reference
 
-**Purpose:** Route a real task from context to the correct guideline and
-surface
+**Purpose:** Route a task, trace a consequential decision, and keep evidence
+separate from assumption
 
-Use this document after the upstream story is understood. It prevents two
-common failures:
+## Route by intent
 
-- applying a surface style without the user and problem;
-- rereading the entire repository for a narrow implementation decision.
+Use Marketing when the communication helps someone recognize a problem,
+evaluate Singular, trust an approach or claim, or choose a commercial next
+step.
 
-## The application sequence
+Use Product when it helps someone understand or change a state, review scope or
+evidence, recover, approve, authorize, accept, or interpret AI behavior.
 
-```text
-1. Identify the human and current job.
-2. Name the pain, risk, state, or decision.
-3. Confirm the evidence level.
-4. Select the experience foundation.
-5. Select Marketing or Product intent.
-6. Select the surface profile.
-7. Apply the relevant domain behavior.
-8. Review states, accessibility, claims, and next action.
-```
+The channel does not decide the intent. A release deck may use Product writing;
+a website support message may also use Product writing.
 
-## Intent routing
+## Route by surface
 
-| Communication job | Use |
-|---|---|
-| Recognition, positioning, acquisition, narrative, proof, or conversion | [Marketing voice and tone](../ux-voice/README.md#6-marketing-voice-and-tone) |
-| State, action, decision, recovery, permission, evidence, or trust | [Product voice and tone](../ux-voice/README.md#7-product-voice-and-tone) |
-
-The channel does not choose the intent. A product review deck usually needs
-Product language. A website error needs Product language.
-
-## Surface routing
-
-| Task | Context to read | System guidance |
+| Surface | Start with | Apply |
 |---|---|---|
-| Company website or landing | [Client context](./01-client-context.md), [problem model](./03-problem-and-outcome-model.md) | [Marketing voice](../ux-voice/README.md#6-marketing-voice-and-tone), [website guide](../surfaces/website-landing/guide.md) |
-| Pitch, proposal, or leadership deck | [Client context](./01-client-context.md), [collaboration model](./04-how-singular-collaborates.md) | Marketing or Product intent, [slides guide](../surfaces/slides-presentations/guide.md) |
-| Social post or campaign asset | [Client context](./01-client-context.md), [users and pains](./02-users-jobs-and-pain-points.md) | [Marketing voice](../ux-voice/README.md#6-marketing-voice-and-tone), [social guide](../surfaces/social-email/social.md) |
-| Marketing email | [User and buying stage](./02-users-jobs-and-pain-points.md#the-user-journey-across-singular) | [Marketing voice](../ux-voice/README.md#6-marketing-voice-and-tone), [email guide](../surfaces/social-email/email.md) |
-| Transactional email | Product role and current state | [Product voice](../ux-voice/README.md#7-product-voice-and-tone), [email guide](../surfaces/social-email/email.md) |
-| Singular Stories web | External or internal [product user](./02-users-jobs-and-pain-points.md#external-product-users) | [Product voice](../ux-voice/README.md#7-product-voice-and-tone), [web-app guide](../surfaces/web-app/guide.md), host product rules |
-| Singular Approvals iOS | [Mobile executive approver](./02-users-jobs-and-pain-points.md#mobile-executive-approver) | [Product voice](../ux-voice/README.md#7-product-voice-and-tone), [iOS guide](../surfaces/ios-app/guide.md), host approval rules |
-| Singularity Studio | [Singularity operator](./02-users-jobs-and-pain-points.md#singularity-operator) | [Product voice](../ux-voice/README.md#7-product-voice-and-tone), [Studio guide](../surfaces/studio/guide.md), host run/safety rules |
-| New shared component | [Experience foundations](./05-experience-foundations.md), [system layers](./06-from-foundations-to-system.md) | [Components](../components/README.md), [technical architecture](../references/architecture.md) |
-| Token or visual foundation | [Experience foundations](./05-experience-foundations.md), [system layers](./06-from-foundations-to-system.md) | [Tokens](../tokens/README.md), accessibility, affected surface guides |
-| AI-generated Singular work | Applicable user/problem docs | [`SKILL.md`](../SKILL.md), [AI agent contract](../references/ai-agent-contract.md) |
+| Website, proposal, case study, social | [Client reality](./01-client-context.md) | [Marketing manual](../ux-voice/marketing.md) + surface guide |
+| Singular Stories | Product role and current state | [Product manual](../ux-voice/product.md) + web-app guide + product rules |
+| Singular Approvals iOS | Approver's decision and consequence | [Product manual](../ux-voice/product.md) + iOS guide + approval rules |
+| Singularity Studio | Operator intent, sources, and risk | [Product manual](../ux-voice/product.md) + Studio guide + run rules |
+| Slides | Audience, evidence, and requested decision | Marketing or Product manual + slides guide |
+| Email | Message intent and required action | Marketing or Product manual + email guide |
+| Shared DS change | User need and semantic responsibility | [The Singular model](./05-experience-foundations.md) + architecture and adoption guidance |
 
-## Apply to Marketing
+## Trace a material decision
 
-### Before writing
-
-Answer:
-
-- Which audience is this for?
-- What operating situation should they recognize?
-- What is the business consequence?
-- What desired future is credible here?
-- What mechanism can we explain in plain English?
-- What proof exists?
-- Which claims are provisional?
-- What is the exact next step?
-
-### Narrative pattern
+A consequential decision should answer:
 
 ```text
-operating future or recognizable pain
-→ business consequence
-→ better operating model
-→ Singular's collaboration
-→ evidence or constraint
-→ next step
+client situation
+→ person and job
+→ pain or risk
+→ evidence
+→ experience foundation
+→ decision
+→ system owner
+→ applied behavior
+→ validation need
 ```
 
-### Review
+Use this compact record:
 
-- The piece could not belong to a generic AI consultancy.
-- The buyer can identify their situation.
-- The tool does not appear before the problem.
-- The client retains ownership.
-- Company Brain, Rivers, and Totems are defined or omitted.
-- Every metric and testimonial has an approved source.
-- The CTA names the actual next step.
+```markdown
+## Decision
 
-## Apply to Product
-
-### Before writing or designing
-
-Answer:
-
-- Which role is acting?
-- What state is the work in?
-- What decision or recovery job exists?
-- What context changes interpretation?
-- What evidence supports the state?
-- What is uncertain?
-- What does the action change?
-- Who owns the next step?
-- What happens if the action fails?
-
-### Information pattern
-
-```text
-event or requirement
-→ affected object and scope
-→ evidence, limitation, or consequence
-→ available action
-→ resulting or next state
+Context:
+Person and job:
+Pain or risk:
+Evidence:
+Foundation:
+Decision and trade-off:
+System owner:
+Application:
+Validation:
 ```
 
-### State checklist
+Do not write a decision record for every local copy edit. Use it when a choice
+changes shared meaning, state communication, a consequential action, or more
+than one surface.
 
-- loading;
-- empty;
-- error;
-- success;
-- disabled;
-- permission-limited;
-- blocked;
-- warning or destructive;
-- offline or delayed when relevant;
-- external confirmation when relevant.
+## Worked decision: product approval
 
-### Review
+**Context:** A client approver reviews proposed Sprint scope on mobile before
+work begins.
 
-- The action label matches the transition.
-- Marketing claims or urgency do not enter the workflow.
-- Relevant Project, Objective, Key Result, Key Project, Sprint, and work-item
-  context is preserved.
-- Evidence is not confused with acceptance.
-- Agent output names sources and limitations.
-- High-risk work has a meaningful human gate.
-- Recovery explains what was preserved.
+**Person and job:** The executive approver must authorize selected work without
+reconstructing the full project.
 
-## Apply to a Design System decision
+**Pain or risk:** A generic “Approve” action hides scope, commitment, excluded
+work, and the resulting state.
 
-### Before changing the shared system
+**Evidence:** The current product distinguishes Pre-Work authorization,
+selected Tasks, Story Points, identity confirmation, and Post-Work acceptance.
 
-1. Identify the user job and affected surfaces.
-2. Connect the need to an experience foundation.
-3. Search existing tokens, variants, components, and patterns.
-4. Decide whether the need belongs to foundation, platform, surface, or domain.
-5. Keep routes, permissions, data, and product copy out of the shared layer.
-6. Define states, accessibility, responsive or native behavior, and trade-offs.
-7. Record the decision using the
-   [decision framework](./07-decision-framework.md#decision-record-template).
+**Foundations:** Preserve relevant context; make commitments explicit; keep
+meaningful human control.
 
-### Promotion check
+**Decision:** Show phase, selected scope, total SP, project context, consequence,
+and approver identity before the final action. Label it **Authorize scope**.
+Mobile may reduce supporting detail, but not decision information.
 
-Do not promote a local pattern merely because it is reusable in code. Promote
-it when its **meaning** is shared and its product-specific behavior can be
-removed.
+**System owner:** The Design System owns hierarchy and interaction patterns.
+The product owns selection, permission, identity, and state transition.
 
-## Detailed surface stacks
+**Validation:** An approver can explain what is included, what changes after
+authorization, and what remains proposed.
 
-### Website stack
+## Evidence appendix
 
-1. Client context
-2. Marketing audience and pain
-3. Marketing Voice & Tone
-4. Claims and evidence
-5. Website surface
-6. Current website content and commercial route
+### Evidence labels
 
-### Singular Stories stack
+- **Documented:** explicit in approved direction, canonical product behavior,
+  traceable customer evidence, or a Design System contract.
+- **Inferred:** consistently suggested by product structure, flows, or aligned
+  indirect sources.
+- **Needs validation:** useful hypothesis with insufficient evidence.
 
-1. Product role and JTBD
-2. Product Voice & Tone
-3. Web-app surface
-4. Host product hierarchy, roles, permissions, and Story policy
-5. Shared components and tokens
+Documented does not automatically mean customer-validated. Inferred content
+may guide reversible work but cannot be presented as a customer quote.
 
-### iOS stack
+### Claim status
 
-1. Mobile executive approver
-2. Product Voice & Tone
-3. iOS surface and native behavior
-4. Host approval phase, KYC, biometric, and Task rules
-5. Accessibility and Dynamic Type
+- **Verified:** source, method, scope, period, permission, and wording are
+  approved.
+- **Provisional:** at least one publication requirement is missing.
+- **Retired:** expired, contradicted, or no longer approved.
 
-### Studio stack
+Historical promises such as 10 business days, under 45 days, 75%, 90%, 40%,
+pricing, ROI, testimonials, and client logos remain provisional until their
+source, method, scope, and permission are recorded.
 
-1. Singularity operator
-2. Automation/control pain
-3. Product Voice & Tone
-4. Studio surface
-5. Host run-state, source, safety, handoff, and publish rules
+### Current evidence boundary
 
-### Slides stack
+Documented direction includes the USD 5M–20M central ICP, established operating
+workflows, founder/owner/operator audience, client ownership, current product
+roles and naming, and the shared blue/cyan identity.
 
-1. Audience and decision
-2. Marketing or Product intent
-3. Evidence and claim status
-4. Slide narrative
-5. Visual surface guide
+Direct research is still needed for pain frequency in customer language,
+industry differences, Business Champion authority, buying committees, adoption
+barriers, approval information needs, and comprehension of Company Brain,
+Rivers, and Totems.
 
-## A compact rationale format
+## Ownership
 
-Use this in Figma, tickets, or reviews:
+| Area | Owner | Review |
+|---|---|---|
+| Client model and foundations | Product Design | Leadership, Marketing, Product |
+| Marketing positioning and public examples | Marketing | Leadership, Product Design |
+| Product roles, states, and terminology | Product owner | Product Design, Engineering |
+| Claims, testimonials, and permissions | Marketing / Leadership | Relevant legal or client owner |
+| Design System | Product Design | Product, Engineering |
+| Research evidence | Research owner / Product Design | Relevant stakeholders |
 
-```text
-For [user] trying to [job],
-the risk is [pain / ambiguity / consequence].
-We apply [foundation]
-by [decision],
-so the user can [understand / decide / act / recover].
-Evidence: [documented / inferred / needs validation + source].
-```
+## How the system changes
 
-Example:
+When evidence changes the story:
 
-```text
-For a mobile executive approver trying to authorize Pre-Work,
-the risk is signing scope they have not reviewed.
-We apply Preserve relevant context and Make commitments explicit
-by showing selected Tasks, total SP, consequence, and exclusions before Face ID,
-so the user can make an informed commitment.
-Evidence: documented in the current iOS approval flow.
-```
+1. update the canonical upstream concept;
+2. review the downstream Brand, Marketing, Product, and DS implications;
+3. leave domain behavior in the product repository;
+4. record the material decision and validation need;
+5. verify links, skill packaging, and the published documentation.
 
-## Completion gate
+When sources conflict, current product behavior wins for what the product does;
+approved business direction wins for positioning; customer research wins for
+the experience it studied. Historical material remains input, not authority.
 
-Before handoff:
+**Previous:** [Product manual](../ux-voice/product.md)
 
-- [ ] User and job are identifiable.
-- [ ] Pain, risk, state, or decision is explicit.
-- [ ] The foundation is named.
-- [ ] Marketing or Product intent is correct.
-- [ ] The correct surface and domain sources were used.
-- [ ] Terminology matches the surface.
-- [ ] Context, evidence, ownership, and next action are visible.
-- [ ] Required states and recovery are covered.
-- [ ] Claims and external outcomes are verified or qualified.
-- [ ] Accessibility is preserved.
-- [ ] Shared and product-local responsibilities remain separate.
-- [ ] Documentation links to the upstream rationale.
-
----
-
-**Previous:** [Decision framework](./07-decision-framework.md)
-
-**Next:** [Evidence and evolution](./09-evidence-and-evolution.md)
+**Return to:** [Start here](./README.md)

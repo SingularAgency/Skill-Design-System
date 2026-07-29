@@ -2,11 +2,11 @@
 
 This is the implementation-facing architecture. It sits downstream from the
 client, user, problem, collaboration, and experience foundations documented in
-[From foundations to system](../docs/06-from-foundations-to-system.md).
+[The Singular model](../docs/05-experience-foundations.md).
 
 Before creating or promoting a material shared rule, identify its user job,
-pain or risk, evidence level, and governing foundation through the
-[Decision framework](../docs/07-decision-framework.md).
+pain or risk, evidence level, and governing foundation through
+[Apply & evolve](../docs/08-application-map.md#trace-a-material-decision).
 
 ## The model
 

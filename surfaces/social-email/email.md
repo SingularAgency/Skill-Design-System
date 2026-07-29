@@ -6,12 +6,12 @@ Emails de Singular (marketing, transaccional, newsletter). Hereda de la marca co
 
 ## UX writing
 
-Empezar por el [user journey](../../docs/02-users-jobs-and-pain-points.md#the-user-journey-across-singular)
-y definir qué job debe resolver el mensaje.
+Empezar por [Client reality](../../docs/01-client-context.md) y definir qué job
+debe resolver el mensaje.
 Para campaigns, newsletters y commercial follow-up, leer
-[Marketing voice and tone](../../ux-voice/README.md#6-marketing-voice-and-tone).
+[Marketing voice and tone](../../ux-voice/marketing.md).
 Para transactional email, errors, approvals y status, leer
-[Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone).
+[Product voice and tone](../../ux-voice/product.md).
 La intención del mensaje define la voz; el formato email no la define.
 
 ## Estructura
