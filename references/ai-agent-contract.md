@@ -4,12 +4,18 @@ Read this before generating or refactoring Singular UI.
 
 ## Routing
 
-1. Read `design-system.json`.
-2. Select exactly one primary surface.
-3. Read that surface guide.
-4. Read `tokens/README.md` for web, or the iOS guide for SwiftUI.
-5. Read `components/README.md` before creating a component.
-6. Inspect the host product's local docs and current implementation.
+1. Read `docs/README.md`.
+2. Identify the human, current job, pain/risk, evidence level, and experience
+   foundation. Use `docs/08-application-map.md` to route the task.
+3. Read `design-system.json`.
+4. Select exactly one primary surface and read that surface guide.
+5. For copy, choose Marketing or Product in `ux-voice/README.md`.
+6. Read `tokens/README.md` for web, or the iOS guide for SwiftUI.
+7. Read `components/README.md` before creating a component.
+8. Inspect the host product's local docs and current implementation.
+
+For a narrow mechanical application of an existing token or component, cite
+the existing contract. Do not invent user research or strategic rationale.
 
 ## Required behavior
 
@@ -22,6 +28,10 @@ Read this before generating or refactoring Singular UI.
   reduced-motion behavior.
 - Keep product-specific language consistent with the host product source.
 - Explain any new token or component in the relevant inventory.
+- Preserve the trace from user problem to foundation and system layer for any
+  new shared decision.
+- Label documented behavior, inference, and validation need accurately.
+- Never convert provisional commercial material into a verified claim.
 
 ## Surface-specific constraints
 
@@ -38,6 +48,7 @@ Read this before generating or refactoring Singular UI.
 ## Completion checklist
 
 - Correct surface selected.
+- User, job and governing foundation identified.
 - Existing primitive search completed.
 - No new inline brand color without a documented exception.
 - Interaction and system states covered.

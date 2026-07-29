@@ -4,6 +4,17 @@ Decks de Singular (kickoffs, propuestas, QBRs, pitch). Marca **corporativa** (cy
 
 > No es CSS: es una **especificación de marca** para que slides generadas (Gamma/PPTX) salgan on-brand. El preview (`demo.html`) es un **deck navegable**: una slide a la vez en 16:9, con botones prev/next, dots, flechas del teclado (← →) y logo de Singular que linkea al sitio. Todas las slides usan el fondo de marca (mist + grid + estrellas).
 
+## UX writing
+
+Primero definir audience, job y decision con
+[Users, jobs, and pain points](../../docs/02-users-jobs-and-pain-points.md) y el
+[Application map](../../docs/08-application-map.md#surface-routing).
+Para pitch, positioning y proposals, leer
+[Marketing voice and tone](../../ux-voice/README.md#6-marketing-voice-and-tone).
+Para product reviews, approvals o decision decks, leer
+[Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone).
+Una slide debe declarar el takeaway o la decisión, no sólo el tema.
+
 ## Cómo se produce
 - **Gamma (recomendado):** plugin `kickoff-presentation-gen` → tema oscuro + gradient accents + logo Singular. Pasarle los tokens de marca (abajo) como guía de estilo.
 - **PPTX:** skill `pptx` con la paleta/tipografía de marca aplicada a master slides.

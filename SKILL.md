@@ -5,8 +5,11 @@ description: >-
   Usalo para diseñar, construir, auditar o refactorizar cualquier experiencia
   Singular: websites, web apps, Singular Stories, Singularity Studio, SwiftUI/iOS,
   slides, social y email. Incluye tokens, componentes, BrandBackground, assets,
-  contratos para IA, governance, auditoría de drift y export de snapshots. Triggers:
+  contexto de clientes, usuarios, JTBD, pain points, experience foundations,
+  UX writing, voice & tone, contratos para IA, governance, auditoría de drift y
+  export de snapshots. Triggers:
   "estilo Singular", "marca Singular", "design system de Singular", "aplicá el DS",
+  "voice/tone de Singular", "UX writing", "copy de marketing/producto",
   "auditá/refactorizá esta UI", o cualquier UI/asset de un producto Singular.
 ---
 
@@ -17,13 +20,36 @@ plataforma. Mantener la lógica de negocio en cada producto.
 
 ## Flujo obligatorio
 
-1. Leer `design-system.json`.
-2. Elegir una superficie primaria.
-3. Leer la guía de esa superficie.
-4. Leer `tokens/README.md` para web o `surfaces/ios-app/guide.md` para SwiftUI.
-5. Leer `components/README.md` antes de crear un componente.
-6. Inspeccionar la implementación y documentación local del producto host.
-7. Aplicar el checklist de `references/ai-agent-contract.md`.
+1. Leer `docs/README.md` y elegir el tramo de contexto necesario.
+2. Identificar usuario, job, pain/risk, evidencia y foundation antes de
+   proponer una decisión compartida.
+3. Leer `docs/08-application-map.md` para enrutar intención y superficie.
+4. Leer `design-system.json`.
+5. Si la tarea incluye copy, leer `ux-voice/README.md` y elegir Marketing o
+   Product según la intención.
+6. Elegir una superficie primaria y leer su guía.
+7. Leer `tokens/README.md` para web o `surfaces/ios-app/guide.md` para SwiftUI.
+8. Leer `components/README.md` antes de crear un componente.
+9. Inspeccionar la implementación y documentación local del producto host.
+10. Aplicar el checklist de `references/ai-agent-contract.md`.
+
+Para una aplicación puramente mecánica de una regla existente no es necesario
+reconstruir toda la estrategia, pero nunca inventar una rationale, un pain point
+o evidencia de usuario.
+
+## Router de contexto
+
+| Pregunta | Leer |
+|---|---|
+| ¿Qué empresa sirve Singular? | `docs/01-client-context.md` |
+| ¿Quién es el usuario y qué intenta resolver? | `docs/02-users-jobs-and-pain-points.md` |
+| ¿Cuál es la causa y el outcome? | `docs/03-problem-and-outcome-model.md` |
+| ¿Cómo colabora Singular? | `docs/04-how-singular-collaborates.md` |
+| ¿Qué principle gobierna la decisión? | `docs/05-experience-foundations.md` |
+| ¿Cómo se expresa la marca visual y verbal? | `brand/README.md` + `ux-voice/README.md` |
+| ¿Qué layer debe ser owner? | `docs/06-from-foundations-to-system.md` |
+| ¿Cómo se documenta y aplica? | `docs/07-decision-framework.md` + `docs/08-application-map.md` |
+| ¿Es un hecho, inferencia o claim? | `docs/09-evidence-and-evolution.md` |
 
 ## Router de superficies
 
@@ -37,11 +63,23 @@ plataforma. Mantener la lógica de negocio en cada producto.
 | Social asset | `social` | `surfaces/social-email/social.md` |
 | Email | `email` | `surfaces/social-email/email.md` |
 
+## Router de escritura
+
+| Trabajo que debe resolver el copy | Capítulo |
+|---|---|
+| Posicionamiento, adquisición, narrativa, prueba o conversión | `ux-voice/README.md#6-marketing-voice-and-tone` |
+| Estado, acción, decisión, recuperación, permisos o confianza | `ux-voice/README.md#7-product-voice-and-tone` |
+
+La intención manda sobre el canal. Un deck de revisión puede requerir Product;
+un error en el website puede requerir Product. Antes de escribir, identificar
+usuario, problema, decisión y evidencia disponible.
+
 ## Arquitectura
 
 Separar siempre:
 
-- foundation: marca, semántica, type roles, spacing, radius, motion y a11y;
+- foundation: marca, voice, tone, semántica, type roles, spacing, radius, motion
+  y a11y;
 - platform: CSS/Tailwind, SwiftUI, email o canvas;
 - surface: website, app, Studio, iOS, slides, social o email;
 - domain: Stories, approvals, agentes, rutas y contenido; vive en el host.
@@ -58,6 +96,15 @@ producto.
 - Cubrir loading, empty, error, success, disabled y permisos cuando apliquen.
 - Respetar contraste AA, foco, teclado, touch targets y reduced motion.
 - Usar `<Logo />` o assets oficiales; no deformar ni recrear la marca.
+- Separar Marketing de Product: Marketing genera reconocimiento y confianza;
+  Product explica estado, consecuencia y siguiente acción.
+- No empezar por una solución, componente o tono sin identificar usuario, job,
+  pain/risk y foundation.
+- No presentar una inferencia de UI como research ni una convención visual como
+  un hallazgo de cliente.
+- No inventar claims, testimonios, permisos, evidencia, scope ni estados.
+- Usar la terminología visible de la superficie: `Story` en web, `Task` en
+  mobile; Singular Stories y Singular Agile son el mismo producto.
 - Mantener routing, providers, permisos, datos y copy de negocio fuera del DS.
 - No mezclar `.sds-*` legacy con el sistema actual.
 

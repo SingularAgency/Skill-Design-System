@@ -1,5 +1,10 @@
 # Fondo de marca
 
+Este fondo expresa la identidad visual compartida dentro de la foundation de
+[calm authority](../docs/05-experience-foundations.md#8-express-calm-authority).
+No debe competir con información, estado, evidencia o decisión; por eso su
+actividad y densidad cambian según la superficie.
+
 El fondo de Singular —niebla + grilla + estrellas— unificado, **tokenizado y ligado a `--primary`**: se re-tinta solo con el brand profile (azul en app, azul/cyan en web). Reemplaza las implementaciones divergentes de producto y `singular-landing`.
 
 ## Archivos

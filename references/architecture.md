@@ -1,5 +1,13 @@
 # Architecture
 
+This is the implementation-facing architecture. It sits downstream from the
+client, user, problem, collaboration, and experience foundations documented in
+[From foundations to system](../docs/06-from-foundations-to-system.md).
+
+Before creating or promoting a material shared rule, identify its user job,
+pain or risk, evidence level, and governing foundation through the
+[Decision framework](../docs/07-decision-framework.md).
+
 ## The model
 
 Use four layers. Promote a decision upward only when at least two products need

@@ -29,6 +29,8 @@ writes `.singular-ds-snapshot.json` with the release and source commit.
 
 | Area | Canonical source | DS responsibility |
 |---|---|---|
+| Client context, user model and experience foundations | `docs/` in Skill-Design-System | Maintain the upstream rationale and evidence status |
+| UX writing, voice and tone | `ux-voice/README.md` | Maintain shared language principles and intent routing |
 | Marketing composition | singular-landing | Promote stable primitives and token roles |
 | Product chrome/data UI | v0-singular-stories-app | Promote portable components and interaction rules |
 | Native mobile | ss-ios-prototype | Maintain platform mapping and native primitives |
@@ -42,13 +44,16 @@ foundation. A local experiment becomes canonical only after review here.
 
 For every DS change:
 
-1. State the affected layer and surface.
-2. Link the product evidence that motivated it.
-3. Record whether the change is additive, breaking or a drift reconciliation.
-4. Update `design-system.json` when files, bundles or ownership change.
-5. Run the validation commands in `README.md`.
-6. Export into a temporary directory and inspect the snapshot.
-7. Update host snapshots in separate product PRs.
+1. Identify the user, job, pain/risk, evidence level, and experience
+   foundation.
+2. State the affected layer and surface.
+3. Link the product or research evidence that motivated it.
+4. Record the decision and accepted trade-off.
+5. Record whether the change is additive, breaking or a drift reconciliation.
+6. Update `design-system.json` when files, bundles or ownership change.
+7. Run the validation commands in `README.md`.
+8. Export into a temporary directory and inspect the snapshot.
+9. Update host snapshots in separate product PRs.
 
 ## Versioning
 

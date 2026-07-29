@@ -1,5 +1,12 @@
 # Tokens — identity + interaction profiles
 
+Tokens are a downstream expression of the
+[experience foundations](../docs/05-experience-foundations.md), not the
+starting point of the Singular system. Read
+[From foundations to system](../docs/06-from-foundations-to-system.md) for why
+identity, interaction, semantic status, platform, and surface roles remain
+separate.
+
 Un solo foundation azul/cyan con dos perfiles web. La identidad y la interacción
 no se mezclan:
 

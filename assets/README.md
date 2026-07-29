@@ -1,5 +1,10 @@
 # Assets
 
+Los assets son la capa de reconocimiento visual del sistema descrito en
+[From foundations to system](../docs/06-from-foundations-to-system.md). Usarlos
+de forma consistente refuerza una identidad; no reemplazan jerarquía, evidencia
+ni claridad de producto.
+
 Los assets de marca de Singular (logos, símbolos) **viven en este mismo repo**, dentro de `assets/`. Todo el Design System convive en un único repositorio: tokens, componentes, superficies y assets.
 
 ```

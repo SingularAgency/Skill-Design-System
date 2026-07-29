@@ -4,6 +4,16 @@ Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (cyan) sobre f
 
 > Formato imagen (no HTML). El `demo.html` muestra plantillas a escala; la producción se exporta a PNG/JPG en los tamaños de abajo.
 
+## UX writing
+
+Elegir audience, pain y buying stage desde
+[Users, jobs, and pain points](../../docs/02-users-jobs-and-pain-points.md) antes
+de reducir la historia a una sola idea visual.
+Leer [Marketing voice and tone](../../ux-voice/README.md#6-marketing-voice-and-tone)
+antes de escribir claims, proof o CTAs. Mantener una idea reconocible por pieza
+y verificar todo claim cuantitativo según
+[Claims and evidence](../../ux-voice/README.md#9-claims-and-evidence).
+
 ## Formatos
 | Uso | Tamaño | Safe zone |
 |---|---|---|

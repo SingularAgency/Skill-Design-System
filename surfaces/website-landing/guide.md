@@ -4,6 +4,17 @@ La superficie de **marketing público** de Singular. Marca **azul/cyan** (`brand
 
 > Fuente actual: la rama de trabajo vigente de `singular-landing`. Los primitivos son router-agnósticos y no portan `BookingProvider`, rutas, navbar/footer ni datos del sitio.
 
+## UX writing
+
+Empezar por [Client context](../../docs/01-client-context.md) y
+[Problem and outcome model](../../docs/03-problem-and-outcome-model.md) para
+conectar la narrativa con la situación real del buyer.
+Para positioning, narrative, proof y conversion, leer el capítulo
+[Marketing voice and tone](../../ux-voice/README.md#6-marketing-voice-and-tone)
+y las reglas de [Claims and evidence](../../ux-voice/README.md#9-claims-and-evidence).
+Si la superficie comunica error, recovery, estado o una decisión operativa,
+usar en cambio [Product voice and tone](../../ux-voice/README.md#7-product-voice-and-tone).
+
 ## Setup
 ```css
 /* index.css del sitio */
