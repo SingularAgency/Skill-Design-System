@@ -1,24 +1,26 @@
-# Singular UX Writing, Voice & Tone
+# Singular voice & tone
 
-**Status:** v0.3 working reference
+**Status:** v0.5 working reference
 
 **Owner:** Product Design
 
 **Language:** English (US)
 
-Singular uses one core voice for two different communication jobs.
+There is one Singular personality and only two manuals.
 
-| Intent | Manual |
+| If the reader needs to… | Use |
 |---|---|
-| Help a buyer recognize an operating problem, evaluate Singular, trust a claim, or choose a commercial next step | [Marketing voice & tone](./marketing.md) |
-| Help a person understand state, scope, evidence, consequence, recovery, or an available product action | [Product voice & tone](./product.md) |
+| Recognize an operating problem, evaluate Singular, trust a claim, or choose a commercial next step | [Marketing manual](./marketing.md) |
+| Understand a state, make a decision, act, recover, or interpret product and AI behavior | [Product manual](./product.md) |
 
-Choose by intent, not channel. A product release deck may need Product
-guidance; a public case study needs Marketing guidance.
+Choose by the job the communication must do, not by the channel. A release deck
+may need Product guidance. A website error may need Product guidance. A case
+study needs Marketing guidance even when it describes a product.
 
-Both manuals inherit the [Brand & core voice](../brand/README.md). Canonical
-definitions of the client, people, pains, and outcomes live in
-[Client reality](../docs/01-client-context.md). Task routing and evidence
-boundaries live in [Apply & evolve](../docs/08-application-map.md).
+Both manuals come from [Singular foundations](../docs/05-experience-foundations.md):
+the client reality, the operating problem, the way Singular collaborates, and
+the calm, clear, precise, transparent, human personality shared by every
+surface.
 
-This index is intentionally short. Do not duplicate the two manuals here.
+[Apply & evolve](../docs/08-application-map.md) helps route ambiguous work and
+explains how evidence changes the system.

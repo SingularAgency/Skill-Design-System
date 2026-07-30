@@ -5,8 +5,9 @@ Read this before generating or refactoring Singular UI.
 ## Routing
 
 1. Read `docs/README.md`.
-2. Identify the human, current job, pain/risk, evidence level, and experience
-   foundation. Use `docs/08-application-map.md` to route the task.
+2. Read `docs/05-experience-foundations.md` to identify the human, current job,
+   pain/risk, evidence level, and experience foundation. Use
+   `docs/08-application-map.md` to route the task.
 3. Read `design-system.json`.
 4. Select exactly one primary surface and read that surface guide.
 5. For copy, choose `ux-voice/marketing.md` or `ux-voice/product.md` by intent.

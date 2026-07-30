@@ -6,7 +6,7 @@ semantic tokens and reusable native primitives.
 
 ## UX writing
 
-Start with the [client approver](../../docs/01-client-context.md#the-people-in-the-change)
+Start with the [client approver](../../docs/05-experience-foundations.md#the-people-in-the-change)
 and the traced [product approval decision](../../docs/08-application-map.md#worked-decision-product-approval).
 Read [Product voice and tone](../../ux-voice/product.md)
 for concise context, approvals, evidence, errors, recovery, and agent content.

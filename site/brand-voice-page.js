@@ -12,36 +12,19 @@
       ],
     },
     {
-      label: "Understand the client",
-      items: [
-        {
-          id: "client-context",
-          path: "docs/01-client-context.md",
-          label: "Client reality",
-          description: "The company, operating problem, people, and desired change.",
-        },
-      ],
-    },
-    {
-      label: "Define the experience",
+      label: "Understand Singular",
       items: [
         {
           id: "foundations",
           path: "docs/05-experience-foundations.md",
-          label: "The Singular model",
-          description: "How Singular collaborates and how client needs become system decisions.",
+          label: "Foundations",
+          description: "The client, problem, model, personality, and reason behind the system.",
         },
       ],
     },
     {
-      label: "Express Singular",
+      label: "Use the voice",
       items: [
-        {
-          id: "brand",
-          path: "brand/README.md",
-          label: "Brand & core voice",
-          description: "The shared idea, character, voice, and visual rules.",
-        },
         {
           id: "marketing-voice",
           path: "ux-voice/marketing.md",
@@ -78,10 +61,12 @@
     DOCUMENTS.map((document) => [new URL(document.path, BASE_URL).pathname, document]),
   );
   const LEGACY_DOCUMENT_IDS = new Map([
-    ["users-jobs-pains", "client-context"],
-    ["problem-outcomes", "client-context"],
+    ["client-context", "foundations"],
+    ["users-jobs-pains", "foundations"],
+    ["problem-outcomes", "foundations"],
     ["collaboration", "foundations"],
     ["system-derivation", "foundations"],
+    ["brand", "foundations"],
     ["decisions", "application"],
     ["evidence", "application"],
   ]);
@@ -423,11 +408,11 @@
         documentId = "product-voice";
         section = section.startsWith("8-terminology") ? "product-terminology" : "";
       } else if (section.startsWith("4-core-singular-voice")) {
-        documentId = "brand";
+        documentId = "foundations";
         section = "core-voice";
       } else if (section.startsWith("5-core-writing-principles")) {
-        documentId = "brand";
-        section = "writing-behaviors";
+        documentId = "foundations";
+        section = "shared-writing-behaviors";
       } else if (section.startsWith("9-claims-and-evidence") || section.startsWith("11-sources")) {
         documentId = "application";
         section = "evidence-appendix";
@@ -436,7 +421,19 @@
         section = "";
       }
     } else if (LEGACY_DOCUMENT_IDS.has(requestedId)) {
-      section = "";
+      if (requestedId === "brand") {
+        const brandSections = new Map([
+          ["shared-character", "why-singular-sounds-this-way"],
+          ["writing-behaviors", "shared-writing-behaviors"],
+          ["visual-identity", "why-singular-looks-this-way"],
+          ["typography", "why-singular-looks-this-way"],
+          ["visual-rules", "why-singular-looks-this-way"],
+          ["signature-elements", "why-singular-looks-this-way"],
+        ]);
+        section = brandSections.get(section) || section;
+      } else if (requestedId !== "client-context") {
+        section = "";
+      }
     }
 
     const document = DOCUMENT_BY_ID.get(documentId) || DOCUMENT_BY_ID.get("start");
@@ -535,7 +532,7 @@
     mobileCurrent.textContent = document.label;
     editSource.href = sourceEditUrl(document.path);
     errorSource.href = document.path;
-    document.title = `${document.label} — Singular Brand & Voice`;
+    window.document.title = `${document.label} — Singular Brand & Voice`;
 
     const previous = DOCUMENTS[document.index - 1];
     const next = DOCUMENTS[document.index + 1];

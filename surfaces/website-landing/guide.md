@@ -6,8 +6,9 @@ La superficie de **marketing público** de Singular. Marca **azul/cyan** (`brand
 
 ## UX writing
 
-Empezar por [Client reality](../../docs/01-client-context.md) para
-conectar la narrativa con la situación real del buyer.
+Empezar por [Singular foundations](../../docs/05-experience-foundations.md)
+para conectar la narrativa con la situación real del buyer y entender por qué
+la marca se expresa como lo hace.
 Para positioning, narrative, proof y conversion, leer
 [Marketing voice and tone](../../ux-voice/marketing.md)
 y el [evidence appendix](../../docs/08-application-map.md#evidence-appendix).

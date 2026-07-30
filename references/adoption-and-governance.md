@@ -29,7 +29,7 @@ writes `.singular-ds-snapshot.json` with the release and source commit.
 
 | Area | Canonical source | DS responsibility |
 |---|---|---|
-| Client context, user model and experience foundations | `docs/` in Skill-Design-System | Maintain the upstream rationale and evidence status |
+| Client context, user model, personality, and experience foundations | `docs/05-experience-foundations.md` | Maintain the upstream rationale and evidence status |
 | UX writing, voice and tone | `ux-voice/marketing.md` and `ux-voice/product.md` | Maintain intent-specific language principles |
 | Marketing composition | singular-landing | Promote stable primitives and token roles |
 | Product chrome/data UI | v0-singular-stories-app | Promote portable components and interaction rules |

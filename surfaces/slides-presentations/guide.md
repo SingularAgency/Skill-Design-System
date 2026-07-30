@@ -7,7 +7,7 @@ Decks de Singular (kickoffs, propuestas, QBRs, pitch). Marca **corporativa** (cy
 ## UX writing
 
 Primero definir audience, job y decision con
-[Client reality](../../docs/01-client-context.md) y
+[Singular foundations](../../docs/05-experience-foundations.md) y
 [Apply & evolve](../../docs/08-application-map.md#route-by-surface).
 Para pitch, positioning y proposals, leer
 [Marketing voice and tone](../../ux-voice/marketing.md).

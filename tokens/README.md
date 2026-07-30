@@ -3,7 +3,7 @@
 Tokens are a downstream expression of the
 [experience foundations](../docs/05-experience-foundations.md), not the
 starting point of the Singular system. Read
-[The Singular model](../docs/05-experience-foundations.md#from-foundation-to-system) for why
+[Singular foundations](../docs/05-experience-foundations.md#from-foundations-to-system) for why
 identity, interaction, semantic status, platform, and surface roles remain
 separate.
 

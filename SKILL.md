@@ -21,7 +21,8 @@ plataforma. Mantener la lógica de negocio en cada producto.
 ## Flujo obligatorio
 
 1. Leer `docs/README.md` y elegir el tramo de contexto necesario.
-2. Identificar usuario, job, pain/risk, evidencia y foundation antes de
+2. Leer `docs/05-experience-foundations.md` para identificar usuario, job,
+   pain/risk, evidencia y foundation antes de
    proponer una decisión compartida.
 3. Leer `docs/08-application-map.md` para enrutar intención y superficie.
 4. Leer `design-system.json`.
@@ -41,9 +42,7 @@ o evidencia de usuario.
 
 | Pregunta | Leer |
 |---|---|
-| ¿Qué empresa sirve Singular, quién vive el problema y qué outcome necesita? | `docs/01-client-context.md` |
-| ¿Cómo colabora Singular y qué foundation gobierna la decisión? | `docs/05-experience-foundations.md` |
-| ¿Cómo se expresa la identidad y voz compartida? | `brand/README.md` |
+| ¿Qué empresa sirve Singular, quién vive el problema, cómo colabora y qué personality/foundation gobierna la decisión? | `docs/05-experience-foundations.md` |
 | ¿Cómo se escribe para adquisición o posicionamiento? | `ux-voice/marketing.md` |
 | ¿Cómo se escribe un estado, acción, decisión o recovery? | `ux-voice/product.md` |
 | ¿Cómo se enruta, documenta y valida? | `docs/08-application-map.md` |

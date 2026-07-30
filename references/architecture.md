@@ -2,7 +2,7 @@
 
 This is the implementation-facing architecture. It sits downstream from the
 client, user, problem, collaboration, and experience foundations documented in
-[The Singular model](../docs/05-experience-foundations.md).
+[Singular foundations](../docs/05-experience-foundations.md).
 
 Before creating or promoting a material shared rule, identify its user job,
 pain or risk, evidence level, and governing foundation through
