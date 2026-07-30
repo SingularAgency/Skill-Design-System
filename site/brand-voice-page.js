@@ -104,6 +104,8 @@
   let loadSequence = 0;
   let firstLoad = true;
   let headingObserver = null;
+  let diagramSequence = 0;
+  const diagramObservers = [];
   const mobileNavigationQuery = window.matchMedia("(max-width: 980px)");
 
   const escapeHtml = (value) =>
@@ -220,22 +222,193 @@
       return `<div class="docs-code"><span class="docs-code__label">System map</span><pre><code>${escapeHtml(source)}</code></pre></div>`;
     }
 
+    const nodeEntries = [...nodes.entries()];
+    const nodeIndex = new Map(nodeEntries.map(([id], index) => [id, index]));
+    const outgoing = new Map();
+    const incoming = new Map();
+    edges.forEach(([from, to]) => {
+      if ((nodeIndex.get(to) ?? 0) <= (nodeIndex.get(from) ?? 0)) return;
+      outgoing.set(from, (outgoing.get(from) || 0) + 1);
+      incoming.set(to, (incoming.get(to) || 0) + 1);
+    });
+    const isBranch = [...outgoing.values(), ...incoming.values()].some((count) => count > 1);
+    const layout = isBranch ? "branch" : "loop";
+    const diagramId = `docs-diagram-${++diagramSequence}`;
+    const layoutPositions =
+      layout === "branch"
+        ? [
+            [1, 2],
+            [2, 2],
+            [3, 1],
+            [3, 3],
+            [4, 2],
+            [4, 3],
+          ]
+        : [
+            [1, 1],
+            [2, 1],
+            [3, 1],
+            [3, 2],
+            [2, 2],
+            [1, 2],
+          ];
+    const diagramCopy =
+      layout === "branch"
+        ? {
+            title: "One foundation. Two voices. One learning loop.",
+            description: "Marketing and Product do different jobs. Evidence strengthens the system they share.",
+            feedback: "Evidence updates the foundations",
+          }
+        : {
+            title: "How growth turns coordination into a loop",
+            description: "Another tool is added, but fragmented context keeps the same cycle moving.",
+            feedback: "The cycle starts again",
+          };
     const nodeMarkup = [...nodes.entries()]
-      .map(([id, label]) => `<div class="docs-diagram__node" data-node="${escapeHtml(id)}">${escapeHtml(label)}</div>`)
+      .map(([id, label], index) => {
+        const [column, row] = layoutPositions[index] || [((index % 3) + 1), Math.floor(index / 3) + 1];
+        const kind = index === 0 ? "entry" : index === nodes.size - 1 ? "feedback" : "step";
+        return `<div class="docs-diagram__node" data-node="${escapeHtml(id)}" data-node-index="${index}" data-kind="${kind}" style="--diagram-column:${column};--diagram-row:${row}">
+          <span>${String(index + 1).padStart(2, "0")}</span>
+          <strong>${escapeHtml(label)}</strong>
+        </div>`;
+      })
       .join("");
-    const edgeMarkup = edges
+    const relationshipMarkup = edges
       .map(
         ([from, to]) =>
-          `<li><span>${escapeHtml(nodes.get(from) || from)}</span><i aria-hidden="true">→</i><span>${escapeHtml(nodes.get(to) || to)}</span></li>`,
+          `<li>${escapeHtml(nodes.get(from) || from)} leads to ${escapeHtml(nodes.get(to) || to)}</li>`,
       )
       .join("");
+    const pathMarkup = edges
+      .map(([from, to]) => {
+        const isFeedback = (nodeIndex.get(to) ?? 0) <= (nodeIndex.get(from) ?? 0);
+        return `<path class="docs-diagram__edge${isFeedback ? " docs-diagram__edge--feedback" : ""}" data-from="${escapeHtml(from)}" data-to="${escapeHtml(to)}" data-feedback="${isFeedback}" marker-end="url(#${diagramId}-arrow)" />`;
+      })
+      .join("");
 
-    return `<figure class="docs-diagram">
-      <figcaption>System map</figcaption>
-      <div class="docs-diagram__nodes">${nodeMarkup}</div>
-      ${edgeMarkup ? `<ol class="docs-diagram__edges" aria-label="Relationships">${edgeMarkup}</ol>` : ""}
+    return `<figure class="docs-diagram" data-layout="${layout}">
+      <div class="docs-diagram__header">
+        <div>
+          <figcaption>System map</figcaption>
+          <strong>${diagramCopy.title}</strong>
+          <p>${diagramCopy.description}</p>
+        </div>
+        <span>${nodes.size} moments · feedback loop</span>
+      </div>
+      <div class="docs-diagram__canvas">
+        <svg class="docs-diagram__connections" aria-hidden="true" preserveAspectRatio="none">
+          <defs>
+            <marker id="${diagramId}-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+          </defs>
+          ${pathMarkup}
+        </svg>
+        <div class="docs-diagram__nodes">${nodeMarkup}</div>
+        <span class="docs-diagram__feedback-note"><i aria-hidden="true">↺</i>${diagramCopy.feedback}</span>
+      </div>
+      ${relationshipMarkup ? `<ol class="sr-only" aria-label="Relationships">${relationshipMarkup}</ol>` : ""}
       <details><summary>View diagram source</summary><pre>${escapeHtml(source)}</pre></details>
     </figure>`;
+  };
+
+  const diagramAnchor = (node, canvasRect, direction, axis) => {
+    const rect = node.getBoundingClientRect();
+    const centerX = rect.left - canvasRect.left + rect.width / 2;
+    const centerY = rect.top - canvasRect.top + rect.height / 2;
+    if (axis === "horizontal") {
+      return {
+        x: direction > 0 ? rect.right - canvasRect.left : rect.left - canvasRect.left,
+        y: centerY,
+      };
+    }
+    return {
+      x: centerX,
+      y: direction > 0 ? rect.bottom - canvasRect.top : rect.top - canvasRect.top,
+    };
+  };
+
+  const drawDiagramConnections = (figure) => {
+    const canvas = figure.querySelector(".docs-diagram__canvas");
+    const svg = figure.querySelector(".docs-diagram__connections");
+    if (!canvas || !svg) return;
+
+    const canvasRect = canvas.getBoundingClientRect();
+    if (!canvasRect.width || !canvasRect.height) return;
+    svg.setAttribute("viewBox", `0 0 ${canvasRect.width} ${canvasRect.height}`);
+
+    svg.querySelectorAll(".docs-diagram__edge").forEach((path) => {
+      const source = canvas.querySelector(`[data-node="${CSS.escape(path.dataset.from)}"]`);
+      const target = canvas.querySelector(`[data-node="${CSS.escape(path.dataset.to)}"]`);
+      if (!source || !target) return;
+
+      const sourceRect = source.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const sourceCenter = {
+        x: sourceRect.left - canvasRect.left + sourceRect.width / 2,
+        y: sourceRect.top - canvasRect.top + sourceRect.height / 2,
+      };
+      const targetCenter = {
+        x: targetRect.left - canvasRect.left + targetRect.width / 2,
+        y: targetRect.top - canvasRect.top + targetRect.height / 2,
+      };
+
+      if (path.dataset.feedback === "true") {
+        if (window.innerWidth <= 680) {
+          const start = diagramAnchor(source, canvasRect, -1, "horizontal");
+          const end = diagramAnchor(target, canvasRect, -1, "horizontal");
+          const returnX = 10;
+          path.setAttribute(
+            "d",
+            `M ${start.x} ${start.y} C ${returnX} ${start.y}, ${returnX} ${end.y}, ${end.x} ${end.y}`,
+          );
+          return;
+        }
+        const start = diagramAnchor(source, canvasRect, 1, "vertical");
+        const end = diagramAnchor(target, canvasRect, 1, "vertical");
+        const returnY = canvasRect.height - 24;
+        path.setAttribute(
+          "d",
+          `M ${start.x} ${start.y} C ${start.x} ${returnY}, ${end.x} ${returnY}, ${end.x} ${end.y}`,
+        );
+        return;
+      }
+
+      const deltaX = targetCenter.x - sourceCenter.x;
+      const deltaY = targetCenter.y - sourceCenter.y;
+      const horizontal = Math.abs(deltaX) > Math.abs(deltaY) * 0.7;
+      const axis = horizontal ? "horizontal" : "vertical";
+      const direction = horizontal ? Math.sign(deltaX) || 1 : Math.sign(deltaY) || 1;
+      const start = diagramAnchor(source, canvasRect, direction, axis);
+      const end = diagramAnchor(target, canvasRect, -direction, axis);
+
+      if (horizontal) {
+        const controlX = (start.x + end.x) / 2;
+        path.setAttribute(
+          "d",
+          `M ${start.x} ${start.y} C ${controlX} ${start.y}, ${controlX} ${end.y}, ${end.x} ${end.y}`,
+        );
+      } else {
+        const controlY = (start.y + end.y) / 2;
+        path.setAttribute(
+          "d",
+          `M ${start.x} ${start.y} C ${start.x} ${controlY}, ${end.x} ${controlY}, ${end.x} ${end.y}`,
+        );
+      }
+    });
+  };
+
+  const hydrateDiagrams = () => {
+    diagramObservers.splice(0).forEach((observer) => observer.disconnect());
+    article.querySelectorAll(".docs-diagram").forEach((figure) => {
+      const draw = () => drawDiagramConnections(figure);
+      draw();
+      const observer = new ResizeObserver(draw);
+      observer.observe(figure.querySelector(".docs-diagram__canvas"));
+      diagramObservers.push(observer);
+      document.fonts?.ready.then(draw);
+    });
   };
 
   const renderMarkdown = (source) => {
@@ -594,6 +767,7 @@
       rewriteLinks(document);
       renderOutline(rendered.headings, document);
       article.hidden = false;
+      hydrateDiagrams();
       loading.hidden = true;
       previousLink.parentElement.hidden = false;
       reader.setAttribute("aria-busy", "false");

@@ -777,96 +777,233 @@
 }
 
 .docs-diagram {
-  margin: 2rem 0;
-  padding: 1.1rem;
+  --diagram-bleed: clamp(0rem, 4vw, 3.5rem);
+  width: calc(100% + var(--diagram-bleed));
+  margin: 2.4rem 0 2.8rem calc(var(--diagram-bleed) / -2);
+  padding: clamp(1.25rem, 2.5vw, 1.8rem);
+  overflow: hidden;
   border: 1px solid var(--site-line-strong);
-  border-radius: .9rem;
+  border-radius: 1.15rem;
   background:
     linear-gradient(var(--site-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--site-line) 1px, transparent 1px),
-    color-mix(in srgb, var(--surface-2) 72%, transparent);
-  background-size: 2.5rem 2.5rem;
+    radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--brand-primary) 13%, transparent), transparent 34%),
+    color-mix(in srgb, var(--surface-2) 78%, transparent);
+  background-size: 3rem 3rem, 3rem 3rem, auto, auto;
+  box-shadow:
+    0 30px 80px -56px color-mix(in srgb, var(--brand-primary) 58%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--foreground-strong) 7%, transparent);
+}
+
+.docs-diagram__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .docs-diagram figcaption {
   display: flex;
   align-items: center;
-  gap: .45rem;
-  margin-bottom: .9rem;
+  gap: .5rem;
+  margin: 0 0 .65rem;
   color: var(--brand-cyan);
   font-family: var(--font-mono);
-  font-size: .62rem;
+  font-size: .66rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .11em;
 }
 
 .docs-diagram figcaption::before {
-  width: .42rem;
-  height: .42rem;
+  width: .48rem;
+  height: .48rem;
   border-radius: 50%;
   background: var(--brand-cyan);
-  box-shadow: 0 0 9px var(--brand-cyan);
+  box-shadow: 0 0 12px var(--brand-cyan);
   content: "";
 }
 
-.docs-diagram__nodes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
-  gap: .55rem;
-}
-
-.docs-diagram__node {
-  display: grid;
-  place-items: center;
-  min-height: 4.5rem;
-  padding: .7rem;
-  border: 1px solid var(--site-line);
-  border-radius: .58rem;
-  background: color-mix(in srgb, var(--surface-1) 88%, transparent);
+.docs-diagram__header > div > strong {
+  display: block;
+  max-width: 32rem;
   color: var(--foreground-strong);
   font-family: var(--font-display);
-  font-size: .78rem;
-  line-height: 1.35;
-  text-align: center;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  letter-spacing: -.025em;
+  line-height: 1.15;
 }
 
-.docs-diagram__edges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .38rem;
-  margin: .75rem 0 0;
-  padding: 0;
-  list-style: none;
+.docs-diagram__header p {
+  max-width: 34rem;
+  margin: .55rem 0 0;
+  color: var(--readable-muted);
+  font-size: .82rem;
+  line-height: 1.6;
 }
 
-.docs-diagram__edges li {
-  display: inline-flex;
-  align-items: center;
-  gap: .34rem;
-  margin: 0;
-  padding: .28rem .45rem;
+.docs-diagram__header > span {
+  flex: none;
+  margin-top: .1rem;
+  padding: .42rem .62rem;
   border: 1px solid var(--site-line);
   border-radius: var(--radius-full);
   background: color-mix(in srgb, var(--surface-3) 70%, transparent);
   color: var(--muted-foreground);
   font-family: var(--font-mono);
   font-size: .58rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
 }
 
-.docs-diagram__edges i {
+.docs-diagram__canvas {
+  position: relative;
+  min-height: 21rem;
+  margin-top: 1.4rem;
+  padding: 1.4rem 1.1rem 4.75rem;
+  overflow: hidden;
+  border-block: 1px solid var(--site-line);
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--brand-cyan) 6%, transparent), transparent 54%);
+}
+
+.docs-diagram__nodes {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 2.75rem 2rem;
+}
+
+.docs-diagram[data-layout="loop"] .docs-diagram__nodes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(6.75rem, auto));
+}
+
+.docs-diagram[data-layout="branch"] .docs-diagram__nodes {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(6.35rem, auto));
+}
+
+.docs-diagram__node {
+  position: relative;
+  z-index: 2;
+  grid-column: var(--diagram-column);
+  grid-row: var(--diagram-row);
+  display: flex;
+  min-width: 0;
+  min-height: 6.75rem;
+  padding: .95rem 1rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--brand-primary) 36%, var(--site-line));
+  border-radius: .82rem;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--surface-1) 94%, transparent), color-mix(in srgb, var(--surface-3) 80%, transparent));
+  color: var(--foreground-strong);
+  box-shadow:
+    0 18px 42px -34px color-mix(in srgb, var(--brand-primary) 60%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--foreground-strong) 8%, transparent);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: .8rem;
+  text-align: left;
+}
+
+.docs-diagram__node > span {
   color: var(--brand-cyan);
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.docs-diagram__node > strong {
+  font-family: var(--font-display);
+  font-size: clamp(.78rem, 1.35vw, .96rem);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  line-height: 1.28;
+}
+
+.docs-diagram__node[data-kind="entry"] {
+  border-color: color-mix(in srgb, var(--brand-cyan) 60%, var(--site-line));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--brand-cyan) 11%, var(--surface-1)), color-mix(in srgb, var(--surface-3) 84%, transparent));
+}
+
+.docs-diagram__node[data-kind="feedback"] {
+  border-color: color-mix(in srgb, var(--brand-primary) 72%, var(--site-line));
+  box-shadow:
+    0 20px 52px -32px color-mix(in srgb, var(--brand-primary) 76%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--foreground-strong) 8%, transparent);
+}
+
+.docs-diagram__connections {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.docs-diagram__connections marker path {
+  fill: var(--brand-cyan);
+}
+
+.docs-diagram__edge {
+  fill: none;
+  stroke: color-mix(in srgb, var(--brand-cyan) 72%, var(--brand-primary));
+  stroke-linecap: round;
+  stroke-width: 1.6;
+  opacity: .82;
+  vector-effect: non-scaling-stroke;
+}
+
+.docs-diagram__edge--feedback {
+  stroke: var(--brand-cyan);
+  stroke-dasharray: 5 6;
+  stroke-width: 1.9;
+  opacity: .9;
+}
+
+.docs-diagram__feedback-note {
+  position: absolute;
+  z-index: 3;
+  bottom: 1rem;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  max-width: calc(100% - 2rem);
+  padding: .38rem .62rem;
+  border: 1px solid color-mix(in srgb, var(--brand-cyan) 38%, var(--site-line));
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+  color: var(--readable-muted);
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  line-height: 1.3;
+  text-align: center;
+  transform: translateX(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.docs-diagram__feedback-note i {
+  color: var(--brand-cyan);
+  font-size: .85rem;
   font-style: normal;
 }
 
 .docs-diagram details {
-  margin-top: .8rem;
+  margin-top: 1rem;
   color: var(--muted-foreground);
   font-size: .7rem;
 }
 
 .docs-diagram summary {
   width: max-content;
+  min-height: 1.75rem;
+  padding: .25rem 0;
   cursor: pointer;
   font-family: var(--font-mono);
 }
@@ -1185,6 +1322,10 @@ html:not(.dark) .story-spine li {
   body.has-docs-menu {
     overflow: hidden;
   }
+
+  .docs-diagram {
+    --diagram-bleed: 0rem;
+  }
 }
 
 @media (max-width: 680px) {
@@ -1240,8 +1381,73 @@ html:not(.dark) .story-spine li {
     opacity: .6;
   }
 
-  .docs-diagram__nodes {
+  .docs-diagram {
+    padding: 1rem;
+  }
+
+  .docs-diagram__header {
+    flex-direction: column;
+    gap: .9rem;
+  }
+
+  .docs-diagram__header > span {
+    margin-top: 0;
+  }
+
+  .docs-diagram__canvas {
+    min-height: 0;
+    padding: 1.1rem .65rem 4.6rem;
+  }
+
+  .docs-diagram[data-layout="loop"] .docs-diagram__nodes {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 2.75rem;
+  }
+
+  .docs-diagram[data-layout="loop"] .docs-diagram__node {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  .docs-diagram[data-layout="branch"] .docs-diagram__nodes {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(6.25rem, auto));
+    gap: 2.4rem 1rem;
+  }
+
+  .docs-diagram[data-layout="branch"] .docs-diagram__node:nth-child(1) {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+  }
+
+  .docs-diagram[data-layout="branch"] .docs-diagram__node:nth-child(2) {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+  }
+
+  .docs-diagram[data-layout="branch"] .docs-diagram__node:nth-child(3) {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+  }
+
+  .docs-diagram[data-layout="branch"] .docs-diagram__node:nth-child(4) {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+  }
+
+  .docs-diagram[data-layout="branch"] .docs-diagram__node:nth-child(5) {
+    grid-column: 1 / -1 !important;
+    grid-row: 4 !important;
+  }
+
+  .docs-diagram[data-layout="branch"] .docs-diagram__node:nth-child(6) {
+    grid-column: 1 / -1 !important;
+    grid-row: 5 !important;
+  }
+
+  .docs-diagram__node {
+    min-height: 6.25rem;
   }
 
   .docs-pagination {
@@ -1263,10 +1469,6 @@ html:not(.dark) .story-spine li {
   .story-spine li:nth-child(5) {
     grid-column: auto;
     min-height: 6.75rem;
-  }
-
-  .docs-diagram__nodes {
-    grid-template-columns: 1fr;
   }
 
   .docs-prose .doc-meta-line {
