@@ -11,6 +11,10 @@ evidence, consequence, and the next action clear. It applies
 [Brand & core voice](../brand/README.md); product repositories remain canonical
 for roles and permissions.
 
+At its best, Singular product copy feels like a calm operator beside the user:
+clear about what happened, honest about what is unknown, and ready with the
+next useful action.
+
 ## The reader's job
 
 Product copy responds to the job at the current decision point:
@@ -44,6 +48,25 @@ what happened or is required
 
 For high-consequence decisions, show scope and consequence before the action.
 
+## Human without performance
+
+Product language is human when it respects the person's situation. It does not
+need jokes, celebration, apology theatre, or vague reassurance.
+
+These are illustrative copy patterns. Product repositories still determine the
+actual transition, permission, preservation, and recovery behavior.
+
+| Situation | Not Singular | Singular |
+|---|---|---|
+| Reassurance | “Don't worry—your work is safe!” | “Your previous version is still available.” |
+| Error | “Oops! Something went wrong.” | “We couldn't save the change. Try again.” |
+| Success | “Awesome! You did it!” | “Scope authorized. Sprint planning can begin.” |
+| Waiting | “Sit tight while the magic happens…” | “Preparing 8 Stories for review…” |
+| Permission | “You aren't allowed to do that.” | “Only Client Approvers can authorize scope.” |
+| Required input | “We need you to fix an issue.” | “Add the missing delivery evidence before sending this Story to QA.” |
+| Help | “Need help?” | “Review what each approval state means.” |
+| Responsibility | “The system rejected your request.” | “QA returned this Story because the required delivery evidence is missing.” |
+
 ## Actions and commitments
 
 Use an exact verb and object:
@@ -62,34 +85,90 @@ An action label, confirmation, permission, and success message must describe
 the same state change. Proposed, selected, authorized, in progress, delivered,
 QA-complete, accepted, released, published, and paid are not interchangeable.
 
+### Action examples
+
+| Intent | Not Singular | Singular |
+|---|---|---|
+| Authorize proposed work | “Submit” | “Authorize scope” |
+| Accept delivered work | “Confirm” | “Accept delivery” |
+| Inspect an AI-assisted change | “Continue” | “Review diff” |
+| Complete QA | “Done” | “Mark QA complete” |
+| Return work | “Send back” | “Request fixes” |
+| Preserve a draft | “Save” | “Save draft” |
+| Retry an upload | “Try again” | “Retry evidence upload” |
+| Publish a reviewed change | “Proceed” | “Publish to staging” |
+| Dismiss a destructive dialog | “No” | “Keep Story” |
+| Remove an object | “Yes, delete” | “Delete Story” |
+
 ## State copy
 
-| State | Copy must answer | Example |
+State copy names what is happening, what it affects, and the useful next action.
+
+| State | Not Singular | Singular |
 |---|---|---|
-| Loading | What meaningful activity is happening? | “Preparing the preview…” |
-| Empty | What is absent, why, and is action available? | “No Stories need your review. New work will appear here at Client Review.” |
-| Error | What failed, what was affected or preserved, and how to recover? | “We couldn't save these changes. Your previous version is still available. Try again.” |
-| Success | What completed and what state exists now? | “Evidence added. This Story is ready for QA.” |
-| Disabled | Why is the action unavailable and how can it become available? | “Add delivery evidence before sending this Story to QA.” |
-| Notification | What changed, which object, why this person, and what action? | “QA returned SNG-142 for fixes. Review the finding.” |
+| Loading approval | “Loading…” | “Preparing Sprint 18 approval…” |
+| Loading rules | “Working…” | “Checking 8 Stories against Sprint rules…” |
+| Empty review queue | “Nothing here.” | “No Stories need your review. New work will appear here at Client Review.” |
+| Empty evidence | “No data.” | “No delivery evidence yet. Add evidence before sending this Story to QA.” |
+| Empty search | “No results.” | “No Stories match ‘renewal’. Try a Story ID or clear the filters.” |
+| Save error | “Something went wrong.” | “We couldn't save these changes. Your previous version is still available. Try again.” |
+| Load error | “Error 500.” | “We couldn't load Sprint 18. Refresh the page or return to Projects.” |
+| Upload error | “Upload failed.” | “We couldn't upload `renewal-report.pdf`. The Story was not changed. Retry the upload.” |
+| Success | “Success!” | “Evidence added. This Story is ready for QA.” |
+| Authorization success | “All done.” | “Scope authorized. 8 Stories can enter Sprint planning.” |
+| Disabled action | “Action unavailable.” | “Add delivery evidence before sending this Story to QA.” |
+| Notification | “New update.” | “QA returned SNG-142 for fixes. Review the finding.” |
+| Stale version | “Conflict detected.” | “Ana saved a newer version of this Story. Review her changes before saving yours.” |
+| Offline | “Network error.” | “You're offline. We can't save this draft until the connection returns.” |
 
 Do not add an action when there is no useful action. Do not expose internal
 implementation detail unless the person needs it to recover or report the
 problem.
 
+### Complete error and recovery example
+
+**Not Singular**
+
+**Title**
+
+> Something went wrong
+
+**Body**
+
+> Please try again later.
+
+**Action**
+
+> OK
+
+**Singular**
+
+**Title**
+
+> We couldn't publish to staging
+
+**Body**
+
+> Staging did not confirm the update. The previous staging version is still
+> available, and production is unchanged.
+
+**Actions**
+
+> Review diff / Retry publication
+
 ## Warnings and destructive actions
 
 Name the action, affected object and scope, consequence, reversibility, and
-exact final action.
+exact final action. “Are you sure?” is not decision information.
 
-**Title:** Delete Story SNG-142?
-
-**Body:** Its evidence and history will be permanently removed from Sprint 18.
-This can't be undone.
-
-**Actions:** Cancel / Delete Story
-
-“Are you sure?” is not decision information.
+| Situation | Not Singular | Singular |
+|---|---|---|
+| Delete a Story | **Are you sure?** This can't be undone. | **Delete Story SNG-142?** Its evidence and history will be permanently removed from Sprint 18. **Keep Story / Delete Story** |
+| Delete a Sprint | **Delete item?** | **Delete Sprint 18?** Its 8 Stories will return to the backlog. Delivery evidence will remain available. **Keep Sprint / Delete Sprint** |
+| Remove evidence | **Remove file?** | **Remove `renewal-report.pdf`?** QA will no longer be able to use it as delivery evidence. **Keep evidence / Remove evidence** |
+| Revoke access | **Confirm access change** | **Remove Jo from Project Atlas?** She will lose access immediately but her activity history will remain. **Keep access / Remove access** |
+| Discard a preview | **Discard changes?** | **Discard this preview?** The last published version will not change. **Keep preview / Discard preview** |
+| Publish externally | **Ready to continue?** | **Publish to staging?** This makes the reviewed version available at the staging URL. Production will not change. **Cancel / Publish to staging** |
 
 ## Authorization, approval, and acceptance
 
@@ -125,6 +204,23 @@ authorization.
 - Preserve history and attribution; evidence alone does not prove acceptance
   or business impact.
 
+### Approval and evidence examples
+
+| Situation | Not Singular | Singular |
+|---|---|---|
+| Proposed scope | “8 items selected” | “8 Stories · 42 SP selected for authorization” |
+| Authorization | “Approve work” | “Authorize 8 Stories for Sprint planning” |
+| Authorization result | “Approved!” | “Scope authorized by Ana Torres at 14:32 UTC.” |
+| Delivered work | “Completed” | “Delivery evidence added. This Story can move to QA.” |
+| QA pass | “Approved by QA” | “QA complete. This Story is ready for Client Review.” |
+| QA return | “QA failed” | “QA returned this Story: the mobile approval state is missing from the evidence.” |
+| Client acceptance | “Confirm” | “Accept delivery” |
+| Acceptance result | “Work approved” | “Delivery accepted by Marcus Lee. The Story is ready for release.” |
+| Evidence label | “Attachment” | “Delivery evidence · `approval-flow.mov` · Added by Jo” |
+| Evidence meaning | “Evidence uploaded” | “This recording supports the mobile approval acceptance criteria.” |
+| Missing evidence | “Required field” | “Add evidence for the offline approval state before sending this Story to QA.” |
+| Business outcome | “Project successful” | “Delivery was accepted. Renewal impact remains unconfirmed.” |
+
 ## AI communication
 
 AI writing distinguishes:
@@ -135,18 +231,39 @@ AI writing distinguishes:
   outcome;
 - what requires human judgment.
 
-| Agent state | Meaning | Example |
-|---|---|---|
-| Understanding | Interpreting intent and constraints | “Reviewing the request and product rules…” |
-| Planning | Mapping scope and affected surfaces | “Mapping the screens and states affected…” |
-| Working | Creating or checking a proposal | “Updating the sandbox preview…” |
-| Review | Result and evidence are available | “The preview and diff are ready for review.” |
-| Blocked | Input or expert judgment is required | “I need the target environment before I can continue.” |
-| Failed | Work stopped and recovery is available | “The update failed. Your previous preview is still available.” |
-| Published | An external destination confirmed publication | “Published to staging at 14:32 UTC.” |
+| Agent state | Meaning |
+|---|---|
+| Understanding | Interpreting intent and constraints |
+| Planning | Mapping scope and affected surfaces |
+| Working | Creating or checking a proposal |
+| Review | Result and evidence are available |
+| Blocked | Input or expert judgment is required |
+| Failed | Work stopped and recovery is available |
+| Published | An external destination confirmed publication |
 
 Never infer published, live, merged, approved, released, or paid from an
 animation, generated text, local state, or optimistic UI.
+
+### AI response examples
+
+| Situation | Not Singular | Singular |
+|---|---|---|
+| Understanding | “Thinking…” | “Reviewing the request, product rules, and affected surfaces…” |
+| Planning | “Creating your experience…” | “Mapping the approval states affected on web and iOS…” |
+| Working | “Making magic happen…” | “Updating the sandbox preview and checking the diff…” |
+| Sources | “Based on your data…” | “I used `product-rules.md`, Sprint 18, and the current iOS approval flow.” |
+| Inference | “The user wants a simpler flow.” | “I inferred that mobile approvers need less supporting detail. The approval requirement does not state that explicitly.” |
+| Unknown | “This should work.” | “I couldn't confirm the production callback URL. I need that value before testing publication.” |
+| Proposal | “I updated the product.” | “I prepared a proposal in the sandbox. Nothing has been published.” |
+| Local result | “The change is live.” | “The local preview is ready. Staging and production are unchanged.” |
+| Partial result | “Done.” | “The web preview is ready. The iOS mapping is blocked by a missing permission rule.” |
+| Blocked | “I can't continue.” | “I need the target environment and approver role before I can continue.” |
+| Failure | “Generation failed.” | “The preview update failed. Your previous preview is still available. Retry the run.” |
+| Review | “Looks good!” | “The preview and diff are ready. Review the authorization and empty states before publishing.” |
+| External action | “Published successfully.” | “Staging confirmed publication at 14:32 UTC. Production is unchanged.” |
+| Permission | “You don't have access.” | “Only Project Admins can publish this change. You can still review the diff.” |
+| Confidence | “I'm 95% confident.” | “The source confirms the web behavior. The iOS recovery state is still an inference.” |
+| Human decision | “Approve my plan to continue.” | “Choose whether this run should update the web approval flow only or include the iOS Task view.” |
 
 When uncertainty affects a decision, use:
 
@@ -158,6 +275,34 @@ What I need from you
 ```
 
 Do not hide a named unknown inside vague language such as “may” or “probably.”
+
+### Complete AI limitation example
+
+**Not Singular**
+
+> I think the approval flow should work now. I'm 90% confident. Approve my plan
+> and I can finish the rest.
+
+**Singular**
+
+**What I found**
+
+> The web rules require approver identity, selected scope, total Story Points,
+> and the resulting state.
+
+**What I inferred**
+
+> The iOS Task view should preserve the same decision information with less
+> supporting detail.
+
+**What I could not confirm**
+
+> The repository does not define the offline recovery state.
+
+**What I need from you**
+
+> Choose whether this run should stop at the online approval flow or wait for
+> the offline rule.
 
 ## Product terminology
 
@@ -180,6 +325,19 @@ only when Studio explicitly hands work to Singular Stories.
 
 Use Key Project in current user-facing product copy; do not expose Epic as a
 parallel visible hierarchy.
+
+### Terminology examples
+
+| Situation | Not Singular | Singular |
+|---|---|---|
+| Product name in UI | “Singular Agile module” | “Singular Stories” |
+| Product name in current marketing | “Singular Stories platform” | “Singular Agile” |
+| Web work item | “Task SNG-142” | “Story SNG-142” |
+| Mobile work item | “Story SNG-142” | “Task SNG-142” |
+| Work item views | “Business Story and Technical Story are linked items.” | “Business Story and Technical Story are two views of the same work item.” |
+| Studio work | “The AI created a Story.” | “The run produced a preview and diff.” |
+| Hierarchy | “Open Epic Atlas.” | “Open Key Project Atlas.” |
+| External state | “The change is live.” | “Published to staging. Production is unchanged.” |
 
 ## Product review
 

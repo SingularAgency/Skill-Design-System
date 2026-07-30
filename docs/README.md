@@ -1,6 +1,6 @@
 # Start here — The Singular system
 
-**Status:** v0.3 working reference
+**Status:** v0.4 working reference
 
 **Audience:** Anyone working with Singular
 
@@ -8,7 +8,7 @@
 
 **Owner:** Product Design
 
-**Last reviewed:** July 29, 2026
+**Last reviewed:** July 30, 2026
 
 This is the shortest path through Singular's business, experience, brand, and
 writing system. Start with the client—not colors, components, or AI.

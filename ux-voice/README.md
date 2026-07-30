@@ -1,6 +1,6 @@
 # Singular UX Writing, Voice & Tone
 
-**Status:** v0.3 working reference
+**Status:** v0.4 working reference
 
 **Owner:** Product Design
 
