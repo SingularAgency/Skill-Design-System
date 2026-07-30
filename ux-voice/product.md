@@ -1,21 +1,22 @@
-# Product voice & tone
+# Product manual — Make the next decision clear
 
 **Use for:** Singular Stories, Singular Approvals, Singularity Studio,
 transactional email, notifications, and product-facing Design System guidance
 
 **Owner:** Product Design; reviewed by product owners
 
-Product writing supports informed action—not persuasion—by making state, scope,
-evidence, consequence, and the next action clear. It applies
-[Client reality](../docs/01-client-context.md) and
-[Brand & core voice](../brand/README.md); product repositories remain canonical
-for roles and permissions.
+Product writing meets people in the middle of real work. They are not here to
+admire the interface. They need to know what happened, what it affects, what
+the system knows, and what they can safely do next.
 
-At its best, Singular product copy feels like a calm operator beside the user:
-clear about what happened, honest about what is unknown, and ready with the
-next useful action.
+At its best, Singular feels like a calm operator beside them: precise about the
+state, honest about the unknown, and ready with the next useful action. It
+supports informed action—not persuasion.
 
-## The reader's job
+This manual applies [Singular foundations](../docs/05-experience-foundations.md).
+Product repositories remain canonical for behavior, roles, and permissions.
+
+## Write for the job in front of the person
 
 Product copy responds to the job at the current decision point:
 
@@ -28,7 +29,7 @@ Product copy responds to the job at the current decision point:
 The same person may occupy several roles. Write for what they need to
 understand or decide now.
 
-## Default tone
+## Keep the voice steady
 
 Product tone is **calm, precise, operational, transparent, concise, and
 non-defensive**.
@@ -48,7 +49,7 @@ what happened or is required
 
 For high-consequence decisions, show scope and consequence before the action.
 
-## Human without performance
+## Be human without performing humanity
 
 Product language is human when it respects the person's situation. It does not
 need jokes, celebration, apology theatre, or vague reassurance.
@@ -67,7 +68,7 @@ actual transition, permission, preservation, and recovery behavior.
 | Help | “Need help?” | “Review what each approval state means.” |
 | Responsibility | “The system rejected your request.” | “QA returned this Story because the required delivery evidence is missing.” |
 
-## Actions and commitments
+## Name actions and commitments exactly
 
 Use an exact verb and object:
 
@@ -100,7 +101,7 @@ QA-complete, accepted, released, published, and paid are not interchangeable.
 | Dismiss a destructive dialog | “No” | “Keep Story” |
 | Remove an object | “Yes, delete” | “Delete Story” |
 
-## State copy
+## Explain the state, then the way forward
 
 State copy names what is happening, what it affects, and the useful next action.
 
@@ -156,7 +157,7 @@ problem.
 
 > Review diff / Retry publication
 
-## Warnings and destructive actions
+## Protect consequential decisions
 
 Name the action, affected object and scope, consequence, reversibility, and
 exact final action. “Are you sure?” is not decision information.
@@ -170,7 +171,7 @@ exact final action. “Are you sure?” is not decision information.
 | Discard a preview | **Discard changes?** | **Discard this preview?** The last published version will not change. **Keep preview / Discard preview** |
 | Publish externally | **Ready to continue?** | **Publish to staging?** This makes the reviewed version available at the staging URL. Production will not change. **Cancel / Publish to staging** |
 
-## Authorization, approval, and acceptance
+## Keep authorization, approval, and acceptance distinct
 
 These are different commitments.
 
@@ -196,7 +197,7 @@ Stories remain proposed.
 Mobile may reduce detail, but not the information required for informed
 authorization.
 
-## Evidence and QA
+## Let evidence say exactly what it proves
 
 - Attribute evidence and explain what it supports.
 - Separate delivery evidence, QA findings, and client acceptance.
@@ -221,7 +222,7 @@ authorization.
 | Missing evidence | “Required field” | “Add evidence for the offline approval state before sending this Story to QA.” |
 | Business outcome | “Project successful” | “Delivery was accepted. Renewal impact remains unconfirmed.” |
 
-## AI communication
+## Make AI legible, bounded, and honest
 
 AI writing distinguishes:
 
@@ -304,7 +305,7 @@ Do not hide a named unknown inside vague language such as “may” or “probab
 > Choose whether this run should stop at the online approval flow or wait for
 > the offline rule.
 
-## Product terminology
+## Use product language consistently
 
 ### Singular Stories and Singular Agile
 
@@ -339,7 +340,7 @@ parallel visible hierarchy.
 | Hierarchy | “Open Epic Atlas.” | “Open Key Project Atlas.” |
 | External state | “The change is live.” | “Published to staging. Production is unchanged.” |
 
-## Product review
+## Before it ships
 
 - Does the copy match the person's role, permission, and current state?
 - Are scope, consequence, owner, transition, and resulting state clear?

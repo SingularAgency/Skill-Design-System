@@ -8,7 +8,7 @@ The Studio profile extends `web-app`; it is not a dashboard skin.
 
 ## UX writing
 
-Start with the [people and operating problem](../../docs/01-client-context.md#the-people-in-the-change).
+Start with the [people and operating problem](../../docs/05-experience-foundations.md#the-people-in-the-change).
 Read [Product voice and tone](../../ux-voice/product.md)
 for agent states, uncertainty, source trace, recovery, review, and publish
 language. Never claim `published`, `live`, or `merged` without external

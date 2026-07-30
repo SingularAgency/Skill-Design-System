@@ -15,27 +15,24 @@ La entrada canónica es
 [`docs/README.md`](./docs/README.md). La historia conecta:
 
 ```text
-cliente
-→ usuarios, jobs y pain points
-→ problema y outcome
+cliente y problema
 → cómo colabora Singular
-→ experience foundations
-→ Brand & Voice + Design System
+→ foundations + personalidad
+→ Marketing o Product
 → superficies, estados, componentes y copy
 ```
 
 | Para entender… | Leer |
 |---|---|
-| Qué empresa atendemos, quién vive el problema y qué cambio necesita | [Client reality](./docs/01-client-context.md) |
-| Cómo colabora Singular y qué foundations gobiernan el sistema | [The Singular model](./docs/05-experience-foundations.md) |
-| Cómo se expresa la identidad visual y verbal compartida | [Brand & core voice](./brand/README.md) |
+| Qué empresa atendemos, quién vive el problema, cómo colabora Singular y por qué el sistema toma estas decisiones | [Singular foundations](./docs/05-experience-foundations.md) |
 | Cómo escribir para adquisición, posicionamiento o conversión | [Marketing voice & tone](./ux-voice/marketing.md) |
 | Cómo escribir estados, acciones, decisiones o recuperación | [Product voice & tone](./ux-voice/product.md) |
 | Cómo enrutar, justificar y evolucionar una decisión | [Apply & evolve](./docs/08-application-map.md) |
 
-Una persona nueva debería poder leer los tres primeros capítulos y comprender
-el sistema sin conocer previamente los repositorios ni la terminología de
-producto.
+Una persona nueva debería poder leer Start y Foundations y comprender el
+sistema sin conocer previamente los repositorios ni la terminología de
+producto. Hay una personalidad compartida y sólo dos manuales: Marketing y
+Product.
 
 ## Principios
 
@@ -52,7 +49,7 @@ producto.
 SKILL.md                  ← router conciso para agentes
 design-system.json        ← manifiesto machine-readable
 docs/                     ← historia: cliente → foundations → aplicación
-brand/                    ← brand foundation humana y guardrails visuales
+brand/                    ← ruta histórica hacia Foundations
 ux-voice/                 ← manual canónico de UX writing, voice & tone
 tokens/                   ← foundation web + perfiles app/web
 backgrounds/              ← BrandBackground unificado
@@ -164,8 +161,7 @@ tener excepciones documentadas. Para worktrees alternativos usá
 
 | Perfil | Repo / fuente |
 |---|---|
-| Contexto, usuarios, pains y foundations | [`docs/README.md`](./docs/README.md) |
-| Brand character y principios visuales | [`brand/README.md`](./brand/README.md) |
+| Contexto, usuarios, pains, modelo, personalidad y foundations | [`docs/05-experience-foundations.md`](./docs/05-experience-foundations.md) |
 | Foundation y governance | Este repo |
 | UX writing, voice y tone | [`ux-voice/marketing.md`](./ux-voice/marketing.md) + [`ux-voice/product.md`](./ux-voice/product.md) |
 | Marketing | `singular-landing` como fuente de descubrimiento |

@@ -1,19 +1,25 @@
-# Marketing voice & tone
+# Marketing manual — Make the problem recognizable
 
 **Use for:** Website, presentations, proposals, case studies, social, marketing
 email, and public Design System narrative
 
 **Owner:** Product Design; reviewed by Marketing
 
-Marketing helps the right buyer recognize an operating problem, understand
-Singular's approach, distinguish proof from promise, and choose a useful next
-step. It applies [Client reality](../docs/01-client-context.md) and
-[Brand & core voice](../brand/README.md) without redefining them.
+Marketing is the moment a founder, owner, or operator decides whether we
+understand the business they are actually running.
 
-Good Singular marketing makes a founder think, “Yes—that is exactly what keeps
-coming back to me,” before asking them to care about our model.
+We do not begin by asking them to care about Singular, AI, or our model. We
+begin with the work that keeps coming back: the Monday report, the handoff that
+needs three messages, the decision only one person can make.
 
-## The reader and the decision
+Good Singular marketing makes the right buyer think, “Yes. That is exactly
+what keeps coming back to me.” Then it shows a credible way forward, separates
+proof from promise, and offers one useful next step.
+
+This manual applies [Singular foundations](../docs/05-experience-foundations.md)
+without repeating them.
+
+## Speak to the decision behind the visit
 
 Write primarily for a founder, owner, executive operator, or Business Champion
 inside an established US SMB.
@@ -34,7 +40,7 @@ a visible consequence, willingness to change how work happens, and a way to
 evaluate the result. Fit is weak when the request is only for a demo, no one
 owns the workflow, or success cannot be defined.
 
-## Positioning
+## Say what Singular changes
 
 Singular is an outcome partner that turns one consequential workflow into a
 governed operating capability the client can own and adopt.
@@ -60,7 +66,7 @@ Company Brain, Rivers, and Totems are optional explanations:
 Define the operating idea before the metaphor. Do not use these terms when they
 add another concept the reader must learn.
 
-## Narrative
+## Tell the story in the order people need it
 
 Use this sequence when it helps the buyer decide:
 
@@ -93,7 +99,7 @@ or tools.
 The hero is intentionally ambitious. The support gives it an operating
 boundary. Do not add a number merely to make it sound concrete.
 
-## Tone by context
+## Change the tone, not the personality
 
 | Context | Tone | Job |
 |---|---|---|
@@ -106,7 +112,7 @@ boundary. Do not add a number merely to make it sound concrete.
 | Presentation | Executive, structured | Move from context to decision |
 | Social or email | Immediate, human | Earn attention without clickbait |
 
-## Hear the difference
+## Hear Singular in the writing
 
 The fastest way to learn the voice is to hear the same idea said two ways.
 “Not Singular” may be grammatically correct, but it hides the operating reality,
@@ -280,20 +286,20 @@ Be immediate and human without manufacturing urgency or enthusiasm.
 > risk appears. If they do, we can map the workflow and see whether it is worth
 > fixing.
 
-## Claims and evidence
+## Earn every claim
 
 Use the canonical [evidence appendix](../docs/08-application-map.md#evidence-appendix)
 before publishing a metric, speed, pricing, ROI, testimonial, logo, or customer
 result. Never invent or reconstruct proof. Terms such as scalable, faster,
 intelligent, AI-native, or automation require a defined behavior or comparison.
 
-## Marketing review
+## Before it goes out
 
 - Are the buyer, problem, and consequence recognizable before the tool?
 - Does the mechanism explain changed work, ownership, and review?
 - Are the CTA and evidence boundary explicit?
 - Is the language calm, specific, and unmistakably Singular?
 
-**Previous:** [Brand & core voice](../brand/README.md)
+**Previous:** [Singular foundations](../docs/05-experience-foundations.md)
 
 **Next:** [Product manual](./product.md)

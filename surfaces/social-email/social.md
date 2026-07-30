@@ -7,7 +7,7 @@ Piezas sociales de Singular (Meta/IG/LinkedIn). Marca corporativa (cyan) sobre f
 ## UX writing
 
 Elegir audience, pain y buying stage desde
-[Client reality](../../docs/01-client-context.md) antes
+[Singular foundations](../../docs/05-experience-foundations.md) antes
 de reducir la historia a una sola idea visual.
 Leer [Marketing voice and tone](../../ux-voice/marketing.md)
 antes de escribir claims, proof o CTAs. Mantener una idea reconocible por pieza

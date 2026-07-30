@@ -1,6 +1,6 @@
-# Start here — The Singular system
+# Start here — This is why Singular sounds like Singular
 
-**Status:** v0.4 working reference
+**Status:** v0.5 working reference
 
 **Audience:** Anyone working with Singular
 
@@ -10,45 +10,55 @@
 
 **Last reviewed:** July 30, 2026
 
-This is the shortest path through Singular's business, experience, brand, and
-writing system. Start with the client—not colors, components, or AI.
+You should not need to know our products, terminology, or history to understand
+this system.
 
-## The story
+Start with the business. An established company is growing, but context is
+spreading across people and tools. Senior operators rebuild information.
+Decisions keep returning to the founder. Another AI product appears, but the
+weekly work stays the same.
 
-Singular serves established US SMBs, typically generating USD 5M–20M annually.
-They already have employees, customers, systems, and operating history. Growth
-fragments context, adds manual coordination, and sends decisions back to
-founders and key operators. Another AI tool rarely changes that reality.
+That is where Singular enters.
 
-Singular starts with one consequential workflow and connects the context,
-rules, owners, decisions, and evidence it needs. People keep meaningful
-control, and the client owns what is created. These needs become experience
-foundations, Brand & Voice, and Design System rules that guide each surface,
-state, component, and sentence.
+We take one consequential workflow and make its context, rules, owners,
+decisions, and evidence work together. People keep meaningful control. The
+client keeps ownership. What we learn from that reality becomes our
+foundations, our personality, our Design System, and every sentence we write.
+
+The result is one connected system with two manuals:
+
+- **Marketing** helps the right person recognize the problem, understand our
+  approach, trust the evidence, and choose a useful next step.
+- **Product** helps someone understand what happened, make a decision, act, or
+  recover without losing context or control.
+
+They sound like the same Singular because they come from the same foundations.
+They do different jobs because the reader is making a different decision.
 
 ```mermaid
 flowchart LR
-    A["Client reality"] --> B["People, pains, and outcomes"]
-    B --> C["How Singular collaborates"]
-    C --> D["Experience foundations"]
-    D --> E["Brand + core voice"]
-    E --> F["Marketing or Product guidance"]
-    F --> G["Applied decision"]
-    G --> H["Evidence and learning"]
+    A["Client reality"] --> B["Singular foundations"]
+    B --> C["Marketing manual"]
+    B --> D["Product manual"]
+    C --> E["Applied communication"]
+    D --> E
+    E --> F["Evidence and learning"]
+    F --> B
 ```
 
-## Read what you need
+## The five chapters
 
-| Need | Read |
+| Chapter | What it gives you |
 |---|---|
-| Understand the company, people, problem, and desired outcome | [Client reality](./01-client-context.md) |
-| Understand Singular's role and the principles behind the system | [The Singular model](./05-experience-foundations.md) |
-| Create or review the shared identity | [Brand & core voice](../brand/README.md) |
-| Write website, presentations, social, email, proposals, or case studies | [Marketing manual](../ux-voice/marketing.md) |
-| Write product states, actions, approvals, errors, or AI communication | [Product manual](../ux-voice/product.md) |
-| Route a task, justify a decision, or check evidence | [Apply & evolve](./08-application-map.md) |
+| [Start here](./README.md) | The complete story in a few minutes |
+| [Foundations](./05-experience-foundations.md) | The client, problem, Singular model, personality, and reason behind the system |
+| [Marketing manual](../ux-voice/marketing.md) | Website, presentations, proposals, case studies, social, email, and public narrative |
+| [Product manual](../ux-voice/product.md) | Singular Stories, Singular Approvals, Singularity Studio, states, actions, errors, evidence, and AI |
+| [Apply & evolve](./08-application-map.md) | How to choose the right manual, trace a decision, and update the system responsibly |
 
-Every shared decision should trace this path. Context moves toward application;
-evidence moves back toward the assumptions and foundations it may change.
+If you only remember one thing, remember this:
 
-**Next:** [Client reality](./01-client-context.md)
+> We do not begin with what Singular wants to say. We begin with what a person
+> needs to understand, decide, or change.
+
+**Next:** [Foundations](./05-experience-foundations.md)

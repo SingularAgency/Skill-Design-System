@@ -6,7 +6,7 @@ Emails de Singular (marketing, transaccional, newsletter). Hereda de la marca co
 
 ## UX writing
 
-Empezar por [Client reality](../../docs/01-client-context.md) y definir qué job
+Empezar por [Singular foundations](../../docs/05-experience-foundations.md) y definir qué job
 debe resolver el mensaje.
 Para campaigns, newsletters y commercial follow-up, leer
 [Marketing voice and tone](../../ux-voice/marketing.md).
