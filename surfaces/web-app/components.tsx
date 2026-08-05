@@ -13,7 +13,15 @@
  * modales de entidad (lógica de negocio) — ver guide.md.
  */
 
-import { type ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import {
+  type ButtonHTMLAttributes,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react"
 import {
   CheckCircle2Icon, ClockIcon, AlertTriangleIcon,
   InboxIcon, SearchIcon, CheckCircleIcon, type LucideIcon,
@@ -21,6 +29,10 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import {
+  compactFieldSelectorClass,
+  compactFieldSelectorLabelClass,
+} from "./patterns"
 
 /* ============================================================================
  * StatusBadge — display unificado de estado (5 familias semánticas)
@@ -558,5 +570,120 @@ export function SideModalStaticSection({
       <TitleTag className="grid-section-title">{title}</TitleTag>
       <div className="stack-md">{children}</div>
     </section>
+  )
+}
+
+/* ============================================================================
+ * CompactFieldSelector — trigger consistente para metadata editable
+ * ========================================================================== */
+
+export interface CompactFieldSelectorProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "aria-label" | "children"> {
+  field: "status" | "priority"
+  value: string
+  accessibleLabel?: string
+  leading?: ReactNode
+  trailing?: ReactNode
+}
+
+/**
+ * Trigger router/data-agnostic para Status o Priority. El valor completo queda
+ * disponible vía `aria-label` y `title` aunque el label visible se trunque. La
+ * fila que lo contiene debe mantener 44px de alto. Menú, opciones y permisos
+ * pertenecen al host.
+ */
+export function CompactFieldSelector({
+  field,
+  value,
+  accessibleLabel,
+  leading,
+  trailing,
+  className,
+  title,
+  type = "button",
+  ...props
+}: CompactFieldSelectorProps) {
+  const fieldLabel = field === "status" ? "Status" : "Priority"
+  const fullLabel = accessibleLabel ?? `${fieldLabel}: ${value}`
+
+  return (
+    <button
+      type={type}
+      className={cn(compactFieldSelectorClass, className)}
+      title={title ?? fullLabel}
+      aria-label={fullLabel}
+      {...props}
+    >
+      {leading}
+      <span className={compactFieldSelectorLabelClass}>{value}</span>
+      {trailing}
+    </button>
+  )
+}
+
+/* ============================================================================
+ * OverlayLaneHost — convivencia portable de overlays del shell autenticado
+ * ========================================================================== */
+
+export interface OverlayLaneHostProps {
+  toast?: ReactNode
+  actionable?: ReactNode
+  actions?: ReactNode
+  footer?: ReactNode
+  sideModalOpen?: boolean
+  actionsLabel?: string
+  className?: string
+}
+
+/**
+ * Posiciona slots; no crea portales, providers, permisos ni estado de producto.
+ * El host decide qué contenido autenticado renderiza en cada lane.
+ */
+export function OverlayLaneHost({
+  toast,
+  actionable,
+  actions,
+  footer,
+  sideModalOpen = false,
+  actionsLabel,
+  className,
+}: OverlayLaneHostProps) {
+  return (
+    <div
+      className={cn(
+        "overlay-lane-host",
+        sideModalOpen && "is-side-modal-open",
+        footer && "has-footer",
+        className,
+      )}
+      data-overlay-lane-host=""
+      data-side-modal-open={sideModalOpen || undefined}
+    >
+      {toast ? (
+        <div className="overlay-lane overlay-lane--toast" data-overlay-lane="toast">
+          {toast}
+        </div>
+      ) : null}
+      {actionable ? (
+        <div className="overlay-lane overlay-lane--actionable" data-overlay-lane="actionable">
+          {actionable}
+        </div>
+      ) : null}
+      {actions ? (
+        <div
+          className="overlay-lane overlay-lane--actions"
+          data-overlay-lane="actions"
+          role={actionsLabel ? "group" : undefined}
+          aria-label={actionsLabel}
+        >
+          {actions}
+        </div>
+      ) : null}
+      {footer ? (
+        <div className="overlay-lane overlay-lane--footer" data-overlay-lane="footer">
+          {footer}
+        </div>
+      ) : null}
+    </div>
   )
 }
