@@ -29,8 +29,8 @@ A diferencia de las skills viejas, este perfil **entrega código portable** (no 
 | Archivo | Qué trae |
 |---|---|
 | `surfaces/web-app/navigation.tsx` | **Sistema de navegación**: `FloatingSidebarProvider`/`useFloatingSidebar`, `SidebarShell`, `AppHeaderShell` + `SearchPill`, `SectionTopTabs`/`BigPillTabsNav`, `PageHeader`, `PoweredByFooter`, `SidebarContentWrapper`. |
-| `surfaces/web-app/components.tsx` | Componentes propios: `StatusBadge`/`SeverityBadge`/`PriorityBadge` + `mapToStatusVariant`, `PillFilter`/`Multi`/`Switcher`, `EmptyState`/`TableEmptyState`, `SideModalScrollBody`/`StaticSection`. |
-| `surfaces/web-app/patterns.ts` | Kits de clases: `big-pill-tabs` (+ `getBigPillTabClass`), `data-table-patterns` (subset core), `navigation-patterns`. |
+| `surfaces/web-app/components.tsx` | Componentes propios: `StatusBadge`/`SeverityBadge`/`PriorityBadge` + `mapToStatusVariant`, `PillFilter`/`Multi`/`Switcher`, `EmptyState`/`TableEmptyState`, `SideModalScrollBody`/`StaticSection`, `CompactFieldSelector` y `OverlayLaneHost`. |
+| `surfaces/web-app/patterns.ts` | Kits de clases: `big-pill-tabs` (+ `getBigPillTabClass`), `data-table-patterns`, `navigation-patterns` y geometría `compact-field-selector`. |
 | `surfaces/web-app/web-app.css` | Utilidades del perfil que no están en core: chrome de `.page-top-chrome`/section-tabs + helpers de nav en CSS plano (para entornos sin Tailwind y el demo). |
 
 > **Portabilidad (Next → cualquier React):** los componentes de navegación reciben un `linkComponent` inyectable (default `<a>`) y el `pathname` por props — **sin `next/link` ni `next/navigation`**. El secreto (MCP/Figma key) de Stories **no viaja**. `components.tsx` asume primitivos shadcn (`@/components/ui/*`) estilados con los tokens del DS.
@@ -85,9 +85,90 @@ Ritmo: `gap-l` (24px) entre bloques; `gap-filters-to-grid` (20px) entre filtros 
 | **SidebarShell** | `sections` (nav), `isItemActive`, `homeHref`, `brandLogoUrl?` (white-label). Rail flotante + Sheet mobile. |
 | **side-modal-layout** | `SideModalScrollBody`, `SideModalStaticSection`, `SideModalPillTabsRow` + `entity-modal-stack-host`. |
 | **data-table-patterns** | Kit de clases para tablas (no componente): `dataTableCardFlushClass`, `dataTableBodyRowInteractiveClass`, etc. |
+| **CompactFieldSelector** | `field="status"\|"priority"`, `value`, `accessibleLabel?`, `leading?`, `trailing?` + props nativas de button. Trigger fijo 128×32 dentro de una fila de 44px; conserva campo + valor completos en `aria-label`/`title`. |
+| **OverlayLaneHost** | Slots `toast`, `actionable`, `actions`, `footer`; `sideModalOpen` desplaza o suprime lanes según viewport; `actionsLabel?` nombra el grupo. No incluye providers, portales, permisos ni datos. |
+
+## Convivencia de overlays
+
+`OverlayLaneHost` resuelve posición y separación para cuatro responsabilidades
+independientes del shell autenticado:
+
+1. `toast`: feedback temporal debajo del header;
+2. `actionable`: mensaje persistente o carrusel abajo a la izquierda;
+3. `actions`: acciones flotantes apiladas abajo a la derecha;
+4. `footer`: reserva para Powered by Singular.
+
+Los tokens `--overlay-*` de `web-app.css` cubren safe areas, offsets, anchos,
+z-index y reservas mobile. El producto sigue siendo dueño de autenticación,
+duración, cola, cierre, permisos, contenido y semántica live-region; por ejemplo,
+el toaster sloteado conserva su propio `role="status"`/`aria-live`. En desktop,
+`sideModalOpen` mueve las acciones a la izquierda, eleva la notificación para que
+no colisione y oculta el footer. En mobile, la notificación accionable se apila
+sobre Agent/Feedback y el footer decorativo se oculta; todas las acciones siguen
+disponibles. El toast permanece visible. `prefers-reduced-motion` elimina las
+transiciones de desplazamiento.
+
+### Selector compacto
+
+Status y Priority comunican semánticas distintas y aun comparten geometría. Usar
+`CompactFieldSelector` o las clases `compactFieldSelector*` únicamente para esos
+dos campos editables en espacios densos; no es una invitación a portar el menú de
+estados ni las opciones de dominio. Mantener la fila en 44px, foco visible,
+operación por teclado y campo + valor completos en `aria-label`/`title`; el
+truncado es solamente visual.
+
+```tsx
+<CompactFieldSelector
+  field="priority"
+  value="Medium"
+  leading={<PriorityDot aria-hidden />}
+  trailing={<ChevronDown aria-hidden />}
+  onClick={openPriorityMenu}
+/>
+```
+
+## Traza de decisión material — overlays y metadata compacta
+
+**Contexto:** Un shell autenticado de web-app puede mostrar un side-modal,
+feedback temporal, una notificación accionable, Agent/Feedback y Powered by al
+mismo tiempo.
+
+**Persona y job:** La persona operadora necesita inspeccionar un item, reconocer
+qué requiere atención y conservar acceso a las acciones globales sin reconstruir
+qué overlay oculta a cuál.
+
+**Pain o riesgo:** Offsets fijos definidos por cada feature colisionan, cambian el
+orden de foco de forma impredecible o tapan acciones en viewport estrecho. Status
+y Priority también pierden alineación si cada trigger deriva su ancho del label.
+
+**Evidencia:** Contrato documentado y comportamiento observado en el working tree
+de Singular Stories (`components/authenticated-overlay-host.tsx`,
+`app/globals.css`, `components/story-detail-modal.tsx` y
+`docs/05-design-system/product-ui-patterns.md`, verificados el 5 de agosto de
+2026). Es evidencia de implementación, no research de cliente.
+
+**Foundation:** Hacer la complejidad navegable y preservar contexto; mantener
+control humano significativo; expresar autoridad calma de forma accesible.
+
+**Decisión y trade-off:** Promover en el release aditivo `2026.08` sólo el host de
+layout, sus tokens y la geometría 128×32 de Status/Priority. En mobile las lanes
+accionables consumen más espacio vertical para permanecer visibles y separadas;
+el footer decorativo se oculta. Providers, portales, colas, duración, copy,
+opciones, permisos y transiciones de dominio permanecen en el producto.
+
+**System owner:** El DS posee geometría, safe areas, z-index, responsive behavior,
+foco visible y reduced motion. Cada host posee contenido, live regions, estado,
+autenticación y autorización.
+
+**Aplicación:** Perfil `web-app`; `OverlayLaneHost`, clases
+`compactFieldSelector*` y `web-app.css`.
+
+**Validación:** Preview simultáneo a 1440px, 596px y 390px; Status/Priority
+128×32 dentro de fila de 44px; toast visible; lanes inferiores separadas en
+desktop y apiladas sin solaparse en mobile; foco por teclado y reduced motion.
 
 ## Portabilidad Next → cualquier React
-- **Portables tal cual** (cero acople a Next): Card, Button, Badge, StatusBadge, EmptyState, PillFilter, KpiCard, data-table-patterns, side-modal-layout.
+- **Portables tal cual** (cero acople a Next): Card, Button, Badge, StatusBadge, EmptyState, PillFilter, KpiCard, data-table-patterns, side-modal-layout, CompactFieldSelector y OverlayLaneHost.
 - **Necesitan adaptador de routing** (`next/link`, `next/navigation`): SidebarShell, PageHeader (`backLink`), SectionTopTabs, app-header → introducir un **`<Link>` inyectable** (prop/slot) en vez de importar `next/link`.
 - **Re-trabajo**: logo/branding (hoy un asset por tema → idealmente SVG monocromo + tokens, ver Fase 9).
 
@@ -108,4 +189,4 @@ No copiar dependencias de datos, routing o settings. Ver `components/README.md`.
 `--okr-*`, `--pert-*`, `--payments-grid-*` y `.payments-sprint-grid` son **específicos de Stories** — viven en su `globals.css`, no en el core del DS. Si otro producto los necesita, se promueven conscientemente.
 
 ## Preview
-`demo.html` — dashboard de ejemplo con el **sistema de navegación nuevo** (rail flotante + header well + big-pill tabs + Powered by Singular) + page header + KPI row + filtros + tabla. Theme toggle funcional (light/dark). `open surfaces/web-app/demo.html`.
+`demo.html` — dashboard de ejemplo con el **sistema de navegación nuevo** (rail flotante + header well + big-pill tabs + Powered by Singular), page header, KPI row, filtros y tabla. También ejercita en simultáneo side-modal + toast + notificación accionable + Agent/Feedback y el selector 128×32 de Status/Priority. Theme toggle funcional (light/dark). `open surfaces/web-app/demo.html`.

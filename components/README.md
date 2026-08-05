@@ -13,7 +13,7 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 
 | Perfil | Archivos |
 |---|---|
-| **web-app** | `surfaces/web-app/navigation.tsx` (sistema de navegación: SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabs, PageHeader, PoweredByFooter), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal), `patterns.ts` (big-pill-tabs, data-table-patterns), `web-app.css`. |
+| **web-app** | `surfaces/web-app/navigation.tsx` (sistema de navegación: SidebarShell, AppHeaderShell+SearchPill, SectionTopTabs/BigPillTabs, PageHeader, PoweredByFooter), `components.tsx` (StatusBadge/Severity/Priority, PillFilter*, EmptyState, side-modal, CompactFieldSelector, OverlayLaneHost), `patterns.ts` (big-pill-tabs, data-table-patterns, compact-field-selector), `web-app.css`. |
 | **website-landing** | `surfaces/website-landing/primitives.tsx` + `website.css` (patrones promovidos desde `singular-landing`). |
 | **studio** | `surfaces/studio/patterns.ts` + `studio.css` + `guide.md` (state model, chrome y layout opt-in chat/canvas/evidence). |
 | **ios-app** | `surfaces/ios-app/SingularFoundation.swift` + `SingularPrimitives.swift` (tokens y primitivas SwiftUI portables). |
@@ -28,6 +28,8 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 | Filtros | `PillFilter`, `PillFilterMulti`, `PillFilterSwitcher` | El patrón de filtros del DS. |
 | Tabs | `SectionTopTabs` / `big-pill-tabs` | "Big pill" de marca. |
 | Branding | `Logo`, `SingularFullLogo`, `PoweredByFooter` | Theme-aware; assets → Fase 9. |
+| Overlays de app | `OverlayLaneHost` | Slots de layout para toast, notificación accionable, acciones y footer. Providers, auth, cola y copy quedan en el host. |
+| Metadata compacta | `CompactFieldSelector` + clases | Geometría 128×32 común sólo para Status/Priority; opciones, permisos y transición quedan en el host. |
 | Modales (andamiaje) | `side-modal-layout`, `side-modal-expandable-card`, `side-modal-pill-tabs-row` | El *patrón* es universal. |
 | Tablas (kit) | `data-table-patterns.ts` | Clases, no componente. |
 | Proof / datos | `MetricStrip` | `<dl>` responsive para métricas, resultados y KPIs; sirve en web, app, slides y social. |

@@ -108,3 +108,20 @@ export const dataTableLastCellClass = "py-3 pl-4 pr-6 align-middle"
 export const pageTopChromeClass = "page-top-chrome"
 /** Usar en `.page-header` cuando es el sibling directo bajo los tabs en `page-top-chrome`. */
 export const pageHeaderAfterTopChromeClass = "page-header--after-top-chrome"
+
+/* ============================================================================
+ * compact-field-selector — Status/Priority editables en side-modals
+ *   Status y Priority comparten geometría sin comunicar que comparten semántica.
+ * ========================================================================== */
+
+/** Frame visual fijo de 128 × 32px. Montarlo dentro de una fila de al menos 44px. */
+export const compactFieldSelectorClass =
+  "relative inline-flex box-border h-8 min-h-8 w-32 min-w-32 max-w-32 items-center gap-2 rounded-full border border-border bg-transparent px-3 text-xs font-medium leading-none text-foreground transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 before:absolute before:-inset-y-1.5 before:inset-x-0 before:content-['']"
+
+/** Preserva un target vertical efectivo de 44px para el control visual compacto. */
+export const compactFieldSelectorRowClass =
+  "flex min-h-11 min-w-0 items-center gap-2"
+
+/** Aplicar al label visible; el nombre completo debe permanecer en title/aria-label. */
+export const compactFieldSelectorLabelClass =
+  "min-w-0 flex-1 truncate text-left"
