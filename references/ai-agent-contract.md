@@ -23,6 +23,10 @@ the existing contract. Do not invent user research or strategic rationale.
 - Reuse tokens and existing variants before adding a primitive.
 - Keep host routing, providers, permissions, data and copy in the host repo.
 - Use semantic status tokens; never infer status from brand color.
+- Treat animated agent activity as progress context, not truth. Use
+  `AgentActivityIndicator` only for active listening/search/planning/work/
+  composing/shaping, always with visible text. Never use it to assert review,
+  blocked, failed, published, live or merged.
 - Define loading, empty, error, success, disabled and permission states where
   the feature can encounter them.
 - Preserve focus, keyboard behavior, Dynamic Type/touch target requirements and
@@ -55,5 +59,7 @@ the existing contract. Do not invent user research or strategic rationale.
 - Interaction and system states covered.
 - Responsive/native behavior covered.
 - Accessibility and reduced motion covered.
+- Agent activity remains understandable with canvas disabled and terminal
+  states use semantic status UI.
 - Host-specific logic stayed out of the DS.
 - Docs and snapshot metadata updated when the shared system changed.

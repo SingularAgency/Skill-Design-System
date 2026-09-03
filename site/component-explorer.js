@@ -151,6 +151,16 @@
       render: (variant) => `<div class="preview-trace"><div class="preview-trace__head"><span>Agent activity</span><span>${variant}</span></div><div class="preview-trace__row"><i style="--trace-tone: var(--success)"></i><span>Product Owner · checked scope</span><span>1.2s</span></div><div class="preview-trace__row"><i style="--trace-tone: ${variant === "blocked" ? "var(--warning)" : "var(--primary)"}"></i><span>${variant === "blocked" ? "QA Agent · needs human input" : variant === "review" ? "QA Agent · evidence ready" : "UX Agent · applying changes"}</span><span>${variant === "working" ? "live" : "2.8s"}</span></div></div>`,
     },
     {
+      id: "agent-activity-orb", name: "AgentActivityOrb", category: "feedback", platforms: ["web-app", "studio"], traits: ["interactive", "semantic", "responsive"], variants: ["listening", "searching", "planning", "working", "composing", "shaping"],
+      description: "A token-driven Canvas activity signature for AI and agent work, tuned to Singular blue and cyan across light and dark surfaces.",
+      usage: "Active understanding, search, planning, execution, composing, and prototype shaping. Pair it with visible activity copy.",
+      contract: "Activity is not status. Review, blocked, failed, and published remain semantic status UI and never use a continuous orb.",
+      a11y: "The indicator keeps canvas decorative, exposes visible text, debounces optional polite announcements, pauses offscreen, and renders a static frame for reduced motion.",
+      source: "components/agent-activity-orb/AgentActivityOrb.tsx", language: "tsx",
+      code: `<AgentActivityIndicator\n  activity="searching"\n  label="Searching project sources"\n  detail="Design System · 12 files"\n/>`,
+      render: (variant) => `<div class="preview-agent-orbs" data-preview-agent-activity="${variant}"><article class="preview-agent-orb-card" data-tone="brand"><span>Brand · 64</span><div class="preview-agent-indicator"><canvas data-orb-activity="${variant}" data-orb-size="64" aria-hidden="true"></canvas><div><strong>${({ listening: "Listening for input", searching: "Searching project sources", planning: "Planning changes", working: "Applying changes", composing: "Drafting response", shaping: "Shaping prototype" })[variant]}</strong><small>Singular Agent · active</small></div></div></article><article class="preview-agent-orb-card" data-tone="neutral"><span>Neutral · 20</span><div class="preview-agent-indicator preview-agent-indicator--inline"><canvas data-orb-activity="${variant}" data-orb-size="20" aria-hidden="true"></canvas><strong>${variant}</strong></div></article><article class="preview-agent-orb-card preview-agent-orb-card--inverse" data-tone="inverse"><span>Inverse · 64</span><canvas data-orb-activity="${variant}" data-orb-size="64" role="img" aria-label="${variant} activity"></canvas></article></div>`,
+    },
+    {
       id: "ios-surface", name: "SingularSurface", category: "layout", platforms: ["ios"], traits: ["native", "semantic", "responsive"], variants: ["panel", "compact", "raised"],
       description: "A SwiftUI primitive for native panels with dynamic color, continuous corners, and restrained elevation.",
       usage: "Cards, rows, and decision panels. It preserves native iOS navigation and controls.",
@@ -274,6 +284,7 @@
     ui.variant.innerHTML = story.variants.map((variant) => `<option value="${variant}" ${variant === state.variant ? "selected" : ""}>${labelVariant(variant)}</option>`).join("");
     ui.breadcrumb.textContent = `${categoryMeta[story.category]} / ${story.name}`;
     ui.preview.innerHTML = story.render(state.variant);
+    window.SingularAgentOrbPreview?.hydrate(ui.preview);
     ui.badges.innerHTML = [...story.platforms.map((platform) => platformMeta[platform].label), ...story.traits].map((badge) => `<span class="story-badge">${badge}</span>`).join("");
     ui.title.textContent = story.name;
     ui.description.textContent = story.description;

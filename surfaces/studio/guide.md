@@ -26,6 +26,20 @@ confirmation.
 Use `BrandBackground variant="static"` for the workspace. Reserve animated
 backgrounds for empty/onboarding moments and respect reduced motion.
 
+For active agent work, import the portable component separately:
+
+```css
+@import "@singular/ds/components/agent-activity-orb/agent-activity-orb.css";
+```
+
+```tsx
+<AgentActivityIndicator
+  activity="planning"
+  label="Planning changes"
+  detail="3 surfaces affected"
+/>
+```
+
 ## Information architecture
 
 1. **Conversation rail** — user intent and assistant responses.
@@ -68,6 +82,21 @@ Use the exported states in `patterns.ts`:
 
 Never label a result `published`, `live` or `merged` from optimistic UI alone.
 
+### Activity orb mapping
+
+`studioRunStateActivity` maps only active run states:
+
+| Studio run state | Orb activity |
+|---|---|
+| `understanding` | `listening` |
+| `planning` | `planning` |
+| `working` | `working` |
+| `idle`, `review`, `blocked`, `failed`, `published` | none |
+
+Task-level UI may also use `searching`, `composing` and `shaping` when the
+visible copy names that concrete activity. The orb is not proof that a task
+finished. See `components/agent-activity-orb/README.md`.
+
 ## Component contracts
 
 - **Prompt action**: verb-led, short, contextual; it starts a conversation.
@@ -90,6 +119,8 @@ Never label a result `published`, `live` or `merged` from optimistic UI alone.
 ## Accessibility and trust
 
 - Announce agent progress without repeatedly stealing focus.
+- Keep orb canvas decorative inside `AgentActivityIndicator`; announcements are
+  opt-in, polite and debounced.
 - Keep activity understandable without animation.
 - Preserve user scroll position when streaming content.
 - Provide a “jump to latest” affordance when new content arrives off-screen.

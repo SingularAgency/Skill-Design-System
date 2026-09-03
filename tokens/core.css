@@ -47,6 +47,13 @@
   --text-2xs: 0.625rem;   --text-2xs-line: 0.875rem; /* 10/14 — tablas compactas */
   --text-3xs: 0.5625rem;  --text-3xs-line: 0.75rem;  /* 9/12  — ticks densos */
 
+  /* ── Agent activity ── actividad visual, nunca status terminal */
+  --agent-orb-near: var(--brand-cyan);
+  --agent-orb-mid: var(--primary);
+  --agent-orb-far: color-mix(in srgb, var(--brand-primary) 44%, transparent);
+  --agent-orb-ghost: color-mix(in srgb, var(--brand-cyan) 20%, transparent);
+  --agent-orb-glow: color-mix(in srgb, var(--brand-cyan) 18%, transparent);
+
   /* ── Status ── semánticos compartidos. NO siguen al --primary de la marca.
    * --info es azul semántico (no toma el color de marca). */
   --success: #16A34A;     --success-foreground: #ffffff;

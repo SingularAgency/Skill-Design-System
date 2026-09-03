@@ -60,7 +60,7 @@ surfaces/
   ios-app/                ← SwiftUI foundation + primitives
   slides-presentations/   ← decks
   social-email/           ← social + email
-components/               ← inventario y componentes portables
+components/               ← inventario y componentes portables, incluido AgentActivityOrb
 references/               ← arquitectura, auditoría, IA y governance
 scripts/                  ← audit y export de snapshots
 colors_and_type.css       ← foundation autocontenida (fuentes + paleta + type) para artefactos sueltos
@@ -112,6 +112,7 @@ Publicado en **GitHub Pages** (no hace falta clonar):
 | Slides / presentaciones | https://singularagency.github.io/Skill-Design-System/surfaces/slides-presentations/demo.html |
 | Social + email | https://singularagency.github.io/Skill-Design-System/surfaces/social-email/demo.html |
 | **UI kit interactivo** (Singular Stories) | https://singularagency.github.io/Skill-Design-System/ui_kits/web-app/index.html |
+| **Catálogo de componentes** (incluye AgentActivityOrb) | https://singularagency.github.io/Skill-Design-System/catalog.html |
 
 En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo. (Local: `open tokens/demo.html`.)
 
@@ -171,6 +172,17 @@ tener excepciones documentadas. Para worktrees alternativos usá
 
 Los productos no reemplazan automáticamente el foundation. Los patrones se
 promueven sólo cuando son portables y no contienen lógica de dominio.
+
+## Agent activity
+
+`components/agent-activity-orb/` entrega `AgentActivityOrb` y
+`AgentActivityIndicator` para actividad de IA en web-app y Studio. Usa Canvas
+2D, tokens azul/cyan, scheduler compartido, pausa offscreen y fallback para
+reduced motion/forced colors.
+
+La actividad visual no reemplaza status: `review`, `blocked`, `failed` y
+`published` siguen usando componentes semánticos. Ver
+[`components/agent-activity-orb/README.md`](./components/agent-activity-orb/README.md).
 
 ## Validación
 

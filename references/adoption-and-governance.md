@@ -54,6 +54,9 @@ For every DS change:
 7. Run the validation commands in `README.md`.
 8. Export into a temporary directory and inspect the snapshot.
 9. Update host snapshots in separate product PRs.
+10. When adapting third-party source, record version, commit, license, upstream
+    URL and notice path in `design-system.json`, and verify the notice is present
+    in exported snapshots.
 
 ## Versioning
 
