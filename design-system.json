@@ -28,6 +28,17 @@
       "location": "host product repositories"
     }
   ],
+  "thirdParty": [
+    {
+      "id": "thinking-orbs",
+      "version": "0.1.1",
+      "commit": "382be79c472cd600277f01e14f98f8c0ee18dcb0",
+      "license": "MIT",
+      "upstream": "https://github.com/Jakubantalik/thinking-orbs",
+      "adaptedBy": "components/agent-activity-orb",
+      "notice": "components/agent-activity-orb/LICENSE.thinking-orbs"
+    }
+  ],
   "products": [
     {
       "id": "singular-landing",
@@ -71,6 +82,7 @@
       "tokens/theme-mapping.css",
       "tokens/README.md",
       "components/Logo.tsx",
+      "components/agent-activity-orb",
       "components/README.md",
       "backgrounds/BrandBackground.tsx",
       "backgrounds/brand-background.css",

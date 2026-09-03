@@ -19,7 +19,7 @@ no se mezclan:
 
 | Archivo | Qué es | ¿Tailwind? |
 |---|---|---|
-| `core.css` | Tokens **universales**: spacing, radius scale, tipografía, status + remap a11y dark. No tiene color de marca. | No (vars puras) |
+| `core.css` | Tokens **universales**: spacing, radius scale, tipografía, status, Agent Orb roles + remap a11y dark. Las tintas del orb referencian anchors del profile; no agregan una marca paralela. | No (vars puras) |
 | `brand-app.css` | Profile **APP** (producto): action blue `#0b84ff`, identity anchor `#4567ed`, surface navy-tinted, escalas, charts. Light + dark. | No (vars puras) |
 | `brand-web.css` | Profile **WEB** (marketing): primary azul/cyan, surface dark-first, card/button/motion tokens y `data-page-accent` desde `singular-landing`. | No (vars puras) |
 | `theme-mapping.css` | `@theme inline` — expone las vars como utilidades Tailwind (`bg-primary`, `gap-m`…). Compartido. | Sí |
@@ -58,5 +58,8 @@ open tokens/demo.html   # alterná App/Web y light/dark; mirá cómo se re-tinta
 ## Notas / pendientes
 - `brand-web.css` incluye accents de pagina (`home`, `solutions`, `custom-ai`, `success`, `assessment`, `editorial`) para retintar marketing sin crear otra marca.
 - **Light del perfil web**: el website es dark-first hoy; el bloque light queda como `TODO` en `brand-web.css`.
+- **Agent activity**: `--agent-orb-{near,mid,far,ghost,glow}` deriva de
+  `--brand-primary`, `--brand-cyan` y `--primary`; no usar status colors para
+  animaciones de trabajo en curso.
 - **Tokens de dominio** (OKR, PERT, payments-grid) NO viven acá — son del perfil `web-app` (Fase 4), no de la marca.
 - Las **utility classes** del sistema (`.surface-liquid`, `.page-*`, `.label-*`, proof/data y performance) son capa 2 de core; los componentes React correspondientes viven en `components/`.

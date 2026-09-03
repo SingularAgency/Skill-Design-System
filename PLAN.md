@@ -2,7 +2,7 @@
 
 > Documento vivo. Guía la construcción del **design system universal de marca Singular**: un solo sistema, usable por cualquier persona del equipo, para cualquier superficie (website, landing, web-app, slides, social, email), entregado como **skill de Claude + tokens + assets versionados**.
 >
-> **Estado:** Fase 10 completada — arquitectura multiplataforma, perfiles Studio/iOS, manifest, governance y tooling.
+> **Estado:** Fase 10 completada; Fase 11 implementada en el DS — pilotos Agent Orbits pendientes en productos.
 > **Fecha de arranque:** 2026-06-02.
 
 ---
@@ -19,6 +19,7 @@
 | D6 | **Foundation + platform + surface + domain** | El DS centraliza contratos compartidos; cada producto conserva routing, datos, permisos, orquestación y copy. |
 | D7 | **Identidad ≠ interacción** | Anchor corporativo `#4567ed`; action blue de producto `#0b84ff`; cyan `#22d3ee`. Los perfiles adaptan interacción sin crear marcas paralelas. |
 | D8 | **Distribución verificable** | `design-system.json` + exporter de snapshots + manifest de release/commit. No más copias manuales sin versión. |
+| D9 | **Actividad visual ≠ estado real** | Los Agent Orbits pueden comunicar trabajo en curso, pero `review`, `blocked`, `failed` y `published` siguen perteneciendo al modelo semántico y nunca se infieren desde una animación. |
 
 ### Decisiones derivadas / pendientes de confirmar
 - **Valores exactos de neutrales por perfil** (web negro `#050505`/`#010203` vs app navy tintado): a afinar con diseño. La arquitectura no depende del valor final.
@@ -215,6 +216,25 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 - **Done:** humanos y agentes pueden elegir una superficie, entender ownership,
   exportar una distribución reproducible y detectar drift entre repos.
 
+### Fase 11 — Singular Agent Orbits (DS implementado · pilotos pendientes)
+- **Tareas:** adaptar el motor Canvas 2D MIT de `thinking-orbs@0.1.1` como
+  fuente portable; tokenizar la tinta con la firma azul/cyan; separar actividad
+  de estado; compartir scheduler; cubrir reduced-motion/forced-colors; crear la
+  composición accesible; sumar stories, docs, manifest y dos pilotos reales.
+- **Entregable:** `AgentActivityOrb` + `AgentActivityIndicator`, catálogo de seis
+  actividades y documentación machine-readable.
+- **Done:** Studio y Stories consumen el mismo contrato sin forks locales y sin
+  usar la animación como evidencia de éxito externo.
+- **Plan detallado:** `references/orbits-implementation-plan.md`.
+
+> **Avance (2026-07-21):** implementación central entregada en
+> `components/agent-activity-orb/`: seis actividades, tamaños 20/64px, tonos
+> brand/neutral/inverse, scheduler compartido, pausa offscreen/hidden,
+> reduced-motion, forced-colors, composición accesible y catálogo interactivo.
+> Se actualizaron tokens, Studio mapping, skill, arquitectura, manifest,
+> licencia MIT y release `2026.07.2`. Falta adoptar y validar el snapshot en
+> Singularity y Stories mediante PRs separados.
+
 ---
 
 ## 5. Riesgos y pendientes
@@ -227,6 +247,9 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
   package registry cuando las APIs portables se estabilicen.
 - **Rollout separado**: actualizar los snapshots/implementaciones de cada
   producto en PRs propios para no mezclar cambios de dominio con foundation.
+- **Dependencia Orbits nueva**: `thinking-orbs@0.1.1` fue publicada el
+  2026-07-21; fijar un commit revisado, conservar la licencia MIT y actualizar
+  de forma intencional en vez de seguir `latest`.
 
 ### Follow-ups (abiertos tras el pase del 2026-06-04)
 - **Rotar la Figma key** `figd_…` en `v0-singular-stories-app/components/sidebar-shell.tsx` (estaba embebida en el snippet MCP; **no viajó** al DS pero sigue viva en Stories).
@@ -247,3 +270,4 @@ Un componente + set de tokens, capas componibles, hue ligado a `--primary`, **re
 | Marketplace (GitHub, no clonado) | `github.com/SingularAgency/claude-marketplace` |
 | DS .sds-* (GitHub, no clonado) | `github.com/SingularAgency/singular-design-system-2026` |
 | Skills de calidad web (hermanas) | `/Users/csrspinozzi/Documents/Work/Singular/web-quality-skills-main/skills/` |
+| Referencia Agent Orbits | `https://orbs.jakubantalik.com/` · `thinking-orbs@0.1.1` · `github.com/Jakubantalik/thinking-orbs` · commit `382be79c472cd600277f01e14f98f8c0ee18dcb0` |

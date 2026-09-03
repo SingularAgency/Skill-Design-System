@@ -16,7 +16,7 @@ the same contract and the decision is not business-specific.
 | Layer | Owns | Must not own |
 |---|---|---|
 | Foundation | Brand anchors, semantic color, type roles, spacing, radius, motion, accessibility | Framework APIs or product entities |
-| Platform | CSS/Tailwind mapping, SwiftUI mapping, email compatibility, image/slide constraints | Page or workflow composition |
+| Platform | CSS/Tailwind mapping, Canvas 2D rendering, SwiftUI mapping, email compatibility, image/slide constraints | Page or workflow composition |
 | Surface | Website, app, Studio, iOS, slides, social and email patterns | Customer data, routes, permissions or orchestration |
 | Domain | Stories, approvals, Studio agents, website content | Shared brand foundations |
 
@@ -64,3 +64,8 @@ Before adding a shared primitive:
 Keep domain color systems such as OKR, PERT, approval phases and agent pipeline
 states out of foundation tokens. A surface may map those domain states to
 semantic roles.
+
+Agent activity follows the same boundary. Foundation owns
+`--agent-orb-{near,mid,far,ghost,glow}`; the web platform owns the Canvas engine;
+Studio maps active run states; host products own orchestration, copy and live
+announcements. Continuous animation never owns terminal status.

@@ -36,6 +36,7 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 | Comparación | `ComparisonTable` | Tabla semántica de dos columnas con outcome destacado por tokens. |
 | Contexto | `SourceTag` | Tag compacto para fuente, cita, dataset o salida de IA. |
 | Performance | `LazyVisible` | Monta contenido pesado cerca del viewport con `IntersectionObserver`. |
+| Agent activity | `AgentActivityOrb`, `AgentActivityIndicator` | Canvas 2D tokenizado para actividad en curso; seis actividades, 20/64px, scheduler compartido y fallback accesible. No representa status terminal. |
 | Layout / motion | `section-atmosphere`, `overflow-clip-x`, `text-gradient-safe` | Utilidades portadas de singular-landing con reduced-motion y forced-colors. |
 
 ## APP / producto (específicos de Singular Stories)
@@ -60,7 +61,24 @@ El DS define contratos, no la orquestación:
 - conversation rail, agent trace, preview canvas, evidence tabs y decision bar;
 - estados `idle|understanding|planning|working|review|blocked|failed|published`;
 - no marcar `published/live/merged` sin confirmación externa;
+- usar `AgentActivityIndicator` sólo mientras el sistema escucha, busca,
+  planifica, trabaja, compone o da forma; `review/blocked/failed/published`
+  permanecen en StatusBadge/AgentTrace;
 - SSE, MCP, permisos, prompts y publish quedan en Singularity.
+
+### Agent activity API
+
+La implementación portable vive en `components/agent-activity-orb/` y se
+comparte entre `web-app` y `studio`:
+
+- activities: `listening|searching|planning|working|composing|shaping`;
+- sizes: `inline` (20px) y `avatar` (64px), afinados por separado;
+- tones: `brand|neutral|inverse`;
+- el indicator agrega label/detail y anuncios polite opt-in con debounce;
+- Canvas se pausa offscreen/hidden y reduced motion dibuja un frame estático.
+
+Ver `components/agent-activity-orb/README.md` para setup, accesibilidad,
+performance y atribución MIT.
 
 ## iOS / SwiftUI
 

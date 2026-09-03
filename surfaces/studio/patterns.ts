@@ -1,3 +1,5 @@
+import type { AgentActivity } from "../../components/agent-activity-orb/types"
+
 export type StudioRunState =
   | "idle"
   | "understanding"
@@ -27,6 +29,21 @@ export const studioRunStateMeta: Record<
   blocked: { label: "Needs input", tone: "warning", terminal: false },
   failed: { label: "Run failed", tone: "destructive", terminal: true },
   published: { label: "Published", tone: "success", terminal: true },
+}
+
+/**
+ * Visual activity is intentionally partial: terminal and decision states do
+ * not receive a continuous orb.
+ */
+export const studioRunStateActivity: Record<StudioRunState, AgentActivity | null> = {
+  idle: null,
+  understanding: "listening",
+  planning: "planning",
+  working: "working",
+  review: null,
+  blocked: null,
+  failed: null,
+  published: null,
 }
 
 export const studioLayoutPatterns = {

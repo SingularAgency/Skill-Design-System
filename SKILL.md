@@ -33,6 +33,8 @@ plataforma. Mantener la lógica de negocio en cada producto.
 8. Leer `components/README.md` antes de crear un componente.
 9. Inspeccionar la implementación y documentación local del producto host.
 10. Aplicar el checklist de `references/ai-agent-contract.md`.
+11. Para actividad agentic, leer `components/agent-activity-orb/README.md` y
+    separar actividad visual de estado real.
 
 Para una aplicación puramente mecánica de una regla existente no es necesario
 reconstruir toda la estrategia, pero nunca inventar una rationale, un pain point
@@ -89,6 +91,9 @@ producto.
 - Reutilizar variantes antes de crear componentes.
 - Separar identidad (`--brand-primary`) de interacción (`--primary`).
 - Usar status semántico; no comunicar estado sólo con color.
+- Usar `AgentActivityIndicator` sólo durante actividad en curso. `review`,
+  `blocked`, `failed`, `published`, `live` y `merged` requieren status semántico
+  y confirmación externa; nunca se infieren desde un orb.
 - Cubrir loading, empty, error, success, disabled y permisos cuando apliquen.
 - Respetar contraste AA, foco, teclado, touch targets y reduced motion.
 - Usar `<Logo />` o assets oficiales; no deformar ni recrear la marca.
