@@ -130,18 +130,19 @@
 
 /* ── Tipografía semántica ──
  * Usar estas en vez de "text-lg font-semibold" sueltos. */
-.page-title { font-size: 1.875rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
-.page-subtitle { font-size: 1rem; color: var(--muted-foreground); margin-top: var(--gap-s); }
-.section-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
-.section-subtitle { font-size: .875rem; color: var(--muted-foreground); }
-.grid-section-title { font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; }
-.grid-section-description { font-size: .875rem; color: var(--muted-foreground); }
-.text-modal-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
-.text-item-title { font-size: .875rem; font-weight: 600; }
-.text-body { font-size: .875rem; line-height: 1.5; }
-.text-body-lg { font-size: 1rem; line-height: 1.6; }
-.text-secondary { font-size: .875rem; color: var(--muted-foreground); }
-.text-caption { font-size: .75rem; color: var(--muted-foreground); }
+.page-title { font-size: var(--type-page-title-size); font-weight: var(--type-weight-bold); letter-spacing: var(--type-tracking-tight); line-height: var(--type-leading-tight); }
+.page-subtitle { font-size: var(--type-page-subtitle-size); color: var(--muted-foreground); margin-top: var(--gap-s); line-height: var(--type-leading-normal); }
+.section-title { font-size: var(--type-section-title-size); font-weight: var(--type-weight-semibold); letter-spacing: var(--type-tracking-tight); }
+.section-subtitle { font-size: var(--type-section-subtitle-size); color: var(--muted-foreground); line-height: var(--type-leading-normal); }
+.grid-section-title { font-size: var(--type-card-title-size); font-weight: var(--type-weight-semibold); letter-spacing: var(--type-tracking-tight); }
+.grid-section-description { font-size: var(--type-card-description-size); color: var(--muted-foreground); line-height: var(--type-leading-normal); }
+.text-modal-title { font-size: var(--type-modal-title-size); font-weight: var(--type-weight-semibold); letter-spacing: var(--type-tracking-tight); line-height: var(--type-leading-snug); }
+.text-entity-narrative { font-size: var(--type-entity-narrative-size); font-weight: var(--type-weight-regular); line-height: var(--type-leading-relaxed); }
+.text-item-title { font-size: var(--type-item-title-size); font-weight: var(--type-weight-semibold); }
+.text-body { font-size: var(--type-body-size); line-height: var(--type-leading-normal); }
+.text-body-lg { font-size: var(--type-body-large-size); line-height: var(--type-leading-relaxed); }
+.text-secondary { font-size: var(--type-body-size); color: var(--muted-foreground); }
+.text-caption { font-size: var(--type-caption-size); color: var(--muted-foreground); }
 .text-strong { font-weight: 600; color: var(--foreground-strong); }
 .text-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .text-tabular { font-variant-numeric: tabular-nums; }
@@ -149,14 +150,23 @@
 .text-link:hover { text-decoration: underline; }
 
 /* KPI value (número hero de KpiCard) */
-.kpi-value { font-size: 1.875rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi-value { font-size: var(--type-kpi-size); font-weight: var(--type-weight-semibold); letter-spacing: var(--type-tracking-tight); line-height: var(--type-leading-tight); font-variant-numeric: tabular-nums; }
 
 /* ── Status text ── */
-.text-status-success { color: var(--success); }
-.text-status-warning { color: var(--warning); }
-.text-status-error   { color: var(--destructive); }
-.text-status-info    { color: var(--info); }
-.text-status-neutral { color: var(--muted-foreground); }
+.text-status-success { color: var(--status-success-fg); }
+.text-status-warning { color: var(--status-warning-fg); }
+.text-status-urgent { color: var(--status-urgent-fg); }
+.text-status-error, .text-status-danger { color: var(--status-danger-fg); }
+.text-status-info { color: var(--status-info-fg); }
+.text-status-neutral { color: var(--status-neutral-fg); }
+@media (min-width: 768px) {
+  .page-title { font-size: var(--type-page-title-size-md); }
+  .page-subtitle { font-size: var(--type-page-subtitle-size-md); }
+  .section-title { font-size: var(--type-section-title-size-md); }
+}
+@media (min-width: 1024px) {
+  .page-title { font-size: var(--type-page-title-size-lg); }
+}
 
 /* ── Truncado / clamp ── */
 .text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

@@ -5,6 +5,14 @@
 > **Estado:** Fase 10 completada; Fase 11 implementada en el DS — pilotos Agent Orbits pendientes en productos.
 > **Fecha de arranque:** 2026-06-02.
 
+## Programa actual — 2026-10
+
+La ejecución actual se sigue en
+[Repository evolution plan](references/repository-evolution-plan.md).
+Sus fases A–G priorizan actualización del DS, consumo real, website sincronizado
+y compatibilidad por host; la reorganización se posterga hasta tener garantías.
+Los estados históricos de este documento no certifican esas fases nuevas.
+
 ---
 
 ## 1. Decisiones tomadas

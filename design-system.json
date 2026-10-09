@@ -1,7 +1,26 @@
 {
   "name": "singular-design-system",
   "schemaVersion": 1,
-  "release": "2026.08",
+  "release": "2026.10-candidate.1",
+  "releaseStatus": "candidate",
+  "referenceImplementation": {
+    "repository": "SingularAgency/singular-stories-design",
+    "previousName": "SingularAgency/v0-singular-stories-app",
+    "commit": "6c55bea1abb127fef9924ab08f67467857b0f355",
+    "verifiedAt": "2026-10-09",
+    "policy": "Promote portable contracts; host owns domain mappings. Contrast-adjusted values are documented in tokens/README.md."
+  },
+  "distribution": {
+    "skillEntries": [
+      "SKILL.md", "README.md", "design-system.json", "agents",
+      "docs", "ux-voice", "tokens", "components", "backgrounds", "surfaces", "assets",
+      "references/architecture.md", "references/ai-agent-contract.md",
+      "references/adoption-and-governance.md", "references/consumption-and-compatibility.md",
+      "references/product-audit-2026-07.md", "references/adoption-audit-2026-07-16.md",
+      "build-skill.sh", "scripts/build-skill.mjs", "scripts/export-snapshot.mjs",
+      "scripts/audit-products.mjs", "scripts/lib"
+    ]
+  },
   "brand": {
     "anchor": "#4567ed",
     "action": "#0b84ff",
@@ -77,7 +96,23 @@
     "core": [
       "SKILL.md",
       "design-system.json",
+      "docs",
+      "ux-voice",
+      "references/architecture.md",
+      "references/ai-agent-contract.md",
+      "references/adoption-and-governance.md",
+      "references/consumption-and-compatibility.md",
+      "surfaces/web-app/guide.md",
+      "surfaces/website-landing/guide.md",
+      "surfaces/studio/guide.md",
+      "surfaces/ios-app/guide.md",
+      "surfaces/slides-presentations/guide.md",
+      "surfaces/social-email/social.md",
+      "surfaces/social-email/email.md",
+      "surfaces/preview-shell.css",
       "tokens/core.css",
+      "tokens/typography.css",
+      "tokens/semantic-status.css",
       "tokens/core-utilities.css",
       "tokens/theme-mapping.css",
       "tokens/README.md",

@@ -2,6 +2,11 @@
 
 Read this before generating or refactoring Singular UI.
 
+For setup, download/install formats, declared dependencies and current test
+limits, read `references/consumption-and-compatibility.md`. A source snapshot is
+not an npm package. A valid skill archive is not proof of model behavior in
+every Claude or ChatGPT environment; never report unperformed verification.
+
 ## Routing
 
 1. Read `docs/README.md`.

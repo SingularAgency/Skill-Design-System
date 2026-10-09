@@ -6,7 +6,10 @@ solamente repetirse en código. Antes de promover o crear uno, usar
 
 Inventario de los componentes del DS, clasificados. La **API real** vive en cada perfil; acá está el mapa de qué es reutilizable universal vs específico de producto.
 
-> Base común: **Tailwind v4 + shadcn/ui + lucide**. Núcleo shadcn (`ui/`) compartido por todas las superficies web.
+> Base web: React + TypeScript y, según el perfil, Tailwind v4/lucide-react.
+> Los primitivos shadcn `@/components/ui/*` y `cn` son dependencias del host, no
+> un directorio `ui/` que este repo distribuya. Website agrega framer-motion.
+> Ver [setup y compatibilidad](../references/consumption-and-compatibility.md).
 
 ## Código entregado (por perfil)
 Los perfiles web entregan **código portable** (no solo docs), router-agnóstico y tokenizado:
@@ -21,17 +24,17 @@ Los perfiles web entregan **código portable** (no solo docs), router-agnóstico
 ## CORE universal (cualquier superficie web)
 | Familia | Componentes | Notas |
 |---|---|---|
-| Primitivos shadcn | `card`, `button`, `badge`, `input`, `select`, `dialog`, `sheet`, `tooltip`, `popover`, `dropdown-menu`, `tabs`, `table`… | Estilados con tokens del DS. |
-| Estado | `StatusBadge`, `SeverityBadge`, `PriorityBadge` + `status-config` | 5 familias semánticas. |
+| Primitivos shadcn (dependencia del host) | `card`, `button`, `badge`, `input`, `select`, `dialog`, `sheet`, `tooltip`, `popover`, `dropdown-menu`, `tabs`, `table`… | Estilados con tokens del DS; no se exportan aquí. |
+| Estado (web-app) | `StatusBadge`, `SeverityBadge`, `PriorityBadge`, `mapToStatusVariant`, `semanticToneClasses` | Seis tonos × cinco slots, con mappings legacy preservados; dominio en el host. |
 | Vacíos | `EmptyState`, `TableEmptyState` | Variantes preset. |
-| Cabeceras | `PageHeader`, `GridSectionHeader` | Genéricas (routing inyectable). |
+| Cabeceras | `PageHeader` | Routing inyectable. GridSectionHeader sigue como candidato, no se exporta aquí. |
 | Filtros | `PillFilter`, `PillFilterMulti`, `PillFilterSwitcher` | El patrón de filtros del DS. |
 | Tabs | `SectionTopTabs` / `big-pill-tabs` | "Big pill" de marca. |
-| Branding | `Logo`, `SingularFullLogo`, `PoweredByFooter` | Theme-aware; assets → Fase 9. |
+| Branding | `Logo`, `PoweredByFooter` (web-app) | Theme-aware; assets oficiales. SingularFullLogo pertenece al host. |
 | Overlays de app | `OverlayLaneHost` | Slots de layout para toast, notificación accionable, acciones y footer. Providers, auth, cola y copy quedan en el host. |
 | Metadata compacta | `CompactFieldSelector` + clases | Geometría 128×32 común sólo para Status/Priority; opciones, permisos y transición quedan en el host. |
-| Modales (andamiaje) | `side-modal-layout`, `side-modal-expandable-card`, `side-modal-pill-tabs-row` | El *patrón* es universal. |
-| Tablas (kit) | `data-table-patterns.ts` | Clases, no componente. |
+| Modales (andamiaje) | `SideModalScrollBody`, `SideModalStaticSection`, clases en `patterns.ts`/`web-app.css` | No se exportan el stack de entidades ni las tabs de dominio. |
+| Tablas (kit) | Clases `dataTable*` en `surfaces/web-app/patterns.ts` | Clases, no componente DataRow ni archivo data-table-patterns.ts aquí. |
 | Proof / datos | `MetricStrip` | `<dl>` responsive para métricas, resultados y KPIs; sirve en web, app, slides y social. |
 | Comparación | `ComparisonTable` | Tabla semántica de dos columnas con outcome destacado por tokens. |
 | Contexto | `SourceTag` | Tag compacto para fuente, cita, dataset o salida de IA. |

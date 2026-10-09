@@ -12,7 +12,8 @@ no se mezclan:
 
 - `--brand-primary: #4567ed` y `--brand-cyan: #22d3ee` son anchors estables.
 - `--primary` es la acción principal del perfil.
-- website usa el anchor; app usa el action blue `#0b84ff`.
+- website usa el anchor; app conserva `#0b84ff` como action blue en dark,
+  con `--primary: #0067d6` en light para texto y fills contrastados.
 - status sigue siendo semántico e independiente.
 
 ## Archivos
@@ -20,7 +21,9 @@ no se mezclan:
 | Archivo | Qué es | ¿Tailwind? |
 |---|---|---|
 | `core.css` | Tokens **universales**: spacing, radius scale, tipografía, status, Agent Orb roles + remap a11y dark. Las tintas del orb referencian anchors del profile; no agregan una marca paralela. | No (vars puras) |
-| `brand-app.css` | Profile **APP** (producto): action blue `#0b84ff`, identity anchor `#4567ed`, surface navy-tinted, escalas, charts. Light + dark. | No (vars puras) |
+| `brand-app.css` | Profile **APP**: action blue con valores de interacción ajustados por contraste, identity anchor `#4567ed`, superficies navy-tinted. Light + dark. | No (vars puras) |
+| `typography.css` | Escala primitiva + roles semánticos `--type-*`. Importada por core; el profile adapta roles y breakpoints. | No |
+| `semantic-status.css` | Seis tonos independientes × cinco slots (`fg/bg/border/solid/on-solid`) + skeleton. Importada por core. | No |
 | `brand-web.css` | Profile **WEB** (marketing): primary azul/cyan, surface dark-first, card/button/motion tokens y `data-page-accent` desde `singular-landing`. | No (vars puras) |
 | `theme-mapping.css` | `@theme inline` — expone las vars como utilidades Tailwind (`bg-primary`, `gap-m`…). Compartido. | Sí |
 | `theme-app.css` / `theme-web.css` | **Entries de build** por superficie: `tailwindcss` + core + brand + mapping + utilities. | Sí |
@@ -32,12 +35,36 @@ no se mezclan:
 **En una app/website (con Tailwind v4):** importá el entry de tu superficie.
 ```css
 /* app interna (Stories, dashboards) */
-@import '@singular/ds/tokens/theme-app.css';
+@import './singular/tokens/theme-app.css';
 /* website / landing */
-@import '@singular/ds/tokens/theme-web.css';
+@import './singular/tokens/theme-web.css';
 ```
 
 **Switch en runtime (multi-tenant / preview):** cargá `core.css` + el `brand-*.css` que toque, o togglealo por `href`. El tema claro/oscuro se controla con la clase `.dark` en `<html>` (compatible con `next-themes`).
+
+Las rutas asumen un snapshot en `singular/` junto al entry CSS. No se publica
+`@singular/ds` en npm. Ver [setup real](../references/consumption-and-compatibility.md).
+
+### Promoción desde Stories — candidate 2026.10
+
+Origen revisado: `SingularAgency/singular-stories-design`, main `6c55bea1`.
+Se comparten nombres de roles y slots, no datos ni transiciones de negocio.
+Se preservan los tokens legacy y el mapping default `in-progress → info`;
+el host puede elegir otro tono explícito en StatusBadge sin cambiar el dominio.
+
+Seis tonos: success, warning, urgent, danger, info y neutral; cinco slots por
+tono. Urgent es naranja; danger es rojo. Las pruebas miden pares representativos
+y fills con texto blanco. El CTA app usa un gradiente más oscuro, sin overlay
+blanco glossy que reduce contraste. No es una copia literal de cada hex de
+Stories ni una certificación WCAG global: los consumidores deben medir los
+pares efectivos, incluyendo alpha y hover.
+
+En dark, un fill `--primary: #0b84ff` usa foreground oscuro `#05060d`;
+blanco sobre ese azul brillante no alcanza 4.5:1. El fill dedicado del CTA es
+más oscuro y conserva texto blanco. No intercambiar esos foregrounds.
+
+Los aliases Tailwind `--spacing-s/m/l` se agregan sin pisar los nombres nativos
+xs/xl. No se mueve ningún archivo ni se elimina un token existente.
 
 ## Core vs Profile
 

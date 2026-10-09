@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="backgrounds/brand-background.css" />
   <link rel="stylesheet" href="surfaces/website-landing/website.css" />
   <link rel="stylesheet" href="site/design-system-page.css?v=20260721.1" />
+  <link rel="stylesheet" href="site/catalog-foundations.css?v=20261009.1" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -66,7 +67,7 @@
         <div class="hero__copy">
           <div class="release-pill reveal-item">
             <span class="release-pill__pulse" aria-hidden="true"></span>
-            Release 2026.07.2
+            Candidate 2026.10
             <span class="release-pill__divider" aria-hidden="true"></span>
             7 surfaces
           </div>
@@ -80,7 +81,7 @@
           </p>
           <div class="hero__actions reveal-item">
             <a class="site-cta site-cta--primary" href="catalog.html">Explore components <span aria-hidden="true">→</span></a>
-            <a class="site-cta site-cta--secondary" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/SKILL.md">Read the guide <span aria-hidden="true">↗</span></a>
+            <a class="site-cta site-cta--secondary" href="SKILL.md">Read the guide <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
@@ -151,7 +152,7 @@
             <span>Stories</span>
             <span data-result-count aria-live="polite">0</span>
           </div>
-          <div class="component-index" data-component-list role="listbox" aria-label="Component stories"></div>
+          <div class="component-index" data-component-list role="group" aria-label="Component stories"></div>
           <p class="empty-results" data-empty-results hidden>No stories match these filters.</p>
         </aside>
 
@@ -160,8 +161,8 @@
             <div class="story-breadcrumb" data-story-breadcrumb>Core / Button</div>
             <div class="explorer-toolbar__controls">
               <label class="toolbar-select">
-                <span>Variant</span>
-                <select data-variant-select aria-label="Component variant"></select>
+                <span>Example</span>
+                <select data-variant-select aria-label="Catalog example"></select>
               </label>
               <div class="segmented-control" role="group" aria-label="Density">
                 <button type="button" data-density="compact" aria-pressed="false">Compact</button>
@@ -194,13 +195,20 @@
                 <h3 id="story-title" data-story-title>Button</h3>
                 <p data-story-description></p>
               </div>
-              <a class="source-link" data-source-link href="#">View source <span aria-hidden="true">↗</span></a>
+              <div class="story-docs__actions">
+                <button class="source-link" type="button" data-copy-link>Copy link</button>
+                <a class="source-link" data-source-link href="#">View source <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
+            <p class="catalog-preview-note">Illustrated preview, not a mounted React/Swift component. Copy examples use source APIs. Example data is illustrative.</p>
+            <p class="catalog-preview-note">Copy assumes a snapshot at <code>./singular</code> beside your example. <a href="references/consumption-and-compatibility.md">Dependencies &amp; setup</a></p>
+            <p class="sr-only" role="status" data-copy-feedback></p>
+            <textarea class="copy-fallback" data-copy-fallback aria-label="Text to copy manually" readonly hidden></textarea>
 
             <div class="docs-tabs" role="tablist" aria-label="Component documentation">
               <button type="button" role="tab" aria-selected="true" aria-controls="usage-panel" id="usage-tab" data-doc-tab="usage">Usage</button>
-              <button type="button" role="tab" aria-selected="false" aria-controls="code-panel" id="code-tab" data-doc-tab="code">Code</button>
-              <button type="button" role="tab" aria-selected="false" aria-controls="a11y-panel" id="a11y-tab" data-doc-tab="a11y">Accessibility</button>
+              <button type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="code-panel" id="code-tab" data-doc-tab="code">Code</button>
+              <button type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="a11y-panel" id="a11y-tab" data-doc-tab="a11y">Accessibility</button>
             </div>
             <div class="docs-panel" id="usage-panel" role="tabpanel" aria-labelledby="usage-tab" data-doc-panel="usage">
               <div class="usage-grid">
@@ -283,7 +291,7 @@
           <p class="eyebrow eyebrow--brand">Documentation and tools</p>
           <h2 id="documentation-title">Designed to be used.</h2>
         </div>
-        <p>Choose a surface, consume a versioned snapshot, or load the skill from Codex, Claude Code, or Cowork.</p>
+        <p>Choose a surface and consume a versioned snapshot. Skill installation and compatibility depend on your Claude/ChatGPT/Codex environment; this candidate is under validation.</p>
       </div>
       <div class="documentation-grid">
         <a class="documentation-card documentation-card--wide" href="brand-voice.html">
@@ -292,12 +300,12 @@
           <p>Understand who Singular serves, the operating pain, and how it becomes foundations, Brand &amp; Voice, system decisions, and details.</p>
           <code>Client reality → foundations → system → application</code>
         </a>
-        <a class="documentation-card" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/tokens/README.md"><span class="documentation-card__number">01</span><h3>Tokens</h3><p>Identity, interaction, status, and profile mapping.</p><span>Read guide →</span></a>
-        <a class="documentation-card" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/components/README.md"><span class="documentation-card__number">02</span><h3>Components</h3><p>A portable inventory with clear domain boundaries.</p><span>View inventory →</span></a>
-        <a class="documentation-card" href="https://github.com/SingularAgency/Skill-Design-System/blob/main/references/adoption-and-governance.md"><span class="documentation-card__number">03</span><h3>Governance</h3><p>Snapshots, versioning, ownership, and drift audits.</p><span>Open reference →</span></a>
+        <a class="documentation-card" href="tokens/README.md"><span class="documentation-card__number">01</span><h3>Tokens</h3><p>Identity, interaction, status, and profile mapping.</p><span>Read guide →</span></a>
+        <a class="documentation-card" href="components/README.md"><span class="documentation-card__number">02</span><h3>Components</h3><p>A portable inventory with clear domain boundaries.</p><span>View inventory →</span></a>
+        <a class="documentation-card" href="references/consumption-and-compatibility.md"><span class="documentation-card__number">03</span><h3>Setup &amp; compatibility</h3><p>Real dependencies, skill installation by environment and verification limits.</p><span>Open reference →</span></a>
       </div>
       <div class="install-command">
-        <div><span>Versioned snapshot</span><code>node scripts/export-snapshot.mjs --bundle=core,website-landing --target=./design-system/singular</code></div>
+        <div><span>From a cloned DS repo · destination must be new</span><code>node scripts/export-snapshot.mjs --bundle=core,website-landing --target=../my-project/src/singular</code></div>
         <button type="button" data-copy-install>Copy command</button>
       </div>
     </section>
@@ -342,7 +350,7 @@
       <a href="https://github.com/SingularAgency/Skill-Design-System/blob/main/references/architecture.md">Architecture</a>
       <a href="https://github.com/SingularAgency/Skill-Design-System">GitHub</a>
     </div>
-    <span class="site-footer__release">Release 2026.07.2</span>
+    <span class="site-footer__release">Candidate 2026.10 · validation in progress</span>
   </footer>
 
   <dialog class="asset-lightbox" data-asset-lightbox aria-labelledby="asset-lightbox-title">
@@ -356,6 +364,7 @@
 
   <script src="site/theme-and-assets.js" defer></script>
   <script src="site/agent-orb-preview.js?v=20260721.1" defer></script>
-  <script src="site/component-explorer.js?v=20260721.1" defer></script>
+  <script src="site/catalog-stories.js?v=20261009.1" defer></script>
+  <script src="site/component-explorer.js?v=20261009.1" defer></script>
 </body>
 </html>
