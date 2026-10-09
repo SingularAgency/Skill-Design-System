@@ -33,6 +33,8 @@ import {
   compactFieldSelectorClass,
   compactFieldSelectorLabelClass,
 } from "./patterns"
+import { semanticToneClasses, type SemanticTone } from "./semantic-tones"
+export { semanticToneClasses, type SemanticTone } from "./semantic-tones"
 
 /* ============================================================================
  * StatusBadge — display unificado de estado (5 familias semánticas)
@@ -49,49 +51,21 @@ export type StatusVariant =
 
 export type StatusSize = "sm" | "md" | "lg"
 
-const statusStyles: Record<StatusVariant, string> = {
-  healthy: "border-singular-cyan text-singular-cyan",
-  active: "border-emerald-500/50 text-emerald-400",
-  completed: "border-emerald-500/50 text-emerald-400",
-  approved: "border-emerald-500/50 text-emerald-400",
-  paid: "border-emerald-500/50 text-emerald-400",
-  warning: "border-singular-yellow/60 text-singular-yellow",
-  attention: "border-singular-yellow/60 text-singular-yellow",
-  pending: "border-amber-500/50 text-amber-400",
-  "in-review": "border-amber-500/50 text-amber-400",
-  error: "border-singular-red/60 text-singular-red",
-  "at-risk": "border-singular-red/60 text-singular-red",
-  blocked: "border-destructive/60 text-destructive",
-  critical: "border-destructive/60 text-destructive",
-  info: "border-singular-blue/50 text-singular-blue",
-  "in-progress": "border-primary/50 text-primary",
-  testing: "border-singular-blue/50 text-singular-blue",
-  neutral: "border-border text-muted-foreground",
-  draft: "border-border text-muted-foreground",
-  archived: "border-border text-muted-foreground",
+/** Legacy defaults are preserved. Stories can pass tone="success" for live
+ * In Progress without changing that domain mapping for every other host. */
+const statusTones: Record<StatusVariant, SemanticTone> = {
+  healthy: "success", active: "success", completed: "success", approved: "success", paid: "success",
+  warning: "warning", attention: "warning", pending: "warning", "in-review": "warning",
+  error: "danger", "at-risk": "danger", blocked: "danger", critical: "danger",
+  info: "info", "in-progress": "info", testing: "info",
+  neutral: "neutral", draft: "neutral", archived: "neutral",
 }
-
-const filledStatusStyles: Record<StatusVariant, string> = {
-  healthy: "bg-singular-cyan/15 text-singular-cyan border-singular-cyan/30",
-  active: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-  completed: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-  approved: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-  paid: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-  warning: "bg-singular-yellow/15 text-singular-yellow border-singular-yellow/30",
-  attention: "bg-singular-yellow/15 text-singular-yellow border-singular-yellow/30",
-  pending: "bg-amber-500/15 text-amber-400 border-amber-500/30",
-  "in-review": "bg-amber-500/15 text-amber-400 border-amber-500/30",
-  error: "bg-singular-red/15 text-singular-red border-singular-red/30",
-  "at-risk": "bg-singular-red/15 text-singular-red border-singular-red/30",
-  blocked: "bg-destructive/15 text-destructive border-destructive/30",
-  critical: "bg-destructive/15 text-destructive border-destructive/30",
-  info: "bg-singular-blue/15 text-singular-blue border-singular-blue/30",
-  "in-progress": "bg-primary/15 text-primary border-primary/30",
-  testing: "bg-singular-blue/15 text-singular-blue border-singular-blue/30",
-  neutral: "bg-muted text-muted-foreground border-border",
-  draft: "bg-muted text-muted-foreground border-border",
-  archived: "bg-muted text-muted-foreground border-border",
-}
+const statusStyles = Object.fromEntries(
+  Object.entries(statusTones).map(([status, tone]) => [status, semanticToneClasses[tone].outline]),
+) as Record<StatusVariant, string>
+const filledStatusStyles = Object.fromEntries(
+  Object.entries(statusTones).map(([status, tone]) => [status, semanticToneClasses[tone].filled]),
+) as Record<StatusVariant, string>
 
 const sizeStyles: Record<StatusSize, string> = {
   sm: "text-[0.625rem] px-1.5 py-0.5",
@@ -121,6 +95,8 @@ function formatStatusLabel(status: StatusVariant): string {
 
 export interface StatusBadgeProps {
   status: StatusVariant
+  /** Override visual tone when the host's domain mapping differs. */
+  tone?: SemanticTone
   /** Label custom; default = nombre del status capitalizado. */
   label?: string
   size?: StatusSize
@@ -130,9 +106,11 @@ export interface StatusBadgeProps {
   className?: string
 }
 
-export function StatusBadge({ status, label, size = "md", showIcon = false, filled = false, className }: StatusBadgeProps) {
+export function StatusBadge({ status, tone, label, size = "md", showIcon = false, filled = false, className }: StatusBadgeProps) {
   const displayLabel = label ?? formatStatusLabel(status)
-  const styles = filled ? filledStatusStyles[status] : statusStyles[status]
+  const styles = tone
+    ? semanticToneClasses[tone][filled ? "filled" : "outline"]
+    : filled ? filledStatusStyles[status] : statusStyles[status]
   return (
     <Badge variant="outline" className={cn("shrink-0 gap-0", styles, sizeStyles[size], className)}>
       {showIcon && getStatusIcon(status, size)}
@@ -159,11 +137,11 @@ export type SeverityLevel = "critical" | "high" | "medium" | "low"
 export type PriorityLevel = "urgent" | "high" | "medium" | "low"
 
 const levelStyles = {
-  urgent: "bg-destructive/15 text-destructive border-destructive/30",
-  critical: "bg-destructive/15 text-destructive border-destructive/30",
-  high: "bg-singular-coral/15 text-singular-coral border-singular-coral/30",
-  medium: "bg-singular-yellow/15 text-singular-yellow border-singular-yellow/30",
-  low: "bg-muted text-muted-foreground border-border",
+  urgent: semanticToneClasses.danger.filled,
+  critical: semanticToneClasses.danger.filled,
+  high: semanticToneClasses.urgent.filled,
+  medium: semanticToneClasses.warning.filled,
+  low: semanticToneClasses.neutral.filled,
 } as const
 
 export function SeverityBadge({ severity, size = "md", className }: { severity: SeverityLevel; size?: StatusSize; className?: string }) {
@@ -282,7 +260,7 @@ function PillFilterOptionsRow({
 }) {
   const scrollKey = options.map((o, i) => optionValueOf(o, i)).join("|")
   return (
-    <div className={cn(label && "flex flex-col gap-s", className)}>
+    <div role="group" aria-label={label ?? "Filters"} className={cn(label && "flex flex-col gap-s", className)}>
       {label ? <span className={labelClass}>{label}</span> : null}
       <PillFilterScrollTrack scrollKey={scrollKey}>
         {options.map((option, index) => {
@@ -291,6 +269,7 @@ function PillFilterOptionsRow({
             <button
               key={`pill-${label ?? "filter"}-${optionValue}-${index}`}
               type="button"
+              aria-pressed={isSelected(optionValue)}
               onClick={() => onSelect(optionValue)}
               className={cn(pillBase, getOptionClasses(option, index, isSelected(optionValue), useStatusColors))}
             >
@@ -542,7 +521,7 @@ export function TableEmptyState({
  * ========================================================================== */
 
 /** Padding horizontal/vertical para regiones scrolleables del side modal. */
-export const sideModalBodyPaddingClass = "px-5 py-6 sm:py-10"
+export const sideModalBodyPaddingClass = "px-5 pt-4 pb-6 sm:pt-5 sm:pb-10"
 
 /** Columna scrolleable del contenido del sheet (ritmo vertical por tokens). */
 export function SideModalScrollBody({

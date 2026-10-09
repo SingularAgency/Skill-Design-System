@@ -1,84 +1,58 @@
 #!/usr/bin/env node
-
-import { cp, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises"
-import { execFileSync } from "node:child_process"
+import { copyFile, lstat, mkdir, mkdtemp, rename, rm, writeFile, realpath } from "node:fs/promises"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
+import { root, loadManifest, collectFiles, inventory, provenance } from "./lib/distribution.mjs"
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
-const args = new Map(
-  process.argv.slice(2).map((arg) => {
-    const [key, ...rest] = arg.replace(/^--/, "").split("=")
-    return [key, rest.length ? rest.join("=") : true]
-  }),
-)
-
-const manifest = JSON.parse(await readFile(path.join(ROOT, "design-system.json"), "utf8"))
-
+const args = new Map(process.argv.slice(2).map((arg) => {
+  const [key, ...value] = arg.replace(/^--/, "").split("=")
+  return [key, value.length ? value.join("=") : true]
+}))
+const manifest = await loadManifest()
 if (args.has("list")) {
   console.log(Object.keys(manifest.bundles).join("\n"))
-  process.exit(0)
+} else {
+  if (typeof args.get("target") !== "string" || typeof args.get("bundle") !== "string") {
+    throw new Error("Usage: node scripts/export-snapshot.mjs --bundle=core,web-app --target=/new/directory")
+  }
+  const target = path.resolve(args.get("target"))
+  const selected = [...new Set(["core", ...args.get("bundle").split(",").map((s) => s.trim()).filter(Boolean)])].sort()
+  for (const name of selected) if (!manifest.bundles[name]) throw new Error("Unknown bundle: " + name)
+  const files = await collectFiles(root, selected.flatMap((name) => manifest.bundles[name]))
+  const isWithin = (parent, child) => child === parent || child.startsWith(parent + path.sep)
+  if (target === path.parse(target).root || isWithin(target, root) ||
+      (isWithin(root, target) && !isWithin(path.join(root, "dist"), target))) {
+    throw new Error("Unsafe snapshot target: " + target)
+  }
+  // Snapshot exports never delete or overwrite a user's existing directory.
+  try { await lstat(target); throw new Error("Target already exists. Choose a new directory: " + target) }
+  catch (error) { if (error.code !== "ENOENT") throw error }
+  await mkdir(path.dirname(target), { recursive: true })
+  const actualParent = await realpath(path.dirname(target))
+  const resolvedTarget = path.join(actualParent, path.basename(target))
+  if (isWithin(resolvedTarget, root) ||
+      (isWithin(root, resolvedTarget) && !isWithin(path.join(root, "dist"), resolvedTarget))) {
+    throw new Error("Unsafe resolved snapshot target: " + resolvedTarget)
+  }
+  const stage = await mkdtemp(path.join(actualParent, ".singular-snapshot-"))
+  try {
+    for (const relative of files) {
+      const destination = path.join(stage, relative)
+      await mkdir(path.dirname(destination), { recursive: true })
+      await copyFile(path.join(root, relative), destination)
+    }
+    const metadata = {
+      name: manifest.name, release: manifest.release, releaseStatus: manifest.releaseStatus,
+      ...provenance(), bundles: selected, layoutVersion: 1,
+      generatedAt: new Date().toISOString(), files: await inventory(stage, files),
+      artifactType: "code-snapshot",
+    }
+    await writeFile(path.join(stage, ".singular-ds-snapshot.json"), JSON.stringify(metadata, null, 2) + "\n")
+    try { await lstat(target); throw new Error("Target appeared during export: " + target) }
+    catch (error) { if (error.code !== "ENOENT") throw error }
+    await rename(stage, target)
+    console.log("Exported " + files.length + " files to " + target)
+  } finally {
+    // stage is the unique directory created by this invocation, never the target.
+    await rm(stage, { recursive: true, force: true })
+  }
 }
-
-const targetValue = args.get("target")
-const bundleValue = args.get("bundle")
-if (!targetValue || !bundleValue) {
-  console.error("Usage: node scripts/export-snapshot.mjs --bundle=core,web-app --target=/path")
-  process.exit(2)
-}
-
-const target = path.resolve(String(targetValue))
-if (target === "/" || target === ROOT) {
-  throw new Error(`Unsafe target: ${target}`)
-}
-
-const requested = String(bundleValue)
-  .split(",")
-  .map((value) => value.trim())
-  .filter(Boolean)
-
-const unknown = requested.filter((bundle) => !manifest.bundles[bundle])
-if (unknown.length) throw new Error(`Unknown bundle(s): ${unknown.join(", ")}`)
-
-const selected = new Set(["core", ...requested])
-const entries = new Set()
-for (const bundle of selected) {
-  for (const entry of manifest.bundles[bundle]) entries.add(entry)
-}
-
-await rm(target, { recursive: true, force: true })
-await mkdir(target, { recursive: true })
-
-for (const relative of [...entries].sort()) {
-  const source = path.join(ROOT, relative)
-  await stat(source)
-  const destination = path.join(target, relative)
-  await mkdir(path.dirname(destination), { recursive: true })
-  await cp(source, destination, { recursive: true })
-}
-
-let commit = "unknown"
-let sourceDirty = null
-try {
-  commit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim()
-  sourceDirty =
-    execFileSync("git", ["status", "--porcelain"], { cwd: ROOT, encoding: "utf8" }).trim().length > 0
-} catch {
-  // Export remains useful outside a Git checkout.
-}
-
-const snapshot = {
-  name: manifest.name,
-  release: manifest.release,
-  sourceCommit: commit,
-  sourceDirty,
-  bundles: [...selected].sort(),
-  generatedAt: new Date().toISOString(),
-}
-
-await writeFile(
-  path.join(target, ".singular-ds-snapshot.json"),
-  `${JSON.stringify(snapshot, null, 2)}\n`,
-)
-
-console.log(`Exported ${entries.size} entries to ${target}`)

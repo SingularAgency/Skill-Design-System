@@ -16,11 +16,16 @@ Si la superficie comunica error, recovery, estado o una decisión operativa,
 usar en cambio [Product voice and tone](../../ux-voice/product.md).
 
 ## Setup
+No hay un paquete npm `@singular/ds` publicado. Las rutas siguientes asumen
+un snapshot `singular/` junto al entry CSS/ejemplo. Requiere React, TypeScript,
+lucide-react, framer-motion y Tailwind v4 escaneando los archivos copiados.
+Ver [consumo y compatibilidad](../../references/consumption-and-compatibility.md).
+
 ```css
 /* index.css del sitio */
-@import "@singular/ds/tokens/theme-web.css";          /* core + brand cyan + utilities */
-@import "@singular/ds/backgrounds/brand-background.css";
-@import "@singular/ds/surfaces/website-landing/website.css";
+@import "./singular/tokens/theme-web.css";
+@import "./singular/backgrounds/brand-background.css";
+@import "./singular/surfaces/website-landing/website.css";
 ```
 ```tsx
 import {
@@ -36,7 +41,7 @@ import {
   FinalCTA,
   Reveal,
   LogoMarquee,
-} from "@singular/ds/surfaces/website-landing/primitives"
+} from "./singular/surfaces/website-landing/primitives"
 ```
 
 ## Anatomía de una página

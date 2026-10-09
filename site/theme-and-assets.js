@@ -16,7 +16,7 @@
   toggles.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       root.classList.toggle("dark");
-      localStorage.setItem("singular-ds-theme", root.classList.contains("dark") ? "dark" : "light");
+      try { localStorage.setItem("singular-ds-theme", root.classList.contains("dark") ? "dark" : "light"); } catch { /* Theme still works when storage is blocked. */ }
       syncTheme();
     });
   });

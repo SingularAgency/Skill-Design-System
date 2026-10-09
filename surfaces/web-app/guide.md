@@ -1,8 +1,8 @@
 # Perfil: Web-app / Producto
 
-La superficie de **producto interno** de Singular (dashboards, OKR, sprints, QA, payments). Identidad azul/cyan con action blue `#0b84ff` (`brand-app`), **dark-first** vía `next-themes`, densa en datos.
+La superficie de **producto interno** de Singular (dashboards, OKR, sprints, QA, payments). Identidad azul/cyan con interacción adaptada por contraste (`brand-app`), densa en datos. Stories actual inicia en **light**; el host decide su preferencia y conserva soporte light/dark.
 
-> **Fuente de verdad:** `v0-singular-stories-app/app/globals.css` + `components/`. Este perfil **espeja** ese repo — cuando cambie, re-auditar (Fase 8). No re-tokeniza: usa los tokens del DS.
+> **Fuente canónica del contrato compartido:** este DS. Stories (`SingularAgency/singular-stories-design`, antes `v0-singular-stories-app`) es implementación de referencia, no un espejo automático. Candidate 2026.10 toma roles de main `6c55bea1`; conserva mappings legacy y ajusta valores por contraste. El nuevo dock responsive sigue pendiente de promoción opt-in; la navegación y overlays actuales no se reemplazan silenciosamente.
 
 ## UX writing
 
@@ -16,14 +16,20 @@ marketing.
 
 ## Setup
 ```css
-@import "@singular/ds/tokens/theme-app.css";           /* core + brand azul + utilities */
-@import "@singular/ds/backgrounds/brand-background.css"; /* canvas .brand-bg (static) */
+@import "./singular/tokens/theme-app.css";             /* snapshot junto al entry */
+@import "./singular/surfaces/web-app/web-app.css";
+@import "./singular/backgrounds/brand-background.css";
 ```
 ```tsx
-<ThemeProvider attribute="class" defaultTheme="dark">
+<ThemeProvider attribute="class" defaultTheme="light">
 ```
 
 ## Código del perfil (en este repo)
+No existe un paquete npm `@singular/ds` publicado. React, TypeScript,
+lucide-react y los primitivos shadcn Badge/Button/Sheet + cn son dependencias
+del host. Tailwind v4 debe escanear el snapshot. Ver
+[setup y compatibilidad](../../references/consumption-and-compatibility.md).
+
 A diferencia de las skills viejas, este perfil **entrega código portable** (no solo docs). Espeja el patrón de `surfaces/website-landing/primitives.tsx`: router-agnóstico, tokenizado, sin secretos.
 
 | Archivo | Qué trae |
@@ -36,9 +42,9 @@ A diferencia de las skills viejas, este perfil **entrega código portable** (no 
 > **Portabilidad (Next → cualquier React):** los componentes de navegación reciben un `linkComponent` inyectable (default `<a>`) y el `pathname` por props — **sin `next/link` ni `next/navigation`**. El secreto (MCP/Figma key) de Stories **no viaja**. `components.tsx` asume primitivos shadcn (`@/components/ui/*`) estilados con los tokens del DS.
 
 ## Sistema de navegación
-El chrome que reemplaza al sidebar "de caja": **rail flotante glass** + **header well frosteado** + **big-pill tabs** de ruta + footer **Powered by Singular**. Dark-first, white-label (logo por `brandLogoUrl`/`brandInitials`).
+El chrome actualmente exportado: **rail flotante glass** + **header well frosteado** + **big-pill tabs** de ruta + footer **Powered by Singular**. Soporta light/dark y white-label (logo por `brandLogoUrl`/`brandInitials`). No representa todavía todas las mejoras responsive del Stories actual.
 
-**Anatomía del shell:**
+**Anatomía del shell (esquema con placeholders, no ejemplo listo para compilar):**
 ```tsx
 <FloatingSidebarProvider>
   <SidebarShell                 // rail flotante izq: cuadrado de logo (toggle) + íconos
@@ -72,21 +78,24 @@ El chrome que reemplaza al sidebar "de caja": **rail flotante glass** + **header
 
 Ritmo: `gap-l` (24px) entre bloques; `gap-filters-to-grid` (20px) entre filtros y contenido en producto.
 
-## Componentes canónicos (API real)
+## Componentes y patrones exportados por este perfil
 | Componente | Props clave |
 |---|---|
-| **Card** | `surface="liquid"\|"solid"` (default liquid; solid = opaco para grillas), `size=xs..xl`, `translucent`. `rounded-xl`. |
-| **Button** | `variant=default\|destructive\|outline\|secondary\|ghost\|link`, `size=default\|sm\|lg\|icon*`. `rounded-full`. Icono primero. |
-| **KpiCard / KpiRow** | KpiCard: `value`, `subtitle`, `trend=up\|warning\|down\|neutral` (chip), `tooltip`. KpiRow: `columns=3..6`, `isExpanded`. `useKpiVisibility()`. |
 | **PillFilter / …Switcher / …Multi** | `options`, `selected`, `onSelect`, `useStatusColors?`, `trailing?`, `defaultActiveKey`, `onClear`. |
-| **StatusBadge / Severity / Priority** | `status` (5 familias), `size=sm\|md\|lg`, `filled?`, `showIcon?`. `mapToStatusVariant()` para strings libres. |
+| **StatusBadge** | `status` requerido (valores legacy), `tone?` (success/warning/urgent/danger/info/neutral), `label?`, `size=sm\|md\|lg`, `filled?`, `showIcon?`. `mapToStatusVariant()` para strings libres. Severity y Priority reciben sus respectivas props. |
 | **EmptyState / TableEmptyState** | `variant` (no-data/no-results/all-done/error…), `title?`, `description?`, `action?`. |
 | **PageHeader** | `title`, `subtitle?`, `actions?`, `kpiToggle?`, `backLink?`. |
 | **SidebarShell** | `sections` (nav), `isItemActive`, `homeHref`, `brandLogoUrl?` (white-label). Rail flotante + Sheet mobile. |
-| **side-modal-layout** | `SideModalScrollBody`, `SideModalStaticSection`, `SideModalPillTabsRow` + `entity-modal-stack-host`. |
+| **side-modal-layout** | `SideModalScrollBody`, `SideModalStaticSection` y clases de layout. `SideModalPillTabsRow` pertenece al host, no se exporta aquí. |
 | **data-table-patterns** | Kit de clases para tablas (no componente): `dataTableCardFlushClass`, `dataTableBodyRowInteractiveClass`, etc. |
 | **CompactFieldSelector** | `field="status"\|"priority"`, `value`, `accessibleLabel?`, `leading?`, `trailing?` + props nativas de button. Trigger fijo 128×32 dentro de una fila de 44px; conserva campo + valor completos en `aria-label`/`title`. |
 | **OverlayLaneHost** | Slots `toast`, `actionable`, `actions`, `footer`; `sideModalOpen` desplaza o suprime lanes según viewport; `actionsLabel?` nombra el grupo. No incluye providers, portales, permisos ni datos. |
+
+Card, Button, Badge, KpiCard/KpiRow y su estado son primitivas o composiciones
+del producto; no se exportan como componentes de este perfil. El catálogo
+distingue las recetas de los componentes. StatusBadge conserva el mapping
+default `in-progress → info`; Stories puede pasar `tone="success"` de forma
+explícita para su modelo live sin afectar a otros consumidores.
 
 ## Convivencia de overlays
 
@@ -168,8 +177,8 @@ autenticación y autorización.
 desktop y apiladas sin solaparse en mobile; foco por teclado y reduced motion.
 
 ## Portabilidad Next → cualquier React
-- **Portables tal cual** (cero acople a Next): Card, Button, Badge, StatusBadge, EmptyState, PillFilter, KpiCard, data-table-patterns, side-modal-layout, CompactFieldSelector y OverlayLaneHost.
-- **Necesitan adaptador de routing** (`next/link`, `next/navigation`): SidebarShell, PageHeader (`backLink`), SectionTopTabs, app-header → introducir un **`<Link>` inyectable** (prop/slot) en vez de importar `next/link`.
+- **Código portable exportado:** StatusBadge, EmptyState, PillFilter, data-table-patterns, side-modal-layout, CompactFieldSelector y OverlayLaneHost. Los primitivos shadcn se resuelven en el host.
+- **Routing ya inyectable:** SidebarShell, PageHeader (`backLink`), SectionTopTabs y AppHeaderShell no importan Next. Usar `linkComponent`/`pathname` o sus slots; no reintroducir routing del producto en el DS.
 - **Re-trabajo**: logo/branding (hoy un asset por tema → idealmente SVG monocromo + tokens, ver Fase 9).
 
 ## Próximas promociones candidatas

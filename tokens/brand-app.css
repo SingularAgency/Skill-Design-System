@@ -4,7 +4,7 @@
  * Fuente de verdad: v0-singular-stories-app/app/globals.css.
  * Carga junto a core.css. Light por defecto + .dark.
  * Identity stays anchored in --brand-primary (#4567ed). Product
- * interaction uses the brighter --primary (#0b84ff) observed in
+ * interaction uses contrast-adjusted roles around action blue (#0b84ff) observed in
  * Singular Stories. Both remain in the same blue/cyan family.
  * ============================================================ */
 
@@ -12,10 +12,10 @@
   /* ── Marca ── */
   --brand-primary: #4567ed;
   --brand-cyan: #22d3ee;
-  --primary: #0b84ff;
+  --primary: #0067d6;
   --primary-foreground: #ffffff;
-  --primary-strong: #0067d6;
-  --primary-strong-hover: #0054b3;
+  --primary-strong: #0054b3;
+  --primary-strong-hover: #003f8a;
   --radius-card: var(--radius-xl); /* rounded-xl en la app */
 
   --singular-primary: #0b84ff;
@@ -37,8 +37,8 @@
   --singular-green: #16a34a;
 
   /* ── Interactive ── */
-  --interactive: #0b84ff;        --interactive-hover: #0067d6;
-  --interactive-fill: #0b84ff;   --interactive-fill-hover: #0067d6;
+  --interactive: #0054b3;        --interactive-hover: #003f8a;
+  --interactive-fill: #0067d6;   --interactive-fill-hover: #0054b3;
   --interactive-muted: color-mix(in srgb, var(--singular-primary-500) 8%, #ffffff);
   --ring: #0b84ff;
 
@@ -56,7 +56,7 @@
   --accent: color-mix(in srgb, var(--primary) 9%, #e6eaf5);      --accent-foreground: var(--interactive);
   --secondary: color-mix(in srgb, var(--primary) 12%, #d6dbe8);  --secondary-foreground: #1A202C;
   --border: color-mix(in srgb, var(--primary) 16%, #c2c7d6);
-  --input: color-mix(in srgb, var(--primary) 18%, #c2c7d6);
+  --input: #64748b;
   --sheet-content: color-mix(in srgb, var(--primary) 5%, #fafbfc);
 
   /* ── Sidebar / header (chrome de app) ── */
@@ -67,6 +67,14 @@
   --sidebar-border: color-mix(in srgb, var(--primary) 14%, #c5cad8);
   --sidebar-nav-hover: color-mix(in srgb, var(--primary) 5%, #f3f5fc);   /* hover de item del rail */
   --sidebar-nav-active: color-mix(in srgb, var(--primary) 12%, #e8ecfc); /* fill del item activo */
+  --sidebar-divider: color-mix(in srgb, var(--foreground) 18%, var(--sidebar));
+  --sidebar-ring: var(--ring);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-frost-bg: color-mix(in srgb, #ffffff 78%, var(--sidebar));
+  --type-page-title-size-md: var(--type-size-4xl);
+  --type-page-title-size-lg: var(--type-size-display);
+  --type-page-subtitle-size: var(--type-size-sm);
+  --type-section-title-size-md: var(--type-size-2xl);
 
   /* Header well flotante + trigger de search (chrome superior frosteado) */
   --header-well-bg: color-mix(in srgb, var(--primary) 8%, var(--sidebar));
@@ -88,18 +96,16 @@
 
   /* ── Componentes (outline button · card glass · anchos de popover) ── */
   --button-outline-border: #2b4182;
-  --button-outline-foreground: var(--primary);
+  --button-outline-foreground: var(--primary-strong);
   --button-outline-hover-bg: color-mix(in srgb, var(--primary) 14%, transparent);
-  --button-primary: #0b84ff;
-  --button-primary-hover: #0067d6;
+  --button-primary: #0067d6;
+  --button-primary-hover: #005bbf;
   --button-primary-foreground: #ffffff;
   --button-primary-border: color-mix(in srgb, #22d3ee 42%, transparent);
   --button-gradient-primary:
-    linear-gradient(180deg, color-mix(in srgb, #ffffff 16%, transparent), transparent 48%),
-    linear-gradient(135deg, #0b84ff 0%, #22d3ee 100%);
+    linear-gradient(135deg, #0067d6 0%, #00788f 100%);
   --button-gradient-primary-hover:
-    linear-gradient(180deg, color-mix(in srgb, #ffffff 20%, transparent), transparent 50%),
-    linear-gradient(135deg, #0067d6 0%, #06b6d4 100%);
+    linear-gradient(135deg, #005bbf 0%, #006f86 100%);
   --button-shadow-primary:
     0 16px 42px -22px color-mix(in srgb, #22d3ee 72%, transparent),
     inset 0 1px 0 rgb(255 255 255 / 0.18);
@@ -109,6 +115,10 @@
 }
 
 .dark {
+  --primary: #0b84ff;
+  --primary-foreground: #05060d; /* bright primary fill needs dark text */
+  --primary-strong: #7ccaff;
+  --primary-strong-hover: #c8ecff;
   --background: #05060d;
   --foreground: #C4CED9;            --foreground-strong: #F1F5F9;
   --card: color-mix(in srgb, var(--primary) 8%, #181d33);        --card-foreground: #C4CED9;
@@ -118,19 +128,21 @@
   --accent: color-mix(in srgb, var(--primary) 20%, #1a1f36);     --accent-foreground: var(--interactive);
   --secondary: color-mix(in srgb, var(--primary) 16%, #1a1f36);  --secondary-foreground: #e2e8f0;
   --border: color-mix(in srgb, var(--primary) 14%, #2a3150);
-  --input: color-mix(in srgb, var(--primary) 14%, #2a3150);
+  --input: #64748b;
   --sheet-content: color-mix(in srgb, var(--primary) 7%, #12172a);
 
   --interactive: #7ccaff;          --interactive-hover: #c8ecff;
-  --interactive-fill: #0b84ff;     --interactive-fill-hover: #0067d6;
+  --interactive-fill: #0067d6;     --interactive-fill-hover: #005bbf;
   --interactive-muted: color-mix(in srgb, var(--interactive-fill) 16%, #1a1f36);
   --ring: #7ccaff;
 
   --sidebar: #121528; --sidebar-foreground: #C4CED9;
-  --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #05060d;
   --sidebar-accent: #1c2138; --sidebar-border: #2a3150;
   --sidebar-nav-hover: rgb(255 255 255 / 0.06);
   --sidebar-nav-active: color-mix(in srgb, var(--primary) 28%, #2a3358);
+  --sidebar-divider: color-mix(in srgb, var(--foreground) 32%, var(--sidebar));
+  --sidebar-frost-bg: color-mix(in srgb, var(--sidebar) 86%, transparent);
 
   /* Header well + search (dark) */
   --header-well-bg: color-mix(in srgb, #000 22%, var(--sidebar));
@@ -140,8 +152,8 @@
 
   /* Componentes (dark): outline hover + card glass */
   --button-outline-hover-bg: color-mix(in srgb, var(--primary) 18%, transparent);
-  --button-primary: #0b84ff;
-  --button-primary-hover: #0067d6;
+  --button-primary: #0067d6;
+  --button-primary-hover: #005bbf;
   --card-translucent-surface: rgb(38 46 82 / 0.4);
 
   /* Charts (dark: multicolor saturado para leer sobre navy) */

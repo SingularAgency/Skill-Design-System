@@ -1,3 +1,6 @@
+@import "./typography.css";
+@import "./semantic-status.css";
+
 /* ============================================================
  * Singular Design System — CORE tokens (universal)
  * ============================================================
@@ -46,6 +49,12 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --text-2xs: 0.625rem;   --text-2xs-line: 0.875rem; /* 10/14 — tablas compactas */
   --text-3xs: 0.5625rem;  --text-3xs-line: 0.75rem;  /* 9/12  — ticks densos */
+
+  /* ── Motion defaults — profiles can adapt; hosts honor reduced motion. ── */
+  --motion-fast: 160ms;
+  --motion-medium: 280ms;
+  --motion-slow: 560ms;
+  --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* ── Agent activity ── actividad visual, nunca status terminal */
   --agent-orb-near: var(--brand-cyan);

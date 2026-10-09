@@ -9,7 +9,9 @@ Choose one strategy per product:
 2. **Git submodule/subtree** — acceptable for teams comfortable with Git
    lifecycle overhead.
 3. **Package** — future target for web tokens/components after APIs stabilize.
-4. **Skill bundle** — use `build-skill.sh` for Claude/Codex-compatible context.
+4. **Skill bundle** — use `build-skill.sh` for self-contained agent context.
+   Installation/discovery/behavior depend on the host; see
+   [compatibility and verification limits](consumption-and-compatibility.md).
 
 Do not copy individual token files by hand. A partial copy loses contracts and
 creates silent drift.
@@ -24,6 +26,10 @@ node scripts/export-snapshot.mjs \
 
 The exporter reads `design-system.json`, copies only the requested allowlist and
 writes `.singular-ds-snapshot.json` with the release and source commit.
+The destination must be new: export never deletes an existing integration.
+Metadata also records candidate/stable status, sourceDirty and SHA-256 inventory.
+Review/merge a new snapshot into the host; do not treat a dirty candidate as a
+published stable release.
 
 ## Product ownership
 

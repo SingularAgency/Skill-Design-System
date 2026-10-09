@@ -1,16 +1,9 @@
 ---
 name: singular-design-system
 description: >-
-  El design system de marca de Singular — uno solo, para todas las superficies.
-  Usalo para diseñar, construir, auditar o refactorizar cualquier experiencia
-  Singular: websites, web apps, Singular Stories, Singularity Studio, SwiftUI/iOS,
-  slides, social y email. Incluye tokens, componentes, BrandBackground, assets,
-  contexto de clientes, usuarios, JTBD, pain points, experience foundations,
-  UX writing, voice & tone, contratos para IA, governance, auditoría de drift y
-  export de snapshots. Triggers:
-  "estilo Singular", "marca Singular", "design system de Singular", "aplicá el DS",
-  "voice/tone de Singular", "UX writing", "copy de marketing/producto",
-  "auditá/refactorizá esta UI", o cualquier UI/asset de un producto Singular.
+  Diseñar, construir o auditar experiencias Singular: web, apps, Studio, iOS,
+  slides, social, email y copy. Usar tokens, componentes, assets y voz del
+  design system de Singular.
 ---
 
 # Singular Design System
@@ -110,6 +103,14 @@ producto.
 - No mezclar `.sds-*` legacy con el sistema actual.
 
 ## Distribución y mantenimiento
+
+Para instalación, dependencias y límites por entorno, leer
+`references/consumption-and-compatibility.md`. No asumir que existe un paquete
+npm publicado ni que subir un ZIP funciona igual en todos los clientes.
+Si no hay shell o runtime, usar las guías/código incluidos y declarar qué no se
+pudo ejecutar. No depender del repo original para leer un recurso empaquetado.
+El tema lo decide la superficie/host: Stories es light por defecto con dark
+persistente; marketing y Studio pueden ser dark-first.
 
 - Exportar snapshots con `scripts/export-snapshot.mjs`.
 - Auditar drift con `scripts/audit-products.mjs`.

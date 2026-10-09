@@ -1,0 +1,55 @@
+/* Primitive scale + semantic roles. Promoted from Stories main 6c55bea1.
+ * Profiles can override roles without changing the primitive scale.
+ * Native platforms keep their native type system. No font files are bundled. */
+:root {
+  --type-family-ui: var(--font-sans);
+  --type-family-mono: var(--font-mono);
+  --type-size-3xs: 0.5625rem;
+  --type-size-2xs: 0.625rem;
+  --type-size-xs: 0.75rem;
+  --type-size-sm: 0.875rem;
+  --type-size-base: 1rem;
+  --type-size-lg: 1.125rem;
+  --type-size-xl: 1.25rem;
+  --type-size-2xl: 1.5rem;
+  --type-size-3xl: 1.875rem;
+  --type-size-4xl: 2.25rem;
+  --type-size-display: 2.5rem;
+  --type-weight-regular: 400;
+  --type-weight-medium: 500;
+  --type-weight-semibold: 600;
+  --type-weight-bold: 700;
+  --type-leading-none: 1;
+  --type-leading-tight: 1.18;
+  --type-leading-snug: 1.4;
+  --type-leading-normal: 1.5;
+  --type-leading-relaxed: 1.625;
+  --type-tracking-tight: -0.025em;
+  --type-tracking-normal: 0;
+  --type-tracking-wide: 0.025em;
+  --type-tracking-wider: 0.05em;
+  --type-tracking-widest: 0.1em;
+  --type-page-title-size: var(--type-size-3xl);
+  --type-page-title-size-md: var(--type-page-title-size);
+  --type-page-title-size-lg: var(--type-page-title-size-md);
+  --type-page-subtitle-size: var(--type-size-base);
+  --type-page-subtitle-size-md: var(--type-page-subtitle-size);
+  --type-section-title-size: var(--type-size-xl);
+  --type-section-title-size-md: var(--type-section-title-size);
+  --type-section-subtitle-size: var(--type-size-sm);
+  --type-card-title-size: var(--type-size-lg);
+  --type-card-description-size: var(--type-size-sm);
+  --type-modal-title-size: var(--type-size-xl);
+  --type-entity-heading-size-min: var(--type-size-2xl);
+  --type-entity-heading-size-max: 2rem;
+  --type-entity-narrative-size: var(--type-size-xl);
+  --type-item-title-size: var(--type-size-sm);
+  --type-body-size: var(--type-size-sm);
+  --type-body-large-size: var(--type-size-base);
+  --type-caption-size: var(--type-size-xs);
+  --type-label-size: var(--type-size-xs);
+  --type-label-compact-size: var(--type-size-2xs);
+  --type-status-size: var(--type-size-xs);
+  --type-metric-size: var(--type-size-lg);
+  --type-kpi-size: var(--type-size-3xl);
+}

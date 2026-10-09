@@ -8,6 +8,43 @@
  * ============================================================ */
 
 @theme inline {
+  /* Named spacing for padding/margin as well as gaps.
+   * Do not shadow Tailwind's xs/xl container names. */
+  --spacing-s: var(--gap-s);
+  --spacing-m: var(--gap-m);
+  --spacing-l: var(--gap-l);
+  --color-status-success-bg: var(--status-success-bg);
+  --color-status-success-fg: var(--status-success-fg);
+  --color-status-success-border: var(--status-success-border);
+  --color-status-success-solid: var(--status-success-solid);
+  --color-status-success-on-solid: var(--status-success-on-solid);
+  --color-status-warning-bg: var(--status-warning-bg);
+  --color-status-warning-fg: var(--status-warning-fg);
+  --color-status-warning-border: var(--status-warning-border);
+  --color-status-warning-solid: var(--status-warning-solid);
+  --color-status-warning-on-solid: var(--status-warning-on-solid);
+  --color-status-urgent-bg: var(--status-urgent-bg);
+  --color-status-urgent-fg: var(--status-urgent-fg);
+  --color-status-urgent-border: var(--status-urgent-border);
+  --color-status-urgent-solid: var(--status-urgent-solid);
+  --color-status-urgent-on-solid: var(--status-urgent-on-solid);
+  --color-status-danger-bg: var(--status-danger-bg);
+  --color-status-danger-fg: var(--status-danger-fg);
+  --color-status-danger-border: var(--status-danger-border);
+  --color-status-danger-solid: var(--status-danger-solid);
+  --color-status-danger-on-solid: var(--status-danger-on-solid);
+  --color-status-info-bg: var(--status-info-bg);
+  --color-status-info-fg: var(--status-info-fg);
+  --color-status-info-border: var(--status-info-border);
+  --color-status-info-solid: var(--status-info-solid);
+  --color-status-info-on-solid: var(--status-info-on-solid);
+  --color-status-neutral-bg: var(--status-neutral-bg);
+  --color-status-neutral-fg: var(--status-neutral-fg);
+  --color-status-neutral-border: var(--status-neutral-border);
+  --color-status-neutral-solid: var(--status-neutral-solid);
+  --color-status-neutral-on-solid: var(--status-neutral-on-solid);
+  --color-skeleton-base: var(--skeleton-base);
+  --color-skeleton-highlight: var(--skeleton-highlight);
   /* Typography */
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
@@ -68,6 +105,9 @@
   --color-sidebar: var(--sidebar);                   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-accent: var(--sidebar-accent);     --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-divider: var(--sidebar-divider);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 
   /* Radius */
   --radius-sm: calc(var(--radius) - 4px);

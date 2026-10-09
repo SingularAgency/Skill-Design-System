@@ -5,6 +5,19 @@ Singular Stories web, Singular Stories iOS, Singularity Studio, slides, social
 y email mediante tokens, componentes, assets, guías, UX writing, contratos y
 herramientas de governance.
 
+## Candidate 2026.10 — consumo y compatibilidad
+
+La actualización en curso toma contratos portables de Stories main `6c55bea1`,
+sin modificar su checkout. No es una release estable ni un paquete npm publicado.
+Ver [instalación, dependencias y compatibilidad de skills](./references/consumption-and-compatibility.md)
+antes de copiar ejemplos históricos que usan `@singular/ds` como ruta conceptual.
+
+`npm test` y `npm run validate` verifican contratos, recursos y exportación;
+`npm run build:skill` genera el ZIP autocontenido. Estas pruebas no sustituyen
+la evaluación de discovery y resultados en cada cliente Claude/ChatGPT/Codex.
+El catálogo distingue componentes, recetas y foundations; sus previews son
+ilustraciones, no renders de todos los componentes fuente.
+
 ## Empezar por el contexto
 
 Este repositorio no empieza en los tokens. Empieza en la empresa que Singular
@@ -128,7 +141,9 @@ node scripts/export-snapshot.mjs \
   --target=/path/to/product/design-system/singular
 ```
 
-El export escribe `.singular-ds-snapshot.json` con release, commit y bundles.
+El destino debe ser nuevo; el export no borra ni sobrescribe integraciones.
+Escribe `.singular-ds-snapshot.json` con release, commit, dirty flag, bundles y
+hashes. Revisá y fusioná el snapshot en el producto antes de adoptarlo.
 Ver [`references/adoption-and-governance.md`](./references/adoption-and-governance.md).
 El estado verificado de los cuatro productos vive en
 [`references/adoption-audit-2026-07-16.md`](./references/adoption-audit-2026-07-16.md).
@@ -136,7 +151,8 @@ El estado verificado de los cuatro productos vive en
 ## Usar como skill
 
 ```bash
-./build-skill.sh /tmp/singular-design-system.skill
+npm run build:skill
+# dist/singular-design-system-<release>.zip
 ```
 
 La skill enruta a la guía correcta y usa disclosure progresivo. El contrato para
