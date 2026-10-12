@@ -115,6 +115,8 @@
       "surfaces/social-email/social.md",
       "surfaces/social-email/email.md",
       "surfaces/preview-shell.css",
+      "surfaces/showcase-navigation.css",
+      "surfaces/showcase-navigation.js",
       "tokens/core.css",
       "tokens/typography.css",
       "tokens/semantic-status.css",

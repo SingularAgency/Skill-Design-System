@@ -36,10 +36,24 @@
     .evidence-tabs .active { background: var(--sidebar-nav-active); color: var(--interactive); }
     .decision-copy { color: var(--muted-foreground); font-size: .82rem; }
     .primary-action { min-height: 44px; border: 0; border-radius: var(--radius-full); padding: 0 1.1rem; color: white; background: var(--button-gradient-primary); box-shadow: var(--button-shadow-primary); }
+    /* Demo viewport ownership: the product layout classes remain portable. */
+    @media (min-width: 768px) {
+      .demo-studio { height: calc(100dvh - var(--showcase-clearance, 8rem)); }
+      .demo-studio .studio-shell { width: 100%; height: 100%; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+      .demo-studio .studio-conversation { min-height: 0; overflow-y: auto; }
+      .demo-studio .studio-workspace-layout { height: 100%; min-height: 0; grid-template-rows: auto minmax(0, 1fr) auto auto; overflow: hidden; }
+      .demo-studio .workspace-top { flex-wrap: wrap; }
+      .demo-studio .studio-preview { min-height: 0; overflow: auto; place-items: stretch; }
+      .demo-studio .preview-card { width: 100%; min-height: 100%; padding: clamp(1.25rem, 4vw, 3rem); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 0; box-shadow: none; }
+      .demo-studio .preview-card > * { width: min(100%, 42rem); }
+    }
     @media (max-width: 767px) { .studio-workspace { display: none; } }
   </style>
+<link rel="stylesheet" href="../showcase-navigation.css?v=20261012.6">
+<script src="../showcase-navigation.js?v=20261012.6" defer></script>
 </head>
-<body>
+<body data-showcase-surface="studio">
+<noscript><nav class="ds-showcase-fallback" aria-label="Primary navigation"><a href="https://singular-design-system.vercel.app/">Overview</a><a href="https://singular-design-system.vercel.app/brand-voice.html">Brand &amp; Voice</a><a href="https://singular-design-system.vercel.app/#surfaces">Surfaces</a><a href="https://singular-design-system.vercel.app/catalog.html">Catalog</a><a href="https://github.com/SingularAgency/Skill-Design-System">GitHub ↗</a></nav></noscript>
   <main class="demo-studio">
     <div class="brand-bg" aria-hidden="true"><div class="brand-bg__stars"></div></div>
     <div class="studio-shell studio-shell-layout">
@@ -60,9 +74,9 @@
       <section class="studio-workspace studio-workspace-layout" aria-label="Preview workspace">
         <div class="workspace-top">
           <strong>Client preview</strong>
-          <span>Desktop · 1440 px · sandbox</span>
+          <span>Desktop · Fit to workspace · sandbox</span>
         </div>
-        <div class="studio-preview">
+        <div class="studio-preview" data-preview-viewport="desktop">
           <article class="preview-card">
             <p class="eyebrow">Sprint 18 · Pre-work</p>
             <h2>Clear decisions before execution starts.</h2>

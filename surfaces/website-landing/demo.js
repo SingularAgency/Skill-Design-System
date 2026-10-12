@@ -1,22 +1,5 @@
 (() => {
-  // Keep downloadable demos independent of the site's HTML. Local previews
-  // use local routes; archived demos point to the published showcase.
-  if (["localhost", "127.0.0.1"].includes(window.location?.hostname)) {
-    document.querySelectorAll("[data-site-route]").forEach(link => { link.href = link.dataset.siteRoute; });
-  }
-  document.querySelectorAll(".demo-mobile-menu").forEach(menu => {
-    menu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => { menu.open = false; }));
-    menu.addEventListener("keydown", event => { if (event.key === "Escape") { menu.open = false; menu.querySelector("summary").focus(); } });
-  });
-  const root = document.documentElement;
-  const themeButton = document.querySelector("[data-theme-toggle]");
-  const syncTheme = () => themeButton?.setAttribute("aria-label", root.classList.contains("dark") ? "Switch to light mode" : "Switch to dark mode");
-  syncTheme();
-  themeButton?.addEventListener("click", () => {
-    root.classList.toggle("dark");
-    try { localStorage.setItem("singular-ds-theme", root.classList.contains("dark") ? "dark" : "light"); } catch { /* Theme remains usable without storage. */ }
-    syncTheme();
-  });
+  // The shared showcase host owns navigation and theme.
 
   document.querySelectorAll("[data-tabs]").forEach(group => {
     const tabs = [...group.querySelectorAll('[role="tab"]')];
