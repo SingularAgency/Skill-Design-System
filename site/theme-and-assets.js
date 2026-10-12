@@ -10,7 +10,7 @@
       toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
       toggle.title = isDark ? "Switch to light mode" : "Switch to dark mode";
     });
-    if (themeColor) themeColor.content = isDark ? "#070b17" : "#f5f8ff";
+    if (themeColor) themeColor.content = getComputedStyle(root).getPropertyValue("--background").trim();
   };
 
   toggles.forEach((toggle) => {
@@ -21,6 +21,24 @@
     });
   });
   syncTheme();
+
+  const copyInstall = document.querySelector("[data-copy-install]");
+  copyInstall?.addEventListener("click", async () => {
+    const command = document.querySelector(".install-command code").textContent;
+    const feedback = document.querySelector("[data-install-feedback]");
+    const fallback = document.querySelector("[data-install-fallback]");
+    try {
+      await navigator.clipboard.writeText(command);
+      feedback.textContent = "Command copied.";
+      fallback.hidden = true;
+    } catch {
+      fallback.hidden = false;
+      fallback.value = command;
+      fallback.focus();
+      fallback.select();
+      feedback.textContent = "Clipboard unavailable. Copy the selected command below.";
+    }
+  });
 
   const dialog = document.querySelector("[data-asset-lightbox]");
   if (!dialog) return;

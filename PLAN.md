@@ -30,7 +30,7 @@ Los estados históricos de este documento no certifican esas fases nuevas.
 | D9 | **Actividad visual ≠ estado real** | Los Agent Orbits pueden comunicar trabajo en curso, pero `review`, `blocked`, `failed` y `published` siguen perteneciendo al modelo semántico y nunca se infieren desde una animación. |
 
 ### Decisiones derivadas / pendientes de confirmar
-- **Valores exactos de neutrales por perfil** (web negro `#050505`/`#010203` vs app navy tintado): a afinar con diseño. La arquitectura no depende del valor final.
+- **Neutrales unificados (2026-10-12)**: Web y App comparten `tokens/navy.css` en dark. La densidad, los radios y las acciones siguen adaptados por perfil.
 - **Contradicción de radius** (`rounded-2xl` web vs `rounded-xl` app): se resuelve como **default por perfil**, no como regla global. El core define la escala; cada perfil elige su radio de card.
 - **Neutrales y contraste**: revisar por plataforma sin cambiar los anchors de identidad.
 

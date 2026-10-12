@@ -19,6 +19,12 @@ const { stories, codeFor } = context.window.SingularCatalog
 const excludeWebsite = process.argv.includes("--exclude-website")
 const examples = new Map(stories.filter(s => s.language === "tsx" && (!excludeWebsite || !s.source.startsWith("surfaces/website-landing/"))).flatMap(story =>
   story.variants.map(variant => [path.join(root, `__catalog_${story.id}_${variant}.tsx`), codeFor(story, variant)])))
+const catalogCount = examples.size
+if (!excludeWebsite) {
+  const recipes = { window: {} }
+  vm.runInNewContext(readFileSync(path.join(root, "surfaces/website-landing/recipes.js"), "utf8"), recipes)
+  for (const [id, code] of Object.entries(recipes.window.SingularWebsiteRecipes)) examples.set(path.join(root, `__website_recipe_${id}.tsx`), code)
+}
 const options = {
   noEmit: true, strict: true, skipLibCheck: true, esModuleInterop: true,
   jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022,
@@ -48,4 +54,4 @@ if (errors.length) {
     getCurrentDirectory: () => root, getCanonicalFileName: f => f, getNewLine: () => "\n",
   }))
   process.exitCode = 1
-} else console.log(`Type-checked ${examples.size} catalog TSX examples against source APIs using dependencies from ${externalRoot}.${excludeWebsite ? " Website examples excluded: framer-motion is not installed in this host." : ""} Runtime and clean-host verification remain separate.`)
+} else console.log(`Type-checked ${catalogCount} catalog TSX examples and ${examples.size - catalogCount} website recipes against source APIs using dependencies from ${externalRoot}.${excludeWebsite ? " Website examples excluded: framer-motion is not installed in this host." : ""} Runtime and clean-host verification remain separate.`)

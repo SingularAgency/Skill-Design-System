@@ -129,7 +129,15 @@ Publicado en **GitHub Pages** (no hace falta clonar):
 
 En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo. (Local: `open tokens/demo.html`.)
 
-Todos los previews cargan `surfaces/preview-shell.css`: canvas dark-first, grilla y estrellas estáticas, chrome azul/cyan y elevación consistente. Cada demo conserva la ergonomía de su propia superficie en vez de convertirse en una landing genérica.
+Cada demo conserva la ergonomía de su propia superficie. Website/Landing usa
+un canvas continuo light-first, dark navy, pill flotante y recetas copiables,
+actualizados desde `singular-landing` main `ef592ba` (2026-10-12). Los otros
+previews mantienen su chrome de superficie. Son ilustraciones HTML con CSS y
+tokens reales, no pruebas de runtime React/Swift.
+
+Vercel sirve las páginas estáticas desde la raíz. `npm run build` valida los
+contratos y regenera `dist/singular-design-system-<release>.zip`; `vercel.json`
+declara ese build para mantener website y skill en el mismo commit publicado.
 
 ## Consumir desde otro repo
 

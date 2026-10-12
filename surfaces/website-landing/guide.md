@@ -1,8 +1,8 @@
 # Perfil: Website / Landing
 
-La superficie de **marketing público** de Singular. Marca **azul/cyan** (`brand-web`), dark-first, fondos de marca por pagina, secciones narrativas, cards glass, big-pill tabs y CTAs premium.
+La superficie de **marketing público** de Singular. Marca **azul/cyan** (`brand-web`), light-first, canvas continuo, secciones narrativas, cards, big-pill tabs y CTAs. Dark mode usa navy compartido con App.
 
-> Fuente actual: la rama de trabajo vigente de `singular-landing`. Los primitivos son router-agnósticos y no portan `BookingProvider`, rutas, navbar/footer ni datos del sitio.
+> Actualizado desde `singular-landing` **main `ef592ba`**, verificado el 2026-10-12. Los primitivos son router-agnósticos y no portan `BookingProvider`, rutas, navbar/footer ni datos del sitio. Ver [provenance y decisiones](../../references/singular-landing-portable-patterns.md).
 
 ## UX writing
 
@@ -46,19 +46,22 @@ import {
 
 ## Anatomía de una página
 1. **Page shell** — `<PageShell>` como wrapper neutral; el host decide nav, footer, routing y booking.
-2. **Hero** — `<HeroSection size="compact|standard|immersive" layout="center|split" backgroundVariant="interactive">` con palabra en `.text-gradient-brand`, CTAs como children y fondo de marca.
-3. **Secciones** — `<Section pad="s|m|l|prefooter" alt>` con `<SectionHeading>` y grids de `<MarketingCard>`.
+2. **Hero** — `<HeroSection size="compact|standard|immersive" layout="center|split" backgroundVariant="none">` para un canvas continuo. `.singular-hero--wide` alinea el copy al contenedor de 80rem; `secondaryEyebrow` agrega una segunda pill opcional. El título no espera un reveal para aparecer.
+3. **Secciones** — `<Section pad="s|m|l|prefooter">` con `<SectionHeading>` y grids de `<MarketingCard>`. Fondo transparente por defecto; `.landing-section--atmosphere` opt-in. `alt` se conserva por compatibilidad, ya no pinta bandas opacas.
 4. **Tabs / disclosure** — `<LandingTabs>` para contenido por capas; entrega roles, relaciones tab/panel y navegación con flechas/Home/End.
 5. **Prefooter CTA** — `<FinalCTA>` o `<Section pad="prefooter" className="singular-cta-section">`.
 
 ## Reglas del perfil
 - **Ritmo de sección**: `.section-pad-s/-m/-l/-prefooter` (no `py-16` sueltos).
+- **Tema**: omitir `.dark` para light; agregarla a `<html>` para dark. Persistencia y detección del sistema quedan en el host. El demo empieza light salvo preferencia explícita guardada. Cuerpo Inter y display Poppins: el host debe cargar las fuentes o usar los fallbacks.
+- **Headings**: `SectionHeading` acepta `maxWidth` y `subtitleClassName`. Evitar `100vw` para títulos, panels o tabs; el contenedor y sus columnas son `minmax(0, ...)`.
 - **Eyebrow**: `<Eyebrow>` (`.eyebrow.eyebrow--brand`) — el patrón de marca, no `text-[10px] uppercase` a mano (estaba 332× en el sitio).
 - **Acentos tokenizados**: base azul/cyan; variaciones por página agrupadas en `home`, solutions/AI, custom AI/agentic, success/editorial, assessment, journey y schedule. Ver `tokens/brand-web.css`.
-- **CTA**: `primary` (azul), `accent` (gradiente azul/cyan), `secondary` (glass outline). `CtaButton` soporta scroll-to-anchor (`#id`) y links. Los CTAs primarios usan `--button-*`, no `--primary`: siguen azul/cyan aunque el acento de página sea púrpura, verde u naranja.
-- **Hero interactivo**: `backgroundVariant="interactive"` usa el nuevo `<InteractiveHeroBackground>` del home. Pinta el fondo estático de inmediato y monta la lente mouse-follow después del primer movimiento de puntero; con `prefers-reduced-motion` queda estático.
-- **Motion**: `<Reveal>` para entradas on-scroll; fondos con estrellas estaticas por performance; no animar `background-position`.
-- **Logo marquee**: `<LogoMarquee>` duplica el grupo solo visualmente (`aria-hidden` en la copia), acepta `ariaLabel`/`className` y debe recibir imágenes con dimensiones estables; para logos reales usar `loading="lazy"`, `decoding="async"` y `alt` vacío en duplicados.
+- **CTA**: `primary` (azul), `accent` (gradiente azul/cyan), `secondary` (outline). `cta.shortLabel` es opcional para móvil; el nombre accesible conserva `cta.label`. Los anchors válidos actualizan el hash, trasladan foco y respetan reduced motion; clicks modificados conservan el comportamiento del navegador. Los primarios usan `--button-*`, no `--primary`: siguen azul/cyan aunque cambie el acento de página.
+- **Fondo hero**: `none` para la receta quiet; `static` sigue siendo el default de API por compatibilidad. `animated`/`interactive` son opt-in. Interactive monta la lente tras el primer movimiento de puntero y queda estático con reduced motion. No apilarlo con otro backdrop global.
+- **Motion**: `<Reveal direction="up|left|right" distance={32}>` para entradas on-scroll. Defaults: up/18px o lateral/56px. Reduced motion muestra el contenido inmediatamente, sin desplazamiento. No animar `background-position`.
+- **Logo marquee**: acepta `ariaLabel`, `className`, `trackClassName`, `gap`, `speed`, `pauseLabel` y `resumeLabel`. El gap vive en el track y el loop compensa la separación entre grupos. La copia es `aria-hidden` + `inert`; pausa con botón, hover o foco; reduced motion muestra un solo grupo completo y estático. Proveer suficiente contenido para cubrir el ancho del rail. Imágenes con dimensiones estables, `loading="lazy"`, `decoding="async"` y alt descriptivo en el grupo original.
+- **TestimonialCard**: avatar con dimensiones y alt vacío (el autor ya está anunciado). Usar quotes y datos aprobados, con fuente/contexto en el host; no fabricar ratings por defecto.
 - **Rojo/naranja**: usar solo como semantica o accent de auditoria (`data-page-accent="assessment"`), no como marca base.
 
 ## Anti-patterns (limpiar al migrar el sitio — Fase 7)
@@ -72,14 +75,16 @@ import {
 ## Ejemplo portable
 ```tsx
 <HeroSection
-  eyebrow="Operating systems for growth"
-  title={<>Turn complexity into <span className="text-gradient-brand">repeatable advantage.</span></>}
-  subtitle="A reusable hero recipe with a performance-aware interactive background."
-  size="immersive"
-  backgroundVariant="interactive"
+  eyebrow="Website surface"
+  secondaryEyebrow="One shared language"
+  title={<>Clear stories. <span className="text-gradient-brand">One Singular language.</span></>}
+  subtitle="Explain the outcome, the system, and the next useful step."
+  backgroundVariant="none"
+  className="singular-hero--wide"
 >
-  <CtaButton cta={{ label: "Start a conversation", href: "#contact" }} />
+  <CtaButton variant="accent" cta={{ label: "Explore the patterns", shortLabel: "Explore", href: "#patterns" }} />
 </HeroSection>
+<Section id="patterns"><h2>Start with the reader’s situation.</h2></Section>
 
 <LandingTabs
   ariaLabel="How Singular works"
@@ -91,4 +96,13 @@ import {
 ```
 
 ## Preview
-`demo.html` — landing de ejemplo armada 100% con el DS. `open surfaces/website-landing/demo.html`.
+[demo.html](./demo.html) — ilustración HTML con tokens y CSS reales; no monta React.
+Incluye tabs con teclado, theme toggle, marquee pausable y copy de tres recetas
+React. Si clipboard está bloqueado, deja el código seleccionable. Los datos
+comerciales del sitio no forman parte del ejemplo. Probar las APIs en el host
+antes de afirmar compatibilidad runtime.
+
+Exportar desde un clon del repo (destino nuevo):
+```bash
+node scripts/export-snapshot.mjs --bundle=core,website-landing --target=../my-project/src/singular
+```

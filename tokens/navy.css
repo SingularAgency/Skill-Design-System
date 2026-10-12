@@ -1,0 +1,19 @@
+/* Shared dark neutrals. Web and app map to the same roles; page accents
+ * never re-tint the canvas. Values retain the Stories navy hierarchy. */
+:root {
+  --navy-background: #05060d;
+  --navy-surface-1: #121528;
+  --navy-surface-2: #172543;
+  --navy-surface-3: #19294a;
+  --navy-surface-4: #183157;
+  --navy-foreground: #c4ced9;
+  --navy-foreground-strong: #f1f5f9;
+  --navy-muted-foreground: #8cacd2;
+  --navy-accent: #17335e;
+  --navy-secondary-foreground: #e2e8f0;
+  --navy-border: #263d69;
+  --navy-input: #64748b;
+  --navy-sheet: #121f39;
+  --navy-gradient-from: #171e35;
+  --navy-gradient-to: #162144;
+}

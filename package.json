@@ -8,7 +8,8 @@
     "validate": "node scripts/validate-repository.mjs",
     "coverage:catalog": "node scripts/catalog-coverage.mjs",
     "build:skill": "node scripts/build-skill.mjs",
-    "preview": "python3 -m http.server 4789"
+    "build": "npm run validate && npm run build:skill",
+    "preview": "python3 scripts/preview.py"
   },
   "engines": { "node": ">=22" }
 }

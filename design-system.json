@@ -16,6 +16,7 @@
       "docs", "ux-voice", "tokens", "components", "backgrounds", "surfaces", "assets",
       "references/architecture.md", "references/ai-agent-contract.md",
       "references/adoption-and-governance.md", "references/consumption-and-compatibility.md",
+      "references/singular-landing-portable-patterns.md",
       "references/product-audit-2026-07.md", "references/adoption-audit-2026-07-16.md",
       "build-skill.sh", "scripts/build-skill.mjs", "scripts/export-snapshot.mjs",
       "scripts/audit-products.mjs", "scripts/lib"
@@ -63,9 +64,12 @@
       "id": "singular-landing",
       "repository": "SingularAgency/singular-landing",
       "surface": "website-landing",
-      "sourcePaths": ["src/design-system/singular/", "src/index.css", "src/components/marketing/MarketingPrimitives.tsx"],
+      "sourcePaths": ["src/design-system/singular/", "src/styles/website-host.css", "src/components/marketing/MarketingPrimitives.tsx", "src/app/components/HomeHero.tsx"],
       "adoption": "vendored-snapshot",
-      "implementationStatus": "working-tree"
+      "implementationStatus": "merged",
+      "referenceCommit": "ef592bafecfbf260ef83c48d901f2e7a128d9b5b",
+      "verifiedAt": "2026-10-12",
+      "promotionPolicy": "Portable website contracts only. Preserve shared navy in dark mode and contrast-adjusted blue/cyan CTA; host owns booking, navigation, evidence and content."
     },
     {
       "id": "singular-stories-web",
@@ -102,6 +106,7 @@
       "references/ai-agent-contract.md",
       "references/adoption-and-governance.md",
       "references/consumption-and-compatibility.md",
+      "references/singular-landing-portable-patterns.md",
       "surfaces/web-app/guide.md",
       "surfaces/website-landing/guide.md",
       "surfaces/studio/guide.md",
@@ -113,6 +118,7 @@
       "tokens/core.css",
       "tokens/typography.css",
       "tokens/semantic-status.css",
+      "tokens/navy.css",
       "tokens/core-utilities.css",
       "tokens/theme-mapping.css",
       "tokens/README.md",

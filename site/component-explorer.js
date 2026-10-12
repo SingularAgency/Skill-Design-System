@@ -33,6 +33,16 @@
   const explorer = document.querySelector("[data-explorer]");
   if (!explorer) return;
 
+  // Native disclosure preserves keyboard/AT behavior and keeps the preview
+  // near the top on small screens. User toggles persist until a breakpoint change.
+  const filterDisclosure = explorer.querySelector("[data-filter-disclosure]");
+  if (filterDisclosure && window.matchMedia) {
+    const mobileFilters = window.matchMedia("(max-width: 820px)");
+    const syncDisclosure = () => { filterDisclosure.open = !mobileFilters.matches; };
+    syncDisclosure();
+    mobileFilters.addEventListener("change", syncDisclosure);
+  }
+
   const ui = {
     search: explorer.querySelector("[data-search]"),
     platforms: explorer.querySelector("[data-platform-filters]"),
@@ -152,23 +162,26 @@
     explorer.querySelectorAll("[data-density]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.density === density)));
   }
 
+  // Filters are regenerated after selection; keep keyboard focus on their replacement.
+  const restoreFilterFocus = selector => explorer.querySelector(selector)?.focus();
+
   explorer.addEventListener("click", (event) => {
     const platform = event.target.closest("[data-platform-filter]");
     if (platform) {
       const id = platform.dataset.platformFilter;
       state.platforms.has(id) ? state.platforms.delete(id) : state.platforms.add(id);
-      renderPlatformFilters(); renderList({ preserveSelection: false }); return;
+      renderPlatformFilters(); renderList({ preserveSelection: false }); restoreFilterFocus(`[data-platform-filter="${id}"]`); return;
     }
     const category = event.target.closest("[data-category-filter]");
-    if (category) { state.category = category.dataset.categoryFilter; renderCategoryFilters(); renderList({ preserveSelection: false }); return; }
+    if (category) { state.category = category.dataset.categoryFilter; renderCategoryFilters(); renderList({ preserveSelection: false }); restoreFilterFocus(`[data-category-filter="${state.category}"]`); return; }
     const trait = event.target.closest("[data-trait-filter]");
     if (trait) {
       const id = trait.dataset.traitFilter;
       state.traits.has(id) ? state.traits.delete(id) : state.traits.add(id);
-      renderTraitFilters(); renderList({ preserveSelection: false }); return;
+      renderTraitFilters(); renderList({ preserveSelection: false }); restoreFilterFocus(`[data-trait-filter="${id}"]`); return;
     }
     const storyButton = event.target.closest("[data-story-id]");
-    if (storyButton) { state.selected = storyButton.dataset.storyId; state.variant = currentStory().variants[0]; renderList(); renderStory(); syncLocation("push"); return; }
+    if (storyButton) { state.selected = storyButton.dataset.storyId; state.variant = currentStory().variants[0]; renderStory(); syncLocation("push"); return; }
     const viewport = event.target.closest("[data-viewport]");
     if (viewport) { setViewport(viewport.dataset.viewport); return; }
     const density = event.target.closest("[data-density]");
@@ -228,63 +241,9 @@
   }
   explorer.querySelector("[data-copy-code]").addEventListener("click", (event) => copyText(codeFor(currentStory(), state.variant), event.currentTarget));
   explorer.querySelector("[data-copy-link]").addEventListener("click", (event) => { syncLocation(); copyText(location.href, event.currentTarget); });
-  document.querySelector("[data-copy-install]")?.addEventListener("click", (event) => copyText("# Run from a cloned Skill-Design-System repo; destination must be new.\nnode scripts/export-snapshot.mjs --bundle=core,website-landing --target=../my-project/src/singular", event.currentTarget));
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "/" && document.activeElement !== ui.search && !/input|textarea|select/i.test(document.activeElement.tagName)) { event.preventDefault(); ui.search.focus(); }
-  });
-
-  const hero = document.querySelector(".hero");
-  if (hero && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    hero.addEventListener("pointermove", (event) => {
-      const bounds = hero.getBoundingClientRect();
-      hero.style.setProperty("--spot-x", `${event.clientX - bounds.left}px`);
-      hero.style.setProperty("--spot-y", `${event.clientY - bounds.top}px`);
-      hero.dataset.pointerActive = "true";
-    }, { passive: true });
-  }
-
-  const fullscreenToggle = explorer.querySelector("[data-fullscreen-toggle]");
-  const isFullscreen = () => document.fullscreenElement === explorer || explorer.dataset.fullscreenFallback === "true";
-  const syncFullscreenState = () => {
-    const active = isFullscreen();
-    fullscreenToggle?.setAttribute("aria-pressed", String(active));
-    fullscreenToggle?.setAttribute("aria-label", active ? "Exit fullscreen" : "View catalog in fullscreen");
-    if (fullscreenToggle) fullscreenToggle.title = active ? "Exit fullscreen (Esc)" : "Fullscreen";
-    document.body.classList.toggle("has-explorer-fullscreen", active);
-  };
-  const useFullscreenFallback = () => {
-    explorer.dataset.fullscreenFallback = "true";
-    syncFullscreenState();
-  };
-
-  fullscreenToggle?.addEventListener("click", async () => {
-    if (document.fullscreenElement === explorer) {
-      await document.exitFullscreen();
-      return;
-    }
-    if (explorer.dataset.fullscreenFallback === "true") {
-      delete explorer.dataset.fullscreenFallback;
-      syncFullscreenState();
-      return;
-    }
-    if (!explorer.requestFullscreen) {
-      useFullscreenFallback();
-      return;
-    }
-    try {
-      await explorer.requestFullscreen();
-    } catch {
-      useFullscreenFallback();
-    }
-  });
-  document.addEventListener("fullscreenchange", syncFullscreenState);
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && explorer.dataset.fullscreenFallback === "true") {
-      delete explorer.dataset.fullscreenFallback;
-      syncFullscreenState();
-      fullscreenToggle?.focus();
-    }
   });
 
   restoreLocation();

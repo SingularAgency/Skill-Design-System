@@ -6,22 +6,23 @@
   <meta name="theme-color" content="#070b17" />
   <title>Brand &amp; Voice — Singular Design System</title>
   <meta name="description" content="Why Singular sounds like Singular: client reality, shared foundations, and two practical voice and tone manuals for Marketing and Product." />
-  <script>try{const t=localStorage.getItem("singular-ds-theme");document.documentElement.classList.toggle("dark",t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches)}catch{document.documentElement.classList.add("dark")}</script>
+  <script>try{document.documentElement.classList.toggle("dark",localStorage.getItem("singular-ds-theme")==="dark")}catch{document.documentElement.classList.remove("dark")}</script>
   <link rel="icon" type="image/png" href="assets/logos/singular-favicon-256.png" />
   <link rel="stylesheet" href="colors_and_type.css" />
-  <link rel="stylesheet" href="tokens/core.css" />
-  <link rel="stylesheet" href="tokens/brand-web.css" />
+  <link rel="stylesheet" href="tokens/core.css?v=20261012.2" />
+  <link rel="stylesheet" href="tokens/brand-web.css?v=20261012.2" />
   <link rel="stylesheet" href="tokens/core-utilities.css" />
   <link rel="stylesheet" href="backgrounds/brand-background.css" />
   <link rel="stylesheet" href="surfaces/website-landing/website.css" />
-  <link rel="stylesheet" href="site/design-system-page.css?v=20260729.1" />
+  <link rel="stylesheet" href="site/design-system-page.css?v=20261012.3" />
   <link rel="stylesheet" href="site/brand-voice-page.css?v=20260730.6" />
+  <link rel="stylesheet" href="site/website-polish.css?v=20261012.3" />
 </head>
 <body class="brand-voice-page">
   <a class="skip-link" href="#brand-voice-content">Skip to content</a>
 
   <header class="site-header" data-site-header>
-    <a class="site-brand" href="index.html" aria-label="Singular Design System — home">
+    <a class="site-brand" href="index.html?preview=20261012.3" aria-label="Singular Design System — home">
       <span class="site-brand__logo" aria-hidden="true">
         <img class="theme-logo theme-logo--dark" src="assets/logos/singular-full-dark-bg.svg" alt="" />
         <img class="theme-logo theme-logo--light" src="assets/logos/singular-full-light-bg.svg" alt="" />
@@ -30,6 +31,8 @@
     </a>
 
     <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html?preview=20261012.3" data-nav-overview>Overview</a>
+      <a href="brand-voice.html" aria-current="page">Brand &amp; Voice</a>
       <details class="site-nav__menu">
         <summary>Surfaces <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"></path></svg></summary>
         <div class="site-nav__dropdown">
@@ -42,50 +45,20 @@
           <a href="surfaces/social-email/email.md"><strong>Email</strong><small>Compatible templates</small></a>
         </div>
       </details>
-      <a href="brand-voice.html" aria-current="page">Brand &amp; Voice</a>
-      <a href="catalog.html">Components</a>
+      <a href="catalog.html" data-nav-catalog>Catalog</a>
       <a href="https://github.com/SingularAgency/Skill-Design-System" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </nav>
 
     <div class="site-header__actions">
-      <a class="brand-voice-compact-link" href="brand-voice.html" aria-current="page">Brand &amp; Voice</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode" aria-pressed="true">
         <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
         <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path></svg>
       </button>
-      <a class="header-action" href="catalog.html">Open catalog <span aria-hidden="true">→</span></a>
     </div>
   </header>
 
   <main id="brand-voice-content">
     <div class="docs-progress" aria-hidden="true"><span data-reading-progress></span></div>
-
-    <section class="docs-hero brand-bg" aria-labelledby="brand-voice-title">
-      <div class="brand-bg__stars" aria-hidden="true"></div>
-      <div class="brand-bg__aurora" aria-hidden="true"></div>
-      <div class="docs-hero__grid" aria-hidden="true"></div>
-      <div class="docs-hero__content">
-        <div class="docs-hero__copy">
-          <div class="release-pill">
-            <span class="release-pill__pulse" aria-hidden="true"></span>
-            v0.5 working reference
-            <span class="release-pill__divider" aria-hidden="true"></span>
-            5 chapters
-          </div>
-          <p class="eyebrow eyebrow--brand">The system behind every Singular decision</p>
-          <h1 id="brand-voice-title">Brand <span class="text-gradient-brand">&amp; Voice</span></h1>
-          <p>Start with the business. See why Singular is calm, clear, precise, transparent, and human. Then use one of two manuals: Marketing or Product.</p>
-        </div>
-
-        <ol class="story-spine" aria-label="Documentation story">
-          <li><span>01</span><strong>Client reality</strong><small>Business, people, and pain</small></li>
-          <li><span>02</span><strong>Foundations</strong><small>Why Singular works and sounds this way</small></li>
-          <li><span>03</span><strong>Marketing</strong><small>Recognition and trust</small></li>
-          <li><span>04</span><strong>Product</strong><small>Understanding and control</small></li>
-          <li><span>05</span><strong>Application</strong><small>Decisions and details</small></li>
-        </ol>
-      </div>
-    </section>
 
     <div class="docs-mobile-bar">
       <button type="button" data-docs-menu-toggle aria-controls="docs-sidebar" aria-expanded="false">
@@ -176,21 +149,13 @@
 
   <footer class="site-footer">
     <div class="site-footer__brand">
-      <span class="site-brand__logo" aria-hidden="true">
-        <img class="theme-logo theme-logo--dark" src="assets/logos/singular-full-dark-bg.svg" alt="" />
-        <img class="theme-logo theme-logo--light" src="assets/logos/singular-full-light-bg.svg" alt="" />
-      </span>
-      <div><strong>Design System</strong><span>One identity. Every surface.</span></div>
+      <strong>Singular Design System</strong>
+      <span class="site-footer__version">2026.10 · Candidate release</span>
     </div>
-    <div class="site-footer__links">
-      <a href="brand-voice.html">Brand &amp; Voice</a>
-      <a href="catalog.html">Components</a>
-      <a href="https://github.com/SingularAgency/Skill-Design-System">GitHub</a>
-    </div>
-    <span class="site-footer__release">Brand &amp; Voice v0.5</span>
+    <p class="site-footer__description">A working reference for one Singular identity across every surface. This release brings foundations, components, and Brand &amp; Voice together in a shared, versioned source. Brand &amp; Voice v0.5 explains the decisions behind the system; examples and compatibility are still under validation.</p>
   </footer>
 
-  <script src="site/theme-and-assets.js" defer></script>
+  <script src="site/theme-and-assets.js?v=20261012.2" defer></script>
   <script src="site/brand-voice-page.js?v=20260730.6" defer></script>
 </body>
 </html>

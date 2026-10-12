@@ -2,7 +2,7 @@
 
 /**
  * Primitivos del perfil WEBSITE/LANDING de Singular.
- * Fuente actual: rama de trabajo vigente de singular-landing.
+ * Referencia: singular-landing main ef592baf (2026-10-12).
  *
  * Portable: no importa next/*, wouter, booking providers, nav/footer del sitio
  * ni datos comerciales. Los acentos salen de tokens del DS y data-page-accent.
@@ -24,13 +24,21 @@ function cx(...classes: Array<string | false | null | undefined>) {
 }
 
 /* Reveal on-scroll (respeta reduced-motion) */
-export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
+export function Reveal({ children, delay = 0, direction = "up", distance, className }: {
+  children: ReactNode
+  delay?: number
+  direction?: "up" | "left" | "right"
+  distance?: number
+  className?: string
+}) {
   const reduce = useReducedMotion()
+  const offset = distance ?? (direction === "up" ? 18 : 56)
+  const initialOffset = direction === "up" ? { y: offset } : { x: direction === "left" ? -offset : offset }
   return (
     <motion.div
       className={className}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
-      whileInView={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      initial={reduce ? false : { opacity: 0, ...initialOffset }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: reduce ? 0.01 : 0.52, delay: reduce ? 0 : delay, ease: REVEAL_EASE }}
     >
@@ -55,17 +63,21 @@ export function SectionHeading({
   title,
   subtitle,
   center = true,
+  subtitleClassName = "",
+  maxWidth,
 }: {
   eyebrow: string
   title: ReactNode
   subtitle?: ReactNode
   center?: boolean
+  subtitleClassName?: string
+  maxWidth?: CSSProperties["maxWidth"]
 }) {
   return (
-    <div className={cx("landing-heading", center && "landing-heading--center")}>
+    <div className={cx("landing-heading", center && "landing-heading--center")} style={{ maxWidth }}>
       <Eyebrow>{eyebrow}</Eyebrow>
       <h2 className="landing-heading__title">{title}</h2>
-      {subtitle && <p className="landing-heading__subtitle">{subtitle}</p>}
+      {subtitle && <p className={cx("landing-heading__subtitle", subtitleClassName)} style={{ maxWidth }}>{subtitle}</p>}
     </div>
   )
 }
@@ -73,6 +85,7 @@ export function SectionHeading({
 /* Hero canonico del perfil marketing. */
 export function HeroSection({
   eyebrow,
+  secondaryEyebrow,
   title,
   subtitle,
   strapline,
@@ -88,6 +101,7 @@ export function HeroSection({
   backgroundVariant = "static",
 }: {
   eyebrow?: ReactNode
+  secondaryEyebrow?: ReactNode
   title: ReactNode
   subtitle?: ReactNode
   strapline?: ReactNode
@@ -101,7 +115,7 @@ export function HeroSection({
   subtitleClassName?: string
   visualClassName?: string
   /** `interactive` mounts the cursor-responsive hero backdrop after pointer input. */
-  backgroundVariant?: "static" | "animated" | "interactive"
+  backgroundVariant?: "none" | "static" | "animated" | "interactive"
 }) {
   const resolvedLayout = layout ?? (visual ? "split" : "center")
 
@@ -110,18 +124,22 @@ export function HeroSection({
       className={cx(
         "singular-hero-section",
         `singular-hero--${size}`,
+        backgroundVariant === "none" && "singular-hero--quiet",
         resolvedLayout === "split" ? "singular-hero--split" : "singular-hero--center",
         className
       )}
     >
       {backgroundVariant === "interactive" ? (
         <InteractiveHeroBackground />
-      ) : (
+      ) : backgroundVariant !== "none" ? (
         <BrandBackground asBackdrop variant={backgroundVariant} />
-      )}
+      ) : null}
       <div className={cx("singular-hero-inner", resolvedLayout === "split" && "singular-hero-inner--split", contentClassName)}>
         <div className={cx("singular-hero-copy", resolvedLayout === "center" && "singular-hero-copy--center")}>
-          {eyebrow && <Eyebrow className="singular-hero-eyebrow">{eyebrow}</Eyebrow>}
+          {(eyebrow || secondaryEyebrow) && <div className="singular-hero-eyebrows">
+            {eyebrow && <Eyebrow className="singular-hero-eyebrow">{eyebrow}</Eyebrow>}
+            {secondaryEyebrow && <Eyebrow className="singular-hero-eyebrow">{secondaryEyebrow}</Eyebrow>}
+          </div>}
           <h1 className={cx("singular-hero-title", size === "immersive" && "singular-hero-title--immersive", titleClassName)}>{title}</h1>
           {subtitle && <p className={cx("singular-hero-subtitle", subtitleClassName)}>{subtitle}</p>}
           {strapline && <p className="singular-hero-strapline">{strapline}</p>}
@@ -133,13 +151,15 @@ export function HeroSection({
   )
 }
 
+export interface LandingCta { label: string; href: string; shortLabel?: string }
+
 /* CTA simple — primary=azul, accent=gradiente azul/cyan, secondary=glass. */
 export function CtaButton({
   cta,
   variant = "primary",
   className = "",
 }: {
-  cta: { label: string; href: string }
+  cta: LandingCta
   variant?: "primary" | "secondary" | "accent"
   className?: string
 }) {
@@ -147,13 +167,22 @@ export function CtaButton({
   const onClick =
     cta.href.startsWith("#")
       ? (e: MouseEvent<HTMLAnchorElement>) => {
+          const target = document.getElementById(cta.href.slice(1))
+          if (!target || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
           e.preventDefault()
-          document.getElementById(cta.href.slice(1))?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
+          window.history.pushState(null, "", cta.href)
+          if (!target.hasAttribute("tabindex")) {
+            target.setAttribute("tabindex", "-1")
+            target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true })
+          }
+          target.focus({ preventScroll: true })
+          target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" })
         }
       : undefined
   return (
-    <a href={cta.href} onClick={onClick} className={cx("cta premium-cta", `cta--${variant}`, className)}>
-      {cta.label}
+    <a href={cta.href} onClick={onClick} aria-label={cta.shortLabel ? cta.label : undefined} className={cx("cta premium-cta", `cta--${variant}`, className)}>
+      {cta.shortLabel ? <><span className="cta-label--short" aria-hidden="true">{cta.shortLabel}</span><span className="cta-label--full" aria-hidden="true">{cta.label}</span></> : cta.label}
+      <span aria-hidden="true">→</span>
     </a>
   )
 }
@@ -294,18 +323,31 @@ export function LogoMarquee({
   speed = "40s",
   ariaLabel = "Brand logos",
   className = "",
+  trackClassName = "",
+  gap = "2.5rem",
+  pauseLabel = "Pause logo motion",
+  resumeLabel = "Resume logo motion",
 }: {
   children: ReactNode
   speed?: string
   ariaLabel?: string
   className?: string
+  trackClassName?: string
+  gap?: CSSProperties["gap"]
+  pauseLabel?: string
+  resumeLabel?: string
 }) {
+  const [paused, setPaused] = useState(false)
+  const reduce = useReducedMotion()
   return (
-    <div className={cx("marquee-mask", className)} aria-label={ariaLabel}>
-      <div className="marquee" style={{ ["--marquee-speed" as string]: speed }}>
-        <div className="marquee__group">{children}</div>
-        <div className="marquee__group" aria-hidden="true">{children}</div>
+    <div className="logo-marquee" role="group" aria-label={ariaLabel}>
+      <div className={cx("marquee-mask", className)}>
+        <div className={cx("marquee", trackClassName)} data-paused={paused} style={{ "--marquee-speed": speed, "--marquee-gap": typeof gap === "number" ? `${gap}px` : gap } as CSSProperties}>
+          <div className="marquee__group">{children}</div>
+          <div className="marquee__group" aria-hidden="true" inert>{children}</div>
+        </div>
       </div>
+      <button className="marquee-control" type="button" aria-pressed={paused} hidden={reduce ?? false} onClick={() => setPaused(!paused)}>{paused ? resumeLabel : pauseLabel}</button>
     </div>
   )
 }
@@ -328,7 +370,7 @@ export function TestimonialCard({
       <p className="testimonial-card__quote">{quote}</p>
       <div className="testimonial-card__person">
         <div className="testimonial-card__avatar">
-          {image ? <img src={image} alt={author} /> : author.slice(0, 1)}
+          {image ? <img src={image} alt="" aria-hidden="true" width={44} height={44} loading="lazy" decoding="async" /> : <span aria-hidden="true">{author.slice(0, 1)}</span>}
         </div>
         <div>
           <div className="testimonial-card__author">{author}</div>
@@ -347,8 +389,8 @@ export function FinalCTA({
 }: {
   title: ReactNode
   subtitle?: ReactNode
-  cta: { label: string; href: string }
-  secondaryCta?: { label: string; href: string }
+  cta: LandingCta
+  secondaryCta?: LandingCta
 }) {
   return (
     <Section pad="prefooter" className="singular-cta-section">
