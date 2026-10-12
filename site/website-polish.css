@@ -180,13 +180,15 @@ body, html:not(.dark) body, .brand-voice-page {
 .logo-library-toolbar label > span { font-size: .6875rem; }
 .logo-library-toolbar select, .logo-library-toolbar > button { min-height: 44px; font-size: .8125rem; }
 .logo-library-toolbar > p { font-size: .75rem; }
-.logo-download-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.logo-download-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin-top: 1rem; }
 .logo-download-card { background: var(--site-panel); }
-.logo-download-card__preview { min-height: 11rem; }
-.logo-download-card > .logo-download-card__body { padding: 1.25rem; }
+.logo-download-card__preview { min-height: 5.5rem; padding: .75rem; }
+.logo-download-card__preview img { max-width: 11rem; max-height: 3.5rem; }
+.logo-download-card > .logo-download-card__body { padding: .75rem 1rem; }
+.logo-download-card__meta { margin-bottom: .375rem; }
 .logo-download-card__meta span { font-size: .625rem; }
 .logo-download-card h3 { min-height: 0; font-size: .9375rem; line-height: 1.45; }
-.logo-download-card p { font-size: .8125rem; margin-block: .375rem .75rem; }
+.logo-download-card p { font-size: .8125rem; margin-block: .25rem .375rem; }
 .logo-download-card a { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; }
 .site-footer, html:not(.dark) .site-footer { grid-template-columns: 1fr auto; background: var(--background); gap: 1.5rem; }
 .site-footer__brand strong { font-size: .875rem; }

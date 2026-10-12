@@ -19,14 +19,14 @@ La intención del mensaje define la voz; el formato email no la define.
 - **Header**: logo Singular (PNG/SVG hospedado — Fase 9), 24–32px de alto.
 - **Body**: 1 columna, jerarquía clara (título Poppins, cuerpo Inter ~16px, line-height 1.6).
 - **CTA**: botón pill (`border-radius: 9999px`), fondo `#4567ed` (o gradiente azul→cyan via VML/imagen para Outlook), texto blanco, padding 14×28.
-- **Footer**: links legales + dirección + unsubscribe, texto `rgba(255,255,255,.5)` ~12px.
+- **Footer**: links legales + dirección + unsubscribe, texto secundario opaco con contraste ≥4.5:1 en ambos temas, ~12–14px. No usar blanco translúcido sobre fondos claros.
 
 ## Valores de marca (inline)
 | Rol | Valor |
 |---|---|
 | Fondo | `#05060d` (navy compartido) / `#f4f4f7` (light) |
 | Card | `#172543` (navy compartido) / `#ffffff` |
-| Texto | `#f5f5f5` / `#1a202c` · secundario `#9aa0aa` |
+| Texto | título `#f1f5f9` / `#0b1020` · secundario `#8cacd2` / `#52627a` (dark / light) |
 | Acento / CTA | `#4567ed` · link `#7ccaff` (dark) / `#1741e8` (light) |
 | Tipografía | Poppins (títulos) → fallback Arial; Inter (cuerpo) → fallback Helvetica |
 
@@ -35,6 +35,7 @@ La intención del mensaje define la voz; el formato email no la define.
 - Dark-mode vía `@media (prefers-color-scheme: dark)` + `meta name="color-scheme"`.
 - Imágenes con `alt`; CTA también como texto-link de respaldo.
 - Un CTA primario por email.
+- Resolver texto, links y logo para el mismo tema que el fondo; medir todo el gradiente si se usa en texto. En light usar el gradiente legible `#0067d6` → `#00788f`, no cyan decorativo.
 
 ## Preview
 `demo.html` — email de 600px on-brand. `open surfaces/social-email/demo.html`.

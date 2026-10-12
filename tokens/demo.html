@@ -3,20 +3,27 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Singular DS — preview de componentes</title>
-<link rel="stylesheet" href="./core.css?v=20261012.2" />
+<title>Tokens — Singular Design System</title>
+<link rel="stylesheet" href="./core.css?v=20261012.7" />
 <link id="brand" rel="stylesheet" href="./brand-app.css?v=20261012.2" />
+<link rel="stylesheet" href="./semantic-status.css?v=20261012.7" />
 <link rel="stylesheet" href="./core-utilities.css" />
 <style>
   /* Preview standalone (sin build): recrea los componentes core del DS con los tokens.
-     No es el código de producción — es para VER cómo se ven con cada brand profile. */
+     No es el código de producción — muestra el perfil único App · navy. */
   * { box-sizing: border-box; }
   body { margin: 0; font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
-  .bar { position: sticky; top: 0; z-index: 10; display: flex; gap: var(--gap-s); align-items: center;
-    padding: var(--gap-m); background: var(--card); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-  .bar b { margin-right: auto; font-weight: 600; }
-  .toggle { font: inherit; cursor: pointer; padding: .45rem .85rem; border-radius: var(--radius-full);
+  .token-preview-header { display: flex; align-items: center; justify-content: space-between;
+    gap: var(--gap-l); flex-wrap: wrap; max-width: 1100px; margin: 0 auto;
+    padding: var(--gap-xl) var(--gap-xl) var(--gap-l); }
+  .token-preview-heading { display: grid; gap: var(--gap-s); }
+  .token-preview-heading .eyebrow { margin: 0; color: var(--interactive); }
+  .token-preview-heading .page-title { margin: 0; color: var(--foreground); }
+  .token-preview-profile { margin: 0; color: var(--muted-foreground);
+    font-size: var(--type-caption-size); font-family: var(--font-mono); }
+  .toggle { font: inherit; cursor: pointer; min-height: 44px; padding: .45rem .85rem; border-radius: var(--radius-full);
     border: 1px solid var(--border); background: var(--secondary); color: var(--foreground); }
+  .toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
   .toggle.on { background-image: var(--gradient-primary); color: var(--primary-foreground); border-color: transparent; }
   main { padding: var(--gap-xl); display: grid; gap: var(--gap-xl); max-width: 1100px; margin: 0 auto; }
   section { display: grid; gap: var(--gap-m); }
@@ -94,9 +101,13 @@
     font-size: .72rem; font-weight: 500; border: 1px solid; }
   .b-success { color: var(--status-success-fg); border-color: var(--status-success-border); }
   .b-warning { color: var(--status-warning-fg); border-color: var(--status-warning-border); }
+  .b-urgent { color: var(--status-urgent-fg); border-color: var(--status-urgent-border); }
   .b-error { color: var(--status-danger-fg); border-color: var(--status-danger-border); }
   .b-info { color: var(--status-info-fg); border-color: var(--status-info-border); }
-  .b-neutral { color: var(--muted-foreground); border-color: var(--border); }
+  .b-neutral { color: var(--status-neutral-fg); border-color: var(--status-neutral-border); }
+  .badge.filled.b-urgent { background: var(--status-urgent-bg); }
+  .badge.filled.b-warning { background: var(--status-warning-bg); }
+  .badge.filled.b-neutral { background: var(--status-neutral-bg); }
   .badge.filled.b-success { background: var(--status-success-bg); }
   .badge.filled.b-error { background: var(--status-danger-bg); }
   .badge.filled.b-info { background: var(--status-info-bg); }
@@ -143,13 +154,15 @@
 <script src="../surfaces/showcase-navigation.js?v=20261012.6" defer></script>
 </head>
 <body data-showcase-surface="tokens">
-<noscript><nav class="ds-showcase-fallback" aria-label="Primary navigation"><a href="https://singular-design-system.vercel.app/">Overview</a><a href="https://singular-design-system.vercel.app/brand-voice.html">Brand &amp; Voice</a><a href="https://singular-design-system.vercel.app/#surfaces">Surfaces</a><a href="https://singular-design-system.vercel.app/catalog.html">Catalog</a><a href="https://github.com/SingularAgency/Skill-Design-System">GitHub ↗</a></nav></noscript>
-  <div class="bar">
-    <b>Singular DS · preview — <span id="label">App · navy · light</span></b>
-    <button id="b-app" class="toggle on" onclick="setBrand('app')">App · navy</button>
-    <button id="b-web" class="toggle" onclick="setBrand('web')">Web · navy</button>
+<noscript><nav class="ds-showcase-fallback" aria-label="Primary navigation"><a href="https://singular-design-system.vercel.app/">Overview</a><a href="https://singular-design-system.vercel.app/brand-voice.html">Brand &amp; Voice</a><a href="https://singular-design-system.vercel.app/#surfaces">Surfaces</a><a href="https://singular-design-system.vercel.app/tokens/demo.html">Tokens</a><a href="https://singular-design-system.vercel.app/catalog.html">Catalog</a><a href="https://github.com/SingularAgency/Skill-Design-System">GitHub ↗</a></nav></noscript>
+  <header class="token-preview-header" aria-labelledby="tokens-title">
+    <div class="token-preview-heading">
+      <p class="eyebrow">Singular DS · preview</p>
+      <h1 id="tokens-title" class="page-title">Tokens</h1>
+      <p id="label" class="token-preview-profile">App · navy · light</p>
+    </div>
     <button id="theme-switch" class="toggle" onclick="toggleTheme()">◐ light / dark</button>
-  </div>
+  </header>
 
   <main>
     <!-- TOKENS -->
@@ -238,16 +251,17 @@
         <span class="badge b-success">healthy</span>
         <span class="badge b-warning">pending</span>
         <span class="badge b-error">at-risk</span>
-        <span class="badge b-info">in-progress</span>
+        <span class="badge b-success">in-progress</span>
         <span class="badge b-neutral">draft</span>
       </div>
       <div class="row">
         <span class="badge filled b-success">completed</span>
         <span class="badge filled b-info">testing</span>
         <span class="badge filled b-error">critical</span>
-        <span class="badge b-error">● urgent</span>
-        <span class="badge b-warning">● high</span>
-        <span class="badge b-neutral">● low</span>
+        <span class="badge filled b-error">● urgent</span>
+        <span class="badge filled b-urgent">● high</span>
+        <span class="badge filled b-warning">● medium</span>
+        <span class="badge filled b-neutral">● low</span>
       </div>
     </section>
 
@@ -275,7 +289,7 @@
         <table class="tbl">
           <thead><tr><th>Story</th><th>Owner</th><th>Status</th><th class="num">SP</th></tr></thead>
           <tbody>
-            <tr><td>Auth refactor</td><td>Camila</td><td><span class="badge filled b-info">in-progress</span></td><td class="num">8</td></tr>
+            <tr><td>Auth refactor</td><td>Camila</td><td><span class="badge filled b-success">in-progress</span></td><td class="num">8</td></tr>
             <tr><td>Billing webhook</td><td>Alonso</td><td><span class="badge filled b-success">completed</span></td><td class="num">5</td></tr>
             <tr><td>QA queue triage</td><td>César</td><td><span class="badge filled b-error">blocked</span></td><td class="num">3</td></tr>
           </tbody>
@@ -319,21 +333,14 @@
   </main>
 
 <script>
-  function setBrand(which){
-    document.getElementById('brand').href = which === 'web' ? './brand-web.css?v=20261012.2' : './brand-app.css?v=20261012.2';
-    document.getElementById('b-app').classList.toggle('on', which==='app');
-    document.getElementById('b-web').classList.toggle('on', which==='web');
-    updateLabel();
-  }
   function toggleTheme(){ document.documentElement.classList.toggle('dark'); updateLabel(); }
   function updateLabel(){
-    const brand = document.getElementById('b-web').classList.contains('on') ? 'Web · navy' : 'App · navy';
     const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     const themeSwitch = document.getElementById('theme-switch');
     themeSwitch.disabled = false;
     themeSwitch.textContent = '◐ light / dark';
     themeSwitch.title = 'Toggle preview theme';
-    document.getElementById('label').textContent = brand + ' · ' + theme;
+    document.getElementById('label').textContent = 'App · navy · ' + theme;
   }
   const scale = document.getElementById('scale');
   [100,200,300,400,500,600,700,800,900].forEach(n=>{
@@ -341,7 +348,6 @@
     d.style.background='var(--singular-primary-'+n+')'; d.textContent=n; scale.appendChild(d);
   });
   const _p = new URLSearchParams(location.search);
-  if (_p.get('brand')) setBrand(_p.get('brand'));
   if (_p.get('theme') === 'light') document.documentElement.classList.remove('dark');
   if (_p.get('theme') === 'dark')  document.documentElement.classList.add('dark');
   updateLabel();

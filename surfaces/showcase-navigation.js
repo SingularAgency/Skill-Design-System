@@ -30,6 +30,7 @@
       <a data-showcase-route="index.html?preview=20261012.6">Overview</a>
       <a data-showcase-route="brand-voice.html">Brand &amp; Voice</a>
       <button class="ds-showcase-surfaces" type="button" aria-expanded="false" aria-controls="ds-showcase-surfaces">Surfaces <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+      <a data-showcase-route="tokens/demo.html"${surface === 'tokens' ? ' aria-current="page"' : ''}>Tokens</a>
       <a data-showcase-route="catalog.html">Catalog</a>
       <a href="https://github.com/SingularAgency/Skill-Design-System" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </nav>
@@ -85,7 +86,7 @@
     if (event.key !== 'Tab') return;
     if (event.shiftKey && event.target === links[0]) { event.preventDefault(); close(true); }
     else if (!event.shiftKey && event.target === links.at(-1)) {
-      event.preventDefault(); close(); header.querySelector('[data-showcase-route="catalog.html"]').focus();
+      event.preventDefault(); close(); header.querySelector('[data-showcase-route="tokens/demo.html"]').focus();
     }
   });
   document.addEventListener('click', event => { if (!trigger.contains(event.target) && !panel.contains(event.target)) close(); });

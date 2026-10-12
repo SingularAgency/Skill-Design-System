@@ -43,21 +43,20 @@ export { semanticToneClasses, type SemanticTone } from "./semantic-tones"
  * ========================================================================== */
 
 export type StatusVariant =
-  | "healthy" | "active" | "completed" | "approved" | "paid"   // Success
+  | "healthy" | "active" | "in-progress" | "completed" | "approved" | "paid"   // Success
   | "warning" | "attention" | "pending" | "in-review"          // Warning
   | "error" | "at-risk" | "blocked" | "critical"               // Error
-  | "info" | "in-progress" | "testing"                         // Info
+  | "info" | "testing"                         // Info
   | "neutral" | "draft" | "archived"                           // Neutral
 
 export type StatusSize = "sm" | "md" | "lg"
 
-/** Legacy defaults are preserved. Stories can pass tone="success" for live
- * In Progress without changing that domain mapping for every other host. */
+/** Canonical Stories mapping; hosts can still explicitly override tone. */
 const statusTones: Record<StatusVariant, SemanticTone> = {
-  healthy: "success", active: "success", completed: "success", approved: "success", paid: "success",
+  healthy: "success", active: "success", "in-progress": "success", completed: "success", approved: "success", paid: "success",
   warning: "warning", attention: "warning", pending: "warning", "in-review": "warning",
   error: "danger", "at-risk": "danger", blocked: "danger", critical: "danger",
-  info: "info", "in-progress": "info", testing: "info",
+  info: "info", testing: "info",
   neutral: "neutral", draft: "neutral", archived: "neutral",
 }
 const statusStyles = Object.fromEntries(

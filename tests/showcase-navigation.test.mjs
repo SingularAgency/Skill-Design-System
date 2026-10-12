@@ -48,12 +48,12 @@ function harness({ origin = 'http://localhost:4789/', saved = null, search = '',
     querySelectorAll(selector) { return selector === 'a' ? this.children : []; },
   });
   const trigger = node(), theme = node(), header = node(), panel = node();
-  const links = ['index.html?preview=20261012.6', 'brand-voice.html', 'catalog.html'].map(route => {
+  const links = ['index.html?preview=20261012.6', 'brand-voice.html', 'catalog.html', 'tokens/demo.html'].map(route => {
     const link = node(); link.dataset.showcaseRoute = route; return link;
   });
   const logos = ['light', 'dark'].map(mode => { const img = node(); img.dataset.showcaseLogo = mode; return img; });
   header.querySelectorAll = selector => selector === '[data-showcase-route]' ? links : logos;
-  header.querySelector = selector => selector === '.ds-showcase-surfaces' ? trigger : selector === '.ds-showcase-theme' ? theme : links[2];
+  header.querySelector = selector => selector === '.ds-showcase-surfaces' ? trigger : selector === '.ds-showcase-theme' ? theme : selector.includes('tokens/demo.html') ? links[3] : links[2];
   const root = {
     style: { setProperty(name, value) { this[name] = value; } },
     classList: { contains() { return dark; }, toggle(_name, force) { dark = force === undefined ? !dark : force; return dark; } },
@@ -90,8 +90,8 @@ test('navigation routes resolve under localhost and GitHub Pages, with published
       assert.ok(existsSync(new URL('../' + path, import.meta.url)), path);
     }
   }
-  const labels = [...source.matchAll(/>(Overview|Brand &amp; Voice|Surfaces|Catalog|GitHub)[ <]/g)].map(m => m[1]);
-  assert.deepEqual(labels, ['Overview', 'Brand &amp; Voice', 'Surfaces', 'Catalog', 'GitHub']);
+  const labels = [...source.matchAll(/>(Overview|Brand &amp; Voice|Surfaces|Tokens|Catalog|GitHub)[ <]/g)].map(m => m[1]);
+  assert.deepEqual(labels, ['Overview', 'Brand &amp; Voice', 'Surfaces', 'Tokens', 'Catalog', 'GitHub']);
 });
 
 test('theme starts light, honors explicit preferences and stays usable without storage', () => {
@@ -124,7 +124,7 @@ test('surface disclosure supports keyboard entry, logical Tab exit, Escape and o
   assert.equal(h.focused(), h.panel.children[0]);
   h.panel.keydown(key('Tab', h.panel.children.at(-1)));
   assert.ok(h.panel.hidden);
-  assert.equal(h.focused(), h.links[2]);
+  assert.equal(h.focused(), h.links[3]);
   h.trigger.click(); h.documentEvent('keydown', key('Escape'));
   assert.ok(h.panel.hidden);
   assert.equal(h.focused(), h.trigger);
@@ -157,4 +157,12 @@ test('Studio desktop demo fills the available viewport with compact chrome and a
   assert.match(html, /\.demo-studio \.studio-preview \{ min-height: 0; overflow: auto/);
   assert.match(html, /\.demo-studio \.preview-card \{ width: 100%; min-height: 100%/);
   assert.doesNotMatch(read('surfaces/studio/studio.css'), /showcase-clearance/);
+});
+
+test('tokens demo has only the App navy profile, including legacy brand URLs', () => {
+  const html = read('tokens/demo.html');
+  assert.match(html, /href="\.\/brand-app.css/);
+  assert.doesNotMatch(html, /brand-web.css|b-web|b-app|setBrand|Web · navy|_p.get\('brand'\)/);
+  assert.match(html, /textContent = 'App · navy · ' \+ theme/);
+  assert.match(html, /onclick="toggleTheme\(\)"/);
 });

@@ -36,7 +36,7 @@ body[data-showcase-surface] { padding-top: var(--showcase-clearance, 8rem); }
   white-space: nowrap; cursor: pointer;
 }
 .ds-showcase-nav > a:hover, .ds-showcase-surfaces:hover { color: var(--foreground-strong); background: var(--surface-2); }
-.ds-showcase-surfaces.is-current { color: var(--interactive); background: var(--surface-4); }
+.ds-showcase-surfaces.is-current, .ds-showcase-nav a[aria-current="page"] { color: var(--interactive); background: var(--surface-4); }
 .ds-showcase-surfaces svg { width: .75rem; height: .75rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
 .ds-showcase-surfaces[aria-expanded="true"] svg { transform: rotate(180deg); }
 .ds-showcase-theme { display: grid; place-items: center; width: 44px; min-width: 44px; height: 44px; min-height: 44px; padding: 0; border: 0; border-radius: var(--radius-full, 999px); background: transparent; color: var(--foreground-strong); cursor: pointer; }

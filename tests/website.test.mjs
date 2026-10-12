@@ -11,13 +11,20 @@ test("all website pages share navigation and load the presentation layer last", 
     assert.match(css.at(-1), /site\/website-polish\.css/)
     assert.match(html, /aria-label="Primary navigation"/)
     assert.match(html, /href="index.html\?preview=20261012\.3" data-nav-overview/)
-    for (const label of ["Overview", "Surfaces", "Brand &amp; Voice", "Catalog", "GitHub"]) assert.ok(html.includes(label))
+    for (const label of ["Overview", "Surfaces", "Brand &amp; Voice", "Tokens", "Catalog", "GitHub"]) assert.ok(html.includes(label))
     const nav = html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)[0]
     assert.ok(nav.indexOf("Brand &amp; Voice") < nav.indexOf("<summary>Surfaces"))
+    assert.match(nav, /href="tokens\/demo.html">Tokens/)
     assert.doesNotMatch(html, /data-fullscreen-toggle/)
   }
   assert.doesNotMatch(read("site/component-explorer.js"), /requestFullscreen|fullscreenFallback/)
   assert.doesNotMatch(read("site/design-system-page.css"), /hero-system|hero-catalog|:fullscreen/)
+})
+test("documentation distinguishes token navigation from explicit file downloads", () => {
+  const home = read('index.html')
+  assert.match(home, /class="documentation-card" href="tokens\/demo.html"[^>]*>[\s\S]*?View tokens →/)
+  assert.match(home, /href="components\/README.md" download="singular-components.md"[\s\S]*?Download inventory \(MD\) ↓/)
+  assert.match(home, /href="references\/consumption-and-compatibility.md" download="singular-setup-and-compatibility.md"[\s\S]*?Download reference \(MD\) ↓/)
 })
 test("website defaults to light while preserving an explicit saved theme", () => {
   for (const page of ["index.html", "catalog.html", "brand-voice.html"]) {

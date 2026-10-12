@@ -1,32 +1,33 @@
 /* Six semantic tones, five slots each. Never derived from a page/brand accent.
- * The Stories slot contract is shared; values are adjusted for readable text
+ * Stories palette reviewed at 33a2f0eb (2026-10-12). Tints/borders use its anchors;
+ * foreground and solid pairs are adjusted for readable text
  * and on-solid contrast. Legacy --success/--warning/etc remain unchanged.
  * Dark surfaces must declare .dark, including dark-first marketing hosts. */
 :root {
   --status-success-solid: #15803d;
   --status-success-fg: #166534;
-  --status-success-bg: color-mix(in srgb, var(--status-success-solid) 15%, transparent);
-  --status-success-border: color-mix(in srgb, var(--status-success-solid) 40%, transparent);
+  --status-success-bg: color-mix(in srgb, #16a34a 15%, transparent);
+  --status-success-border: color-mix(in srgb, #16a34a 40%, transparent);
   --status-success-on-solid: #ffffff;
   --status-warning-solid: #b45309;
   --status-warning-fg: #92400e;
-  --status-warning-bg: color-mix(in srgb, var(--status-warning-solid) 15%, transparent);
-  --status-warning-border: color-mix(in srgb, var(--status-warning-solid) 40%, transparent);
+  --status-warning-bg: color-mix(in srgb, #f59e0b 15%, transparent);
+  --status-warning-border: color-mix(in srgb, #f59e0b 45%, transparent);
   --status-warning-on-solid: #ffffff;
   --status-urgent-solid: #c2410c;
   --status-urgent-fg: #9a3412;
-  --status-urgent-bg: color-mix(in srgb, var(--status-urgent-solid) 15%, transparent);
-  --status-urgent-border: color-mix(in srgb, var(--status-urgent-solid) 40%, transparent);
+  --status-urgent-bg: color-mix(in srgb, #f97316 10%, transparent);
+  --status-urgent-border: color-mix(in srgb, #ea580c 45%, transparent);
   --status-urgent-on-solid: #ffffff;
   --status-danger-solid: #b91c1c;
   --status-danger-fg: #991b1b;
-  --status-danger-bg: color-mix(in srgb, var(--status-danger-solid) 15%, transparent);
-  --status-danger-border: color-mix(in srgb, var(--status-danger-solid) 40%, transparent);
+  --status-danger-bg: color-mix(in srgb, #ef4444 15%, transparent);
+  --status-danger-border: color-mix(in srgb, #ef4444 40%, transparent);
   --status-danger-on-solid: #ffffff;
   --status-info-solid: #1741e8;
   --status-info-fg: #1330b3;
-  --status-info-bg: color-mix(in srgb, var(--status-info-solid) 15%, transparent);
-  --status-info-border: color-mix(in srgb, var(--status-info-solid) 40%, transparent);
+  --status-info-bg: color-mix(in srgb, #0067d6 15%, transparent);
+  --status-info-border: color-mix(in srgb, #0067d6 40%, transparent);
   --status-info-on-solid: #ffffff;
   --status-neutral-solid: #475569;
   --status-neutral-fg: #475569;
@@ -37,6 +38,8 @@
   --skeleton-highlight: color-mix(in srgb, #ffffff 62%, var(--skeleton-base));
 }
 .dark {
+  --status-info-bg: color-mix(in srgb, #0b84ff 15%, transparent);
+  --status-info-border: color-mix(in srgb, #0b84ff 40%, transparent);
   --status-success-fg: #86efac;
   --status-warning-fg: #fcd34d;
   --status-urgent-fg: #fdba74;

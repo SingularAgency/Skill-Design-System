@@ -52,9 +52,19 @@ Las rutas asumen un snapshot en `singular/` junto al entry CSS. No se publica
 ### Promoción desde Stories — candidate 2026.10
 
 Origen revisado: `SingularAgency/singular-stories-design`, main `6c55bea1`.
+
+Actualización semántica (2026-10-12): paleta y mapeo revisados contra
+[`33a2f0eb`](https://github.com/SingularAgency/singular-stories-design/commit/33a2f0eb7e376fee01ea0740cb6a6f97cdd99457),
+desde `app/globals.css` y `components/status-badge.tsx`. `in-progress` pertenece
+a success (verde); prioridad/severidad high usa urgent (naranja), medium usa
+warning (ámbar), urgent/critical usa danger (rojo), testing usa info (azul).
+Las tintas y bordes siguen los anchors de Stories. Los slots de texto y sólidos
+conservan variantes AA verificadas sobre las superficies del DS: no son una
+copia literal de combinaciones de Stories que fallan contraste. Esta revisión
+no implica que todos los componentes del producto estén sincronizados a ese commit.
 Se comparten nombres de roles y slots, no datos ni transiciones de negocio.
-Se preservan los tokens legacy y el mapping default `in-progress → info`;
-el host puede elegir otro tono explícito en StatusBadge sin cambiar el dominio.
+Se preservan los tokens legacy. El mapping default ahora sigue Stories:
+`in-progress → success`; el host puede elegir otro tono explícito en StatusBadge.
 
 Seis tonos: success, warning, urgent, danger, info y neutral; cinco slots por
 tono. Urgent es naranja; danger es rojo. Las pruebas miden pares representativos
