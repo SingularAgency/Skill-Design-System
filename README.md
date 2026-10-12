@@ -132,8 +132,11 @@ En el **core** alternás **App/Web × light/dark** y ves cómo se re-tinta todo.
 Cada demo conserva la ergonomía de su propia superficie. Website/Landing usa
 un canvas continuo light-first, dark navy, pill flotante y recetas copiables,
 actualizados desde `singular-landing` main `ef592ba` (2026-10-12). Los otros
-previews mantienen su chrome de superficie. Son ilustraciones HTML con CSS y
-tokens reales, no pruebas de runtime React/Swift.
+previews mantienen su chrome de superficie. Todas las demos de Surfaces, Tokens
+y Backgrounds comparten la navegación flotante del website, visible al hacer
+scroll y con espacio reservado para no tapar sus controles. Ese chrome vive en
+`surfaces/showcase-navigation.*`; no es una API de navegación para productos.
+Son ilustraciones HTML con CSS y tokens reales, no pruebas de runtime React/Swift.
 
 Vercel sirve las páginas estáticas desde la raíz. `npm run build` valida los
 contratos y regenera `dist/singular-design-system-<release>.zip`; `vercel.json`

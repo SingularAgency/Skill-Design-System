@@ -97,11 +97,8 @@ test("demo tabs support arrow wrapping, Home and End with one active panel", () 
     assert.equal(h.tabs.filter(t => t.tabIndex === 0).length, 1)
   }
 })
-test("demo theme and marquee controls work when storage is blocked", () => {
+test("demo marquee controls toggle explicit pause", () => {
   const h = demoHarness()
-  h.theme.click()
-  assert.ok(h.dark())
-  assert.equal(h.theme.attrs["aria-label"], "Switch to light mode")
   h.pause.click()
   assert.equal(h.marquee.dataset.paused, "true")
   assert.equal(h.pause.attrs["aria-pressed"], "true")

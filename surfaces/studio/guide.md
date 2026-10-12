@@ -67,6 +67,12 @@ Existing products may keep their own responsive shell and apply only the
 semantic classes. Do not override shared classes with `!important` merely to
 undo a reference grid.
 
+The HTML demo defaults to a desktop preview fitted to the available workspace.
+On desktop, the shell fills the viewport below the shared website navigation:
+the toolbar, evidence and decision rows stay compact, while the preview takes
+the remaining width and height. Conversation and preview overflow scroll
+independently. This viewport sizing belongs to the demo host, not `studio.css`.
+
 ## State model
 
 Use the exported states in `patterns.ts`:

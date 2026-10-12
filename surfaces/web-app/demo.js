@@ -40,7 +40,19 @@
   mobile.addEventListener("change", syncMenu); syncMenu();
   q("[data-menu-toggle]").addEventListener("click", e => { const nav = q("#product-nav"); nav.hidden = !nav.hidden; e.currentTarget.setAttribute("aria-expanded", String(!nav.hidden)); e.currentTarget.setAttribute("aria-label", nav.hidden ? "Show navigation" : "Hide navigation"); });
   q("[data-expand]").addEventListener("click", e => { const wide = q(".demo-content").classList.toggle("is-wide"); q(".demo-sidebar").hidden = wide; e.currentTarget.setAttribute("aria-pressed", String(wide)); e.currentTarget.setAttribute("aria-label", wide ? "Restore content width" : "Expand content"); });
-  q("[data-demo-theme]").addEventListener("click", e => { const dark = document.documentElement.classList.toggle("dark"); e.currentTarget.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode"); e.currentTarget.textContent = dark ? "☼" : "☾"; q("[data-demo-logo]").src = `../../assets/logos/singular-icon-${dark ? "dark" : "light"}-bg.svg`; });
+  const syncDemoTheme = () => {
+    const dark = document.documentElement.classList.contains("dark");
+    q("[data-demo-theme]").setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    q("[data-demo-theme]").textContent = dark ? "☼" : "☾";
+    q("[data-demo-logo]").src = `../../assets/logos/singular-icon-${dark ? "dark" : "light"}-bg.svg`;
+  };
+  q("[data-demo-theme]").addEventListener("click", () => {
+    const dark = document.documentElement.classList.toggle("dark");
+    try { localStorage.setItem("singular-ds-theme", dark ? "dark" : "light"); } catch { /* Optional preference. */ }
+    syncDemoTheme();
+  });
+  window.addEventListener("singular-ds-themechange", syncDemoTheme);
+  syncDemoTheme();
   const dialog = q(".demo-detail");
   let returnStoryId = null;
   const open = (story, trigger) => { selected = story; returnStoryId = trigger?.dataset.story || null; q("#detail-title").textContent = story.title; q("[data-detail-status]").value = story.status; q("[data-detail-priority]").value = story.priority; dialog.showModal(); };

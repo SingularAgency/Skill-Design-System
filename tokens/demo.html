@@ -139,8 +139,11 @@
   .label { font-size: .7rem; color: var(--muted-foreground); }
 </style>
 <link rel="stylesheet" href="../surfaces/preview-shell.css">
+<link rel="stylesheet" href="../surfaces/showcase-navigation.css?v=20261012.6">
+<script src="../surfaces/showcase-navigation.js?v=20261012.6" defer></script>
 </head>
-<body>
+<body data-showcase-surface="tokens">
+<noscript><nav class="ds-showcase-fallback" aria-label="Primary navigation"><a href="https://singular-design-system.vercel.app/">Overview</a><a href="https://singular-design-system.vercel.app/brand-voice.html">Brand &amp; Voice</a><a href="https://singular-design-system.vercel.app/#surfaces">Surfaces</a><a href="https://singular-design-system.vercel.app/catalog.html">Catalog</a><a href="https://github.com/SingularAgency/Skill-Design-System">GitHub ↗</a></nav></noscript>
   <div class="bar">
     <b>Singular DS · preview — <span id="label">App · navy · light</span></b>
     <button id="b-app" class="toggle on" onclick="setBrand('app')">App · navy</button>
@@ -320,19 +323,16 @@
     document.getElementById('brand').href = which === 'web' ? './brand-web.css?v=20261012.2' : './brand-app.css?v=20261012.2';
     document.getElementById('b-app').classList.toggle('on', which==='app');
     document.getElementById('b-web').classList.toggle('on', which==='web');
-    if (which==='web') document.documentElement.classList.add('dark');
     updateLabel();
   }
-  function toggleTheme(){ if (document.getElementById('b-web').classList.contains('on')) return; document.documentElement.classList.toggle('dark'); updateLabel(); }
+  function toggleTheme(){ document.documentElement.classList.toggle('dark'); updateLabel(); }
   function updateLabel(){
     const brand = document.getElementById('b-web').classList.contains('on') ? 'Web · navy' : 'App · navy';
-    const web = document.getElementById('b-web').classList.contains('on');
-    if (web) document.documentElement.classList.add('dark');
     const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     const themeSwitch = document.getElementById('theme-switch');
-    themeSwitch.disabled = web;
-    themeSwitch.textContent = web ? 'Web · dark-first' : '◐ light / dark';
-    themeSwitch.title = web ? 'Web profile currently supports dark mode. The showcase has its own light theme.' : 'Toggle app theme';
+    themeSwitch.disabled = false;
+    themeSwitch.textContent = '◐ light / dark';
+    themeSwitch.title = 'Toggle preview theme';
     document.getElementById('label').textContent = brand + ' · ' + theme;
   }
   const scale = document.getElementById('scale');
@@ -345,6 +345,7 @@
   if (_p.get('theme') === 'light') document.documentElement.classList.remove('dark');
   if (_p.get('theme') === 'dark')  document.documentElement.classList.add('dark');
   updateLabel();
+  window.addEventListener('singular-ds-themechange', updateLabel);
 </script>
 </body>
 </html>
