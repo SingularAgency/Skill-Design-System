@@ -58,6 +58,10 @@
   --border: color-mix(in srgb, var(--primary) 16%, #c2c7d6);
   --input: #64748b;
   --sheet-content: color-mix(in srgb, var(--primary) 5%, #fafbfc);
+  --surface-1: var(--sheet-content);
+  --surface-2: var(--card);
+  --surface-3: var(--muted);
+  --surface-4: var(--secondary);
 
   /* ── Sidebar / header (chrome de app) ── */
   --sidebar: color-mix(in srgb, var(--primary) 4%, color-mix(in srgb, var(--singular-secondary-100) 14%, #e8ebf4));
@@ -70,7 +74,8 @@
   --sidebar-divider: color-mix(in srgb, var(--foreground) 18%, var(--sidebar));
   --sidebar-ring: var(--ring);
   --sidebar-accent-foreground: var(--foreground);
-  --sidebar-frost-bg: color-mix(in srgb, #ffffff 78%, var(--sidebar));
+  --sidebar-frost-bg: rgb(255 255 255 / 0.6);
+  --header-frost-bg: rgb(255 255 255 / 0.1);
   --type-page-title-size-md: var(--type-size-4xl);
   --type-page-title-size-lg: var(--type-size-display);
   --type-page-subtitle-size: var(--type-size-sm);
@@ -119,35 +124,40 @@
   --primary-foreground: #05060d; /* bright primary fill needs dark text */
   --primary-strong: #7ccaff;
   --primary-strong-hover: #c8ecff;
-  --background: #05060d;
-  --foreground: #C4CED9;            --foreground-strong: #F1F5F9;
-  --card: color-mix(in srgb, var(--primary) 8%, #181d33);        --card-foreground: #C4CED9;
-  --popover: color-mix(in srgb, var(--primary) 8%, #181d33);     --popover-foreground: #C4CED9;
-  --muted: color-mix(in srgb, var(--primary) 10%, #1a1f36);
-  --muted-foreground: color-mix(in srgb, var(--primary) 18%, #a8b5c8);
-  --accent: color-mix(in srgb, var(--primary) 20%, #1a1f36);     --accent-foreground: var(--interactive);
-  --secondary: color-mix(in srgb, var(--primary) 16%, #1a1f36);  --secondary-foreground: #e2e8f0;
-  --border: color-mix(in srgb, var(--primary) 14%, #2a3150);
-  --input: #64748b;
-  --sheet-content: color-mix(in srgb, var(--primary) 7%, #12172a);
+  --background: var(--navy-background);
+  --foreground: var(--navy-foreground); --foreground-strong: var(--navy-foreground-strong);
+  --surface-1: var(--navy-surface-1);
+  --surface-2: var(--navy-surface-2);
+  --surface-3: var(--navy-surface-3);
+  --surface-4: var(--navy-surface-4);
+  --card: var(--surface-2);        --card-foreground: var(--foreground);
+  --popover: var(--surface-2);     --popover-foreground: var(--foreground);
+  --muted: var(--surface-3);
+  --muted-foreground: var(--navy-muted-foreground);
+  --accent: var(--navy-accent);    --accent-foreground: var(--interactive);
+  --secondary: var(--surface-4);  --secondary-foreground: var(--navy-secondary-foreground);
+  --border: var(--navy-border);
+  --input: var(--navy-input);
+  --sheet-content: var(--navy-sheet);
 
   --interactive: #7ccaff;          --interactive-hover: #c8ecff;
   --interactive-fill: #0067d6;     --interactive-fill-hover: #005bbf;
   --interactive-muted: color-mix(in srgb, var(--interactive-fill) 16%, #1a1f36);
   --ring: #7ccaff;
 
-  --sidebar: #121528; --sidebar-foreground: #C4CED9;
+  --sidebar: var(--surface-1); --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--interactive);  --sidebar-primary-foreground: #05060d;
   --sidebar-accent: #1c2138; --sidebar-border: #2a3150;
   --sidebar-nav-hover: rgb(255 255 255 / 0.06);
   --sidebar-nav-active: color-mix(in srgb, var(--primary) 28%, #2a3358);
   --sidebar-divider: color-mix(in srgb, var(--foreground) 32%, var(--sidebar));
-  --sidebar-frost-bg: color-mix(in srgb, var(--sidebar) 86%, transparent);
+  --sidebar-frost-bg: rgb(46 54 88 / 0.82);
+  --header-frost-bg: rgb(22 27 46 / 0.1);
 
   /* Header well + search (dark) */
   --header-well-bg: color-mix(in srgb, #000 22%, var(--sidebar));
   --header-border: var(--sidebar-border);
-  --header-search-bg: color-mix(in srgb, var(--primary) 10%, #161b2e);
+  --header-search-bg: color-mix(in srgb, var(--primary) 6%, #0d1120);
   --header-search-border: rgb(255 255 255 / 0.12);
 
   /* Componentes (dark): outline hover + card glass */
@@ -159,5 +169,5 @@
   /* Charts (dark: multicolor saturado para leer sobre navy) */
   --chart-1: #7ccaff; --chart-2: #3ecfef; --chart-3: #b8e3ff; --chart-4: #f0b429; --chart-5: #5eead4;
 
-  --surface-gradient-from: #171e35; --surface-gradient-to: #162144;
+  --surface-gradient-from: var(--navy-gradient-from); --surface-gradient-to: var(--navy-gradient-to);
 }

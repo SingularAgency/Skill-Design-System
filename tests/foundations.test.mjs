@@ -35,7 +35,7 @@ test("six semantic tones expose five slots and are independent of brand/page acc
 test("semantic text and on-solid pairs meet 4.5:1 on representative surfaces", () => {
   for (const [theme, vars, backgrounds] of [
     ["light", light, ["#ffffff", "#e6ecf6"]],
-    ["dark", dark, ["#05060d", "#1a1f36", "#131d33"]],
+    ["dark", dark, ["#05060d", "#172543", "#19294a"]],
   ]) for (const tone of tones) {
     const prefix = "--status-" + tone + "-"
     assert.ok(contrast(vars[prefix + "on-solid"], vars[prefix + "solid"]) >= 4.5, theme + "/" + tone + "/solid")
@@ -56,7 +56,7 @@ test("new typography is an imported role system, not feature-local values", () =
 test("semantic foreground remains readable on its alpha-tinted badge background", () => {
   for (const [theme, vars, backgrounds] of [
     ["light", light, ["#ffffff", "#e6ecf6"]],
-    ["dark", dark, ["#05060d", "#1a1f36", "#131d33"]],
+    ["dark", dark, ["#05060d", "#172543", "#19294a"]],
   ]) for (const tone of tones) for (const background of backgrounds) {
     const prefix = "--status-" + tone + "-"
     const percent = Number(vars[prefix + "bg"].match(/(\d+)%/)[1]) / 100
@@ -91,4 +91,27 @@ test("app primary and sidebar solid pairs support their declared foreground in b
     assert.ok(contrast(profile["--interactive"], profile["--sidebar-primary-foreground"]) >= 4.5)
     assert.ok(contrast(profile["--button-primary"], profile["--button-primary-foreground"]) >= 4.5)
   }
+})
+test("web and app share the same navy surface roles, independent of page accents", () => {
+  const navy = read("tokens/navy.css")
+  assert.match(read("tokens/core.css"), /@import "\.\/navy\.css"/)
+  const vars = css => Object.fromEntries([...css.matchAll(/(--[\w-]+):\s*([^;]+);/g)].map(m => [m[1], m[2]]))
+  const palette = vars(navy)
+  const app = vars(read("tokens/brand-app.css").split(".dark {")[1])
+  const web = vars(read("tokens/brand-web.css").split(":root {")[1].split("}\n")[0])
+  const resolve = (key, profile) => {
+    const value = profile[key] ?? palette[key]
+    const alias = value?.match(/^var\((--[^)]+)\)$/)?.[1]
+    return alias ? resolve(alias, profile) : value
+  }
+  for (const role of ["background", "surface-1", "surface-2", "surface-3", "surface-4", "card", "popover", "muted", "border", "input", "sheet-content", "foreground", "muted-foreground"]) {
+    assert.equal(resolve("--" + role, web), resolve("--" + role, app), role)
+  }
+  for (const surface of ["--navy-background", "--navy-surface-1", "--navy-surface-2", "--navy-surface-3", "--navy-surface-4"]) {
+    for (const text of ["--navy-foreground", "--navy-muted-foreground"]) assert.ok(contrast(palette[text], palette[surface]) >= 4.5, text + "/" + surface)
+  }
+})
+test("web CTA and copy-command pairs support normal text", () => {
+  for (const fill of ["#0067d6", "#00788f", "#005bbf", "#006f86"]) assert.ok(contrast("#ffffff", fill) >= 4.5)
+  assert.doesNotMatch(read("tokens/brand-web.css"), /linear-gradient\(180deg, color-mix\(in srgb, #ffffff (16|20)%/)
 })

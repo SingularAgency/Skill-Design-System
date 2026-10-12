@@ -15,6 +15,9 @@ no se mezclan:
 - website usa el anchor; app conserva `#0b84ff` como action blue en dark,
   con `--primary: #0067d6` en light para texto y fills contrastados.
 - status sigue siendo semántico e independiente.
+- Web y App comparten una sola paleta de neutrales navy en oscuro, desde
+  `navy.css` (importada por core). Los acentos no retintan fondo, card, popover,
+  muted o border. El perfil conserva sus acciones, radios y densidad.
 
 ## Archivos
 
@@ -23,8 +26,9 @@ no se mezclan:
 | `core.css` | Tokens **universales**: spacing, radius scale, tipografía, status, Agent Orb roles + remap a11y dark. Las tintas del orb referencian anchors del profile; no agregan una marca paralela. | No (vars puras) |
 | `brand-app.css` | Profile **APP**: action blue con valores de interacción ajustados por contraste, identity anchor `#4567ed`, superficies navy-tinted. Light + dark. | No (vars puras) |
 | `typography.css` | Escala primitiva + roles semánticos `--type-*`. Importada por core; el profile adapta roles y breakpoints. | No |
+| `navy.css` | Una sola paleta dark para Web y App: canvas, cuatro superficies, texto, borde, input, sheet y glass stops. Importada por core. | No |
 | `semantic-status.css` | Seis tonos independientes × cinco slots (`fg/bg/border/solid/on-solid`) + skeleton. Importada por core. | No |
-| `brand-web.css` | Profile **WEB** (marketing): primary azul/cyan, surface dark-first, card/button/motion tokens y `data-page-accent` desde `singular-landing`. | No (vars puras) |
+| `brand-web.css` | Profile **WEB** (marketing): primary azul/cyan, light-first con navy en `.dark`, card/button/motion tokens y `data-page-accent` desde `singular-landing`. | No (vars puras) |
 | `theme-mapping.css` | `@theme inline` — expone las vars como utilidades Tailwind (`bg-primary`, `gap-m`…). Compartido. | Sí |
 | `theme-app.css` / `theme-web.css` | **Entries de build** por superficie: `tailwindcss` + core + brand + mapping + utilities. | Sí |
 | `core-utilities.css` | **Utility classes** universales (capa 2): `.surface-liquid`/glass, `.gap-*`/`.stack-*`, tipografía semántica (`.kpi-value`, `.text-*`, `.label-*`, `.eyebrow`), proof/data (`.metric-strip`, `.source-tag`, `.comparison-table`), performance/layout (`.lazy-visible`, `.section-atmosphere`, `.text-gradient-safe`), `.page-container`, `.scrollbar-subtle`. | No (clases planas) |
@@ -75,6 +79,8 @@ xs/xl. No se mueve ningún archivo ni se elimina un token existente.
 
 ### CTA primario web
 En website/landing, `--button-primary`, `--button-gradient-primary`, `--button-gradient-primary-hover` y `--button-shadow-primary` son azul/cyan deliberadamente. No deben derivar de `--primary` ni de `--gradient-primary`: esos tokens sí cambian con `data-page-accent`, mientras que el CTA principal mantiene la firma azul/cyan de Singular.
+Los stops del CTA son azul/teal contrastados para texto blanco; no usar el
+gradiente decorativo más brillante ni un overlay blanco sobre el fill.
 
 ## Verificar
 
@@ -84,7 +90,7 @@ open tokens/demo.html   # alterná App/Web y light/dark; mirá cómo se re-tinta
 
 ## Notas / pendientes
 - `brand-web.css` incluye accents de pagina (`home`, `solutions`, `custom-ai`, `success`, `assessment`, `editorial`) para retintar marketing sin crear otra marca.
-- **Light del perfil web**: el website es dark-first hoy; el bloque light queda como `TODO` en `brand-web.css`.
+- **Light del perfil web**: actualizado desde `singular-landing` main `ef592ba` (2026-10-12). Sin `.dark` usa neutrales claros; `.dark` conserva navy compartido con App. `--interactive`, `--accent-readable` y `--gradient-text` separan texto legible de acentos decorativos. Los CTA mantienen los stops azul/teal contrastados. Inter para cuerpo y Poppins para display son roles del perfil; el host carga las fuentes (no están empaquetadas).
 - **Agent activity**: `--agent-orb-{near,mid,far,ghost,glow}` deriva de
   `--brand-primary`, `--brand-cyan` y `--primary`; no usar status colors para
   animaciones de trabajo en curso.

@@ -288,8 +288,8 @@ The visual system follows the same personality.
 | Accessible contrast and interaction | Preserve clarity and control for more people and conditions |
 
 The current brand anchor is `#4567ed`; cyan `#22d3ee` provides selective energy;
-product action blue `#0b84ff` serves high-clarity interaction; and the marketing
-base `#050505` creates a dark editorial canvas. These are Design System
+product action blue `#0b84ff` serves high-clarity interaction; and the shared
+navy base `#05060d` anchors both marketing and product dark surfaces. These are Design System
 decisions, not customer research findings.
 
 Poppins carries display and marketing headings. Inter supports product and body

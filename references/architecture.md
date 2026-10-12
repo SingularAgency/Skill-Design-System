@@ -42,7 +42,7 @@ without changing the corporate identity.
 
 | Profile | Product | Character |
 |---|---|---|
-| `website-landing` | singular-landing | Narrative, editorial, dark-first, expressive accents |
+| `website-landing` | singular-landing | Narrative, editorial, light-first, quiet canvas; shared navy in dark mode |
 | `web-app` | Singular Stories web | Dense operational UI, light/dark, data and workflow |
 | `studio` | Singularity Studio | Chat + preview + agent trace + evidence, dark-first |
 | `ios-app` | Singular Stories iOS | Native SwiftUI, approvals and triage, Dynamic Type |

@@ -1,14 +1,16 @@
 /* ============================================================
  * Brand profile: WEB (marketing / website) — azul/cyan
  * ============================================================
- * Fuente actual: rama de trabajo vigente de singular-landing.
- * Perfil dark-first para marketing: mismo primary azul/cyan que Singular,
- * surface profunda, acentos por pagina via data-page-accent.
+ * Referencia: singular-landing main ef592baf (2026-10-12).
+ * Perfil light-first para marketing: mismo primary azul/cyan que Singular,
+ * neutrales navy compartidos con app, acentos por pagina via data-page-accent.
  * Rojo/naranja queda reservado para estados o experiencias de auditoria,
  * no como marca base.
  * ============================================================ */
 
 :root {
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: var(--font-sans);
   /* Marca base */
   --brand-primary: #4567ed;
   --brand-cyan: #22d3ee;
@@ -46,20 +48,20 @@
   --audit-foreground: #fff7ed;
   --audit-gradient: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
 
-  /* Surface dark-first */
-  --background: #0b1020;
-  --foreground: #f4f8ff;
-  --foreground-strong: #ffffff;
-  --surface-1: #10172a;
-  --surface-2: #131d33;
-  --surface-3: color-mix(in srgb, var(--primary) 8%, #17223a);
-  --surface-4: color-mix(in srgb, var(--primary) 14%, #1d2d4a);
+  /* Dark fallback: .dark conserva los neutrales navy compartidos con app. */
+  --background: var(--navy-background);
+  --foreground: var(--navy-foreground);
+  --foreground-strong: var(--navy-foreground-strong);
+  --surface-1: var(--navy-surface-1);
+  --surface-2: var(--navy-surface-2);
+  --surface-3: var(--navy-surface-3);
+  --surface-4: var(--navy-surface-4);
   --section-bg: linear-gradient(180deg,
     color-mix(in srgb, var(--primary) 5%, var(--background)) 0%,
     color-mix(in srgb, var(--singular-secondary) 3%, var(--background)) 100%);
   --section-bg-alt: linear-gradient(180deg,
-    color-mix(in srgb, var(--primary) 9%, #0e1729) 0%,
-    color-mix(in srgb, var(--singular-secondary) 5%, #111b31) 100%);
+    color-mix(in srgb, var(--primary) 9%, var(--surface-1)) 0%,
+    color-mix(in srgb, var(--singular-secondary) 5%, var(--surface-2)) 100%);
 
   --card: var(--surface-2);
   --card-foreground: var(--foreground);
@@ -85,40 +87,37 @@
   --card-shadow-hover: inset 0 1px 0 color-mix(in srgb, var(--foreground) 12%, transparent), 0 32px 90px -54px color-mix(in srgb, var(--primary) 76%, transparent), 0 18px 46px -32px rgb(0 0 0 / 0.9);
   --card-accent: var(--singular-secondary);
 
-  --secondary: color-mix(in srgb, var(--primary) 7%, #111827);
-  --secondary-foreground: var(--foreground);
-  --muted: color-mix(in srgb, var(--primary) 8%, #192235);
-  --muted-foreground: #b4c2df;
-  --readable-foreground: #dbe7ff;
-  --readable-muted: #b4c2df;
-  --readable-subtle: #9fb0d3;
-  --accent: color-mix(in srgb, var(--singular-secondary) 16%, #142236);
+  --secondary: var(--surface-4);
+  --secondary-foreground: var(--navy-secondary-foreground);
+  --muted: var(--surface-3);
+  --muted-foreground: var(--navy-muted-foreground);
+  --readable-foreground: var(--foreground);
+  --readable-muted: var(--muted-foreground);
+  --readable-subtle: var(--muted-foreground);
+  --accent: var(--navy-accent);
   --accent-foreground: var(--foreground);
-  --border: color-mix(in srgb, var(--primary) 24%, transparent);
-  --input: color-mix(in srgb, var(--primary) 18%, #15213a);
+  --border: var(--navy-border);
+  --input: var(--navy-input);
   --ring: var(--singular-secondary);
-  --sheet-content: var(--surface-2);
+  --sheet-content: var(--navy-sheet);
 
   /* Interactive */
   --interactive: #8babff;
   --interactive-hover: #c4d4ff;
+  --accent-readable: var(--interactive);
   --interactive-fill: var(--primary);
   --interactive-fill-hover: var(--primary-strong-hover);
 
   /* Buttons / CTA */
   --button-outline: color-mix(in srgb, var(--primary) 24%, transparent);
-  --button-primary: #2f6bf6;
+  --button-primary: #0067d6;
   --button-primary-foreground: #ffffff;
   --button-primary-border: color-mix(in srgb, #22d3ee 42%, transparent);
   --button-secondary-bg: color-mix(in srgb, var(--card-accent) 14%, #14233d);
   --button-secondary-border: color-mix(in srgb, var(--card-accent) 38%, transparent);
   --button-link: var(--primary);
-  --button-gradient-primary:
-    linear-gradient(180deg, color-mix(in srgb, #ffffff 16%, transparent), transparent 48%),
-    linear-gradient(135deg, #2f6bf6 0%, #22d3ee 100%);
-  --button-gradient-primary-hover:
-    linear-gradient(180deg, color-mix(in srgb, #ffffff 20%, transparent), transparent 50%),
-    linear-gradient(135deg, #1741e8 0%, #06b6d4 100%);
+  --button-gradient-primary: linear-gradient(135deg, #0067d6 0%, #00788f 100%);
+  --button-gradient-primary-hover: linear-gradient(135deg, #005bbf 0%, #006f86 100%);
   --button-shadow-primary: 0 16px 42px -22px color-mix(in srgb, #22d3ee 72%, transparent), inset 0 1px 0 rgba(255,255,255,0.18);
   --primary-border: color-mix(in srgb, var(--primary) 40%, transparent);
   --secondary-border: color-mix(in srgb, var(--primary) 18%, transparent);
@@ -133,8 +132,8 @@
   /* Radius / gradients */
   --radius: 0.875rem;
   --radius-card: 1.5rem;
-  --surface-gradient-from: #0d1018;
-  --surface-gradient-to: #0b1420;
+  --surface-gradient-from: var(--navy-gradient-from);
+  --surface-gradient-to: var(--navy-gradient-to);
   --gradient-primary: linear-gradient(135deg, #4567ed 0%, #22d3ee 100%);
   --gradient-primary-hover: linear-gradient(135deg, #1741e8 0%, #06b6d4 100%);
 
@@ -308,4 +307,41 @@
   --brand-bg-mist-strength: 0.4;
 }
 
-/* TODO(light): el website real es dark-first; light queda pendiente. */
+/* Light-first, como singular-landing. Identidad/acento de página y CTA se
+ * conservan; texto, foco y neutrales tienen roles legibles independientes.
+ * No usar los acentos decorativos como foreground de texto pequeño. */
+:root:not(.dark) {
+  --background: #f6f8fc;
+  --foreground: #24324a;
+  --foreground-strong: #0b1020;
+  --surface-1: #ffffff;
+  --surface-2: #eef3fa;
+  --surface-3: #e8edf5;
+  --surface-4: #e1e8f2;
+  --secondary-foreground: #24324a;
+  --muted-foreground: #52627a;
+  --readable-foreground: #24324a;
+  --readable-muted: #52627a;
+  --readable-subtle: #52627a;
+  --accent: #e8edf5;
+  --border: #d7e0ed;
+  --input: #738198;
+  --ring: #1741e8;
+  --sheet-content: #ffffff;
+  --interactive: #1741e8;
+  --interactive-hover: #0e278b;
+  --button-secondary-bg: var(--surface-1);
+  --button-secondary-border: var(--input);
+  --button-link: var(--interactive);
+  --gradient-text: linear-gradient(135deg, #0067d6 0%, #00788f 100%);
+  --card-surface: var(--surface-1);
+  --card-surface-hover: var(--surface-1);
+  --card-surface-raised: var(--surface-1);
+  --card-border-color: var(--border);
+  --card-border-hover: var(--input);
+  --card-shadow: 0 12px 32px -24px rgb(36 50 74 / .18);
+  --card-shadow-hover: 0 18px 40px -24px rgb(36 50 74 / .25);
+  --surface-gradient-from: var(--surface-1);
+  --surface-gradient-to: var(--surface-2);
+  --hero-gradient-base: linear-gradient(135deg, var(--surface-2), var(--background));
+}

@@ -95,6 +95,12 @@ Stories quedan en la app.
 
 `InteractiveHeroBackground` vive en `surfaces/website-landing/InteractiveHeroBackground.tsx`: backdrop mouse-follow portable, activado sólo después de interacción y sin acople a rutas, booking o contenido. `HeroSection backgroundVariant="interactive"` lo monta automáticamente.
 
+Actualizado desde main `ef592ba` (2026-10-12): `HeroSection.secondaryEyebrow`,
+`backgroundVariant="none"` para canvas continuo, `LandingCta.shortLabel`,
+`SectionHeading.maxWidth/subtitleClassName`, `Reveal.direction/distance` y
+`LogoMarquee.trackClassName/gap` con pausa y duplicado `inert`. Las props nuevas
+son opcionales; se conservan los exports y variantes existentes.
+
 Los patrones que atraviesan superficies se mantienen en `components/` y no dentro de
 `website-landing`: `MetricStrip` para prueba/KPI, `ComparisonTable` para decisiones,
 `SourceTag` para contexto y `LazyVisible` para diferir gráficos, media o carruseles.

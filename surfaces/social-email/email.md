@@ -15,7 +15,7 @@ Para transactional email, errors, approvals y status, leer
 La intención del mensaje define la voz; el formato email no la define.
 
 ## Estructura
-- Ancho máximo **600px**, centrado, sobre fondo `#050505` (o `#f4f4f7` para variante clara).
+- Ancho máximo **600px**, centrado, sobre navy `#05060d` (o `#f4f4f7` para variante clara). En email resolver los tokens a valores inline; no depender de CSS variables.
 - **Header**: logo Singular (PNG/SVG hospedado — Fase 9), 24–32px de alto.
 - **Body**: 1 columna, jerarquía clara (título Poppins, cuerpo Inter ~16px, line-height 1.6).
 - **CTA**: botón pill (`border-radius: 9999px`), fondo `#4567ed` (o gradiente azul→cyan via VML/imagen para Outlook), texto blanco, padding 14×28.
@@ -24,8 +24,8 @@ La intención del mensaje define la voz; el formato email no la define.
 ## Valores de marca (inline)
 | Rol | Valor |
 |---|---|
-| Fondo | `#050505` (dark) / `#f4f4f7` (light) |
-| Card | `#0f0f10` / `#ffffff` |
+| Fondo | `#05060d` (navy compartido) / `#f4f4f7` (light) |
+| Card | `#172543` (navy compartido) / `#ffffff` |
 | Texto | `#f5f5f5` / `#1a202c` · secundario `#9aa0aa` |
 | Acento / CTA | `#4567ed` · link `#7ccaff` (dark) / `#1741e8` (light) |
 | Tipografía | Poppins (títulos) → fallback Arial; Inter (cuerpo) → fallback Helvetica |

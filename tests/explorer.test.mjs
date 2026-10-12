@@ -14,16 +14,21 @@ function element() {
     querySelectorAll() { return [] }, focus() { this.focused = true }, select() { this.selected = true },
   }
 }
-function setup(url = "https://example.test/catalog.html", clipboardAllowed = true) {
+function setup(url = "https://example.test/catalog.html", clipboardAllowed = true, mobile) {
   const names = ["search", "platform-filters", "category-filters", "trait-filters", "component-list", "result-count",
     "empty-results", "variant-select", "story-breadcrumb", "component-preview", "preview-stage", "preview-size",
     "story-badges", "story-title", "story-description", "story-usage", "story-contract", "story-a11y",
-    "story-code", "code-language", "source-link", "copy-code", "copy-link", "copy-fallback", "copy-feedback"]
+    "story-code", "code-language", "source-link", "copy-code", "copy-link", "copy-fallback", "copy-feedback", "filter-disclosure"]
   const nodes = Object.fromEntries(names.map(name => [name, element()]))
   nodes["copy-code"].textContent = "Copy"
   nodes["copy-link"].textContent = "Copy link"
   const explorer = element()
-  explorer.querySelector = selector => nodes[selector.match(/^\[data-(.+)\]$/)?.[1]] ?? null
+  explorer.querySelector = selector => {
+    if (/^\[data-(platform-filter|category-filter|trait-filter)="/.test(selector)) {
+      return { focus() { explorer.focusedSelector = selector } }
+    }
+    return nodes[selector.match(/^\[data-(.+)\]$/)?.[1]] ?? null
+  }
   const events = {}, totals = element()
   const context = {
     location: { href: url, search: new URL(url).search },
@@ -35,6 +40,10 @@ function setup(url = "https://example.test/catalog.html", clipboardAllowed = tru
     addEventListener(name, fn) { events[name] = fn }, setTimeout() {},
   }
   context.window = context
+  if (typeof mobile === "boolean") {
+    context.media = { matches: mobile, addEventListener(name, handler) { events["media-" + name] = handler } }
+    context.matchMedia = () => context.media
+  }
   const navigation = []
   const update = next => { context.location.href = String(next); context.location.search = new URL(next).search }
   context.history = {
@@ -47,7 +56,7 @@ function setup(url = "https://example.test/catalog.html", clipboardAllowed = tru
     const target = { dataset, closest: query => query === selector ? target : null }
     explorer.handlers.click({ target })
   }
-  return { nodes, context, events, totals, click, navigation, update }
+  return { nodes, context, events, totals, click, navigation, update, explorer }
 }
 test("permalink restores story/variant and invalid parameters fall back safely", () => {
   const app = setup("https://example.test/catalog.html?story=status-badge&variant=urgent")
@@ -84,6 +93,7 @@ test("foundation filter yields its six entries; empty search resets without stal
   const app = setup()
   app.click("[data-category-filter]", { categoryFilter: "foundation" })
   assert.equal(app.nodes["result-count"].textContent, "6")
+  assert.equal(app.explorer.focusedSelector, '[data-category-filter="foundation"]')
   assert.equal(app.nodes["story-title"].textContent, "Color roles")
   app.nodes.search.value = "nothing-matches-this-string"
   app.nodes.search.handlers.input()
@@ -92,4 +102,17 @@ test("foundation filter yields its six entries; empty search resets without stal
   app.click("[data-clear-filters]", {})
   assert.equal(app.nodes["result-count"].textContent, "25")
   assert.equal(app.nodes.search.value, "")
+})
+test("mobile filters collapse by default and manual disclosure survives story selection", () => {
+  const app = setup(undefined, true, true)
+  assert.equal(app.nodes["filter-disclosure"].open, false)
+  app.nodes["filter-disclosure"].open = true
+  app.click("[data-story-id]", { storyId: "status-badge" })
+  assert.equal(app.nodes["filter-disclosure"].open, true)
+  app.context.media.matches = false
+  app.events["media-change"]()
+  assert.equal(app.nodes["filter-disclosure"].open, true)
+  app.context.media.matches = true
+  app.events["media-change"]()
+  assert.equal(app.nodes["filter-disclosure"].open, false)
 })

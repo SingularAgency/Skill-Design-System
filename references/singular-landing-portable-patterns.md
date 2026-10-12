@@ -1,7 +1,31 @@
 # Patrones portables aprendidos de `singular-landing`
 
-Fuente auditada: implementación actual del repo `singular-landing`.
+Fuente auditada: `SingularAgency/singular-landing`, rama `main`, commit
+[`ef592bafecfbf260ef83c48d901f2e7a128d9b5b`](https://github.com/SingularAgency/singular-landing/commit/ef592bafecfbf260ef83c48d901f2e7a128d9b5b), verificado el 2026-10-12.
 Este documento registra qué se promueve al DS y qué permanece en el sitio host.
+
+## Actualización 2026-10-12
+
+Trabajo del usuario: componer una landing legible y consistente desde el repo
+o la skill, sin reconstruir los patrones ni heredar dependencias de negocio.
+Riesgo: tabs descentradas en móvil, foco/contraste perdido y ejemplos de proof
+confundidos con afirmaciones reales. Foundations: claridad, control, precisión
+y transparencia; ver [mapa de aplicación](../docs/08-application-map.md).
+
+| Evidencia revisada | Promoción al perfil |
+|---|---|
+| `src/components/marketing/MarketingPrimitives.tsx` | Hero con doble eyebrow; `shortLabel` con nombre accesible completo; headings configurables; reveals direccionales; spacing de marquee; avatar decorativo. |
+| `src/styles/website-host.css` | Canvas continuo, light-first, ancho de hero alineado al contenedor, separación entre tabs y panel, sin bleed de `100vw` en tabs móviles. |
+| `src/app/components/HomeHero.tsx` | Receta de composición amplia, jerarquía hero → proof → logos. Métricas, clientes, reconocimientos y quotes NO copiados. |
+
+Adaptaciones deliberadas: el dark mantiene los neutrales navy comunes del DS,
+los CTA usan blue/teal contrastado, y el marquee agrega pausa explícita,
+duplicado `inert` y todos los elementos visibles con reduced motion. La nueva
+opción `backgroundVariant="none"` evita apilar fondos; el default `static`
+anterior sigue disponible. El demo es HTML ilustrativo, no runtime React.
+
+La composición de navegación/footer del demo no es una nueva API compartida.
+Este registro viaja en los snapshots core y en la skill descargable.
 
 ## Promovido al core
 

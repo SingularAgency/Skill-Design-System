@@ -35,7 +35,10 @@ for (const file of [...new Set([...bundleFiles, ...skillFiles])]) {
   const text = await readFile(path.join(root, file), "utf8")
   const imports = [...text.matchAll(/(?:from\s*|@import\s*)["'](\.[^"']+)["']/g)]
   for (const [, relative] of imports) {
-    const target = path.resolve(root, path.dirname(file), relative)
+    // These strings are copy examples, not runtime imports. Resolve their
+    // declared snapshot prefix against the source; still verify file closure.
+    const copiedExample = file === "surfaces/website-landing/recipes.js" && relative.startsWith("./singular/")
+    const target = copiedExample ? path.resolve(root, relative.slice("./singular/".length)) : path.resolve(root, path.dirname(file), relative)
     const candidates = [target, ...[".ts", ".tsx", ".js", ".mjs", "/index.ts", "/index.tsx"].map((ext) => target + ext)]
     const resolved = (await Promise.all(candidates.map(exists))).findIndex(Boolean)
     if (resolved === -1) errors.push(file + " unresolved import: " + relative)

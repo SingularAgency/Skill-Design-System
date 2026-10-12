@@ -22,7 +22,7 @@ Una slide debe declarar el takeaway o la decisión, no sólo el tema.
 ## Tokens de marca para slides
 | Rol | Valor (corporativo / cyan) |
 |---|---|
-| Fondo | `#050505` → `#010203` (dark dramático) + fondo de marca opcional (mist + grid) |
+| Fondo | `--navy-background` `#05060d`, compartido con Web/App + fondo de marca opcional (mist + grid) |
 | Acento / títulos destacados | `--primary` `#4567ed` + `--gradient-primary` (azul→cyan) |
 | Texto | títulos `#ffffff` · cuerpo `rgba(255,255,255,.72)` · meta `rgba(255,255,255,.5)` |
 | Datos / números | JetBrains Mono, `tabular-nums` |

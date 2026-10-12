@@ -22,7 +22,7 @@ y verificar todo claim cuantitativo según
 | Story / Reel | 1080×1920 (9:16) | top 14% · bottom 35% · sides 6% |
 
 ## Anatomía
-1. **Fondo de marca** — dark `#050505` + mist cyan (grid opcional, sin stars en estático pequeño).
+1. **Fondo de marca** — navy `#05060d` compartido + mist cyan (grid opcional, sin stars en estático pequeño).
 2. **Logo** — esquina superior (o centrado en story). Versión clara.
 3. **Claim** — 4–9 palabras, Poppins bold, una palabra en `--gradient-primary`.
 4. **Apoyo** — 1 línea Inter, `rgba(255,255,255,.7)`.
@@ -31,7 +31,7 @@ y verificar todo claim cuantitativo según
 ## Valores de marca
 | Rol | Valor |
 |---|---|
-| Fondo | `#050505` + glow `--primary` |
+| Fondo | `--navy-background` `#05060d` + glow `--primary` |
 | Título | `#ffffff`, acento `--gradient-primary` (azul→cyan) |
 | Apoyo | `rgba(255,255,255,.7)` |
 | Tipografía | Poppins (claim) · Inter (apoyo) · JetBrains Mono (datos) |

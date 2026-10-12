@@ -52,12 +52,13 @@ test("variant copy updates meaning and labels without inventing domain transitio
   assert.match(codeFor(routes, "three-items"), /pathname=.*\n\s+tabs=/)
   assert.doesNotMatch(routes.render("three-items"), /role="tab/)
 })
-test("both website entries load the same catalog registry before its consumer", async () => {
-  for (const file of ["index.html", "catalog.html"]) {
+test("catalog loads the registry before its consumer; home does not duplicate the explorer", async () => {
+  for (const file of ["catalog.html"]) {
     const html = await readFile(path.join(root, file), "utf8")
     assert.ok(html.indexOf('src="site/catalog-stories.js') < html.indexOf('src="site/component-explorer.js'))
     assert.match(html, /data-copy-link/)
     assert.match(html, /data-copy-fallback/)
     assert.doesNotMatch(html, /17 stories · 55 variants|data-component-list role="listbox"/)
   }
+  assert.doesNotMatch(await readFile(path.join(root, "index.html"), "utf8"), /data-explorer|site\/component-explorer\.js/)
 })
