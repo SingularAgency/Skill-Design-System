@@ -24,6 +24,14 @@ function composite(foreground, background, opacity) {
 }
 const light = declarations(":root"), dark = { ...light, ...declarations(".dark") }
 const tones = ["success", "warning", "urgent", "danger", "info", "neutral"]
+test("tokens preview has a semantic DS page title with separate theme metadata", () => {
+  const demo = read('tokens/demo.html')
+  assert.match(demo, /<h1 id="tokens-title" class="page-title">Tokens<\/h1>/)
+  assert.match(demo, /<p class="eyebrow">Singular DS · preview<\/p>/)
+  assert.match(demo, /id="label" class="token-preview-profile"/)
+  assert.doesNotMatch(demo, /<div class="bar">/)
+  assert.match(demo, /\.toggle:focus-visible/)
+})
 test("six semantic tones expose five slots and are independent of brand/page accent", () => {
   for (const tone of tones) for (const slot of ["fg", "bg", "border", "solid", "on-solid"]) {
     const value = light["--status-" + tone + "-" + slot]
@@ -60,10 +68,25 @@ test("semantic foreground remains readable on its alpha-tinted badge background"
   ]) for (const tone of tones) for (const background of backgrounds) {
     const prefix = "--status-" + tone + "-"
     const percent = Number(vars[prefix + "bg"].match(/(\d+)%/)[1]) / 100
-    const resolved = composite(vars[prefix + "solid"], background, percent)
+    const anchor = vars[prefix + "bg"].match(/#[\da-f]{6}/i)?.[0] ?? vars[prefix + "solid"]
+    const resolved = composite(anchor, background, percent)
     const ratio = contrast(vars[prefix + "fg"], resolved)
     assert.ok(ratio >= 4.5, `${theme}/${tone} tinted ${background}: ${ratio.toFixed(2)}`)
   }
+})
+test("semantic preview and portable components follow current Stories status mappings", () => {
+  const demo = read('tokens/demo.html'), components = read('surfaces/web-app/components.tsx')
+  assert.match(components, /"in-progress": "success"/)
+  assert.doesNotMatch(components, /"in-progress": "info"/)
+  assert.match(demo, /class="badge b-success">in-progress/)
+  assert.match(demo, /class="badge filled b-urgent">● high/)
+  assert.match(demo, /class="badge filled b-warning">● medium/)
+  assert.match(css, /#16a34a 15%/)
+  assert.match(css, /#f59e0b 15%/)
+  assert.match(css, /#f97316 10%/)
+  assert.match(css, /#ef4444 15%/)
+  assert.match(css, /#0067d6 15%/)
+  assert.match(css, /#0b84ff 15%/)
 })
 test("spacing mappings do not collide with Tailwind container sizes", () => {
   const mapping = read("tokens/theme-mapping.css")

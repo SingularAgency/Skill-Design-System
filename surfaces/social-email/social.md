@@ -41,6 +41,7 @@ y verificar todo claim cuantitativo según
 - Feed por defecto en **4:5 portrait (1080×1350)**; es el ratio principal para Meta/IG feed.
 - Stories/Reels: mantener texto, logo y CTA dentro de la safe zone (top 14%, bottom 35%, sides 6%).
 - Contraste AA mínimo sobre el fondo.
+- El preview admite light y dark: títulos `--foreground-strong`, apoyo/handle `--foreground` y logo correspondiente al tema. Nunca conservar texto blanco al cambiar a un fondo claro. El acento light usa `--gradient-text`; dark usa `--interactive` para texto legible.
 - Acento de marca en **una** palabra/dato.
 - Logo siempre presente; no deformar.
 
